@@ -1,0 +1,3037 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+    <title>Chat - TikTok Shop</title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+
+    <!-- =========================================
+         LUCIDE ICONS
+    ========================================== -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background: #f7f7f8;
+            color: #111827;
+        }
+
+
+        body {
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           TOP BAR
+        ========================================== */
+
+        .chat-topbar {
+
+            height: 70px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 28px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 20;
+
+        }
+
+
+        .topbar-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+        }
+
+
+        .back-button {
+
+            width: 42px;
+
+            height: 42px;
+
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            color: #111827;
+
+            transition: 0.2s;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #f3f4f6;
+
+        }
+
+
+        .topbar-title {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+        }
+
+
+        .topbar-subtitle {
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+            margin-top: 2px;
+
+        }
+
+
+        .user-profile-mini {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .mini-avatar {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 700;
+
+            overflow: hidden;
+
+        }
+
+
+        .mini-avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .mini-user-name {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           CHAT WRAPPER
+        ========================================== */
+
+        .chat-wrapper {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            margin: 28px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .chat-card {
+
+            height: calc(100vh - 126px);
+
+            min-height: 500px;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        /* =========================================
+           CHAT HEADER
+        ========================================== */
+
+        .chat-header {
+
+            height: 78px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 22px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+        }
+
+
+        .admin-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+       .admin-avatar {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+}
+
+
+.admin-avatar img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+        .admin-name {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .admin-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+        }
+
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        .header-icon-button {
+
+            width: 38px;
+
+            height: 38px;
+
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #6b7280;
+
+        }
+
+
+        /* =========================================
+           MESSAGES
+        ========================================== */
+
+        .messages-container {
+
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 24px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #fafafa,
+                    #f7f7f8
+                );
+
+        }
+
+
+        .empty-chat {
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #6b7280;
+
+        }
+
+
+        .empty-chat-icon {
+
+            width: 64px;
+
+            height: 64px;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .empty-chat strong {
+
+            color: #111827;
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .empty-chat span {
+
+            font-size: 13px;
+
+        }
+
+
+        .message-row {
+
+            display: flex;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .message-row.user {
+
+            justify-content: flex-end;
+
+        }
+
+
+        .message-row.admin {
+
+            justify-content: flex-start;
+
+        }
+
+
+        .message-content {
+
+            display: flex;
+
+            width: fit-content;
+
+            max-width: min(72%, 520px);
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+
+        .message-row.user .message-content {
+
+            align-items: flex-end;
+
+        }
+
+
+        .message-row.admin .message-content {
+
+            align-items: flex-start;
+
+        }
+
+
+        .message-bubble {
+
+            display: block;
+
+            width: max-content;
+
+            max-width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 8px 12px;
+
+            border-radius: 15px;
+
+            font-size: 14px;
+
+            line-height: 1.45;
+
+            word-break: break-word;
+
+            overflow-wrap: anywhere;
+
+            white-space: pre-wrap;
+
+        }
+
+
+        .message-row.user .message-bubble {
+
+            background: #111827;
+
+            color: #ffffff;
+
+            border-bottom-right-radius: 5px;
+
+        }
+
+
+        .message-row.admin .message-bubble {
+
+            background: #ffffff;
+
+            color: #111827;
+
+            border: 1px solid #e5e7eb;
+
+            border-bottom-left-radius: 5px;
+
+        }
+
+
+        .message-time {
+
+            font-size: 10px;
+
+            color: #9ca3af;
+
+            margin-top: 5px;
+
+            padding: 0 3px;
+
+        }
+
+
+        /* =========================================
+           IMAGE
+        ========================================== */
+
+        .message-bubble.image-bubble {
+
+    padding: 4px;
+
+    width: fit-content;
+
+    max-width: min(280px, 100%);
+
+    white-space: normal;
+
+    line-height: 0;
+
+    font-size: 0;
+
+}
+
+
+        .chat-image {
+
+            display: block;
+
+            width: auto;
+
+            max-width: 280px;
+
+            max-height: 280px;
+
+            border-radius: 10px;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           BANK / CRYPTO CARD
+        ========================================== */
+
+        .info-card {
+
+            width: min(310px, 100%);
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+        }
+
+
+        .info-card-header {
+
+            padding: 13px 15px;
+
+            background: #f9fafb;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+        }
+
+
+        .info-card-body {
+
+            padding: 14px 15px;
+
+        }
+
+
+        .info-line {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .info-line:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .info-label {
+
+            font-size: 11px;
+
+            color: #9ca3af;
+
+        }
+
+
+        .info-value {
+
+            font-size: 13px;
+
+            color: #111827;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================================
+           COMPOSER
+        ========================================== */
+
+        .composer {
+
+            border-top: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            padding: 14px 18px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .composer-row {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            gap: 10px;
+
+        }
+
+
+        .composer-input {
+
+            flex: 1;
+
+            width: 100%;
+
+            height: 46px;
+
+            min-height: 46px;
+
+            max-height: 46px;
+
+            resize: none;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 13px;
+
+            padding: 12px 14px;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            line-height: 20px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .composer-input:focus {
+
+            border-color: #111827;
+
+            box-shadow:
+                0 0 0 3px rgba(17, 24, 39, 0.06);
+
+        }
+
+
+        .attach-button {
+
+            width: 46px;
+
+            height: 46px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 13px;
+
+            background: #ffffff;
+
+            color: #374151;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .attach-button:hover {
+
+            background: #f3f4f6;
+
+        }
+
+
+        .attach-button:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .send-button {
+
+            width: 46px;
+
+            height: 46px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .send-button:hover {
+
+            background: #000000;
+
+        }
+
+
+        .send-button:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .composer-note {
+
+            font-size: 11px;
+
+            color: #9ca3af;
+
+            margin-top: 7px;
+
+        }
+
+
+        /* =========================================
+           LOADING
+        ========================================== */
+
+        .loading {
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           ERROR
+        ========================================== */
+
+        .error-box {
+
+            margin: 20px;
+
+            padding: 14px 16px;
+
+            border-radius: 12px;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: #991b1b;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 700px) {
+
+            .chat-topbar {
+
+                height: 62px;
+
+                padding: 0 14px;
+
+            }
+
+
+            .topbar-title {
+
+                font-size: 17px;
+
+            }
+
+
+            .topbar-subtitle {
+
+                display: none;
+
+            }
+
+
+            .mini-user-name {
+
+                display: none;
+
+            }
+
+
+            .chat-wrapper {
+
+                margin: 12px auto;
+
+                padding: 0 10px;
+
+            }
+
+
+            .chat-card {
+
+                height: calc(100vh - 86px);
+
+                min-height: 450px;
+
+                border-radius: 14px;
+
+            }
+
+
+            .chat-header {
+
+                padding: 0 14px;
+
+            }
+
+
+            .messages-container {
+
+                padding: 16px 12px;
+
+            }
+
+
+            .message-content {
+
+                width: fit-content;
+
+                max-width: 82%;
+
+            }
+
+
+            .message-bubble {
+
+                width: max-content;
+
+                max-width: 100%;
+
+                padding: 8px 11px;
+
+            }
+
+
+            .chat-image {
+
+                max-width: 240px;
+
+                max-height: 240px;
+
+            }
+
+
+            .composer {
+
+                padding: 8px;
+
+            }
+
+
+            .composer-row {
+
+                gap: 7px;
+
+            }
+
+
+            .composer-input {
+
+                height: 46px;
+
+                min-height: 46px;
+
+                max-height: 46px;
+
+                padding: 12px 12px;
+
+            }
+
+
+            .attach-button,
+
+            .send-button {
+
+                width: 44px;
+
+                height: 44px;
+
+                border-radius: 12px;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           FINAL CHAT SIZE OVERRIDES
+           Prevent other project CSS from enlarging bubbles
+        ========================================== */
+
+        .chat-card .message-content {
+            width: fit-content !important;
+            max-width: min(72%, 520px) !important;
+        }
+
+        .chat-card .message-row.user .message-content,
+        .chat-card .message-row.admin .message-content {
+            width: fit-content !important;
+        }
+
+        .chat-card .message-bubble {
+            width: max-content !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+        }
+
+        .chat-card .message-bubble.image-bubble {
+            width: fit-content !important;
+            padding: 4px !important;
+        }
+
+        @media (max-width: 700px) {
+            .chat-card .message-content {
+                max-width: 82% !important;
+            }
+
+            .chat-card .message-bubble {
+                width: max-content !important;
+                max-width: 100% !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TOP BAR
+    ========================================== -->
+
+    <header class="chat-topbar">
+
+        <div class="topbar-left">
+
+            <button
+                class="back-button"
+                id="backButton"
+                type="button"
+                aria-label="ย้อนกลับ"
+            >
+
+                <i data-lucide="arrow-left"></i>
+
+            </button>
+
+
+            <div>
+
+                <div class="topbar-title">
+                    ศูนย์ช่วยเหลือ
+                </div>
+
+                <div class="topbar-subtitle">
+                    ติดต่อ Admin ของ TikTok Shop
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="user-profile-mini">
+
+            <div
+                class="mini-avatar"
+                id="miniAvatar"
+            >
+                U
+            </div>
+
+            <div
+                class="mini-user-name"
+                id="miniUserName"
+            >
+                User
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         CHAT
+    ========================================== -->
+
+    <main class="chat-wrapper">
+
+        <section class="chat-card">
+
+
+            <!-- CHAT HEADER -->
+
+            <header class="chat-header">
+
+                <div class="admin-info">
+
+                    <div class="admin-avatar">
+
+    <img
+        src="images/logo.png"
+        alt="TikTok Shop"
+    >
+
+</div>
+
+
+                    <div>
+
+                        <div class="admin-name">
+                            TikTok Shop 
+                        </div>
+
+                        <div class="admin-status">
+
+                            <span class="status-dot"></span>
+
+                            พร้อมให้บริการ
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <button
+                        class="header-icon-button"
+                        type="button"
+                        title="ข้อมูลการช่วยเหลือ"
+                    >
+
+                        <i data-lucide="info"></i>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- MESSAGES -->
+
+            <div
+                class="messages-container"
+                id="messagesContainer"
+            >
+
+                <div class="loading">
+                    กำลังโหลดข้อความ...
+                </div>
+
+            </div>
+
+
+
+            <!-- COMPOSER -->
+
+            <div class="composer">
+
+                <div class="composer-row">
+
+                    <textarea
+                        id="messageInput"
+                        class="composer-input"
+                        rows="1"
+                        placeholder="พิมพ์ข้อความ..."
+                    ></textarea>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/png,image/jpeg,image/webp,image/gif"
+                        hidden
+                    >
+
+
+                    <button
+                        id="attachButton"
+                        class="attach-button"
+                        type="button"
+                        title="ส่งรูปภาพ"
+                        aria-label="ส่งรูปภาพ"
+                    >
+
+                        <i data-lucide="paperclip"></i>
+
+                    </button>
+
+
+                    <button
+                        id="sendButton"
+                        class="send-button"
+                        type="button"
+                        title="ส่งข้อความ"
+                        aria-label="ส่งข้อความ"
+                    >
+
+                        <i data-lucide="send"></i>
+
+                    </button>
+
+                </div>
+
+
+                
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================================
+           CONFIG
+        ========================================== */
+
+        const API_BASE_URL = "/api";
+
+
+        /* =========================================
+           LUCIDE ICONS HELPER
+        ========================================== */
+
+        function createIcons() {
+
+            if (
+                window.lucide &&
+                typeof window.lucide.createIcons === "function"
+            ) {
+
+                window.lucide.createIcons();
+
+            }
+
+        }
+
+
+        /* =========================================
+           HELPERS
+        ========================================== */
+
+        function getToken() {
+
+            return (
+
+                localStorage.getItem(
+                    "tiktokShopToken"
+                ) ||
+
+                localStorage.getItem(
+                    "tiktokShopJWT"
+                ) ||
+
+                localStorage.getItem(
+                    "authToken"
+                ) ||
+
+                localStorage.getItem(
+                    "token"
+                ) ||
+
+                ""
+
+            );
+
+        }
+
+
+        function getLocalUser() {
+
+            try {
+
+                return JSON.parse(
+
+                    localStorage.getItem(
+                        "tiktokShopUser"
+                    ) || "null"
+
+                );
+
+            }
+
+            catch (error) {
+
+                return null;
+
+            }
+
+        }
+
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        function formatTime(value) {
+
+            if (!value) {
+
+                return "";
+
+            }
+
+
+            const date = new Date(value);
+
+
+            if (Number.isNaN(date.getTime())) {
+
+                return "";
+
+            }
+
+
+            return date.toLocaleTimeString(
+                "th-TH",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+        function scrollToBottom() {
+
+            const container =
+                document.getElementById(
+                    "messagesContainer"
+                );
+
+
+            if (!container) {
+
+                return;
+
+            }
+
+
+            container.scrollTop =
+                container.scrollHeight;
+
+        }
+
+
+        /* =========================================
+           STATE
+        ========================================== */
+
+        let messages = [];
+
+        let pollingTimer = null;
+
+        let isSending = false;
+
+        let isUploadingImage = false;
+
+        let firstLoad = true;
+
+
+
+        /* =========================================
+           USER UI
+        ========================================== */
+
+        function updateUserUI() {
+
+            const user =
+                getLocalUser();
+
+
+            if (!user) {
+
+                return;
+
+            }
+
+
+            const displayName =
+
+                user.shopName ||
+
+                user.displayName ||
+
+                user.username ||
+
+                "User";
+
+
+            const miniUserName =
+                document.getElementById(
+                    "miniUserName"
+                );
+
+
+            if (miniUserName) {
+
+                miniUserName.textContent =
+                    displayName;
+
+            }
+
+
+            const avatar =
+                document.getElementById(
+                    "miniAvatar"
+                );
+
+
+            if (!avatar) {
+
+                return;
+
+            }
+
+
+            if (user.profileImage) {
+
+                avatar.innerHTML = `
+
+                    <img
+                        src="${escapeHTML(user.profileImage)}"
+                        alt="Profile"
+                    >
+
+                `;
+
+            }
+
+            else {
+
+                avatar.textContent =
+
+                    displayName
+                        .charAt(0)
+                        .toUpperCase();
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           LOAD CURRENT USER
+        ========================================== */
+
+        async function refreshCurrentUser() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return null;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/auth/me`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`
+                            }
+                        }
+                    );
+
+
+                if (
+                    response.status ===
+                    401
+                ) {
+
+                    clearLogin();
+
+                    window.location.href =
+                        "auth.html?mode=login";
+
+                    return null;
+
+                }
+
+
+                if (!response.ok) {
+
+                    return null;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    data &&
+                    data.user
+                ) {
+
+                    localStorage.setItem(
+                        "tiktokShopUser",
+                        JSON.stringify(
+                            data.user
+                        )
+                    );
+
+
+                    updateUserUI();
+
+
+                    return data.user;
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Current user error:",
+                    error
+                );
+
+            }
+
+
+            return null;
+
+        }
+
+
+
+        /* =========================================
+           CLEAR LOGIN
+        ========================================== */
+
+        function clearLogin() {
+
+            localStorage.removeItem(
+                "tiktokShopToken"
+            );
+
+            localStorage.removeItem(
+                "tiktokShopJWT"
+            );
+
+            localStorage.removeItem(
+                "authToken"
+            );
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "tiktokShopLoggedIn"
+            );
+
+        }
+
+
+
+        /* =========================================
+           RENDER EMPTY
+        ========================================== */
+
+        function renderEmptyChat() {
+
+            const container =
+                document.getElementById(
+                    "messagesContainer"
+                );
+
+
+            container.innerHTML = `
+
+                <div class="empty-chat">
+
+                    <div class="empty-chat-icon">
+
+                        <i
+                            data-lucide="message-circle"
+                            width="28"
+                        ></i>
+
+                    </div>
+
+                    <strong>
+                        เริ่มต้นการสนทนา
+                    </strong>
+
+                    <span>
+                        ส่งข้อความหา Admin ได้เลย
+                    </span>
+
+                </div>
+
+            `;
+
+
+            createIcons();
+
+        }
+
+
+
+        /* =========================================
+           RENDER MESSAGES
+        ========================================== */
+
+        function renderMessages(
+            shouldScroll = false
+        ) {
+
+            const container =
+                document.getElementById(
+                    "messagesContainer"
+                );
+
+
+            if (!messages.length) {
+
+                renderEmptyChat();
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            messages.forEach(
+                function (message) {
+
+                    const senderType =
+                        String(
+                            message.senderType ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const isUser =
+                        senderType === "user";
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        `message-row ${
+                            isUser
+                                ? "user"
+                                : "admin"
+                        }`;
+
+
+                    const content =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    content.className =
+                        "message-content";
+
+
+                    let messageHTML = "";
+
+
+                    /* -----------------------------------------
+                       TEXT
+                    ----------------------------------------- */
+
+                    if (
+                        message.messageType ===
+                        "text"
+                    ) {
+
+                        messageHTML =
+    `<div class="message-bubble">${escapeHTML(
+        message.messageText || ""
+    )}</div>`;
+                    }
+
+
+                    /* -----------------------------------------
+                       IMAGE
+                    ----------------------------------------- */
+
+                    else if (
+                        message.messageType ===
+                        "image"
+                    ) {
+
+                        if (
+                            message.imageUrl
+                        ) {
+
+                            messageHTML = `
+
+                                <div class="message-bubble image-bubble">
+
+                                    <img
+                                        class="chat-image"
+                                        src="${escapeHTML(
+                                            message.imageUrl
+                                        )}"
+                                        alt="Chat image"
+                                    >
+
+                                </div>
+
+                            `;
+
+                        }
+
+                        else {
+
+                            messageHTML = `
+
+                                <div class="message-bubble">
+
+                                    รูปภาพ
+
+                                </div>
+
+                            `;
+
+                        }
+
+                    }
+
+
+                    /* -----------------------------------------
+                       BANK CARD
+                    ----------------------------------------- */
+
+                    else if (
+                        message.messageType ===
+                        "bank_card"
+                    ) {
+
+                        const card =
+                            message.cardData ||
+                            {};
+
+
+                        messageHTML = `
+
+                            <div class="info-card">
+
+                                <div class="info-card-header">
+
+                                    <i
+                                        data-lucide="building-2"
+                                        width="17"
+                                    ></i>
+
+                                    ข้อมูลบัญชีธนาคาร
+
+                                </div>
+
+
+                                <div class="info-card-body">
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            ธนาคาร
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.bankName || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            ชื่อบัญชี
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.accountName || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            เลขบัญชี
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.accountNumber || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    /* -----------------------------------------
+                       CRYPTO CARD
+                    ----------------------------------------- */
+
+                    else if (
+                        message.messageType ===
+                        "crypto_card"
+                    ) {
+
+                        const card =
+                            message.cardData ||
+                            {};
+
+
+                        messageHTML = `
+
+                            <div class="info-card">
+
+                                <div class="info-card-header">
+
+                                    <i
+                                        data-lucide="bitcoin"
+                                        width="17"
+                                    ></i>
+
+                                    ข้อมูล Crypto
+
+                                </div>
+
+
+                                <div class="info-card-body">
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            Coin
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.coin || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            Network
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.network || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="info-line">
+
+                                        <span class="info-label">
+                                            Wallet Address
+                                        </span>
+
+                                        <span class="info-value">
+                                            ${escapeHTML(
+                                                card.walletAddress || "-"
+                                            )}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    else {
+
+                        messageHTML = `
+
+                            <div class="message-bubble">
+
+                                ${escapeHTML(
+                                    message.messageText ||
+                                    ""
+                                )}
+
+                            </div>
+
+                        `;
+
+                    }
+
+
+                    const time =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    time.className =
+                        "message-time";
+
+
+                    time.textContent =
+                        formatTime(
+                            message.createdAt
+                        );
+
+
+                    content.innerHTML =
+                        messageHTML;
+
+
+                    content.appendChild(
+                        time
+                    );
+
+
+                    row.appendChild(
+                        content
+                    );
+
+
+                    container.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            createIcons();
+
+
+            if (shouldScroll) {
+
+                scrollToBottom();
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           LOAD CHAT
+        ========================================== */
+
+        async function loadChat(
+            forceScroll = false
+        ) {
+
+            const token =
+                getToken();
+
+            if (!token) {
+                window.location.href = "auth.html?mode=login";
+                return;
+            }
+
+            const container =
+                document.getElementById(
+                    "messagesContainer"
+                );
+
+            if (!container) {
+                return;
+            }
+
+            const distanceFromBottom =
+                container.scrollHeight -
+                container.scrollTop -
+                container.clientHeight;
+
+            const wasNearBottom =
+                distanceFromBottom <= 120;
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/chat/?t=${Date.now()}`,
+                        {
+                            method: "GET",
+                            cache: "no-store",
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`,
+                                "Cache-Control": "no-cache",
+                                "Pragma": "no-cache"
+                            }
+                        }
+                    );
+
+                if (response.status === 401) {
+                    clearLogin();
+                    window.location.href = "auth.html?mode=login";
+                    return;
+                }
+
+                const data =
+                    await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(
+                        data.message ||
+                        "ไม่สามารถโหลดข้อความได้"
+                    );
+                }
+
+                const newMessages =
+                    Array.isArray(data.messages)
+                        ? data.messages
+                        : [];
+
+                const oldLastId =
+                    messages.length
+                        ? String(
+                            messages[
+                                messages.length - 1
+                            ]._id || ""
+                        )
+                        : "";
+
+                const newLastId =
+                    newMessages.length
+                        ? String(
+                            newMessages[
+                                newMessages.length - 1
+                            ]._id || ""
+                        )
+                        : "";
+
+                const hasNewMessage =
+                    oldLastId !== newLastId ||
+                    messages.length !== newMessages.length;
+
+                if (firstLoad || forceScroll) {
+                    messages = newMessages;
+                    renderMessages(true);
+                    firstLoad = false;
+                    return;
+                }
+
+                if (!hasNewMessage) {
+                    return;
+                }
+
+                messages = newMessages;
+
+                renderMessages(
+                    wasNearBottom
+                );
+
+                firstLoad = false;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load chat error:",
+                    error
+                );
+
+                if (firstLoad) {
+                    container.innerHTML = `
+                        <div class="error-box">
+                            ${escapeHTML(
+                                error.message ||
+                                "ไม่สามารถโหลดข้อความได้"
+                            )}
+                        </div>
+                    `;
+                }
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SEND MESSAGE
+        ========================================== */
+
+        async function sendMessage() {
+
+            if (isSending) {
+
+                return;
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            const messageText =
+                input.value.trim();
+
+
+            if (!messageText) {
+
+                return;
+
+            }
+
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return;
+
+            }
+
+
+            isSending = true;
+
+
+            sendButton.disabled =
+                true;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/chat/message`,
+                        {
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Authorization:
+                                    `Bearer ${token}`
+
+                            },
+
+                            body: JSON.stringify({
+
+                                messageText:
+                                    messageText
+
+                            })
+
+                        }
+                    );
+
+
+                if (
+                    response.status ===
+                    401
+                ) {
+
+                    clearLogin();
+
+                    window.location.href =
+                        "auth.html?mode=login";
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "ส่งข้อความไม่สำเร็จ"
+                    );
+
+                }
+
+
+                input.value = "";
+
+                input.style.height =
+                    "46px";
+
+
+                /*
+                 * เพิ่มข้อความทันที
+                 * เพื่อให้ UI ตอบสนองเร็ว
+                 */
+
+                if (data.message) {
+
+                    messages.push(
+                        data.message
+                    );
+
+                    renderMessages(
+                        true
+                    );
+
+                }
+
+                else {
+
+                    await loadChat(
+                        true
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send message error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "ไม่สามารถส่งข้อความได้"
+                );
+
+            }
+
+            finally {
+
+                isSending =
+                    false;
+
+                sendButton.disabled =
+                    false;
+
+                input.focus();
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           SEND IMAGE
+        ========================================== */
+
+        async function sendImage(file) {
+
+            if (isUploadingImage || isSending) {
+
+                return;
+
+            }
+
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return;
+
+            }
+
+
+            const allowedTypes = [
+                "image/png",
+                "image/jpeg",
+                "image/webp",
+                "image/gif"
+            ];
+
+
+            if (!allowedTypes.includes(file.type)) {
+
+                alert(
+                    "รองรับเฉพาะ PNG, JPG, WEBP และ GIF"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                file.size >
+                5 * 1024 * 1024
+            ) {
+
+                alert(
+                    "รูปภาพต้องมีขนาดไม่เกิน 5 MB"
+                );
+
+                return;
+
+            }
+
+
+            isUploadingImage = true;
+
+
+            const attachButton =
+                document.getElementById(
+                    "attachButton"
+                );
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            attachButton.disabled = true;
+
+            sendButton.disabled = true;
+
+
+            try {
+
+                const imageData =
+                    await readFileAsDataURL(
+                        file
+                    );
+
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/chat/image`,
+                        {
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Authorization:
+                                    `Bearer ${token}`
+
+                            },
+
+                            body: JSON.stringify({
+                                imageData
+                            })
+
+                        }
+                    );
+
+
+                if (
+                    response.status ===
+                    401
+                ) {
+
+                    clearLogin();
+
+                    window.location.href =
+                        "auth.html?mode=login";
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "ส่งรูปภาพไม่สำเร็จ"
+                    );
+
+                }
+
+
+                if (data.message) {
+
+                    messages.push(
+                        data.message
+                    );
+
+                    renderMessages(
+                        true
+                    );
+
+                }
+
+                else {
+
+                    await loadChat(
+                        true
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send image error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "ไม่สามารถส่งรูปภาพได้"
+                );
+
+            }
+
+            finally {
+
+                isUploadingImage =
+                    false;
+
+                attachButton.disabled =
+                    false;
+
+                sendButton.disabled =
+                    false;
+
+            }
+
+        }
+
+
+        function readFileAsDataURL(file) {
+
+            return new Promise(
+                function (resolve, reject) {
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function () {
+
+                            resolve(
+                                reader.result
+                            );
+
+                        };
+
+
+                    reader.onerror =
+                        function () {
+
+                            reject(
+                                new Error(
+                                    "อ่านรูปภาพไม่สำเร็จ"
+                                )
+                            );
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           POLLING
+        ========================================== */
+
+        let pollingInProgress = false;
+
+
+        function startPolling() {
+
+            stopPolling();
+
+
+            pollingTimer =
+                setInterval(
+                    async function () {
+
+                        if (pollingInProgress) {
+                            return;
+                        }
+
+                        pollingInProgress = true;
+
+                        try {
+                            await loadChat(false);
+                        }
+                        finally {
+                            pollingInProgress = false;
+                        }
+
+                    },
+                    1000
+                );
+
+        }
+
+
+        function stopPolling() {
+
+            if (
+                pollingTimer
+            ) {
+
+                clearInterval(
+                    pollingTimer
+                );
+
+                pollingTimer =
+                    null;
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           TEXTAREA
+        ========================================== */
+
+        function setupTextarea() {
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            input.addEventListener(
+                "input",
+                function () {
+
+                    /*
+                     * ช่องพิมพ์ถูกล็อกความสูงไว้
+                     * เพื่อไม่ให้หน้า Chat ขยายบนมือถือ
+                     */
+
+                    this.style.height =
+                        "46px";
+
+                }
+            );
+
+
+            input.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key ===
+                        "Enter" &&
+                        !event.shiftKey
+                    ) {
+
+                        event.preventDefault();
+
+                        sendMessage();
+
+                    }
+
+                }
+            );
+
+
+            /* ปุ่มส่งต้องทำงานด้วยการคลิก */
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+            sendButton.addEventListener(
+                "click",
+                sendMessage
+            );
+
+
+            /* ปุ่มแนบรูป */
+
+            const attachButton =
+                document.getElementById(
+                    "attachButton"
+                );
+
+            const imageInput =
+                document.getElementById(
+                    "imageInput"
+                );
+
+
+            attachButton.addEventListener(
+                "click",
+                function () {
+
+                    if (!isUploadingImage) {
+
+                        imageInput.click();
+
+                    }
+
+                }
+            );
+
+
+            imageInput.addEventListener(
+                "change",
+                async function () {
+
+                    const file =
+                        this.files &&
+                        this.files[0];
+
+                    if (!file) {
+
+                        return;
+
+                    }
+
+
+                    await sendImage(file);
+
+                    this.value = "";
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================================
+           BACK BUTTON
+        ========================================== */
+
+        function setupBackButton() {
+
+            const button =
+                document.getElementById(
+                    "backButton"
+                );
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        window.history.length >
+                        1
+                    ) {
+
+                        window.history.back();
+
+                    }
+
+                    else {
+
+                        window.location.href =
+                            "index.html";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+         /* =========================================
+   MARK ADMIN MESSAGES AS READ
+========================================= */
+
+async function markAdminMessagesAsRead() {
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await fetch(
+            `${API_BASE_URL}/chat/mark-read`,
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    Authorization:
+                        `Bearer ${token}`
+
+                }
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Mark chat messages as read error:",
+            error
+        );
+
+    }
+
+}
+
+        /* =========================================
+           INITIALIZE
+        ========================================== */
+
+        async function init() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return;
+
+            }
+
+
+            updateUserUI();
+
+
+            setupTextarea();
+
+            setupBackButton();
+
+
+            createIcons();
+
+
+            await refreshCurrentUser();
+
+
+            await loadChat(
+                true
+            );
+
+      await markAdminMessagesAsRead();
+
+            startPolling();
+
+        }
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            init
+        );
+
+
+        window.addEventListener(
+            "beforeunload",
+            stopPolling
+        );
+
+    </script>
+
+
+</body>
+
+</html>

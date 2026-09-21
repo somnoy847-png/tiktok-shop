@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test Product - MongoDB</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        .container {
+            width: min(600px, calc(100% - 40px));
+            margin: 50px auto;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #111;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            background: #111;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .success {
+            display: block;
+            background: #e9f9ef;
+            color: #16753a;
+        }
+
+        .error {
+            display: block;
+            background: #fff0f0;
+            color: #c62828;
+        }
+
+        .profit-preview {
+            background: #f5f5f5;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Test Add Product</h1>
+
+        <div class="description">
+            Test page for sending a product to MongoDB.
+        </div>
+
+
+        <form id="productForm">
+
+            <!-- Product Image -->
+
+            <div class="form-group">
+
+                <label for="image">
+                    Product Image URL
+                </label>
+
+                <input
+                    type="url"
+                    id="image"
+                    placeholder="https://example.com/product.jpg"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Product Name -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Example Product"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Cost Price -->
+
+            <div class="form-group">
+
+                <label for="costPrice">
+                    Cost Price
+                </label>
+
+                <input
+                    type="number"
+                    id="costPrice"
+                    placeholder="100"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Sale Price -->
+
+            <div class="form-group">
+
+                <label for="salePrice">
+                    Sale Price
+                </label>
+
+                <input
+                    type="number"
+                    id="salePrice"
+                    placeholder="150"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Profit -->
+
+            <div class="form-group">
+
+                <label>
+                    Profit
+                </label>
+
+                <div
+                    id="profitPreview"
+                    class="profit-preview"
+                >
+                    0.00
+                </div>
+
+            </div>
+
+
+            <!-- Category -->
+
+            <div class="form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select id="category" required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="fashion">
+                        Fashion
+                    </option>
+
+                    <option value="electronics">
+                        Electronics
+                    </option>
+
+                    <option value="beauty">
+                        Beauty
+                    </option>
+
+                    <option value="home">
+                        Home
+                    </option>
+
+                    <option value="accessories">
+                        Accessories
+                    </option>
+
+                    <option value="sports">
+                        Sports
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                id="submitButton"
+            >
+                Add Product to MongoDB
+            </button>
+
+        </form>
+
+
+        <div
+            id="result"
+            class="result"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const API_URL = "/api/products";
+
+const form = document.getElementById("productForm");
+
+const imageInput = document.getElementById("image");
+const nameInput = document.getElementById("name");
+const costPriceInput = document.getElementById("costPrice");
+const salePriceInput = document.getElementById("salePrice");
+const categoryInput = document.getElementById("category");
+
+const profitPreview = document.getElementById("profitPreview");
+
+const submitButton = document.getElementById("submitButton");
+
+const result = document.getElementById("result");
+
+
+// ========================================
+// CALCULATE PROFIT
+// ========================================
+
+function updateProfit() {
+
+    const cost = Number(costPriceInput.value) || 0;
+
+    const sale = Number(salePriceInput.value) || 0;
+
+    const profit = sale - cost;
+
+    profitPreview.textContent = profit.toFixed(2);
+}
+
+
+costPriceInput.addEventListener(
+    "input",
+    updateProfit
+);
+
+salePriceInput.addEventListener(
+    "input",
+    updateProfit
+);
+
+
+// ========================================
+// SUBMIT PRODUCT
+// ========================================
+
+form.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+
+    const productData = {
+
+        image: imageInput.value.trim(),
+
+        name: nameInput.value.trim(),
+
+        costPrice: Number(
+            costPriceInput.value
+        ),
+
+        salePrice: Number(
+            salePriceInput.value
+        ),
+
+        category: categoryInput.value
+
+    };
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent = "Saving...";
+
+    result.className = "result";
+
+    result.textContent = "";
+
+
+    try {
+
+        const response = await fetch(
+            API_URL,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(productData)
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message || "Failed to create product"
+            );
+
+        }
+
+
+        result.className = "result success";
+
+        result.textContent =
+            "Product created successfully!\n\n" +
+            JSON.stringify(
+                data.product,
+                null,
+                2
+            );
+
+
+        form.reset();
+
+        updateProfit();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        result.className = "result error";
+
+        result.textContent =
+            "Error:\n\n" +
+            error.message;
+
+    } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            "Add Product to MongoDB";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,5132 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Admin Chat - TikTok Shop
+    </title>
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         LUCIDE ICONS
+    ====================================================== -->
+
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- =====================================================
+         PAGE CSS
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f5f6f8;
+            color: #1f2937;
+            overflow: hidden;
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+
+        /* =====================================================
+           ADMIN SIDEBAR CONTAINER
+        ====================================================== */
+
+        #sidebar-container {
+            position: relative;
+            z-index: 10000;
+        }
+
+
+
+        /* =====================================================
+           MOBILE MENU BUTTON
+        ====================================================== */
+
+        #menuButton {
+            position: fixed;
+
+            top: 15px;
+            left: 15px;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            z-index: 11000;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, .08);
+        }
+
+
+        #menuButton:hover {
+            background: #f9fafb;
+        }
+
+
+        #menuButton svg {
+            width: 20px;
+            height: 20px;
+        }
+
+
+
+        /* =====================================================
+           MAIN CHAT PAGE
+        ====================================================== */
+
+        .chat-page {
+
+            position: relative;
+
+            display: flex;
+
+            width: calc(100% - 250px);
+            height: 100vh;
+
+            margin-left: 250px;
+
+            overflow: hidden;
+
+            background: #f8fafc;
+
+        }
+
+
+
+        /* =====================================================
+           CHAT ROOM SIDEBAR
+           
+           IMPORTANT:
+           ใช้ .chat-sidebar เท่านั้น
+           เพื่อไม่ให้ชนกับ Admin Sidebar
+        ====================================================== */
+
+        .chat-sidebar {
+
+            width: 330px;
+
+            height: 100%;
+
+            flex-shrink: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            background: #ffffff;
+
+            border-right: 1px solid #e5e7eb;
+
+            overflow: hidden;
+
+        }
+
+
+
+        /* =====================================================
+           CHAT ROOM HEADER
+        ====================================================== */
+
+        .chat-sidebar-header {
+
+            padding: 20px;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .chat-sidebar-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 16px;
+
+        }
+
+
+        .chat-sidebar-title h2 {
+
+            font-size: 20px;
+
+            line-height: 1.2;
+
+            font-weight: 700;
+
+            color: #111827;
+
+        }
+
+
+        .chat-admin-badge {
+
+            padding: 5px 9px;
+
+            border-radius: 999px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: .4px;
+
+        }
+
+
+
+        /* =====================================================
+           SEARCH
+        ====================================================== */
+
+        .chat-search-box {
+
+            position: relative;
+
+            width: 100%;
+
+        }
+
+
+        .chat-search-box svg {
+
+            position: absolute;
+
+            left: 12px;
+            top: 50%;
+
+            width: 17px;
+            height: 17px;
+
+            transform: translateY(-50%);
+
+            color: #9ca3af;
+
+            pointer-events: none;
+
+        }
+
+
+        .chat-search-box input {
+
+            width: 100%;
+
+            height: 40px;
+
+            padding:
+                0
+                12px
+                0
+                38px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: #f9fafb;
+
+            color: #111827;
+
+            font-size: 13px;
+
+        }
+
+
+        .chat-search-box input:focus {
+
+            border-color: #9ca3af;
+
+            background: #ffffff;
+
+        }
+
+
+        .chat-search-box input::placeholder {
+
+            color: #9ca3af;
+
+        }
+
+
+
+        /* =====================================================
+           ROOMS LIST
+        ====================================================== */
+
+        .rooms-list {
+
+            flex: 1;
+
+            min-height: 0;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+        }
+
+
+        .rooms-list::-webkit-scrollbar {
+
+            width: 5px;
+
+        }
+
+
+        .rooms-list::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .rooms-list::-webkit-scrollbar-thumb {
+
+            background: #d1d5db;
+
+            border-radius: 10px;
+
+        }
+
+
+
+        /* =====================================================
+           ROOM ITEM
+        ====================================================== */
+
+        .room-item {
+
+            width: 100%;
+
+            min-height: 74px;
+
+            padding: 13px 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            border-bottom: 1px solid #f1f2f4;
+
+            background: #ffffff;
+
+            cursor: pointer;
+
+            transition:
+                background .15s ease;
+
+        }
+
+
+        .room-item:hover {
+
+            background: #f8fafc;
+
+        }
+
+
+        .room-item.active {
+
+            background: #eef2f7;
+
+        }
+
+
+
+        /* =====================================================
+           ROOM AVATAR
+        ====================================================== */
+
+        .room-avatar {
+
+            width: 46px;
+            height: 46px;
+
+            min-width: 46px;
+
+            border-radius: 50%;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .room-avatar img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+
+        /* =====================================================
+           ROOM INFO
+        ====================================================== */
+
+        .room-info {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .room-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 8px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .room-name {
+
+            min-width: 0;
+
+            color: #111827;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .room-time {
+
+            color: #9ca3af;
+
+            font-size: 9px;
+
+            white-space: nowrap;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .room-last-message {
+
+            color: #9ca3af;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .unread-badge {
+
+            min-width: 19px;
+
+            height: 19px;
+
+            padding: 0 5px;
+
+            border-radius: 999px;
+
+            background: #ef4444;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .empty-rooms {
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: #9ca3af;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* =====================================================
+           CHAT MAIN
+        ====================================================== */
+
+        .chat-main {
+
+            flex: 1;
+
+            min-width: 0;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: #f8fafc;
+
+        }
+
+
+
+        /* =====================================================
+           CHAT HEADER
+        ====================================================== */
+
+        .chat-header {
+
+            height: 72px;
+
+            min-height: 72px;
+
+            padding: 0 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .chat-user {
+
+            min-width: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .chat-user-avatar {
+
+            width: 42px;
+            height: 42px;
+
+            min-width: 42px;
+
+            border-radius: 50%;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+
+        .chat-user-avatar img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .chat-user-name {
+
+            max-width: 400px;
+
+            color: #111827;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .chat-user-contact {
+
+            max-width: 400px;
+
+            margin-top: 3px;
+
+            color: #9ca3af;
+
+            font-size: 10px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        .chat-header-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .chat-icon-button {
+
+            width: 38px;
+            height: 38px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #6b7280;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+        }
+
+
+        .chat-icon-button:hover {
+
+            background: #f9fafb;
+
+            color: #111827;
+
+        }
+
+
+        .chat-icon-button svg {
+
+            width: 17px;
+            height: 17px;
+
+        }
+
+
+
+        /* =====================================================
+           MESSAGES
+        ====================================================== */
+
+        .messages {
+
+            flex: 1;
+
+            min-height: 0;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+            padding: 24px;
+
+            background: #f8fafc;
+
+        }
+
+
+        .messages::-webkit-scrollbar {
+
+            width: 6px;
+
+        }
+
+
+        .messages::-webkit-scrollbar-track {
+
+            background: transparent;
+
+        }
+
+
+        .messages::-webkit-scrollbar-thumb {
+
+            background: #d1d5db;
+
+            border-radius: 10px;
+
+        }
+
+
+
+        /* =====================================================
+           NO CHAT
+        ====================================================== */
+
+        .no-chat {
+
+            width: 100%;
+
+            height: 100%;
+
+            min-height: 250px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #9ca3af;
+
+        }
+
+
+        .no-chat-icon {
+
+            width: 70px;
+            height: 70px;
+
+            margin-bottom: 15px;
+
+            border-radius: 50%;
+
+            background: #e5e7eb;
+
+            color: #6b7280;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+        .no-chat-icon svg {
+
+            width: 30px;
+            height: 30px;
+
+        }
+
+
+        .no-chat h3 {
+
+            margin-bottom: 5px;
+
+            color: #6b7280;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .no-chat p {
+
+            color: #9ca3af;
+
+            font-size: 11px;
+
+        }
+
+
+
+        /* =====================================================
+           MESSAGE ROW
+        ====================================================== */
+
+        .message-row {
+
+            width: 100%;
+
+            display: flex;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .message-row.user {
+
+            justify-content: flex-start;
+
+        }
+
+
+        .message-row.admin {
+
+            justify-content: flex-end;
+
+        }
+
+
+        .message-content-wrap {
+
+         width: fit-content;
+
+            max-width: 70%;
+
+         }
+
+
+
+        /* =====================================================
+           TEXT BUBBLE
+        ====================================================== */
+
+        .message-bubble {
+
+            padding: 10px 13px;
+
+            border-radius: 15px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+
+            white-space: pre-wrap;
+
+        }
+
+
+        .message-row.user
+        .message-bubble {
+
+            background: #ffffff;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            color: #1f2937;
+
+            border-bottom-left-radius: 5px;
+
+        }
+
+
+        .message-row.admin
+        .message-bubble {
+
+            background: #111827;
+
+            color: #ffffff;
+
+            border-bottom-right-radius: 5px;
+
+        }
+
+
+        .message-time {
+
+            margin-top: 4px;
+
+            color: #9ca3af;
+
+            font-size: 9px;
+
+        }
+
+
+        .message-row.admin
+        .message-time {
+
+            text-align: right;
+
+        }
+
+
+
+        /* =====================================================
+           INFO CARD
+        ====================================================== */
+
+        .info-card {
+
+            width: 300px;
+
+            max-width: 100%;
+
+            overflow: hidden;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 14px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0
+                3px
+                10px
+                rgba(0,0,0,.04);
+
+        }
+
+
+        .info-card-header {
+
+            padding: 12px 14px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            background: #f3f4f6;
+
+            color: #111827;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .info-card-header svg {
+
+            width: 17px;
+            height: 17px;
+
+        }
+
+
+        .info-card-body {
+
+            padding: 14px;
+
+        }
+
+
+        .info-row {
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .info-row:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .info-label {
+
+            margin-bottom: 3px;
+
+            color: #9ca3af;
+
+            font-size: 9px;
+
+        }
+
+
+        .info-value {
+
+            color: #111827;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            line-height: 1.45;
+
+            word-break: break-all;
+
+        }
+
+
+
+        /* =====================================================
+           IMAGE
+        ====================================================== */
+
+        .message-bubble.image-bubble {
+
+            display: inline-block;
+            padding: 0 !important;
+            width: fit-content !important;
+            max-width: 280px !important;
+            min-width: 0 !important;
+            line-height: 0 !important;
+            font-size: 0 !important;
+            background: transparent !important;
+            border: none !important;
+
+        }
+
+
+        .chat-image {
+
+    display: block;
+
+    max-width: 280px;
+
+    max-height: 280px;
+
+    border-radius: 12px;
+
+    object-fit: contain;
+
+}
+
+
+.message-bubble.image-bubble {
+
+    padding: 4px;
+
+    width: fit-content;
+
+    max-width: 280px;
+
+    white-space: normal;
+
+    line-height: 0;
+
+    font-size: 0;
+
+}
+
+
+
+        /* =====================================================
+           COMPOSER
+        ====================================================== */
+
+        .composer {
+
+            padding: 11px 18px;
+
+            background: #ffffff;
+
+            border-top:
+                1px
+                solid
+                #e5e7eb;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .composer-tools {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .tool-button {
+
+            width: 34px;
+            height: 34px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #6b7280;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+        }
+
+
+        .tool-button:hover:not(:disabled) {
+
+            background: #f9fafb;
+
+            color: #111827;
+
+        }
+
+
+        .tool-button:disabled {
+
+            opacity: .45;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .tool-button svg {
+
+            width: 16px;
+            height: 16px;
+
+        }
+
+
+        .composer-row {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            gap: 10px;
+
+        }
+
+
+        .composer textarea {
+
+            flex: 1;
+
+            width: 100%;
+
+            min-height: 42px;
+
+            max-height: 120px;
+
+            resize: none;
+
+            padding:
+                11px
+                13px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 13px;
+
+            line-height: 1.4;
+
+        }
+
+
+        .composer textarea:focus {
+
+            border-color: #9ca3af;
+
+        }
+
+
+        .composer textarea::placeholder {
+
+            color: #9ca3af;
+
+        }
+
+
+        .composer textarea:disabled {
+
+            background: #f9fafb;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .send-button {
+
+            width: 44px;
+            height: 42px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #111827;
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .send-button:hover:not(:disabled) {
+
+            background: #000000;
+
+        }
+
+
+        .send-button:disabled {
+
+            opacity: .45;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .send-button svg {
+
+            width: 17px;
+            height: 17px;
+
+        }
+
+
+
+        /* =====================================================
+           MODAL
+        ====================================================== */
+
+        .modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 12000;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 15px;
+
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    .45
+                );
+
+        }
+
+
+        .modal-overlay.show {
+
+            display: flex;
+
+        }
+
+
+        .modal {
+
+            width: 420px;
+
+            max-width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 16px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0
+                20px
+                60px
+                rgba(0,0,0,.2);
+
+        }
+
+
+        .modal-header {
+
+            min-height: 60px;
+
+            padding:
+                0
+                20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-bottom:
+                1px
+                solid
+                #e5e7eb;
+
+        }
+
+
+        .modal-header h3 {
+
+            color: #111827;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+        }
+
+
+        .modal-close {
+
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            color: #6b7280;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+        }
+
+
+        .modal-close:hover {
+
+            background: #f3f4f6;
+
+            color: #111827;
+
+        }
+
+
+        .modal-body {
+
+            padding: 20px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .form-group:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #374151;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            height: 42px;
+
+            padding:
+                0
+                12px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 12px;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #9ca3af;
+
+        }
+
+
+        .modal-footer {
+
+            padding:
+                14px
+                20px;
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            border-top:
+                1px
+                solid
+                #e5e7eb;
+
+        }
+
+
+        .modal-button {
+
+            height: 40px;
+
+            padding:
+                0
+                15px;
+
+            border:
+                1px
+                solid
+                #e5e7eb;
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: #374151;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .modal-button:hover {
+
+            background: #f9fafb;
+
+        }
+
+
+        .modal-button.primary {
+
+            border-color: #111827;
+
+            background: #111827;
+
+            color: #ffffff;
+
+        }
+
+
+        .modal-button.primary:hover {
+
+            background: #000000;
+
+        }
+
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media (max-width: 1100px) {
+
+            .chat-sidebar {
+
+                width: 290px;
+
+            }
+
+            .chat-page {
+
+                width: calc(100% - 250px);
+
+                margin-left: 250px;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 900px) {
+
+            body {
+
+                overflow: hidden;
+
+            }
+
+
+            #menuButton {
+
+                display: flex;
+
+            }
+
+
+            .chat-page {
+
+                width: 100%;
+
+                margin-left: 0;
+
+            }
+
+
+            .chat-sidebar {
+
+                position: fixed;
+
+                top: 0;
+                left: 0;
+                bottom: 0;
+
+                width: 310px;
+
+                z-index: 9000;
+
+                transform: translateX(-105%);
+
+                transition:
+                    transform .25s ease;
+
+                box-shadow:
+                    10px
+                    0
+                    30px
+                    rgba(0,0,0,.08);
+
+            }
+
+
+            .chat-sidebar.mobile-show {
+
+                transform: translateX(0);
+
+            }
+
+
+            .chat-main {
+
+                width: 100%;
+
+            }
+
+
+            .chat-header {
+
+                padding-left: 70px;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 600px) {
+
+            .chat-sidebar {
+
+                width: 100%;
+
+                max-width: 100%;
+
+            }
+
+
+            .chat-header {
+
+                height: 64px;
+
+                min-height: 64px;
+
+                padding:
+                    0
+                    12px
+                    0
+                    65px;
+
+            }
+
+
+            .chat-user-name {
+
+                max-width: 210px;
+
+            }
+
+
+            .chat-user-contact {
+
+                max-width: 210px;
+
+            }
+
+
+            .chat-header-actions {
+
+                display: none;
+
+            }
+
+
+            .messages {
+
+                padding:
+                    15px
+                    12px;
+
+            }
+
+
+            .message-content-wrap {
+
+                width: fit-content;
+
+               max-width: 85%;
+
+            }
+
+
+            .info-card {
+
+                width: 280px;
+
+            }
+
+
+            .composer {
+
+                padding:
+                    9px
+                    10px;
+
+            }
+
+
+            .composer-tools {
+
+                margin-bottom: 7px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =====================================================
+         ADMIN SHARED SIDEBAR
+         
+         admin-sidebar.js จะโหลด
+         components/admin-sidebar.html
+    ====================================================== -->
+
+    <div
+        id="sidebar-container"
+    ></div>
+
+
+
+    <!-- =====================================================
+         MOBILE ADMIN MENU
+    ====================================================== -->
+
+    <button
+        id="menuButton"
+        type="button"
+        aria-label="Open admin menu"
+    >
+
+        <i data-lucide="menu"></i>
+
+    </button>
+
+
+
+    <!-- =====================================================
+         CHAT PAGE
+    ====================================================== -->
+
+    <div class="chat-page">
+
+
+        <!-- =================================================
+             CHAT ROOM LIST
+        ================================================== -->
+
+        <aside
+            class="chat-sidebar"
+            id="chatRoomSidebar"
+        >
+
+
+            <div class="chat-sidebar-header">
+
+
+                <div class="chat-sidebar-title">
+
+                    <h2>
+                        ข้อความ
+                    </h2>
+
+                    <span class="chat-admin-badge">
+                        ADMIN
+                    </span>
+
+                </div>
+
+
+                <div class="chat-search-box">
+
+                    <i
+                        data-lucide="search"
+                    ></i>
+
+                    <input
+                        type="text"
+                        id="searchRooms"
+                        placeholder="ค้นหาผู้ใช้..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ROOM LIST -->
+
+            <div
+                class="rooms-list"
+                id="roomsList"
+            >
+
+                <div class="empty-rooms">
+
+                    กำลังโหลดห้องแชต...
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =================================================
+             CHAT MAIN
+        ================================================== -->
+
+        <main
+            class="chat-main"
+        >
+
+
+            <!-- =============================================
+                 CHAT HEADER
+            ============================================== -->
+
+            <header
+                class="chat-header"
+            >
+
+
+                <div
+                    class="chat-user"
+                    id="chatUserInfo"
+                >
+
+
+                    <div
+                        class="chat-user-avatar"
+                    >
+
+                        <i
+                            data-lucide="user"
+                        ></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            class="chat-user-name"
+                        >
+                            เลือกผู้ใช้
+                        </div>
+
+
+                        <div
+                            class="chat-user-contact"
+                        >
+                            เลือกห้องแชตจากด้านซ้าย
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div
+                    class="chat-header-actions"
+                >
+
+                    <button
+                        class="chat-icon-button"
+                        type="button"
+                        id="refreshChatButton"
+                        title="รีเฟรช"
+                    >
+
+                        <i
+                            data-lucide="refresh-cw"
+                        ></i>
+
+                    </button>
+
+                </div>
+
+
+            </header>
+
+
+
+            <!-- =============================================
+                 MESSAGES
+            ============================================== -->
+
+            <section
+                class="messages"
+                id="messages"
+            >
+
+
+                <div
+                    class="no-chat"
+                >
+
+                    <div
+                        class="no-chat-icon"
+                    >
+
+                        <i
+                            data-lucide="messages-square"
+                        ></i>
+
+                    </div>
+
+
+                    <h3>
+                        เลือกห้องแชต
+                    </h3>
+
+
+                    <p>
+                        เลือกผู้ใช้จากรายการด้านซ้ายเพื่อเริ่มสนทนา
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =============================================
+                 COMPOSER
+            ============================================== -->
+
+            <div
+                class="composer"
+            >
+
+
+                <!-- TOOL BUTTONS -->
+
+                <div
+                    class="composer-tools"
+                >
+
+
+                    <!-- BANK -->
+
+                    <button
+                        class="tool-button"
+                        type="button"
+                        id="bankButton"
+                        title="ส่งข้อมูลธนาคาร"
+                        disabled
+                    >
+
+                        <i
+                            data-lucide="landmark"
+                        ></i>
+
+                    </button>
+
+
+
+                    <!-- CRYPTO -->
+
+                    <button
+                        class="tool-button"
+                        type="button"
+                        id="cryptoButton"
+                        title="ส่ง Crypto Wallet"
+                        disabled
+                    >
+
+                        <i
+                            data-lucide="bitcoin"
+                        ></i>
+
+                    </button>
+
+
+
+                    <!-- IMAGE -->
+
+                    <button
+                        class="tool-button"
+                        type="button"
+                        id="imageButton"
+                        title="ส่งรูปภาพ"
+                        disabled
+                    >
+
+                        <i
+                            data-lucide="image"
+                        ></i>
+
+                    </button>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden
+                    >
+
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    class="composer-row"
+                >
+
+
+                    <textarea
+                        id="messageInput"
+                        placeholder="พิมพ์ข้อความ..."
+                        rows="1"
+                        disabled
+                    ></textarea>
+
+
+                    <button
+                        class="send-button"
+                        id="sendButton"
+                        type="button"
+                        disabled
+                    >
+
+                        <i
+                            data-lucide="send"
+                        ></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </main>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BANK MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="bankModal"
+    >
+
+
+        <div
+            class="modal"
+        >
+
+
+            <div
+                class="modal-header"
+            >
+
+                <h3>
+                    ส่งข้อมูลบัญชีธนาคาร
+                </h3>
+
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="bankModal"
+                >
+
+                    <i
+                        data-lucide="x"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="modal-body"
+            >
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="bankName"
+                    >
+                        ธนาคาร
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="bankName"
+                        placeholder="เช่น BCEL"
+                    >
+
+                </div>
+
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="accountName"
+                    >
+                        ชื่อบัญชี
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="accountName"
+                        placeholder="ชื่อเจ้าของบัญชี"
+                    >
+
+                </div>
+
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="accountNumber"
+                    >
+                        เลขบัญชี
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        placeholder="เลขบัญชี"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                class="modal-footer"
+            >
+
+
+                <button
+                    class="modal-button"
+                    type="button"
+                    data-close-modal="bankModal"
+                >
+                    ยกเลิก
+                </button>
+
+
+                <button
+                    class="modal-button primary"
+                    type="button"
+                    id="sendBankButton"
+                >
+                    ส่งข้อมูล
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CRYPTO MODAL
+    ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="cryptoModal"
+    >
+
+
+        <div
+            class="modal"
+        >
+
+
+            <div
+                class="modal-header"
+            >
+
+                <h3>
+                    ส่ง Crypto Wallet
+                </h3>
+
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="cryptoModal"
+                >
+
+                    <i
+                        data-lucide="x"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+
+            <div
+                class="modal-body"
+            >
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="cryptoCoin"
+                    >
+                        Coin
+                    </label>
+
+
+                    <select
+                        id="cryptoCoin"
+                    >
+
+                        <option value="USDT">
+                            USDT
+                        </option>
+
+                        <option value="USDC">
+                            USDC
+                        </option>
+
+                        <option value="BTC">
+                            BTC
+                        </option>
+
+                        <option value="ETH">
+                            ETH
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="cryptoNetwork"
+                    >
+                        Network
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="cryptoNetwork"
+                        placeholder="เช่น TRC20"
+                    >
+
+                </div>
+
+
+
+                <div
+                    class="form-group"
+                >
+
+                    <label
+                        for="cryptoAddress"
+                    >
+                        Wallet Address
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="cryptoAddress"
+                        placeholder="Wallet address"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <div
+                class="modal-footer"
+            >
+
+
+                <button
+                    class="modal-button"
+                    type="button"
+                    data-close-modal="cryptoModal"
+                >
+                    ยกเลิก
+                </button>
+
+
+                <button
+                    class="modal-button primary"
+                    type="button"
+                    id="sendCryptoButton"
+                >
+                    ส่งข้อมูล
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           STATE
+        ====================================================== */
+
+        let rooms = [];
+
+        let currentUserId = null;
+
+        let currentMessages = [];
+
+        let pollTimer = null;
+
+
+
+        /* =====================================================
+           TOKEN
+        ====================================================== */
+
+        function getToken() {
+
+            const keys = [
+
+                "tiktokShopToken",
+
+                "tiktokShopJWT",
+
+                "authToken",
+
+                "token"
+
+            ];
+
+
+            for (const key of keys) {
+
+                const token =
+                    localStorage.getItem(key);
+
+
+                if (token) {
+
+                    return token;
+
+                }
+
+            }
+
+
+            return "";
+
+        }
+
+
+
+        /* =====================================================
+           API FETCH
+        ====================================================== */
+
+        async function apiFetch(
+            url,
+            options = {}
+        ) {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                alert(
+                    "ไม่พบ Token กรุณาเข้าสู่ระบบ Admin ก่อน"
+                );
+
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+
+                throw new Error(
+                    "No authentication token"
+                );
+
+            }
+
+
+            const headers = {
+
+                ...(options.headers || {}),
+
+                Authorization:
+                    `Bearer ${token}`
+
+            };
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
+
+
+            let data = {};
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+
+            catch {
+
+                data = {};
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "เกิดข้อผิดพลาดจาก Server"
+                );
+
+            }
+
+
+            return data;
+
+        }
+
+
+
+        /* =====================================================
+           LOAD CHAT ROOMS
+        ====================================================== */
+
+        async function loadRooms() {
+
+            const roomsList =
+                document.getElementById(
+                    "roomsList"
+                );
+
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        "/api/chat/admin/rooms"
+                    );
+
+
+                rooms =
+                    Array.isArray(data.rooms)
+                        ? data.rooms
+                        : [];
+
+
+                renderRooms();
+
+
+                if (currentUserId) {
+
+                    updateHeader();
+
+                }
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load rooms error:",
+                    error
+                );
+
+
+                roomsList.innerHTML = `
+
+                    <div class="empty-rooms">
+
+                        ไม่สามารถโหลดห้องแชตได้
+
+                        <br>
+
+                        <small>
+                            ${escapeHtml(
+                                error.message
+                            )}
+                        </small>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ROOMS
+        ====================================================== */
+
+        function renderRooms() {
+
+            const roomsList =
+                document.getElementById(
+                    "roomsList"
+                );
+
+
+            const searchInput =
+                document.getElementById(
+                    "searchRooms"
+                );
+
+
+            const search =
+                String(
+                    searchInput?.value || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const filtered =
+                rooms.filter(
+                    function(room) {
+
+                        const user =
+                            room.user || {};
+
+
+                        const name =
+                            user.shopName ||
+                            user.username ||
+                            "";
+
+
+                        const username =
+                            user.username ||
+                            "";
+
+
+                        return (
+
+                            name
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            username
+                                .toLowerCase()
+                                .includes(search)
+
+                        );
+
+                    }
+                );
+
+
+            if (!filtered.length) {
+
+                roomsList.innerHTML = `
+
+                    <div class="empty-rooms">
+
+                        ยังไม่มีห้องแชต
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            roomsList.innerHTML =
+
+                filtered.map(
+                    function(room) {
+
+                        const user =
+                            room.user || {};
+
+
+                        const userId =
+                            user.id ||
+                            user._id ||
+                            "";
+
+
+                        const name =
+                            user.shopName ||
+                            user.username ||
+                            "Unknown";
+
+
+                        const initial =
+                            name
+                                .charAt(0)
+                                .toUpperCase();
+
+
+                        const active =
+                            String(
+                                currentUserId || ""
+                            ) ===
+                            String(userId)
+                                ? "active"
+                                : "";
+
+
+                        let lastMessage =
+                            "ยังไม่มีข้อความ";
+
+
+                        if (
+                            room.lastMessage
+                        ) {
+
+                            if (
+                                room.lastMessage
+                                    .messageType ===
+                                "image"
+                            ) {
+
+                                lastMessage =
+                                    "รูปภาพ";
+
+                            }
+
+                            else if (
+                                room.lastMessage
+                                    .messageType ===
+                                "bank_card"
+                            ) {
+
+                                lastMessage =
+                                    "ข้อมูลธนาคาร";
+
+                            }
+
+                            else if (
+                                room.lastMessage
+                                    .messageType ===
+                                "crypto_card"
+                            ) {
+
+                                lastMessage =
+                                    "Crypto Wallet";
+
+                            }
+
+                            else {
+
+                                lastMessage =
+                                    room.lastMessage
+                                        .messageText ||
+                                    "ข้อความ";
+
+                            }
+
+                        }
+
+
+                        const unread =
+                            Number(
+                                room.unreadCount || 0
+                            );
+
+
+                        const avatar =
+                            user.profileImage
+
+                                ? `
+
+                                    <img
+                                        src="${escapeAttribute(
+                                            user.profileImage
+                                        )}"
+                                        alt=""
+                                    >
+
+                                `
+
+                                : escapeHtml(
+                                    initial
+                                );
+
+
+                        return `
+
+                            <div
+                                class="
+                                    room-item
+                                    ${active}
+                                "
+                                data-user-id="${escapeAttribute(
+                                    userId
+                                )}"
+                            >
+
+
+                                <div
+                                    class="room-avatar"
+                                >
+
+                                    ${avatar}
+
+                                </div>
+
+
+                                <div
+                                    class="room-info"
+                                >
+
+
+                                    <div
+                                        class="room-top"
+                                    >
+
+                                        <div
+                                            class="room-name"
+                                        >
+
+                                            ${escapeHtml(
+                                                name
+                                            )}
+
+                                        </div>
+
+
+                                        <div
+                                            class="room-time"
+                                        >
+
+                                            ${formatTime(
+                                                room.lastMessage?.createdAt
+                                            )}
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div
+                                        class="room-last-message"
+                                    >
+
+                                        ${escapeHtml(
+                                            lastMessage
+                                        )}
+
+                                    </div>
+
+
+                                </div>
+
+
+                                ${
+                                    unread > 0
+
+                                        ? `
+
+                                            <span
+                                                class="unread-badge"
+                                            >
+                                                ${unread}
+                                            </span>
+
+                                        `
+
+                                        : ""
+                                }
+
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+
+            lucide.createIcons();
+
+        }
+
+
+
+        /* =====================================================
+           OPEN CHAT
+        ====================================================== */
+
+        async function openChat(
+            userId
+        ) {
+
+            if (!userId) {
+
+                return;
+
+            }
+
+
+            currentUserId =
+                String(userId);
+
+
+            enableComposer();
+
+
+            await loadChat();
+
+
+            renderRooms();
+
+
+            startPolling();
+
+
+            closeChatRoomsOnMobile();
+
+        }
+
+
+
+        /* =====================================================
+           LOAD CHAT
+        ====================================================== */
+
+        async function loadChat(
+            forceScroll = false
+        ) {
+
+            if (!currentUserId) {
+                return;
+            }
+
+            const messagesElement =
+                document.getElementById("messages");
+
+            if (!messagesElement) {
+                return;
+            }
+
+            /*
+             * จำตำแหน่งการอ่านก่อนโหลดข้อมูลใหม่
+             * ถ้าอยู่ใกล้ด้านล่าง ให้ถือว่า user ต้องการดูข้อความล่าสุด
+             */
+            const distanceFromBottom =
+                messagesElement.scrollHeight -
+                messagesElement.scrollTop -
+                messagesElement.clientHeight;
+
+            const wasNearBottom =
+                distanceFromBottom <= 120;
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        `/api/chat/admin/${encodeURIComponent(
+                            currentUserId
+                        )}?t=${Date.now()}`
+                    );
+
+                const newMessages =
+                    Array.isArray(data.messages)
+                        ? data.messages
+                        : [];
+
+                const oldLastId =
+                    currentMessages.length
+                        ? String(
+                            currentMessages[
+                                currentMessages.length - 1
+                            ]._id || ""
+                        )
+                        : "";
+
+                const newLastId =
+                    newMessages.length
+                        ? String(
+                            newMessages[
+                                newMessages.length - 1
+                            ]._id || ""
+                        )
+                        : "";
+
+                const hasNewMessage =
+                    oldLastId !== newLastId ||
+                    currentMessages.length !== newMessages.length;
+
+                /* ครั้งแรก หรือกดเปิดห้องใหม่ */
+                if (forceScroll) {
+
+                    currentMessages = newMessages;
+
+                    renderChat();
+                    updateHeader();
+                    scrollToBottom();
+
+                    return;
+                }
+
+                /* ไม่มีข้อความใหม่ ไม่ต้อง render ใหม่ */
+                if (!hasNewMessage) {
+                    return;
+                }
+
+                currentMessages = newMessages;
+
+                renderChat();
+                updateHeader();
+
+                /*
+                 * ถ้า user อยู่ด้านล่างอยู่แล้ว ให้เลื่อนไปข้อความใหม่
+                 * ถ้า user กำลังอ่านข้อความเก่าอยู่ ให้คงตำแหน่งเดิม
+                 */
+                if (wasNearBottom) {
+                    scrollToBottom();
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load chat error:",
+                    error
+                );
+
+                document.getElementById(
+                    "messages"
+                ).innerHTML = `
+
+                    <div class="no-chat">
+
+                        <div
+                            class="no-chat-icon"
+                        >
+
+                            <i
+                                data-lucide="triangle-alert"
+                            ></i>
+
+                        </div>
+
+                        <h3>
+                            โหลดแชตไม่สำเร็จ
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(
+                                error.message
+                            )}
+                        </p>
+
+                    </div>
+
+                `;
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           RENDER CHAT
+        ====================================================== */
+
+        function renderChat() {
+
+            const messagesElement =
+                document.getElementById(
+                    "messages"
+                );
+
+
+            if (!currentMessages.length) {
+
+                messagesElement.innerHTML = `
+
+                    <div
+                        class="no-chat"
+                    >
+
+                        <div
+                            class="no-chat-icon"
+                        >
+
+                            <i
+                                data-lucide="message-circle"
+                            ></i>
+
+                        </div>
+
+
+                        <h3>
+                            ยังไม่มีข้อความ
+                        </h3>
+
+
+                        <p>
+                            เริ่มต้นการสนทนากับผู้ใช้
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                lucide.createIcons();
+
+                return;
+
+            }
+
+
+
+            messagesElement.innerHTML =
+
+                currentMessages.map(
+                    function(message) {
+
+                        const isAdmin =
+                            message.senderType ===
+                            "admin";
+
+
+                        let content = "";
+
+
+
+                        /* =====================================
+                           TEXT
+                        ====================================== */
+
+                        if (
+                            message.messageType ===
+                            "text"
+                        ) {
+
+                            content =
+    `<div class="message-bubble">${escapeHtml(
+        message.messageText || ""
+    )}</div>`;
+
+                        }
+
+
+
+                        /* =====================================
+                           IMAGE
+                        ====================================== */
+
+                        else if (
+                            message.messageType ===
+                            "image"
+                        ) {
+
+                            content = `
+
+                                <div
+                                    class="message-bubble image-bubble"
+                                >
+
+                                    <img
+                                        class="chat-image"
+                                        src="${escapeAttribute(
+                                            message.imageUrl ||
+                                            ""
+                                        )}"
+                                        alt="Chat image"
+                                    >
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+
+                        /* =====================================
+                           BANK CARD
+                        ====================================== */
+
+                        else if (
+                            message.messageType ===
+                            "bank_card"
+                        ) {
+
+                            const card =
+                                message.cardData ||
+                                {};
+
+
+                            content = `
+
+                                <div
+                                    class="info-card"
+                                >
+
+
+                                    <div
+                                        class="info-card-header"
+                                    >
+
+                                        <i
+                                            data-lucide="landmark"
+                                        ></i>
+
+                                        ข้อมูลบัญชีธนาคาร
+
+                                    </div>
+
+
+                                    <div
+                                        class="info-card-body"
+                                    >
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                ธนาคาร
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.bankName ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                ชื่อบัญชี
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.accountName ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                เลขบัญชี
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.accountNumber ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+
+                        /* =====================================
+                           CRYPTO CARD
+                        ====================================== */
+
+                        else if (
+                            message.messageType ===
+                            "crypto_card"
+                        ) {
+
+                            const card =
+                                message.cardData ||
+                                {};
+
+
+                            content = `
+
+                                <div
+                                    class="info-card"
+                                >
+
+
+                                    <div
+                                        class="info-card-header"
+                                    >
+
+                                        <i
+                                            data-lucide="bitcoin"
+                                        ></i>
+
+                                        Crypto Wallet
+
+                                    </div>
+
+
+                                    <div
+                                        class="info-card-body"
+                                    >
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                Coin
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.coin ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                Network
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.network ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div
+                                            class="info-row"
+                                        >
+
+                                            <div
+                                                class="info-label"
+                                            >
+                                                Wallet Address
+                                            </div>
+
+
+                                            <div
+                                                class="info-value"
+                                            >
+                                                ${escapeHtml(
+                                                    card.walletAddress ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+
+
+
+                        return `
+
+                            <div
+                                class="
+                                    message-row
+                                    ${
+                                        isAdmin
+                                            ? "admin"
+                                            : "user"
+                                    }
+                                "
+                            >
+
+
+                                <div
+                                    class="message-content-wrap"
+                                >
+
+                                    ${content}
+
+
+                                    <div
+                                        class="message-time"
+                                    >
+
+                                        ${formatTime(
+                                            message.createdAt
+                                        )}
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+
+            lucide.createIcons();
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE CHAT HEADER
+        ====================================================== */
+
+        function updateHeader() {
+
+            const userInfo =
+                document.getElementById(
+                    "chatUserInfo"
+                );
+
+
+            const room =
+                rooms.find(
+                    function(item) {
+
+                        const id =
+                            item.user?.id ||
+                            item.user?._id ||
+                            "";
+
+
+                        return String(id) ===
+                            String(currentUserId);
+
+                    }
+                );
+
+
+            const user =
+                room?.user ||
+                {};
+
+
+            const name =
+                user.shopName ||
+                user.username ||
+                "ผู้ใช้";
+
+
+            const initial =
+                name
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            const avatar =
+                user.profileImage
+
+                    ? `
+
+                        <img
+                            src="${escapeAttribute(
+                                user.profileImage
+                            )}"
+                            alt=""
+                        >
+
+                    `
+
+                    : escapeHtml(
+                        initial
+                    );
+
+
+            userInfo.innerHTML = `
+
+                <div
+                    class="chat-user-avatar"
+                >
+
+                    ${avatar}
+
+                </div>
+
+
+                <div>
+
+                    <div
+                        class="chat-user-name"
+                    >
+
+                        ${escapeHtml(
+                            name
+                        )}
+
+                    </div>
+
+
+                    <div
+                        class="chat-user-contact"
+                    >
+
+                        ${escapeHtml(
+                            user.contact ||
+                            user.username ||
+                            ""
+                        )}
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        /* =====================================================
+           ENABLE COMPOSER
+        ====================================================== */
+
+        function enableComposer() {
+
+            const messageInput =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            const bankButton =
+                document.getElementById(
+                    "bankButton"
+                );
+
+
+            const cryptoButton =
+                document.getElementById(
+                    "cryptoButton"
+                );
+
+
+            const imageButton =
+                document.getElementById(
+                    "imageButton"
+                );
+
+
+            messageInput.disabled =
+                false;
+
+
+            sendButton.disabled =
+                false;
+
+
+            bankButton.disabled =
+                false;
+
+
+            cryptoButton.disabled =
+                false;
+
+
+            imageButton.disabled =
+                false;
+
+        }
+
+
+
+        /* =====================================================
+           SEND TEXT
+        ====================================================== */
+
+        async function sendMessage() {
+
+            if (!currentUserId) {
+
+                return;
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            const messageText =
+                input.value.trim();
+
+
+            if (!messageText) {
+
+                return;
+
+            }
+
+
+            const sendButton =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            sendButton.disabled =
+                true;
+
+
+            try {
+
+                await apiFetch(
+                    `/api/chat/admin/${encodeURIComponent(
+                        currentUserId
+                    )}/message`,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                messageText
+
+                            })
+
+                    }
+                );
+
+
+                input.value = "";
+
+
+                await loadChat();
+
+
+                await loadRooms();
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send message error:",
+                    error
+                );
+
+
+                alert(
+                    error.message
+                );
+
+            }
+
+            finally {
+
+                sendButton.disabled =
+                    false;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SEND IMAGE
+        ====================================================== */
+
+        async function sendImage(file) {
+
+            if (!currentUserId || !file) {
+                return;
+            }
+
+            if (!file.type.startsWith("image/")) {
+
+                alert(
+                    "กรุณาเลือกไฟล์รูปภาพเท่านั้น"
+                );
+
+                return;
+            }
+
+            const maxSize =
+                5 * 1024 * 1024;
+
+            if (file.size > maxSize) {
+
+                alert(
+                    "รูปภาพต้องมีขนาดไม่เกิน 5MB"
+                );
+
+                return;
+            }
+
+            const imageButton =
+                document.getElementById(
+                    "imageButton"
+                );
+
+            imageButton.disabled =
+                true;
+
+            try {
+
+                const imageData =
+                    await new Promise(
+                        function(resolve, reject) {
+
+                            const reader =
+                                new FileReader();
+
+                            reader.onload =
+                                function() {
+                                    resolve(
+                                        reader.result
+                                    );
+                                };
+
+                            reader.onerror =
+                                function() {
+                                    reject(
+                                        new Error(
+                                            "ไม่สามารถอ่านไฟล์รูปภาพได้"
+                                        )
+                                    );
+                                };
+
+                            reader.readAsDataURL(
+                                file
+                            );
+
+                        }
+                    );
+
+                await apiFetch(
+                    `/api/chat/admin/${encodeURIComponent(
+                        currentUserId
+                    )}/image`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+                        body: JSON.stringify({
+                            imageData
+                        })
+                    }
+                );
+
+                await loadChat();
+                await loadRooms();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send image error:",
+                    error
+                );
+
+                alert(
+                    error.message
+                );
+
+            }
+
+            finally {
+
+                imageButton.disabled =
+                    false;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           OPEN BANK MODAL
+        ====================================================== */
+
+        function openBankModal() {
+
+            if (!currentUserId) {
+
+                return;
+
+            }
+
+
+            document
+                .getElementById(
+                    "bankModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           SEND BANK CARD
+        ====================================================== */
+
+        async function sendBankCard() {
+
+            if (!currentUserId) {
+
+                return;
+
+            }
+
+
+            const bankName =
+                document.getElementById(
+                    "bankName"
+                ).value.trim();
+
+
+            const accountName =
+                document.getElementById(
+                    "accountName"
+                ).value.trim();
+
+
+            const accountNumber =
+                document.getElementById(
+                    "accountNumber"
+                ).value.trim();
+
+
+            if (
+                !bankName ||
+                !accountName ||
+                !accountNumber
+            ) {
+
+                alert(
+                    "กรุณากรอกข้อมูลธนาคารให้ครบ"
+                );
+
+                return;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "sendBankButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            try {
+
+                await apiFetch(
+                    `/api/chat/admin/${encodeURIComponent(
+                        currentUserId
+                    )}/card`,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                messageType:
+                                    "bank_card",
+
+                                cardData: {
+
+                                    bankName,
+
+                                    accountName,
+
+                                    accountNumber
+
+                                }
+
+                            })
+
+                    }
+                );
+
+
+                document.getElementById(
+                    "bankName"
+                ).value = "";
+
+
+                document.getElementById(
+                    "accountName"
+                ).value = "";
+
+
+                document.getElementById(
+                    "accountNumber"
+                ).value = "";
+
+
+                closeModal(
+                    "bankModal"
+                );
+
+
+                await loadChat();
+
+
+                await loadRooms();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send bank card error:",
+                    error
+                );
+
+
+                alert(
+                    error.message
+                );
+
+            }
+
+            finally {
+
+                button.disabled =
+                    false;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           OPEN CRYPTO MODAL
+        ====================================================== */
+
+        function openCryptoModal() {
+
+            if (!currentUserId) {
+
+                return;
+
+            }
+
+
+            document
+                .getElementById(
+                    "cryptoModal"
+                )
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+
+        /* =====================================================
+           SEND CRYPTO CARD
+        ====================================================== */
+
+        async function sendCryptoCard() {
+
+            if (!currentUserId) {
+
+                return;
+
+            }
+
+
+            const coin =
+                document.getElementById(
+                    "cryptoCoin"
+                ).value;
+
+
+            const network =
+                document.getElementById(
+                    "cryptoNetwork"
+                ).value.trim();
+
+
+            const walletAddress =
+                document.getElementById(
+                    "cryptoAddress"
+                ).value.trim();
+
+
+            if (
+                !network ||
+                !walletAddress
+            ) {
+
+                alert(
+                    "กรุณากรอก Network และ Wallet Address"
+                );
+
+                return;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "sendCryptoButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            try {
+
+                await apiFetch(
+                    `/api/chat/admin/${encodeURIComponent(
+                        currentUserId
+                    )}/card`,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                messageType:
+                                    "crypto_card",
+
+                                cardData: {
+
+                                    coin,
+
+                                    network,
+
+                                    walletAddress
+
+                                }
+
+                            })
+
+                    }
+                );
+
+
+                document.getElementById(
+                    "cryptoNetwork"
+                ).value = "";
+
+
+                document.getElementById(
+                    "cryptoAddress"
+                ).value = "";
+
+
+                closeModal(
+                    "cryptoModal"
+                );
+
+
+                await loadChat();
+
+
+                await loadRooms();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Send crypto card error:",
+                    error
+                );
+
+
+                alert(
+                    error.message
+                );
+
+            }
+
+            finally {
+
+                button.disabled =
+                    false;
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CLOSE MODAL
+        ====================================================== */
+
+        function closeModal(
+            modalId
+        ) {
+
+            const modal =
+                document.getElementById(
+                    modalId
+                );
+
+
+            if (modal) {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           POLLING
+        ====================================================== */
+
+        let pollingInProgress = false;
+
+
+        function startPolling() {
+
+            if (pollTimer) {
+
+                clearInterval(
+                    pollTimer
+                );
+
+            }
+
+
+            pollTimer =
+                setInterval(
+                    async function() {
+
+                        if (!currentUserId) {
+
+                            return;
+
+                        }
+
+
+                        if (pollingInProgress) {
+                            return;
+                        }
+
+                        pollingInProgress = true;
+
+                        try {
+                            await loadChat(false);
+                            await loadRooms();
+                        }
+                        finally {
+                            pollingInProgress = false;
+                        }
+
+                    },
+                    1000
+                );
+
+        }
+
+
+
+        /* =====================================================
+           SCROLL
+        ====================================================== */
+
+        function scrollToBottom() {
+
+            const messages =
+                document.getElementById(
+                    "messages"
+                );
+
+
+            if (!messages) {
+
+                return;
+
+            }
+
+
+            messages.scrollTop =
+                messages.scrollHeight;
+
+        }
+
+
+
+        /* =====================================================
+           FORMAT TIME
+        ====================================================== */
+
+        function formatTime(
+            date
+        ) {
+
+            if (!date) {
+
+                return "";
+
+            }
+
+
+            const value =
+                new Date(date);
+
+
+            if (
+                Number.isNaN(
+                    value.getTime()
+                )
+            ) {
+
+                return "";
+
+            }
+
+
+            return value.toLocaleTimeString(
+                "th-TH",
+                {
+
+                    hour: "2-digit",
+
+                    minute: "2-digit"
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHtml(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+
+        /* =====================================================
+           ESCAPE ATTRIBUTE
+        ====================================================== */
+
+        function escapeAttribute(
+            value
+        ) {
+
+            return escapeHtml(
+                value
+            );
+
+        }
+
+
+
+        /* =====================================================
+           CLOSE MOBILE CHAT ROOM
+        ====================================================== */
+
+        function closeChatRoomsOnMobile() {
+
+            if (
+                window.innerWidth <= 900
+            ) {
+
+                const sidebar =
+                    document.getElementById(
+                        "chatRoomSidebar"
+                    );
+
+
+                if (sidebar) {
+
+                    sidebar.classList.remove(
+                        "mobile-show"
+                    );
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           OPEN MOBILE CHAT ROOMS
+        ====================================================== */
+
+        function openChatRoomsOnMobile() {
+
+            if (
+                window.innerWidth <= 900
+            ) {
+
+                const sidebar =
+                    document.getElementById(
+                        "chatRoomSidebar"
+                    );
+
+
+                if (sidebar) {
+
+                    sidebar.classList.add(
+                        "mobile-show"
+                    );
+
+                }
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           ROOM CLICK
+        ====================================================== */
+
+        document
+            .getElementById(
+                "roomsList"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+                    const room =
+                        event.target.closest(
+                            ".room-item"
+                        );
+
+
+                    if (!room) {
+
+                        return;
+
+                    }
+
+
+                    const userId =
+                        room.dataset.userId;
+
+
+                    if (userId) {
+
+                        openChat(
+                            userId
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SEARCH
+        ====================================================== */
+
+        document
+            .getElementById(
+                "searchRooms"
+            )
+            .addEventListener(
+                "input",
+                function() {
+
+                    renderRooms();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SEND BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "sendButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    sendMessage();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           ENTER TO SEND
+        ====================================================== */
+
+        document
+            .getElementById(
+                "messageInput"
+            )
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key ===
+                        "Enter" &&
+                        !event.shiftKey
+                    ) {
+
+                        event.preventDefault();
+
+
+                        sendMessage();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           BANK BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "bankButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    openBankModal();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CRYPTO BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "cryptoButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    openCryptoModal();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           IMAGE BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "imageButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    if (!currentUserId) {
+                        return;
+                    }
+
+                    document
+                        .getElementById(
+                            "imageInput"
+                        )
+                        .click();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           IMAGE INPUT
+        ====================================================== */
+
+        document
+            .getElementById(
+                "imageInput"
+            )
+            .addEventListener(
+                "change",
+                async function() {
+
+                    const file =
+                        this.files &&
+                        this.files[0];
+
+                    if (!file) {
+                        return;
+                    }
+
+                    await sendImage(
+                        file
+                    );
+
+                    this.value = "";
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SEND BANK BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "sendBankButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    sendBankCard();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SEND CRYPTO BUTTON
+        ====================================================== */
+
+        document
+            .getElementById(
+                "sendCryptoButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    sendCryptoCard();
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CLOSE MODALS
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                "[data-close-modal]"
+            )
+            .forEach(
+                function(button) {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            closeModal(
+                                button.dataset.closeModal
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           CLICK OUTSIDE MODAL
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                ".modal-overlay"
+            )
+            .forEach(
+                function(overlay) {
+
+                    overlay.addEventListener(
+                        "click",
+                        function(event) {
+
+                            if (
+                                event.target ===
+                                overlay
+                            ) {
+
+                                closeModal(
+                                    overlay.id
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           ESC CLOSE MODAL
+        ====================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    document
+                        .querySelectorAll(
+                            ".modal-overlay.show"
+                        )
+                        .forEach(
+                            function(modal) {
+
+                                modal.classList.remove(
+                                    "show"
+                                );
+
+                            }
+                        );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           REFRESH CHAT
+        ====================================================== */
+
+        document
+            .getElementById(
+                "refreshChatButton"
+            )
+            .addEventListener(
+                "click",
+                async function() {
+
+                    await loadRooms();
+
+
+                    if (
+                        currentUserId
+                    ) {
+
+                        await loadChat();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           MOBILE ADMIN MENU
+        ====================================================== */
+
+        document
+            .getElementById(
+                "menuButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    const sidebar =
+                        document.getElementById(
+                            "sidebar"
+                        );
+
+
+                    const overlay =
+                        document.getElementById(
+                            "sidebarOverlay"
+                        );
+
+
+                    if (sidebar) {
+
+                        sidebar.classList.add(
+                            "open"
+                        );
+
+                    }
+
+
+                    if (overlay) {
+
+                        overlay.classList.add(
+                            "active"
+                        );
+
+                    }
+
+
+                    document.body.classList.add(
+                        "sidebar-open"
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           MOBILE CHAT ROOM TOGGLE
+        ====================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    const chatSidebar =
+                        document.getElementById(
+                            "chatRoomSidebar"
+                        );
+
+
+                    if (chatSidebar) {
+
+                        chatSidebar.classList.remove(
+                            "mobile-show"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           INITIALIZE
+        ====================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                if (
+                    typeof lucide !==
+                    "undefined"
+                ) {
+
+                    lucide.createIcons();
+
+                }
+
+
+                loadRooms();
+
+
+                startPolling();
+
+            }
+        );
+
+
+    </script>
+
+
+
+    <!-- =====================================================
+         ADMIN SIDEBAR JS
+    ====================================================== -->
+
+    <script
+        src="js/admin-sidebar.js"
+    ></script>
+
+
+</body>
+
+</html>

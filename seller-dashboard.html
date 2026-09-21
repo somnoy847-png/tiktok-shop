@@ -1,0 +1,3569 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>แดชบอร์ดร้านค้า - TikTok Shop</title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* =========================================================
+           SELLER DASHBOARD
+           Sidebar comes from components/sidebar.html
+        ========================================================= */
+
+        :root {
+            --dash-bg: #f7f7f8;
+            --dash-white: #ffffff;
+            --dash-text: #111111;
+            --dash-muted: #777777;
+            --dash-border: #e8e8eb;
+            --dash-soft: #f4f4f5;
+            --dash-red: #fe2c55;
+            --dash-green: #16a34a;
+            --dash-blue: #2563eb;
+            --dash-orange: #f59e0b;
+        }
+
+        body {
+            background: var(--dash-bg);
+            color: var(--dash-text);
+            font-family: "Inter", sans-serif;
+        }
+
+        .dashboard-main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        /* ---------- Header ---------- */
+
+        .dashboard-header {
+            height: 72px;
+            background: rgba(255,255,255,.96);
+            border-bottom: 1px solid var(--dash-border);
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            backdrop-filter: blur(12px);
+        }
+
+        .dashboard-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .dashboard-menu-button {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--dash-border);
+            border-radius: 10px;
+            background: #fff;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .dashboard-heading h1 {
+            font-size: 20px;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -.4px;
+        }
+
+        .dashboard-heading p {
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--dash-muted);
+        }
+
+        .dashboard-header-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .dashboard-header-button {
+            position: relative;
+            width: 39px;
+            height: 39px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .dashboard-header-button:hover {
+            background: var(--dash-soft);
+        }
+
+        .dashboard-header-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .header-dot {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--dash-red);
+            border: 1px solid #fff;
+        }
+
+        .dashboard-language {
+            height: 38px;
+            padding: 0 11px;
+            border-left: 1px solid var(--dash-border);
+            border-right: 1px solid var(--dash-border);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .dashboard-language svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .dashboard-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 3px;
+            cursor: pointer;
+        }
+
+        .dashboard-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #111, #444);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .dashboard-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dashboard-profile-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-profile-text strong {
+            max-width: 130px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .dashboard-profile-text span {
+            margin-top: 2px;
+            font-size: 9px;
+            color: #999;
+        }
+
+        .dashboard-profile > svg {
+            width: 14px;
+            color: #888;
+        }
+
+        /* ---------- Content ---------- */
+
+        .dashboard-content {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 28px 30px 50px;
+        }
+
+        .dashboard-welcome {
+            margin-bottom: 22px;
+        }
+
+        .dashboard-welcome h2 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -.25px;
+        }
+
+        .dashboard-welcome p {
+            margin-top: 5px;
+            color: var(--dash-muted);
+            font-size: 11px;
+        }
+
+        /* ---------- Balance ---------- */
+
+        .balance-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 178px;
+            padding: 27px 28px;
+            border-radius: 18px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .balance-card::before,
+        .balance-card::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .balance-card::before {
+            width: 300px;
+            height: 300px;
+            right: -115px;
+            top: -170px;
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .balance-card::after {
+            width: 180px;
+            height: 180px;
+            right: 40px;
+            bottom: -130px;
+            background: rgba(254,44,85,.11);
+        }
+
+        .balance-main,
+        .balance-actions {
+            position: relative;
+            z-index: 2;
+        }
+
+        .balance-label {
+            color: #aaa;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .balance-value {
+            margin-top: 8px;
+            font-size: 35px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -1.2px;
+        }
+
+        .balance-pending {
+            margin-top: 10px;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .balance-pending strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .balance-actions {
+            display: flex;
+            gap: 9px;
+        }
+
+        .balance-action {
+            height: 42px;
+            padding: 0 16px;
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 9px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .balance-action:hover {
+            background: rgba(255,255,255,.16);
+            transform: translateY(-1px);
+        }
+
+        .balance-action svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ---------- Stats ---------- */
+
+        .stats-grid {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--dash-border);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-width: 0;
+            transition: .2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,.05);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: var(--dash-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-icon svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .stat-card:nth-child(1) .stat-icon { color: var(--dash-blue); }
+        .stat-card:nth-child(2) .stat-icon { color: var(--dash-red); }
+        .stat-card:nth-child(3) .stat-icon { color: var(--dash-orange); }
+        .stat-card:nth-child(4) .stat-icon { color: var(--dash-green); }
+
+        .stat-info {
+            min-width: 0;
+        }
+
+        .stat-info span {
+            display: block;
+            color: #888;
+            font-size: 10px;
+        }
+
+        .stat-info strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .stat-info small {
+            display: block;
+            margin-top: 3px;
+            color: var(--dash-green);
+            font-size: 9px;
+        }
+
+        /* ---------- Sections ---------- */
+
+        .dashboard-section {
+            margin-top: 28px;
+        }
+
+        .section-heading {
+            margin-bottom: 13px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .section-heading h2 {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            margin-top: 4px;
+            color: #888;
+            font-size: 10px;
+        }
+
+        .section-link {
+            border: 0;
+            background: transparent;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .section-link:hover {
+            color: var(--dash-red);
+        }
+
+        .section-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ---------- Performance ---------- */
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(300px, .95fr);
+            gap: 15px;
+        }
+
+        .dashboard-panel {
+            background: #fff;
+            border: 1px solid var(--dash-border);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 0;
+        }
+
+        .panel-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .panel-title {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .panel-subtitle {
+            margin-top: 4px;
+            color: #999;
+            font-size: 9px;
+        }
+
+        .chart {
+            height: 220px;
+            margin-top: 16px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            padding: 8px 4px 0;
+            border-bottom: 1px solid var(--dash-border);
+        }
+
+        .chart-column {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 7px;
+        }
+
+        .chart-value {
+            color: #777;
+            font-size: 8px;
+            opacity: 0;
+            transform: translateY(3px);
+            transition: .2s ease;
+        }
+
+        .chart-column:hover .chart-value {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-bar {
+            width: min(42px, 80%);
+            min-height: 8px;
+            border-radius: 7px 7px 3px 3px;
+            background: #111;
+            transition: .2s ease;
+        }
+
+        .chart-column:hover .chart-bar {
+            background: var(--dash-red);
+        }
+
+        .chart-label {
+            color: #999;
+            font-size: 8px;
+            padding-bottom: 8px;
+        }
+
+        .chart-summary {
+            margin-top: 13px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .chart-summary-item span {
+            display: block;
+            color: #999;
+            font-size: 9px;
+        }
+
+        .chart-summary-item strong {
+            display: block;
+            margin-top: 3px;
+            font-size: 13px;
+        }
+
+        /* ---------- สินค้าขายดี ---------- */
+
+        .best-list {
+            margin-top: 9px;
+        }
+
+        .best-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--dash-border);
+        }
+
+        .best-item:last-child {
+            border-bottom: 0;
+        }
+
+        .best-rank {
+            width: 18px;
+            color: #aaa;
+            font-size: 9px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .best-image {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--dash-soft);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .best-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .best-image svg {
+            width: 19px;
+            color: #aaa;
+        }
+
+        .best-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .best-info strong {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .best-info span {
+            display: block;
+            margin-top: 4px;
+            color: #999;
+            font-size: 9px;
+        }
+
+        .best-sales {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .best-sales strong {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .best-sales span {
+            display: block;
+            margin-top: 3px;
+            color: var(--dash-green);
+            font-size: 8px;
+        }
+
+        .empty-state {
+            padding: 34px 15px;
+            text-align: center;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state strong {
+            display: block;
+            color: #555;
+            font-size: 11px;
+        }
+
+        .empty-state span {
+            display: block;
+            margin-top: 4px;
+            font-size: 9px;
+        }
+
+        /* ---------- Orders ---------- */
+
+        .orders-panel {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .orders-toolbar {
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px solid var(--dash-border);
+        }
+
+        .orders-toolbar-title strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .orders-toolbar-title span {
+            display: block;
+            margin-top: 4px;
+            color: #999;
+            font-size: 9px;
+        }
+
+        .orders-count {
+            padding: 5px 8px;
+            border-radius: 20px;
+            background: var(--dash-soft);
+            color: #666;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .orders-scroll {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+        }
+
+        .orders-table th {
+            padding: 12px 16px;
+            background: #fafafa;
+            color: #999;
+            text-align: left;
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .orders-table td {
+            padding: 14px 16px;
+            border-top: 1px solid var(--dash-border);
+            color: #444;
+            font-size: 10px;
+        }
+
+        .orders-table tr:hover td {
+            background: #fcfcfc;
+        }
+
+        .order-id {
+            color: #111;
+            font-weight: 800;
+        }
+
+        .order-product {
+            max-width: 190px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .order-amount {
+            color: #111;
+            font-weight: 800;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 8px;
+            border-radius: 20px;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .status-pending {
+            background: #fff7df;
+            color: #a16207;
+        }
+
+        .status-confirmed {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.status-processing {
+    background: #fff4e5;
+    color: #d97706;
+}
+
+        .status-shipping {
+            background: #eaf2ff;
+            color: #2563eb;
+        }
+
+        .status-completed {
+            background: #eaf8ef;
+            color: #15803d;
+        }
+
+        .status-cancelled {
+            background: #fef0f0;
+            color: #dc2626;
+        }
+
+        .status-refunded {
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+        /* ---------- Quick actions ---------- */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .quick-action {
+            min-height: 82px;
+            padding: 16px;
+            border: 1px solid var(--dash-border);
+            border-radius: 13px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-align: left;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .quick-action:hover {
+            border-color: #d6d6d8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0,0,0,.05);
+        }
+
+        .quick-action-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--dash-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+        .quick-action-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .quick-action strong {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .quick-action span {
+            display: block;
+            margin-top: 4px;
+            color: #999;
+            font-size: 8px;
+        }
+
+        /* ---------- Toast ---------- */
+
+        .dashboard-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 25px;
+            z-index: 3000;
+            transform: translate(-50%, 20px);
+            opacity: 0;
+            pointer-events: none;
+            padding: 11px 15px;
+            border-radius: 10px;
+            background: #111;
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(0,0,0,.18);
+            font-size: 10px;
+            font-weight: 600;
+            transition: .25s ease;
+        }
+
+        .dashboard-toast.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 1100px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .performance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .dashboard-main {
+                margin-left: 0;
+            }
+
+            .dashboard-header {
+                height: 68px;
+                padding: 0 15px;
+            }
+
+            .dashboard-menu-button {
+                display: flex;
+            }
+
+            .dashboard-heading h1 {
+                font-size: 17px;
+            }
+
+            .dashboard-heading p {
+                display: none;
+            }
+
+            .dashboard-header-right {
+                gap: 3px;
+            }
+
+            .dashboard-header-button {
+                width: 35px;
+                height: 35px;
+            }
+
+            .dashboard-language {
+                border: 0;
+                padding: 0 5px;
+            }
+
+            .dashboard-language span,
+            .dashboard-language svg:first-child {
+                display: none;
+            }
+
+            .dashboard-profile {
+                display: none;
+            }
+
+            .dashboard-content {
+                padding: 20px 15px 40px;
+            }
+
+            .balance-card {
+                min-height: 0;
+                padding: 22px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .balance-actions {
+                width: 100%;
+            }
+
+            .balance-action {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .balance-value {
+                font-size: 29px;
+            }
+
+            .dashboard-header-button {
+                display: none;
+            }
+
+            .dashboard-language {
+                display: none;
+            }
+
+            .chart {
+                height: 185px;
+                gap: 5px;
+            }
+
+            .chart-bar {
+                width: min(30px, 85%);
+            }
+
+            .dashboard-panel {
+                padding: 16px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         SHARED SIDEBAR
+    ========================================================== -->
+    <div id="sidebar-container"></div>
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <main class="dashboard-main">
+
+        <!-- HEADER -->
+        <header class="dashboard-header">
+
+            <div class="dashboard-header-left">
+                <button
+                    class="dashboard-menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="เปิดเมนู"
+                >
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="dashboard-heading">
+                    <h1>แดชบอร์ดร้านค้า</h1>
+                    <p>จัดการร้านค้าและติดตามผลการดำเนินงานของคุณ</p>
+                </div>
+            </div>
+
+            <div class="dashboard-header-right">
+
+                
+
+                <div
+                    class="dashboard-profile"
+                    id="dashboardProfile"
+                    title="บัญชีของฉัน"
+                >
+                    <div class="dashboard-avatar" id="headerAvatar">U</div>
+
+                    <div class="dashboard-profile-text">
+                        <strong id="headerUsername">Guest</strong>
+                        <span>เจ้าของร้าน</span>
+                    </div>
+
+                    <i data-lucide="chevron-down"></i>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <div class="dashboard-content">
+
+            <div class="dashboard-welcome">
+                <h2 id="welcomeTitle">ยินดีต้อนรับกลับ</h2>
+                <p>นี่คือภาพรวมของร้านค้าของคุณในวันนี้</p>
+            </div>
+
+            <!-- BALANCE -->
+            <section class="balance-card">
+
+                <div class="balance-main">
+                    <div class="balance-label">ยอดคงเหลือที่ใช้ได้</div>
+
+                    <div class="balance-value" id="balanceValue">
+                        $0.00
+                    </div>
+
+                    <div class="balance-pending">
+                        เงินที่รอดำเนินการ:
+                        <strong id="pendingBalance">$0.00</strong>
+                    </div>
+                </div>
+
+                <div class="balance-actions">
+                    <button class="balance-action" id="depositButton" type="button">
+                        <i data-lucide="plus"></i>
+                        Deposit
+                    </button>
+
+                    <button class="balance-action" id="withdrawButton" type="button">
+                        <i data-lucide="arrow-up-right"></i>
+                        Withdraw
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- STATS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="package"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>สินค้า</span>
+                        <strong id="productCount">0</strong>
+                        <small>สินค้าที่เปิดใช้งาน</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="shopping-cart"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>คำสั่งซื้อ</span>
+                        <strong id="orderCount">0</strong>
+                        <small>คำสั่งซื้อทั้งหมด</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="boxes"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>จำนวนสินค้าที่ขายได้</span>
+                        <strong id="unitsSold">0</strong>
+                        <small>จำนวนสินค้าทั้งหมด</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>กำไร</span>
+                        <strong id="profitValue">$0.00</strong>
+                        <small>กำไรรวม</small>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- PERFORMANCE -->
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>ประสิทธิภาพการขาย</h2>
+                        <p>ภาพรวมกิจกรรมการขายล่าสุดของคุณ</p>
+                    </div>
+
+                    <button class="section-link" id="viewSalesButton" type="button">
+                        ดูรายละเอียด
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="performance-grid">
+
+                    <!-- CHART -->
+                    <div class="dashboard-panel">
+
+                        <div class="panel-top">
+                            <div>
+                                <div class="panel-title">ยอดขายรายสัปดาห์</div>
+                                <div class="panel-subtitle">
+                                    กิจกรรมการขายในช่วง 7 วันที่ผ่านมา
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart" id="salesChart">
+
+                            <div class="chart-column">
+                                <span class="chart-value">$25</span>
+                                <div class="chart-bar" style="height:25%;"></div>
+                                <span class="chart-label">จ.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$42</span>
+                                <div class="chart-bar" style="height:42%;"></div>
+                                <span class="chart-label">อ.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$58</span>
+                                <div class="chart-bar" style="height:58%;"></div>
+                                <span class="chart-label">พ.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$38</span>
+                                <div class="chart-bar" style="height:38%;"></div>
+                                <span class="chart-label">พฤ.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$72</span>
+                                <div class="chart-bar" style="height:72%;"></div>
+                                <span class="chart-label">ศ.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$90</span>
+                                <div class="chart-bar" style="height:90%;"></div>
+                                <span class="chart-label">ส.</span>
+                            </div>
+
+                            <div class="chart-column">
+                                <span class="chart-value">$64</span>
+                                <div class="chart-bar" style="height:64%;"></div>
+                                <span class="chart-label">อา.</span>
+                            </div>
+
+                        </div>
+
+                        <div class="chart-summary">
+                            <div class="chart-summary-item">
+                                <span>วันที่ยอดขายสูงสุด</span>
+                                <strong>Saturday</strong>
+                            </div>
+
+                            <div class="chart-summary-item">
+                                <span>ยอดขายสูงสุด</span>
+                                <strong>$90.00</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BEST SELLING -->
+                    <div class="dashboard-panel">
+
+                        <div class="panel-top">
+                            <div>
+                                <div class="panel-title">สินค้าขายดี</div>
+                                <div class="panel-subtitle">
+                                    สินค้าที่มียอดขายสูงสุดของคุณ
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="best-list" id="bestSellingList">
+                            <div class="empty-state">
+                                <i data-lucide="package-search"></i>
+                                <strong>ยังไม่มียอดขาย</strong>
+                                <span>สินค้าที่ขายดีที่สุดของคุณจะแสดงที่นี่</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- QUICK ACTIONS -->
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>เมนูลัด</h2>
+                        <p>จัดการร้านค้าของคุณได้รวดเร็วยิ่งขึ้น</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+
+                    <button class="quick-action" id="addProductButton" type="button">
+                        <div class="quick-action-icon">
+                            <i data-lucide="package-plus"></i>
+                        </div>
+                        <div>
+                            <strong>เพิ่มสินค้า</strong>
+                            <span>สร้างสินค้าใหม่สำหรับร้านค้าของคุณ</span>
+                        </div>
+                    </button>
+
+                    <button class="quick-action" id="manageProductsButton" type="button">
+                        <div class="quick-action-icon">
+                            <i data-lucide="boxes"></i>
+                        </div>
+                        <div>
+                            <strong>จัดการสินค้า</strong>
+                            <span>ดูและจัดการสินค้าของคุณ</span>
+                        </div>
+                    </button>
+
+                    <button class="quick-action" id="shopProfileButton" type="button">
+                        <div class="quick-action-icon">
+                            <i data-lucide="store"></i>
+                        </div>
+                        <div>
+                            <strong>ข้อมูลร้านค้า</strong>
+                            <span>อัปเดตข้อมูลร้านค้าของคุณ</span>
+                        </div>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- ORDERS -->
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>คำสั่งซื้อล่าสุด</h2>
+                        <p>คำสั่งซื้อล่าสุดจากลูกค้าของคุณ</p>
+                    </div>
+
+                    <button class="section-link" id="viewOrdersButton" type="button">
+                        ดูทั้งหมด
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="dashboard-panel orders-panel">
+
+                    <div class="orders-toolbar">
+                        <div class="orders-toolbar-title">
+                            <strong>รายการคำสั่งซื้อ</strong>
+                            <span>คำสั่งซื้อล่าสุดจากลูกค้าของคุณ</span>
+                        </div>
+
+                        <div class="orders-count" id="ordersCountLabel">
+                            0 orders
+                        </div>
+                    </div>
+
+                    <div class="orders-scroll">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>คำสั่งซื้อ</th>
+                                    <th>สินค้า</th>
+                                    <th>ลูกค้า</th>
+                                    <th>จำนวนเงิน</th>
+                                    <th>สถานะ</th>
+                                    <th>วันที่</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="ordersTableBody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <div class="dashboard-toast" id="dashboardToast"></div>
+
+    <!-- Shared sidebar MUST load before dashboard initialization -->
+    <script src="js/sidebar.js"></script>
+
+    <script>
+"use strict";
+
+/* =====================================================
+   SELLER DASHBOARD
+   REAL DATA FROM MONGODB / API
+===================================================== */
+
+const API_BASE_URL =
+    "";
+
+
+const AUTH_API =
+    `${API_BASE_URL}/api/auth`;
+
+const WALLET_API =
+    `${API_BASE_URL}/api/wallet`;
+
+const SELLER_PRODUCTS_API =
+    `${API_BASE_URL}/api/seller/products`;
+
+const SELLER_ORDERS_API =
+    `${API_BASE_URL}/api/orders/seller`;
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let currentUser = null;
+
+let wallet = {
+    balance: 0,
+    totalAssets: 0,
+    pendingAmount: 0,
+    totalDeposited: 0,
+    totalWithdrawn: 0
+};
+
+let sellerProducts = [];
+
+let sellerOrders = [];
+
+let dashboardRefreshTimer = null;
+
+
+/* =====================================================
+   DOM HELPER
+===================================================== */
+
+function $(id) {
+
+    return document.getElementById(id);
+
+}
+
+
+/* =====================================================
+   TOKEN
+===================================================== */
+
+function getToken() {
+
+    const keys = [
+
+        "tiktokShopToken",
+        "tiktokShopJWT",
+        "authToken",
+        "token"
+
+    ];
+
+
+    for (const key of keys) {
+
+        const value =
+            localStorage.getItem(key);
+
+        if (value) {
+
+            return value;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   API FETCH
+===================================================== */
+
+async function apiFetch(
+    url,
+    options = {}
+) {
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        window.location.href =
+            "auth.html?mode=login";
+
+        throw new Error(
+            "กรุณาเข้าสู่ระบบ"
+        );
+
+    }
+
+
+    const headers = {
+
+        ...(options.headers || {}),
+
+        Authorization:
+            `Bearer ${token}`
+
+    };
+
+
+    if (
+        options.body &&
+        !headers["Content-Type"]
+    ) {
+
+        headers["Content-Type"] =
+            "application/json";
+
+    }
+
+
+    const response =
+        await fetch(
+            url,
+            {
+                ...options,
+                headers
+            }
+        );
+
+
+    let data = null;
+
+
+    try {
+
+        data =
+            await response.json();
+
+    }
+
+    catch {
+
+        data = null;
+
+    }
+
+
+    if (
+        response.status ===
+        401
+    ) {
+
+        localStorage.removeItem(
+            "tiktokShopLoggedIn"
+        );
+
+        localStorage.removeItem(
+            "tiktokShopToken"
+        );
+
+        window.location.href =
+            "auth.html?mode=login";
+
+        throw new Error(
+            "เซสชันหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง"
+        );
+
+    }
+
+
+    if (!response.ok) {
+
+        throw new Error(
+
+            data?.message ||
+            `HTTP ${response.status}`
+
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* =====================================================
+   FORMAT
+===================================================== */
+
+function money(value) {
+
+    return "$" +
+        Number(
+            value || 0
+        ).toFixed(2);
+
+}
+
+
+function formatNumber(value) {
+
+    return Number(
+        value || 0
+    ).toLocaleString();
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+function getProductImage(
+    product
+) {
+
+    return (
+        product?.image ||
+        product?.imageUrl ||
+        product?.thumbnail ||
+        ""
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(
+    message
+) {
+
+    const toast =
+        $("dashboardToast");
+
+
+    if (!toast) {
+
+        return;
+
+    }
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        showToast.timer
+    );
+
+
+    showToast.timer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2600
+        );
+
+}
+
+
+/* =====================================================
+   LOAD CURRENT USER
+===================================================== */
+
+async function loadCurrentUser() {
+
+    const data =
+        await apiFetch(
+            `${AUTH_API}/me`
+        );
+
+
+    if (
+        !data.success ||
+        !data.user
+    ) {
+
+        throw new Error(
+            "ไม่พบข้อมูลผู้ใช้"
+        );
+
+    }
+
+
+    currentUser =
+        data.user;
+
+
+    localStorage.setItem(
+        "tiktokShopUser",
+        JSON.stringify(
+            currentUser
+        )
+    );
+
+
+    localStorage.setItem(
+        "tiktokShopLoggedIn",
+        "true"
+    );
+
+
+    return currentUser;
+
+}
+
+
+/* =====================================================
+   RENDER HEADER USER
+===================================================== */
+
+function renderHeaderUser() {
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+
+    const shopName =
+
+        currentUser.shopName ||
+        currentUser.displayName ||
+        currentUser.username ||
+        "ร้านค้าของฉัน";
+
+
+    const avatarLetter =
+        shopName
+            .charAt(0)
+            .toUpperCase();
+
+
+    const welcome =
+        $("welcomeTitle");
+
+
+    if (welcome) {
+
+        welcome.textContent =
+            `ยินดีต้อนรับกลับ, ${shopName}`;
+
+    }
+
+
+    const headerUsername =
+        $("headerUsername");
+
+
+    if (headerUsername) {
+
+        headerUsername.textContent =
+            shopName;
+
+    }
+
+
+    const avatar =
+        $("headerAvatar");
+
+
+    if (!avatar) {
+
+        return;
+
+    }
+
+
+    const image =
+        currentUser.profileImage ||
+        currentUser.avatar ||
+        "";
+
+
+    if (image) {
+
+        avatar.innerHTML = `
+
+            <img
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(shopName)}"
+                onerror="
+                    this.style.display='none';
+                    this.parentElement.textContent='${escapeHTML(
+                        avatarLetter
+                    )}';
+                "
+            >
+
+        `;
+
+    }
+
+    else {
+
+        avatar.textContent =
+            avatarLetter;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD WALLET
+===================================================== */
+
+async function loadWallet() {
+
+    const data =
+        await apiFetch(
+            WALLET_API
+        );
+
+
+    wallet =
+        data.wallet || {
+
+            balance: 0,
+            totalAssets: 0,
+            pendingAmount: 0,
+            totalDeposited: 0,
+            totalWithdrawn: 0
+
+        };
+
+
+}
+
+
+/* =====================================================
+   LOAD SELLER PRODUCTS
+===================================================== */
+
+async function loadSellerProducts() {
+
+    const data =
+        await apiFetch(
+            SELLER_PRODUCTS_API
+        );
+
+
+    sellerProducts =
+        Array.isArray(
+            data.products
+        )
+            ? data.products
+            : [];
+
+}
+
+
+/* =====================================================
+   LOAD SELLER ORDERS
+===================================================== */
+
+async function loadSellerOrders() {
+
+    const data =
+        await apiFetch(
+            SELLER_ORDERS_API
+        );
+
+
+    sellerOrders =
+        Array.isArray(
+            data.orders
+        )
+            ? data.orders
+            : [];
+
+}
+
+
+/* =====================================================
+   ORDER HELPERS
+===================================================== */
+
+function isCancelledOrder(
+    order
+) {
+
+    const status =
+        String(
+            order?.status || ""
+        )
+        .toLowerCase();
+
+
+    const paymentStatus =
+        String(
+            order?.paymentStatus || ""
+        )
+        .toLowerCase();
+
+
+    return (
+
+        status === "cancelled" ||
+        status === "refunded" ||
+        paymentStatus === "refunded"
+
+    );
+
+}
+
+
+function isPaidOrder(
+    order
+) {
+
+    return (
+
+        String(
+            order?.paymentStatus || ""
+        )
+        .toLowerCase() ===
+        "paid"
+
+    );
+
+}
+
+
+function isRealSale(
+    order
+) {
+
+    return (
+
+        isPaidOrder(order) &&
+        !isCancelledOrder(order)
+
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE MAIN STATS
+===================================================== */
+
+function updateStats() {
+
+    const activeProducts =
+        sellerProducts.filter(
+            product =>
+
+                String(
+                    product.status ||
+                    "active"
+                )
+                .toLowerCase() ===
+                "active"
+
+        );
+
+
+    /*
+     * นับ Units Sold จาก Order ที่ชำระแล้ว
+     * และยังไม่ถูกยกเลิก / Refund
+     */
+
+    const unitsSold =
+        sellerOrders.reduce(
+            (
+                total,
+                order
+            ) => {
+
+                if (
+                    !isRealSale(order)
+                ) {
+
+                    return total;
+
+                }
+
+
+                return (
+
+                    total +
+                    Number(
+                        order.quantity ||
+                        0
+                    )
+
+                );
+
+            },
+            0
+        );
+
+
+    /*
+     * Profit จาก Order จริง
+     */
+
+    const profit =
+        sellerOrders.reduce(
+            (
+                total,
+                order
+            ) => {
+
+                if (
+                    !isRealSale(order)
+                ) {
+
+                    return total;
+
+                }
+
+
+                return (
+
+                    total +
+                    Number(
+                        order.profit ||
+                        0
+                    )
+
+                );
+
+            },
+            0
+        );
+
+
+    $("balanceValue").textContent =
+        money(
+            wallet.balance
+        );
+
+
+    $("pendingBalance").textContent =
+        money(
+            wallet.pendingAmount
+        );
+
+
+    $("productCount").textContent =
+        formatNumber(
+            activeProducts.length
+        );
+
+
+    $("orderCount").textContent =
+        formatNumber(
+            sellerOrders.length
+        );
+
+
+    $("unitsSold").textContent =
+        formatNumber(
+            unitsSold
+        );
+
+
+    $("profitValue").textContent =
+        money(
+            profit
+        );
+
+
+    $("ordersCountLabel").textContent =
+
+        formatNumber(sellerOrders.length) +
+        " คำสั่งซื้อ";
+
+}
+
+
+/* =====================================================
+   BEST SELLING
+===================================================== */
+
+function renderBestSelling() {
+
+    const container =
+        $("bestSellingList");
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    /*
+     * รวมจำนวนขายตาม productId
+     */
+
+    const productSales =
+        new Map();
+
+
+    sellerOrders.forEach(
+        order => {
+
+            if (
+                !isRealSale(order)
+            ) {
+
+                return;
+
+            }
+
+
+            const productId =
+                String(
+                    order.productId ||
+                    order.adminProductId ||
+                    order.productName ||
+                    ""
+                );
+
+
+            const quantity =
+                Number(
+                    order.quantity ||
+                    0
+                );
+
+
+            const existing =
+                productSales.get(
+                    productId
+                ) || {
+
+                    quantity: 0,
+                    revenue: 0
+
+                };
+
+
+            existing.quantity +=
+                quantity;
+
+
+            existing.revenue +=
+                Number(
+                    order.subtotal ||
+                    0
+                );
+
+
+            productSales.set(
+                productId,
+                existing
+            );
+
+        }
+    );
+
+
+    /*
+     * จับคู่ Product กับยอดขาย
+     */
+
+    const products =
+        sellerProducts
+            .map(
+                product => {
+
+                    const id =
+                        String(
+                            product._id ||
+                            product.id
+                        );
+
+
+                    const sales =
+                        productSales.get(
+                            id
+                        ) || {
+
+                            quantity: 0,
+                            revenue: 0
+
+                        };
+
+
+                    return {
+
+                        product,
+                        quantity:
+                            sales.quantity,
+
+                        revenue:
+                            sales.revenue
+
+                    };
+
+                }
+            )
+            .sort(
+                (
+                    a,
+                    b
+                ) => {
+
+                    return (
+                        b.quantity -
+                        a.quantity
+                    );
+
+                }
+            )
+            .slice(
+                0,
+                4
+            );
+
+
+    if (!products.length) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <i
+                    data-lucide="package-search"
+                ></i>
+
+                <strong>
+                    No sales yet
+                </strong>
+
+                <span>
+                    Your best-selling products
+                    will appear here.
+                </span>
+
+            </div>
+
+        `;
+
+
+        lucide.createIcons();
+
+        return;
+
+    }
+
+
+    /*
+     * ถ้ายังไม่มี Order
+     * แสดงสินค้าแต่ยอดขายเป็น 0
+     */
+
+    container.innerHTML =
+        products
+            .map(
+                (
+                    item,
+                    index
+                ) => {
+
+                    const product =
+                        item.product;
+
+
+                    const name =
+                        product.name ||
+                        product.productName ||
+                        "สินค้า";
+
+
+                    const category =
+                        product.category ||
+                        "สินค้า";
+
+
+                    const image =
+                        getProductImage(
+                            product
+                        );
+
+
+                    return `
+
+                        <div class="best-item">
+
+                            <div class="best-rank">
+                                #${index + 1}
+                            </div>
+
+
+                            <div class="best-image">
+
+                                ${
+                                    image
+
+                                    ?
+
+                                    `
+
+                                    <img
+                                        src="${escapeHTML(
+                                            image
+                                        )}"
+                                        alt="${escapeHTML(
+                                            name
+                                        )}"
+                                        onerror="
+                                            this.style.display='none';
+                                        "
+                                    >
+
+                                    `
+
+                                    :
+
+                                    `
+
+                                    <i
+                                        data-lucide="package"
+                                    ></i>
+
+                                    `
+                                }
+
+                            </div>
+
+
+                            <div class="best-info">
+
+                                <strong>
+                                    ${escapeHTML(
+                                        name
+                                    )}
+                                </strong>
+
+                                <span>
+                                    ${escapeHTML(
+                                        category
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="best-sales">
+
+                                <strong>
+                                    ${formatNumber(
+                                        item.quantity
+                                    )}
+                                </strong>
+
+                                <span>
+                                    units sold
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function getStatusClass(
+    status
+) {
+
+    const value =
+        String(
+            status ||
+            "pending"
+        )
+        .toLowerCase();
+
+
+    if (
+        value ===
+        "confirmed"
+    ) {
+
+        return "status-confirmed";
+
+    }
+
+
+    if (
+        value ===
+        "processing"
+    ) {
+
+        return "status-processing";
+
+    }
+
+
+    if (
+        value ===
+        "shipping"
+    ) {
+
+        return "status-shipping";
+
+    }
+
+
+    if (
+        value ===
+        "completed"
+    ) {
+
+        return "status-completed";
+
+    }
+
+
+    if (
+        value ===
+        "cancelled" ||
+        value ===
+        "canceled"
+    ) {
+
+        return "status-cancelled";
+
+    }
+
+
+    return "status-pending";
+
+}
+
+
+function getStatusText(
+    status
+) {
+
+    const map = {
+
+        pending:
+            "รอดำเนินการ",
+
+        confirmed:
+            "ยืนยันแล้ว",
+
+        processing:
+            "กำลังดำเนินการ",
+
+        shipping:
+            "กำลังจัดส่ง",
+
+        completed:
+            "สำเร็จ",
+
+        cancelled:
+            "ยกเลิก",
+
+        refunded:
+            "คืนเงิน"
+
+    };
+
+
+    const value =
+        String(
+            status ||
+            "pending"
+        )
+        .toLowerCase();
+
+
+    return (
+        map[value] ||
+        value
+    );
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders() {
+
+    const body =
+        $("ordersTableBody");
+
+
+    if (!body) {
+
+        return;
+
+    }
+
+
+    if (!sellerOrders.length) {
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                >
+
+                    <div class="empty-state">
+
+                        <i
+                            data-lucide="shopping-cart"
+                        ></i>
+
+                        <strong>
+                            ยังไม่มีคำสั่งซื้อ
+                        </strong>
+
+                        <span>
+                            Your customer orders
+                            will appear here.
+                        </span>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        lucide.createIcons();
+
+        return;
+
+    }
+
+
+    const recentOrders =
+        sellerOrders
+            .slice(
+                0,
+                8
+            );
+
+
+    body.innerHTML =
+        recentOrders
+            .map(
+                order => {
+
+                    const orderId =
+                        order.orderId ||
+                        order._id ||
+                        "คำสั่งซื้อ";
+
+
+                    const productName =
+                        order.productName ||
+                        "สินค้า";
+
+
+                    const customer =
+                        order.buyerName ||
+                        order.buyerUsername ||
+                        "ผู้ซื้อ";
+
+
+                    const amount =
+                        Number(
+                            order.subtotal ||
+                            0
+                        );
+
+
+                    const status =
+                        order.status ||
+                        "pending";
+
+
+                    const date =
+                        order.createdAt
+
+                            ?
+
+                            new Date(
+                                order.createdAt
+                            )
+                            .toLocaleDateString(
+                                "th-TH",
+                                {
+                                    year:
+                                        "numeric",
+
+                                    month:
+                                        "2-digit",
+
+                                    day:
+                                        "2-digit"
+                                }
+                            )
+
+                            :
+
+                            "-";
+
+
+                    return `
+
+                        <tr>
+
+                            <td>
+
+                                <span
+                                    class="order-id"
+                                >
+                                    #${escapeHTML(
+                                        orderId
+                                    )}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div
+                                    class="order-product"
+                                >
+                                    ${escapeHTML(
+                                        productName
+                                    )}
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    customer
+                                )}
+
+                            </td>
+
+
+                            <td>
+
+                                <span
+                                    class="order-amount"
+                                >
+                                    ${money(
+                                        amount
+                                    )}
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <span
+                                    class="
+                                        status-badge
+                                        ${getStatusClass(
+                                            status
+                                        )}
+                                    "
+                                >
+
+                                    ${escapeHTML(
+                                        getStatusText(
+                                            status
+                                        )
+                                    )}
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                ${escapeHTML(
+                                    date
+                                )}
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    lucide.createIcons();
+
+}
+
+
+/* =====================================================
+   WEEKLY SALES
+===================================================== */
+
+function renderWeeklySales() {
+
+    const chart =
+        $("salesChart");
+
+
+    if (!chart) {
+
+        return;
+
+    }
+
+
+    const now =
+        new Date();
+
+
+    const days = [];
+
+
+    for (
+        let i = 6;
+        i >= 0;
+        i--
+    ) {
+
+        const date =
+            new Date(
+                now
+            );
+
+
+        date.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        date.setDate(
+            now.getDate() - i
+        );
+
+
+        days.push(
+            date
+        );
+
+    }
+
+
+    const sales =
+        days.map(
+            date => {
+
+                const nextDay =
+                    new Date(
+                        date
+                    );
+
+
+                nextDay.setDate(
+                    date.getDate() + 1
+                );
+
+
+                return sellerOrders
+                    .filter(
+                        order => {
+
+                            if (
+                                !isRealSale(
+                                    order
+                                )
+                            ) {
+
+                                return false;
+
+                            }
+
+
+                            const created =
+                                new Date(
+                                    order.createdAt
+                                );
+
+
+                            return (
+
+                                created >=
+                                date &&
+
+                                created <
+                                nextDay
+
+                            );
+
+                        }
+                    )
+                    .reduce(
+                        (
+                            total,
+                            order
+                        ) => {
+
+                            return (
+
+                                total +
+                                Number(
+                                    order.subtotal ||
+                                    0
+                                )
+
+                            );
+
+                        },
+                        0
+                    );
+
+            }
+        );
+
+
+    const maxSales =
+        Math.max(
+            ...sales,
+            1
+        );
+
+
+    const thaiWeekdays = [
+        "อา.",
+        "จ.",
+        "อ.",
+        "พ.",
+        "พฤ.",
+        "ศ.",
+        "ส."
+    ];
+
+    const labels =
+        days.map(
+            date =>
+                thaiWeekdays[
+                    date.getDay()
+                ]
+        );
+
+
+    chart.innerHTML =
+        days.map(
+            (
+                date,
+                index
+            ) => {
+
+                const value =
+                    sales[index];
+
+
+                const height =
+                    value > 0
+
+                        ?
+
+                        Math.max(
+                            8,
+                            (
+                                value /
+                                maxSales
+                            ) * 100
+                        )
+
+                        :
+
+                        4;
+
+
+                return `
+
+                    <div
+                        class="chart-column"
+                    >
+
+                        <span
+                            class="chart-value"
+                        >
+                            ${money(
+                                value
+                            )}
+                        </span>
+
+
+                        <div
+                            class="chart-bar"
+                            style="
+                                height:${height}%;
+                            "
+                        ></div>
+
+
+                        <span
+                            class="chart-label"
+                        >
+                            ${labels[index]}
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    /*
+     * Summary
+     */
+
+    const highest =
+        Math.max(
+            ...sales,
+            0
+        );
+
+
+    const highestIndex =
+        sales.indexOf(
+            highest
+        );
+
+
+    const summaryItems =
+        document.querySelectorAll(
+            ".chart-summary-item strong"
+        );
+
+
+    if (
+        summaryItems.length >= 2
+    ) {
+
+        summaryItems[0]
+            .textContent =
+            highest > 0
+
+                ?
+
+                labels[
+                    highestIndex
+                ]
+
+                :
+
+                "-";
+
+
+        summaryItems[1]
+            .textContent =
+            money(
+                highest
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD EVERYTHING
+===================================================== */
+
+async function loadDashboardData(
+    showLoadingToast = false
+) {
+
+    try {
+
+        if (
+            showLoadingToast
+        ) {
+
+            showToast(
+                "กำลังโหลดข้อมูล..."
+            );
+
+        }
+
+
+        /*
+         * โหลดพร้อมกัน
+         */
+
+        await Promise.all([
+
+            loadCurrentUser(),
+
+            loadWallet(),
+
+            loadSellerProducts(),
+
+            loadSellerOrders()
+
+        ]);
+
+
+        /*
+         * Render ทุกส่วน
+         */
+
+        renderHeaderUser();
+
+        updateStats();
+
+        renderBestSelling();
+
+        renderOrders();
+
+        renderWeeklySales();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Seller dashboard error:",
+            error
+        );
+
+
+        showToast(
+            error.message ||
+            "ไม่สามารถโหลดข้อมูลแดชบอร์ดได้"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   AUTO REFRESH
+===================================================== */
+
+function startDashboardRefresh() {
+
+    if (
+        dashboardRefreshTimer
+    ) {
+
+        clearInterval(
+            dashboardRefreshTimer
+        );
+
+    }
+
+
+    /*
+     * อัปเดตทุก 5 วินาที
+     *
+     * ใช้เพื่อให้ Dashboard
+     * สะท้อน Order / Wallet ล่าสุด
+     */
+
+    dashboardRefreshTimer =
+        setInterval(
+            async () => {
+
+                try {
+
+                    await Promise.all([
+
+                        loadWallet(),
+
+                        loadSellerProducts(),
+
+                        loadSellerOrders()
+
+                    ]);
+
+
+                    updateStats();
+
+                    renderBestSelling();
+
+                    renderOrders();
+
+                    renderWeeklySales();
+
+                }
+
+                catch (error) {
+
+                    console.warn(
+                        "Dashboard refresh failed:",
+                        error
+                    );
+
+                }
+
+            },
+            5000
+        );
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+function setupButtons() {
+
+    /*
+     * Profile
+     */
+
+    $("dashboardProfile")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "account.html";
+
+            }
+        );
+
+
+    /*
+     * Notification
+     */
+
+    $("notificationButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "account.html";
+
+            }
+        );
+
+
+    /*
+     * Message
+     */
+
+    $("messageButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "account.html";
+
+            }
+        );
+
+
+    /*
+     * เพิ่มสินค้า
+     */
+
+    $("addProductButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "add-products.html";
+
+            }
+        );
+
+
+    /*
+     * จัดการสินค้า
+     */
+
+    $("manageProductsButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "products.html";
+
+            }
+        );
+
+
+    /*
+     * ข้อมูลร้านค้า
+     */
+
+    $("shopProfileButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "account.html";
+
+            }
+        );
+
+
+    /*
+     * View Orders
+     */
+
+    $("viewOrdersButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "orders.html";
+
+            }
+        );
+
+
+    /*
+     * View Sales
+     */
+
+    $("viewSalesButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "orders.html";
+
+            }
+        );
+
+
+    /*
+     * Deposit
+     */
+
+    $("depositButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "wallet.html";
+
+            }
+        );
+
+
+    /*
+     * Withdraw
+     */
+
+    $("withdrawButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    "wallet.html";
+
+            }
+        );
+
+
+    /*
+     * Mobile menu
+     */
+
+    $("menuButton")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                const sidebar =
+                    document.querySelector(
+                        ".sidebar"
+                    );
+
+
+                if (sidebar) {
+
+                    sidebar.classList.toggle(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+async function initDashboard() {
+
+    const token =
+        getToken();
+
+
+    const loggedIn =
+        localStorage.getItem(
+            "tiktokShopLoggedIn"
+        );
+
+
+    if (
+        !token ||
+        loggedIn !== "true"
+    ) {
+
+        window.location.href =
+            "auth.html?mode=login";
+
+        return;
+
+    }
+
+
+    /*
+     * ตรวจสอบ User จริงจาก API
+     */
+
+    try {
+
+        await loadCurrentUser();
+
+    }
+
+    catch {
+
+        return;
+
+    }
+
+
+    /*
+     * ต้องเป็น Seller
+     */
+
+    const accountType =
+        String(
+            currentUser?.accountType ||
+            currentUser?.role ||
+            ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if (
+        accountType !==
+        "seller"
+    ) {
+
+        window.location.href =
+            "index.html";
+
+        return;
+
+    }
+
+
+    /*
+     * แสดงข้อมูลจริง
+     */
+
+    renderHeaderUser();
+
+
+    /*
+     * โหลด Dashboard
+     */
+
+    await loadDashboardData();
+
+
+    /*
+     * ปุ่มต่าง ๆ
+     */
+
+    setupButtons();
+
+
+    /*
+     * Icons
+     */
+
+    if (
+        typeof lucide !==
+        "undefined"
+    ) {
+
+        lucide.createIcons();
+
+    }
+
+
+    /*
+     * Auto refresh
+     */
+
+    startDashboardRefresh();
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initDashboard
+    );
+
+}
+
+else {
+
+    initDashboard();
+
+}
+
+
+/* =====================================================
+   SIDEBAR LOADED
+===================================================== */
+
+window.addEventListener(
+    "sharedSidebarLoaded",
+    () => {
+
+        if (
+            typeof lucide !==
+            "undefined"
+        ) {
+
+            lucide.createIcons();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

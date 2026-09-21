@@ -1,0 +1,3032 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>โปรไฟล์ของฉัน - TikTok Shop</title>
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+
+        /* =========================================
+           บัญชีผู้ใช้ PAGE
+        ========================================= */
+
+        .account-page {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .account-page-header {
+            margin-bottom: 24px;
+        }
+
+        .account-page-header .section-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            color: #8a8a8a;
+            margin-bottom: 6px;
+        }
+
+        .account-page-header h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
+        }
+
+        .account-page-header p {
+            margin: 8px 0 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================================
+           PROFILE HERO
+        ========================================= */
+
+        .profile-card {
+            background: #111;
+            color: #fff;
+            border-radius: 22px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            right: -130px;
+            top: -160px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .profile-main {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-avatar-wrapper {
+            position: relative;
+            width: 92px;
+            height: 92px;
+            flex-shrink: 0;
+        }
+
+        .profile-avatar {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #ff2d55,
+                #ff4d68
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,.15);
+        }
+
+        .profile-avatar span {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-upload-button {
+            position: absolute;
+            right: -3px;
+            bottom: -3px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 3px solid #111;
+            background: #ff3154;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .avatar-upload-button:hover {
+            transform: scale(1.06);
+            background: #e91f45;
+        }
+
+        .avatar-upload-button svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .profile-info .profile-role {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            color: #c8c8c8;
+            font-size: 12px;
+        }
+
+        .profile-info .profile-role svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .profile-info .profile-contact {
+            margin-top: 10px;
+            color: #9d9d9d;
+            font-size: 12px;
+        }
+
+        .profile-actions {
+            position: relative;
+            z-index: 2;
+        }
+
+        .edit-profile-button {
+            height: 42px;
+            padding: 0 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.09);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .edit-profile-button:hover {
+            background: rgba(255,255,255,.16);
+        }
+
+        .edit-profile-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-stat-card {
+            background: #fff;
+            border: 1px solid #e9e9e9;
+            border-radius: 17px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .profile-stat-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-stat-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .profile-stat-content span {
+            display: block;
+            color: #8b8b8b;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .profile-stat-content strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .profile-stat-content small {
+            display: block;
+            margin-top: 4px;
+            color: #999;
+            font-size: 10px;
+        }
+
+        /* =========================================
+           CONTENT GRID
+        ========================================= */
+
+        .profile-content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 20px;
+        }
+
+        .profile-section-card {
+            background: #fff;
+            border: 1px solid #e9e9e9;
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .profile-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-section-title-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-section-title-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .profile-section-title h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .profile-section-title p {
+            margin: 3px 0 0;
+            color: #999;
+            font-size: 11px;
+        }
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .profile-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .profile-form-group {
+            min-width: 0;
+        }
+
+        .profile-form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .profile-form-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #555;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .profile-input-wrapper {
+            position: relative;
+        }
+
+        .profile-input-wrapper svg {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: #999;
+            pointer-events: none;
+        }
+
+        .profile-input,
+        .profile-select {
+            width: 100%;
+            height: 46px;
+            border: 1px solid #dedede;
+            border-radius: 10px;
+            background: #fafafa;
+            padding: 0 13px 0 39px;
+            font-family: inherit;
+            font-size: 12px;
+            color: #222;
+            outline: none;
+            box-sizing: border-box;
+            transition: .2s ease;
+        }
+
+        .profile-input:focus,
+        .profile-select:focus {
+            background: #fff;
+            border-color: #222;
+            box-shadow: 0 0 0 3px rgba(0,0,0,.05);
+        }
+
+        .profile-input.readonly {
+            color: #777;
+            background: #f4f4f4;
+            cursor: not-allowed;
+        }
+
+        .profile-save-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .profile-save-button {
+            height: 42px;
+            padding: 0 20px;
+            border: 0;
+            border-radius: 10px;
+            background: #ff3154;
+            color: #fff;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .2s ease;
+        }
+
+        .profile-save-button:hover {
+            background: #e92549;
+        }
+
+        .profile-save-button:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+
+        .profile-save-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* =========================================
+           บัญชีผู้ใช้ DETAILS
+        ========================================= */
+
+        .account-detail-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .account-detail-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .account-detail-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+        }
+
+        .account-detail-icon {
+            width: 35px;
+            height: 35px;
+            min-width: 35px;
+            border-radius: 9px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .account-detail-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .account-detail-label {
+            color: #999;
+            font-size: 10px;
+        }
+
+        .account-detail-value {
+            margin-top: 3px;
+            color: #222;
+            font-size: 12px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .account-detail-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: #edf9f0;
+            color: #20883c;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .account-detail-status::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #2fb34d;
+        }
+
+        /* =========================================
+           คะแนนร้านค้า
+        ========================================= */
+
+        .rating-box {
+            background: #fafafa;
+            border: 1px solid #ededed;
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+
+        .rating-box-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .rating-score {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .rating-score svg {
+            width: 25px;
+            height: 25px;
+            fill: #f4b400;
+            color: #f4b400;
+        }
+
+        .rating-score strong {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .rating-label {
+            color: #777;
+            font-size: 11px;
+        }
+
+        .rating-note {
+            margin: 10px 0 0;
+            color: #999;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           STATUS MESSAGE
+        ========================================= */
+
+        .profile-message {
+            display: none;
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .profile-message.show {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-message.success {
+            background: #edf9f0;
+            color: #217b38;
+            border: 1px solid #d6efd9;
+        }
+
+        .profile-message.error {
+            background: #fff0f2;
+            color: #c52845;
+            border: 1px solid #ffd8de;
+        }
+
+        .profile-message svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .profile-loading {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(255,255,255,.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-loading-box {
+            text-align: center;
+        }
+
+        .profile-loading-box svg {
+            width: 34px;
+            height: 34px;
+            animation: profileSpin 1s linear infinite;
+        }
+
+        .profile-loading-box p {
+            margin: 10px 0 0;
+            color: #777;
+            font-size: 12px;
+        }
+
+        @keyframes profileSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+       
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .profile-content-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .account-page {
+                padding: 20px 16px 35px;
+            }
+
+            .profile-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .profile-actions {
+                width: 100%;
+            }
+
+            .edit-profile-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .account-page-header h1 {
+                font-size: 25px;
+            }
+
+            .profile-main {
+                align-items: flex-start;
+            }
+
+            .profile-avatar-wrapper,
+            .profile-avatar {
+                width: 70px;
+                height: 70px;
+            }
+
+            .profile-avatar span {
+                font-size: 24px;
+            }
+
+            .profile-info h2 {
+                font-size: 18px;
+            }
+
+            .profile-form {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-form-group.full {
+                grid-column: auto;
+            }
+
+            .profile-stats {
+                gap: 10px;
+            }
+
+            .profile-stat-card {
+                padding: 15px;
+            }
+
+            .profile-stat-content strong {
+                font-size: 18px;
+            }
+
+            .profile-section-card {
+                padding: 18px;
+            }
+
+        }
+
+
+        /* =========================================
+   HEADER NOTIFICATION BADGES
+========================================= */
+
+.header-icon {
+    position: relative;
+}
+
+.header-icon .dot,
+.header-icon .notification-count-badge,
+.header-icon .shop-order-count {
+    position: absolute;
+
+    top: -4px;
+    right: -4px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 4px;
+
+    border-radius: 999px;
+
+    background: #ff3154;
+    color: #ffffff;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    border: 2px solid #ffffff;
+}
+
+/* ไม่ให้จุดเดิมของกระดิ่งแสดงเป็นจุด */
+.header-icon .dot {
+    display: none;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <!-- Shared Sidebar -->
+    <div id="sidebar-container"></div>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                >
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="mobile-logo">
+
+                    <img
+                        src="images/logo.png"
+                        alt="TikTok Shop"
+                    >
+
+                    <strong>
+                        TikTok Shop
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-right">
+
+                <button
+    class="header-icon notification-button"
+    type="button"
+    title="การแจ้งเตือน"
+    onclick="window.location.href='notifications.html'"
+>
+    <i data-lucide="bell"></i>
+</button>
+
+
+                <button
+    class="header-icon shop-notification-button"
+    type="button"
+    title="ร้านค้าของฉัน"
+    onclick="window.location.href='my-shop.html'"
+>
+    <i data-lucide="store"></i>
+    <span
+        class="shop-order-count"
+        id="headerShopOrderCount"
+        style="display:none;"
+    >0</span>
+</button>
+
+
+                <div class="language-selector">
+
+                    <button
+                        class="language-button"
+                        type="button"
+                    >
+
+                        <i data-lucide="globe-2"></i>
+
+                        <span>
+                            TH
+                        </span>
+
+                        <i data-lucide="chevron-down"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="header-profile"
+                    onclick="window.location.href='account.html'"
+                >
+
+                    <div
+                        class="small-avatar"
+                        id="headerAvatar"
+                    >
+                        U
+                    </div>
+
+                    <div class="header-profile-text">
+
+                        <strong id="headerชื่อผู้ใช้">
+                            กำลังโหลด...
+                        </strong>
+
+                        <span>
+                            เจ้าของร้านค้า
+                        </span>
+
+                    </div>
+
+                    <i data-lucide="chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             บัญชีผู้ใช้ CONTENT
+        ========================================== -->
+
+        <div class="account-page">
+
+
+            <div class="account-page-header">
+
+                <span class="section-label">
+                    บัญชีผู้ใช้
+                </span>
+
+                <h1>
+                    โปรไฟล์ของฉัน
+                </h1>
+
+                <p>
+                    จัดการโปรไฟล์ร้านค้าและข้อมูลบัญชีของคุณ
+                </p>
+
+            </div>
+
+
+            <div
+                class="profile-message"
+                id="profileMessage"
+            ></div>
+
+
+            <!-- PROFILE HERO -->
+
+            <section class="profile-card">
+
+                <div class="profile-main">
+
+                    <div class="profile-avatar-wrapper">
+
+                        <div
+                            class="profile-avatar"
+                            id="profileAvatar"
+                        >
+                            <span id="profileAvatarLetter">
+                                U
+                            </span>
+                        </div>
+
+                        <label
+                            class="avatar-upload-button"
+                            for="avatarInput"
+                            title="เปลี่ยนรูปโปรไฟล์"
+                        >
+                            <i data-lucide="camera"></i>
+                        </label>
+
+                        <input
+                            type="file"
+                            id="avatarInput"
+                            accept="image/png,image/jpeg,image/webp"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="profile-info">
+
+                        <h2 id="profileShopName">
+                            กำลังโหลด...
+                        </h2>
+
+                        <div class="profile-role">
+
+                            <i data-lucide="store"></i>
+
+                            <span>
+                                เจ้าของร้านค้า
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="profile-contact"
+                            id="profileContact"
+                        >
+                            กำลังโหลด...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <button
+                        class="edit-profile-button"
+                        id="editโปรไฟล์Button"
+                        type="button"
+                    >
+
+                        <i data-lucide="pencil"></i>
+
+                        <span>
+                            แก้ไขโปรไฟล์
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATS -->
+
+            <section class="profile-stats">
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+
+                        <i data-lucide="package"></i>
+
+                    </div>
+
+                    <div class="profile-stat-content">
+
+                        <span>
+                            สินค้าในร้าน
+                        </span>
+
+                        <strong id="productCount">
+                            0
+                        </strong>
+
+                        <small>
+                            สินค้าคงเหลือปัจจุบัน
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+
+                        <i data-lucide="badge-dollar-sign"></i>
+
+                    </div>
+
+                    <div class="profile-stat-content">
+
+                        <span>
+                            ยอดขายทั้งหมด
+                        </span>
+
+                        <strong id="salesAmount">
+                            $0.00
+                        </strong>
+
+                        <small>
+                            ยอดขายที่เสร็จสมบูรณ์
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+
+                        <i data-lucide="shopping-bag"></i>
+
+                    </div>
+
+                    <div class="profile-stat-content">
+
+                        <span>
+                            จำนวนสินค้าที่ขายได้
+                        </span>
+
+                        <strong id="unitsSold">
+                            0
+                        </strong>
+
+                        <small>
+                            สินค้าที่ขายแล้ว
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-stat-card">
+
+                    <div class="profile-stat-icon">
+
+                        <i data-lucide="star"></i>
+
+                    </div>
+
+                    <div class="profile-stat-content">
+
+                        <span>
+                            คะแนนร้านค้า
+                        </span>
+
+                        <strong id="shopRating">
+                            ใหม่
+                        </strong>
+
+                        <small>
+                            คะแนนจากลูกค้า
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- CONTENT -->
+
+            <div class="profile-content-grid">
+
+
+                <!-- LEFT -->
+
+                <section class="profile-section-card">
+
+                    <div class="profile-section-header">
+
+                        <div class="profile-section-title">
+
+                            <div class="profile-section-title-icon">
+                                <i data-lucide="store"></i>
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    ข้อมูลร้านค้า
+                                </h3>
+
+                                <p>
+                                    อัปเดตข้อมูลร้านค้าของคุณ
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        class="profile-form"
+                        id="profileForm"
+                    >
+
+
+                        <!-- SHOP NAME -->
+
+                        <div class="profile-form-group full">
+
+                            <label
+                                class="profile-form-label"
+                                for="shopName"
+                            >
+                                ชื่อร้านค้า
+                            </label>
+
+                            <div class="profile-input-wrapper">
+
+                                <i data-lucide="store"></i>
+
+                                <input
+                                    class="profile-input"
+                                    type="text"
+                                    id="shopName"
+                                    maxlength="60"
+                                    placeholder="กรอกชื่อร้านค้าของคุณ"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- USERNAME -->
+
+                        <div class="profile-form-group">
+
+                            <label
+                                class="profile-form-label"
+                            >
+                                ชื่อผู้ใช้
+                            </label>
+
+                            <div class="profile-input-wrapper">
+
+                                <i data-lucide="at-sign"></i>
+
+                                <input
+                                    class="profile-input readonly"
+                                    type="text"
+                                    id="username"
+                                    readonly
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONTACT -->
+
+                        <div class="profile-form-group">
+
+                            <label
+                                class="profile-form-label"
+                            >
+                                อีเมล / เบอร์โทรศัพท์
+                            </label>
+
+                            <div class="profile-input-wrapper">
+
+                                <i data-lucide="mail"></i>
+
+                                <input
+                                    class="profile-input readonly"
+                                    type="text"
+                                    id="contact"
+                                    readonly
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- COUNTRY -->
+
+                        <div class="profile-form-group">
+
+                            <label
+                                class="profile-form-label"
+                            >
+                                ประเทศ
+                            </label>
+
+                            <div class="profile-input-wrapper">
+
+                                <i data-lucide="map-pin"></i>
+
+                                <input
+                                    class="profile-input readonly"
+                                    type="text"
+                                    id="country"
+                                    readonly
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- NATIONALITY -->
+
+                        <div class="profile-form-group">
+
+                            <label
+                                class="profile-form-label"
+                            >
+                                สัญชาติ
+                            </label>
+
+                            <div class="profile-input-wrapper">
+
+                                <i data-lucide="globe-2"></i>
+
+                                <input
+                                    class="profile-input readonly"
+                                    type="text"
+                                    id="nationality"
+                                    readonly
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-save-row">
+
+                            <button
+                                type="submit"
+                                class="profile-save-button"
+                                id="saveโปรไฟล์Button"
+                            >
+
+                                <i data-lucide="save"></i>
+
+                                <span>
+                                    บันทึกการเปลี่ยนแปลง
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+
+                <!-- RIGHT -->
+
+                <section class="profile-section-card">
+
+                    <div class="profile-section-header">
+
+                        <div class="profile-section-title">
+
+                            <div class="profile-section-title-icon">
+                                <i data-lucide="circle-user-round"></i>
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    รายละเอียดบัญชี
+                                </h3>
+
+                                <p>
+                                    ข้อมูลบัญชีที่ลงทะเบียน
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-detail-list">
+
+
+                        <div class="account-detail-row">
+
+                            <div class="account-detail-left">
+
+                                <div class="account-detail-icon">
+                                    <i data-lucide="user-round"></i>
+                                </div>
+
+                                <div>
+
+                                    <div class="account-detail-label">
+                                        ชื่อผู้ใช้
+                                    </div>
+
+                                    <div
+                                        class="account-detail-value"
+                                        id="detailชื่อผู้ใช้"
+                                    >
+                                        -
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="account-detail-row">
+
+                            <div class="account-detail-left">
+
+                                <div class="account-detail-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+
+                                <div>
+
+                                    <div class="account-detail-label">
+                                        อีเมล / เบอร์โทรศัพท์
+                                    </div>
+
+                                    <div
+                                        class="account-detail-value"
+                                        id="detailContact"
+                                    >
+                                        -
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="account-detail-row">
+
+                            <div class="account-detail-left">
+
+                                <div class="account-detail-icon">
+                                    <i data-lucide="globe-2"></i>
+                                </div>
+
+                                <div>
+
+                                    <div class="account-detail-label">
+                                        ประเทศ
+                                    </div>
+
+                                    <div
+                                        class="account-detail-value"
+                                        id="detailประเทศ"
+                                    >
+                                        -
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="account-detail-row">
+
+                            <div class="account-detail-left">
+
+                                <div class="account-detail-icon">
+                                    <i data-lucide="badge-check"></i>
+                                </div>
+
+                                <div>
+
+                                    <div class="account-detail-label">
+                                        สถานะบัญชี
+                                    </div>
+
+                                    <div
+                                        class="account-detail-value"
+                                        id="detailStatus"
+                                    >
+                                        ใช้งานอยู่
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <span class="account-detail-status">
+                                ใช้งานอยู่
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- RATING -->
+
+                    <div class="rating-box">
+
+                        <div class="rating-box-top">
+
+                            <div>
+
+                                <div class="rating-label">
+                                    คะแนนร้านค้า
+                                </div>
+
+                                <div class="rating-score">
+
+                                    <i data-lucide="star"></i>
+
+                                    <strong id="ratingLarge">
+                                        ใหม่
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <i
+                                data-lucide="chart-no-axes-combined"
+                                style="width:22px;height:22px;color:#999;"
+                            ></i>
+
+                        </div>
+
+                        <p class="rating-note">
+                            คะแนนร้านค้าของคุณจะคำนวณจาก
+                            คำสั่งซื้อที่เสร็จสมบูรณ์และรีวิวจากลูกค้า
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="profile-loading"
+        id="profileLoading"
+    >
+
+        <div class="profile-loading-box">
+
+            <i data-lucide="loader-circle"></i>
+
+            <p>
+                กำลังโหลดข้อมูลโปรไฟล์ของคุณ...
+            </p>
+
+        </div>
+
+    </div>
+
+
+<script src="js/sidebar.js"></script>
+
+<script>
+
+    /* =========================================
+       CONFIG
+    ========================================== */
+
+    const API_BASE_URL = "";
+
+
+    /* =========================================
+       HELPERS
+    ========================================== */
+
+    function getToken() {
+
+        const keys = [
+            "tiktokShopToken",
+            "tiktokShopJWT",
+            "authToken",
+            "token"
+        ];
+
+        for (const key of keys) {
+
+            const value =
+                localStorage.getItem(key);
+
+            if (value) {
+                return value;
+            }
+
+        }
+
+        return null;
+    }
+
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+
+    function money(value) {
+
+        return "$" +
+            Number(value || 0)
+                .toFixed(2);
+
+    }
+
+
+    function formatValue(value) {
+
+        return Number(value || 0)
+            .toLocaleString();
+
+    }
+
+
+    function escapeHTML(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================================
+       PROFILE IMAGE URL
+    ========================================== */
+
+    function getImageUrl(image) {
+
+        if (!image) {
+            return "";
+        }
+
+        if (
+            image.startsWith("http://") ||
+            image.startsWith("https://") ||
+            image.startsWith("data:")
+        ) {
+
+            return image;
+
+        }
+
+        return API_BASE_URL + image;
+
+    }
+
+
+    /* =========================================
+       USER
+    ========================================== */
+
+    let currentUser = null;
+
+
+    /* =========================================
+       MESSAGE
+    ========================================== */
+
+    function showMessage(
+        message,
+        type = "success"
+    ) {
+
+        const box =
+            $("profileMessage");
+
+        if (!box) return;
+
+        box.className =
+            "profile-message show " +
+            type;
+
+        box.innerHTML = `
+
+            <i data-lucide="${
+                type === "success"
+                    ? "circle-check"
+                    : "circle-alert"
+            }"></i>
+
+            <span>
+                ${escapeHTML(message)}
+            </span>
+
+        `;
+
+        if (
+            typeof lucide !== "undefined"
+        ) {
+
+            lucide.createIcons();
+
+        }
+
+        setTimeout(() => {
+
+            box.classList.remove("show");
+
+        }, 4000);
+
+    }
+
+
+    /* =========================================
+       RENDER USER
+    ========================================== */
+
+    function renderUser(user) {
+
+        if (!user) return;
+
+        currentUser = user;
+
+
+        const shopName =
+            user.shopName ||
+            user.displayName ||
+            user.username ||
+            "My Shop";
+
+
+        const username =
+            user.username ||
+            "User";
+
+
+        const contact =
+            user.contact ||
+            "-";
+
+
+        const country =
+            user.country ||
+            "-";
+
+
+        const nationality =
+            user.nationality ||
+            "-";
+
+
+        const status =
+            user.status ||
+            "active";
+
+
+        const avatarLetter =
+            shopName
+                .charAt(0)
+                .toUpperCase();
+
+
+        /* -----------------------------------------
+           PROFILE
+        ----------------------------------------- */
+
+        const profileShopName = $("profileShopName");
+        if (profileShopName) {
+            profileShopName.textContent = shopName;
+        }
+
+        const profileContact = $("profileContact");
+        if (profileContact) {
+            profileContact.textContent = contact;
+        }
+
+        const profileAvatarLetter = $("profileAvatarLetter");
+        if (profileAvatarLetter) {
+            profileAvatarLetter.textContent = avatarLetter;
+        }
+
+        const sidebarAvatar = $("sidebarAvatar");
+        if (sidebarAvatar) {
+            sidebarAvatar.textContent = avatarLetter;
+        }
+
+        const sidebarUsername = $("sidebarชื่อผู้ใช้");
+        if (sidebarUsername) {
+            sidebarUsername.textContent = shopName;
+        }
+
+        const headerAvatar = $("headerAvatar");
+        if (headerAvatar) {
+            headerAvatar.textContent = avatarLetter;
+        }
+
+        const headerUsername = $("headerชื่อผู้ใช้");
+        if (headerUsername) {
+            headerUsername.textContent = shopName;
+        }
+
+        const sellerBoxTitle = $("sellerBoxTitle");
+        if (sellerBoxTitle) {
+            sellerBoxTitle.textContent = shopName;
+        }
+
+
+        /* -----------------------------------------
+           FORM
+        ----------------------------------------- */
+
+        const shopNameInput = $("shopName");
+        if (shopNameInput) {
+            shopNameInput.value = user.shopName || "";
+        }
+
+        const usernameInput = $("username");
+        if (usernameInput) {
+            usernameInput.value = username;
+        }
+
+        const contactInput = $("contact");
+        if (contactInput) {
+            contactInput.value = contact;
+        }
+
+        const countryInput = $("country");
+        if (countryInput) {
+            countryInput.value = country;
+        }
+
+        const nationalityInput = $("nationality");
+        if (nationalityInput) {
+            nationalityInput.value = nationality;
+        }
+
+
+        /* -----------------------------------------
+           DETAILS
+        ----------------------------------------- */
+
+        const detailUsername = $("detailชื่อผู้ใช้");
+        if (detailUsername) {
+            detailUsername.textContent = username;
+        }
+
+        const detailContact = $("detailContact");
+        if (detailContact) {
+            detailContact.textContent = contact;
+        }
+
+        const detailCountry = $("detailประเทศ");
+        if (detailCountry) {
+            detailCountry.textContent = country;
+        }
+
+        const detailStatus = $("detailStatus");
+        if (detailStatus) {
+            detailStatus.textContent =
+                status === "active" ? "ใช้งานอยู่" : "ถูกระงับ";
+        }
+
+
+        /* -----------------------------------------
+           STATS
+        ----------------------------------------- */
+
+        const productCount = $("productCount");
+        if (productCount) {
+            productCount.textContent =
+                formatValue(user.productCount);
+        }
+
+        const salesAmount = $("salesAmount");
+        if (salesAmount) {
+            salesAmount.textContent =
+                money(user.salesAmount);
+        }
+
+        const unitsSoldElement = $("unitsSold");
+        if (unitsSoldElement) {
+            unitsSoldElement.textContent =
+                formatValue(user.unitsSold);
+        }
+
+
+        const rating =
+            Number(
+                user.shopRating || 0
+            );
+
+
+        if (rating > 0) {
+
+            $("shopRating").textContent =
+                rating.toFixed(1);
+
+            $("ratingLarge").textContent =
+                rating.toFixed(1);
+
+        } else {
+
+            $("shopRating").textContent =
+                "ใหม่";
+
+            $("ratingLarge").textContent =
+                "ใหม่";
+
+        }
+
+
+        /* -----------------------------------------
+           PROFILE IMAGE
+        ----------------------------------------- */
+
+        if (user.profileImage) {
+
+            setAvatarImage(
+                user.profileImage
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       SET AVATAR IMAGE
+    ========================================== */
+
+    function setAvatarImage(image) {
+
+        const imageUrl =
+            getImageUrl(image);
+
+
+        if (!imageUrl) {
+            return;
+        }
+
+
+        /* Main profile */
+
+        const profileAvatar =
+            $("profileAvatar");
+
+        if (profileAvatar) {
+
+            profileAvatar.innerHTML = `
+
+                <img
+                    src="${escapeHTML(imageUrl)}"
+                    alt="โปรไฟล์ร้านค้า"
+                >
+
+            `;
+
+        }
+
+
+        /* Sidebar */
+
+        const sidebarAvatar =
+            $("sidebarAvatar");
+
+        if (sidebarAvatar) {
+
+            sidebarAvatar.innerHTML = `
+
+                <img
+                    src="${escapeHTML(imageUrl)}"
+                    alt="โปรไฟล์"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                    "
+                >
+
+            `;
+
+        }
+
+
+        /* Header */
+
+        const headerAvatar =
+            $("headerAvatar");
+
+        if (headerAvatar) {
+
+            headerAvatar.innerHTML = `
+
+                <img
+                    src="${escapeHTML(imageUrl)}"
+                    alt="โปรไฟล์"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                    "
+                >
+
+            `;
+
+        }
+
+    }
+
+
+    /* =========================================
+   LOAD REAL USER PROFILE + SHOP DATA
+========================================= */
+
+async function loadโปรไฟล์() {
+
+    const token = getToken();
+
+    if (!token) {
+
+        window.location.href = "auth.html?mode=login";
+
+        return;
+
+    }
+
+
+    try {
+
+        /* =========================================
+           1. LOAD REAL USER FROM MONGODB
+        ========================================== */
+
+        const profileResponse =
+            await fetch(
+                `${API_BASE_URL}/api/profile`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        const profileData =
+            await profileResponse.json();
+
+
+        if (
+            !profileResponse.ok ||
+            !profileData.success ||
+            !profileData.user
+        ) {
+
+            throw new Error(
+                profileData.message ||
+                "ไม่สามารถโหลดข้อมูลโปรไฟล์ผู้ใช้ได้"
+            );
+
+        }
+
+
+        /* =========================================
+           REAL USER
+        ========================================== */
+
+        const user =
+            profileData.user;
+
+
+        currentUser =
+            user;
+
+
+        /* =========================================
+           2. SAVE LATEST REAL USER
+        ========================================== */
+
+        localStorage.setItem(
+            "tiktokShopUser",
+            JSON.stringify(user)
+        );
+
+
+        /* =========================================
+           3. RENDER REAL USER
+        ========================================== */
+
+        renderUser(user);
+
+
+        /* =========================================
+           4. LOAD SELLER PRODUCTS
+        ========================================== */
+
+        let sellerProducts = [];
+
+
+        try {
+
+            const productResponse =
+                await fetch(
+                    `${API_BASE_URL}/api/seller/products`,
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+
+
+            const productData =
+                await productResponse.json();
+
+
+            if (
+                productResponse.ok &&
+                productData.success
+            ) {
+
+                sellerProducts =
+                    Array.isArray(
+                        productData.products
+                    )
+                        ? productData.products
+                        : [];
+
+            }
+
+        }
+
+        catch (productError) {
+
+            console.warn(
+                "Unable to load seller products:",
+                productError
+            );
+
+            sellerProducts = [];
+
+        }
+
+
+        /* =========================================
+           5. LOAD SELLER ORDERS
+        ========================================== */
+
+        let sellerOrders = [];
+
+
+        try {
+
+            const orderResponse =
+                await fetch(
+                    `${API_BASE_URL}/api/orders/seller`,
+                    {
+                        method: "GET",
+
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+
+
+            const orderData =
+                await orderResponse.json();
+
+
+            if (
+                orderResponse.ok &&
+                orderData.success
+            ) {
+
+                sellerOrders =
+                    Array.isArray(
+                        orderData.orders
+                    )
+                        ? orderData.orders
+                        : [];
+
+            }
+
+        }
+
+        catch (orderError) {
+
+            console.warn(
+                "Unable to load seller orders:",
+                orderError
+            );
+
+            sellerOrders = [];
+
+        }
+
+
+        /* =========================================
+           6. REAL ACTIVE PRODUCT COUNT
+        ========================================== */
+
+        const activeProducts =
+            sellerProducts.filter(
+                product =>
+                    String(
+                        product.status || "active"
+                    ).toLowerCase() ===
+                    "active"
+            );
+
+
+        const productCountElement = $("productCount");
+        if (productCountElement) {
+            productCountElement.textContent =
+                formatValue(activeProducts.length);
+        }
+
+
+        /* =========================================
+           7. REAL COMPLETED SALES
+        ========================================== */
+
+        const completedOrders =
+            sellerOrders.filter(
+                order => {
+
+                    const status =
+                        String(
+                            order.status || ""
+                        ).toLowerCase();
+
+
+                    const paymentStatus =
+                        String(
+                            order.paymentStatus || ""
+                        ).toLowerCase();
+
+
+                    return (
+                        status === "completed" &&
+                        paymentStatus === "paid"
+                    );
+
+                }
+            );
+
+
+        /* =========================================
+           8. REAL TOTAL SALES
+        ========================================== */
+
+        const totalSales =
+            completedOrders.reduce(
+                (
+                    total,
+                    order
+                ) => {
+
+                    return total +
+                        Number(
+                            order.subtotal || 0
+                        );
+
+                },
+                0
+            );
+
+
+        const salesAmountElement = $("salesAmount");
+        if (salesAmountElement) {
+            salesAmountElement.textContent =
+                money(totalSales);
+        }
+
+
+        /* =========================================
+           9. REAL UNITS SOLD
+        ========================================== */
+
+        const unitsSold =
+            completedOrders.reduce(
+                (
+                    total,
+                    order
+                ) => {
+
+                    return total +
+                        Number(
+                            order.quantity || 0
+                        );
+
+                },
+                0
+            );
+
+
+        const unitsSoldElement = $("unitsSold");
+        if (unitsSoldElement) {
+            unitsSoldElement.textContent =
+                formatValue(unitsSold);
+        }
+
+
+        /* =========================================
+           10. คะแนนร้านค้า
+        ========================================== */
+
+        const rating =
+            Number(
+                user.shopRating || 0
+            );
+
+
+        if (rating > 0) {
+
+            const shopRating = $("shopRating");
+            if (shopRating) {
+                shopRating.textContent =
+                    rating.toFixed(1);
+            }
+
+            const ratingLarge = $("ratingLarge");
+            if (ratingLarge) {
+                ratingLarge.textContent =
+                    rating.toFixed(1);
+            }
+
+        }
+
+        else {
+
+            const shopRating = $("shopRating");
+            if (shopRating) {
+                shopRating.textContent = "ใหม่";
+            }
+
+            const ratingLarge = $("ratingLarge");
+            if (ratingLarge) {
+                ratingLarge.textContent = "ใหม่";
+            }
+
+        }
+
+
+        /* =========================================
+           11. HIDE LOADING
+        ========================================== */
+
+        const loading =
+            $("profileLoading");
+
+
+        if (loading) {
+
+            loading.style.display =
+                "none";
+
+        }
+
+
+        /* =========================================
+           12. REFRESH ICONS
+        ========================================== */
+
+        if (
+            typeof lucide !==
+            "undefined"
+        ) {
+
+            lucide.createIcons();
+
+        }
+
+
+        console.log(
+            "✅ Real user profile loaded:",
+            user
+        );
+
+
+        console.log(
+            "✅ Real seller products:",
+            sellerProducts.length
+        );
+
+
+        console.log(
+            "✅ Real seller orders:",
+            sellerOrders.length
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "❌ Real profile loading error:",
+            error
+        );
+
+
+        const loading =
+            $("profileLoading");
+
+
+        if (loading) {
+
+            loading.style.display =
+                "none";
+
+        }
+
+
+        showMessage(
+            error.message ||
+            "ไม่สามารถโหลดข้อมูลบัญชีจริงของคุณได้",
+            "error"
+        );
+
+    }
+
+}
+
+
+    /* =========================================
+       SAVE SHOP PROFILE
+    ========================================== */
+
+    $("profileForm")
+        ?.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                const token =
+                    getToken();
+
+
+                if (!token) {
+
+                    window.location.href =
+                        "auth.html?mode=login";
+
+                    return;
+
+                }
+
+
+                const newShopName =
+                    $("shopName")
+                        .value
+                        .trim();
+
+
+                if (!newShopName) {
+
+                    showMessage(
+                        "กรุณากรอกชื่อร้านค้า",
+                        "error"
+                    );
+
+                    $("shopName").focus();
+
+                    return;
+
+                }
+
+
+                const button =
+                    $("saveโปรไฟล์Button");
+
+
+                button.disabled = true;
+
+
+                try {
+
+                    /*
+                     * Use the dedicated shop endpoint
+                     */
+
+                    const response =
+                        await fetch(
+                            `${API_BASE_URL}/api/profile/shop`,
+                            {
+                                method: "PATCH",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json",
+
+                                    Authorization:
+                                        `Bearer ${token}`
+                                },
+
+                                body: JSON.stringify({
+                                    shopName:
+                                        newShopName
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !response.ok ||
+                        !data.success ||
+                        !data.user
+                    ) {
+
+                        throw new Error(
+                            data.message ||
+                            "ไม่สามารถบันทึกข้อมูลร้านค้าได้"
+                        );
+
+                    }
+
+
+                    renderUser(
+                        data.user
+                    );
+
+
+                    localStorage.setItem(
+                        "tiktokShopUser",
+                        JSON.stringify(
+                            data.user
+                        )
+                    );
+
+
+                    showMessage(
+                        "อัปเดตข้อมูลร้านค้าสำเร็จแล้ว"
+                    );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Save profile error:",
+                        error
+                    );
+
+
+                    showMessage(
+                        error.message ||
+                        "ไม่สามารถบันทึกโปรไฟล์ได้",
+                        "error"
+                    );
+
+                } finally {
+
+                    button.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+    /* =========================================
+       PROFILE IMAGE UPLOAD
+    ========================================== */
+
+    $("avatarInput")
+        ?.addEventListener(
+            "change",
+            async event => {
+
+                const file =
+                    event.target.files?.[0];
+
+
+                if (!file) {
+                    return;
+                }
+
+
+                /* ---------------------------------
+                   Check file type
+                --------------------------------- */
+
+                const allowedTypes = [
+
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp"
+
+                ];
+
+
+                if (
+                    !allowedTypes.includes(
+                        file.type
+                    )
+                ) {
+
+                    showMessage(
+                        "กรุณาใช้ไฟล์ JPG, PNG หรือ WEBP",
+                        "error"
+                    );
+
+                    event.target.value = "";
+
+                    return;
+
+                }
+
+
+                /* ---------------------------------
+                   Check file size
+                --------------------------------- */
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    showMessage(
+                        "รูปโปรไฟล์ต้องมีขนาดเล็กกว่า 5MB",
+                        "error"
+                    );
+
+                    event.target.value = "";
+
+                    return;
+
+                }
+
+
+                /* ---------------------------------
+                   Show preview immediately
+                --------------------------------- */
+
+                const previewUrl =
+                    URL.createObjectURL(
+                        file
+                    );
+
+
+                setAvatarImage(
+                    previewUrl
+                );
+
+
+                /* ---------------------------------
+                   Upload
+                --------------------------------- */
+
+                await uploadAvatar(
+                    file
+                );
+
+
+                URL.revokeObjectURL(
+                    previewUrl
+                );
+
+
+                /*
+                 * Allow selecting the same
+                 * image again later
+                 */
+
+                event.target.value = "";
+
+            }
+        );
+
+
+    /* =========================================
+       UPLOAD AVATAR
+    ========================================== */
+
+    async function uploadAvatar(file) {
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            window.location.href =
+                "auth.html?mode=login";
+
+            return;
+
+        }
+
+
+        try {
+
+            const formData =
+                new FormData();
+
+
+            /*
+             * IMPORTANT:
+             * The field name must match
+             * upload.single("profileImage")
+             * in profile.js
+             */
+
+            formData.append(
+                "profileImage",
+                file
+            );
+
+
+            showMessage(
+                "กำลังอัปโหลดรูปโปรไฟล์..."
+            );
+
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/profile/image`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        },
+
+                        body: formData
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !data.success ||
+                !data.user
+            ) {
+
+                throw new Error(
+                    data.message ||
+                    "ไม่สามารถอัปโหลดรูปโปรไฟล์ได้"
+                );
+
+            }
+
+
+            /*
+             * Render the URL returned
+             * from MongoDB
+             */
+
+            renderUser(
+                data.user
+            );
+
+
+            localStorage.setItem(
+                "tiktokShopUser",
+                JSON.stringify(
+                    data.user
+                )
+            );
+
+
+            showMessage(
+                "อัปเดตรูปโปรไฟล์สำเร็จแล้ว"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Avatar upload error:",
+                error
+            );
+
+
+            /*
+             * Reload saved image if upload fails
+             */
+
+            if (
+                currentUser?.profileImage
+            ) {
+
+                setAvatarImage(
+                    currentUser.profileImage
+                );
+
+            }
+
+
+            showMessage(
+                error.message ||
+                "ไม่สามารถบันทึกรูปโปรไฟล์ได้",
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       EDIT PROFILE BUTTON
+    ========================================== */
+
+    $("editโปรไฟล์Button")
+        ?.addEventListener(
+            "click",
+            () => {
+
+                $("shopName")
+                    ?.focus();
+
+
+                $("shopName")
+                    ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+            }
+        );
+
+
+    /* Mobile sidebar is handled by js/sidebar.js */
+
+    /* Logout is handled by js/sidebar.js */
+
+    // =========================================
+// HEADER SHOP ORDER NOTIFICATION
+// =========================================
+
+async function updateHeaderShopOrderCount() {
+
+    const countElement =
+        document.getElementById(
+            "headerShopOrderCount"
+        );
+
+    if (!countElement) {
+        return;
+    }
+
+    const token =
+        localStorage.getItem("tiktokShopToken") ||
+        localStorage.getItem("tiktokShopJWT") ||
+        localStorage.getItem("authToken") ||
+        localStorage.getItem("token") ||
+        "";
+
+    if (!token) {
+
+        countElement.textContent = "0";
+        countElement.style.display = "none";
+
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/orders/seller",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    },
+
+                    cache: "no-store"
+                }
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                `Orders API HTTP ${response.status}`
+            );
+        }
+
+        const data =
+            await response.json();
+
+        const orders =
+            Array.isArray(data.orders)
+                ? data.orders
+                : [];
+
+        const pendingOrders =
+            orders.filter(order => {
+
+                const status =
+                    String(
+                        order.status || ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+                return status === "pending";
+
+            });
+
+        const count =
+            pendingOrders.length;
+
+        countElement.textContent =
+            count > 99
+                ? "99+"
+                : count;
+
+        countElement.style.display =
+            count > 0
+                ? "inline-flex"
+                : "none";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Header shop order notification error:",
+            error
+        );
+
+        countElement.textContent = "0";
+        countElement.style.display = "none";
+
+    }
+
+}
+
+
+// =========================================
+// START HEADER SHOP ORDER NOTIFICATION
+// =========================================
+
+updateHeaderShopOrderCount();
+
+setInterval(
+    updateHeaderShopOrderCount,
+    10000
+);
+
+    /* =========================================
+       START
+    ========================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        async () => {
+
+            if (window.TikTokSharedSidebar?.ready) {
+                await window.TikTokSharedSidebar.ready;
+            }
+
+            if (
+                typeof lucide !==
+                "undefined"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+            await loadโปรไฟล์();
+
+        }
+    );
+
+</script>
+<script src="js/notifications.js"></script>
+</body>
+</html>

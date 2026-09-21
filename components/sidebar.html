@@ -1,0 +1,366 @@
+<aside class="sidebar" id="sidebar">
+
+    <!-- =====================================================
+         SIDEBAR HEADER
+         ===================================================== -->
+
+    <div class="sidebar-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="TikTok Shop"
+                    onerror="
+                        this.style.display='none';
+                        this.parentElement.innerHTML=
+                        '<span class=&quot;logo-t&quot;>t</span>';
+                    "
+                >
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>TikTok</strong>
+
+                <span>Shop</span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="close-sidebar"
+            id="closeSidebar"
+            type="button"
+            aria-label="Close menu"
+        >
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         SIDEBAR USER
+         ===================================================== -->
+
+    <div class="sidebar-user">
+
+        <div
+            class="avatar"
+            id="sidebarAvatar"
+        >
+            U
+        </div>
+
+
+        <div class="user-info">
+
+            <strong id="sidebarUsername">
+                Guest User
+            </strong>
+
+
+            <span id="sidebarRole">
+                Store Owner
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <nav class="sidebar-nav">
+
+
+        <!-- =================================================
+             MAIN
+             ================================================= -->
+
+        <div
+            class="nav-title"
+            data-sidebar-text="main"
+        >
+            MAIN
+        </div>
+
+
+        <!-- HOME -->
+
+        <a
+            href="index.html"
+            class="nav-item"
+            id="navHome"
+        >
+
+            <i data-lucide="house"></i>
+
+            <span data-sidebar-text="home">
+                Home
+            </span>
+
+        </a>
+
+
+        <!-- PRODUCTS -->
+
+        <a
+            href="add-products.html"
+            class="nav-item"
+            id="navProducts"
+        >
+
+            <i data-lucide="shopping-bag"></i>
+
+            <span data-sidebar-text="products">
+                Products
+            </span>
+
+        </a>
+
+
+        <!-- DASHBOARD -->
+
+        <a
+            href="seller-dashboard.html"
+            class="nav-item"
+            id="navDashboard"
+        >
+
+            <i data-lucide="layout-dashboard"></i>
+
+            <span data-sidebar-text="dashboard">
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- MY SHOP -->
+
+        <a
+            href="my-shop.html"
+            class="nav-item"
+            id="navMyShop"
+        >
+
+            <i data-lucide="store"></i>
+
+            <span data-sidebar-text="myShop">
+                My Shop
+            </span>
+
+
+            <span
+                class="shop-order-count"
+                id="shopOrderCount"
+                style="display:none;"
+            >
+                0
+            </span>
+
+        </a>
+
+
+        <!-- =================================================
+             ACCOUNT
+             ================================================= -->
+
+        <div
+            class="nav-title"
+            data-sidebar-text="account"
+        >
+            ACCOUNT
+        </div>
+
+
+        <!-- WALLET -->
+
+        <a
+            href="wallet.html"
+            class="nav-item"
+            id="navWallet"
+        >
+
+            <i data-lucide="wallet"></i>
+
+            <span data-sidebar-text="wallet">
+                Wallet
+            </span>
+
+        </a>
+
+
+        <!-- NOTIFICATIONS -->
+
+        <a
+            href="notifications.html"
+            class="nav-item"
+            id="navNotifications"
+        >
+
+            <i data-lucide="bell"></i>
+
+            <span data-sidebar-text="notifications">
+                Notifications
+            </span>
+
+
+            <span
+                class="notification-count"
+                id="notificationCount"
+                style="display:none;"
+            >
+                0
+            </span>
+
+        </a>
+
+
+        <!-- MESSAGES -->
+
+        <a
+            href="user-chat.html"
+            class="nav-item"
+            id="navMessages"
+        >
+
+            <i data-lucide="message-circle"></i>
+
+
+            <span data-sidebar-text="messages">
+                Messages
+            </span>
+
+
+            <span
+                class="notification-count"
+                id="messageCount"
+                style="display:none;"
+            >
+                0
+            </span>
+
+        </a>
+
+
+        <!-- PROFILE -->
+
+        <a
+            href="account.html"
+            class="nav-item"
+            id="navProfile"
+        >
+
+            <i data-lucide="user-round"></i>
+
+            <span data-sidebar-text="profile">
+                Profile
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- =====================================================
+         SIDEBAR BOTTOM
+         ===================================================== -->
+
+    <div class="sidebar-bottom">
+
+
+        <!-- =================================================
+             GUEST / SELLER BOX
+
+             Guest:
+             เข้าสู่ระบบ
+             Login to continue
+             -> login.html
+
+             Seller:
+             My Shop
+             Manage your shop
+             -> my-shop.html
+
+             sidebar.js จะเปลี่ยนตามสถานะ Login
+             ================================================= -->
+
+        <a
+            class="seller-box"
+            id="sellerBox"
+            href="auth.html"
+        >
+
+            <div class="seller-icon">
+
+                <i data-lucide="log-in"></i>
+
+            </div>
+
+
+            <div>
+
+                <strong id="sellerBoxTitle">
+                    เข้าสู่ระบบ
+                </strong>
+
+
+                <span id="sellerBoxText">
+                    Login to continue
+                </span>
+
+            </div>
+
+
+            <i data-lucide="chevron-right"></i>
+
+        </a>
+
+
+        <!-- =================================================
+             LOGOUT
+             ================================================= -->
+
+        <button
+            class="logout-button"
+            id="logoutButton"
+            type="button"
+            style="display:none;"
+        >
+
+            <i data-lucide="log-out"></i>
+
+            <span data-sidebar-text="logout">
+                Log out
+            </span>
+
+        </button>
+
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     SIDEBAR OVERLAY
+     ===================================================== -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>

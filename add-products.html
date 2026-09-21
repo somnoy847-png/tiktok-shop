@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>เพิ่มสินค้า - TikTok Shop</title>
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        :root {
+            --ap-bg: #f7f7f8;
+            --ap-white: #fff;
+            --ap-text: #111;
+            --ap-muted: #777;
+            --ap-border: #e8e8eb;
+            --ap-soft: #f4f4f5;
+            --ap-red: #fe2c55;
+            --ap-green: #16a34a;
+        }
+
+        body {
+            background: var(--ap-bg);
+            color: var(--ap-text);
+            font-family: "Inter", sans-serif;
+        }
+
+        .add-products-main {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .ap-header {
+            height: 72px;
+            background: rgba(255,255,255,.97);
+            border-bottom: 1px solid var(--ap-border);
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            backdrop-filter: blur(12px);
+        }
+
+        .ap-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .ap-menu-button {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--ap-border);
+            border-radius: 10px;
+            background: #fff;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-heading h1 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.4px;
+        }
+
+        .ap-heading p {
+            margin-top: 4px;
+            color: var(--ap-muted);
+            font-size: 11px;
+        }
+
+        .ap-header-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ap-header-button {
+            width: 39px;
+            height: 39px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ap-header-button:hover {
+            background: var(--ap-soft);
+        }
+
+        .ap-header-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* CONTENT */
+        .ap-content {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 28px 30px 50px;
+        }
+
+        .ap-intro {
+            margin-bottom: 20px;
+        }
+
+        .ap-intro h2 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .ap-intro p {
+            margin-top: 5px;
+            color: var(--ap-muted);
+            font-size: 11px;
+        }
+
+        /* TOOLBAR */
+        .ap-toolbar {
+            background: #fff;
+            border: 1px solid var(--ap-border);
+            border-radius: 15px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .ap-search {
+            flex: 1;
+            min-width: 180px;
+            height: 42px;
+            background: var(--ap-soft);
+            border: 1px solid transparent;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .ap-search:focus-within {
+            background: #fff;
+            border-color: #d8d8db;
+        }
+
+        .ap-search svg {
+            width: 17px;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        .ap-search input {
+            flex: 1;
+            min-width: 0;
+            height: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            padding: 0 9px;
+            font-size: 11px;
+        }
+
+        .ap-filter {
+            height: 42px;
+            min-width: 145px;
+            padding: 0 12px;
+            border: 1px solid var(--ap-border);
+            border-radius: 9px;
+            background: #fff;
+            color: #444;
+            font-size: 10px;
+            outline: none;
+        }
+
+        .ap-select-all {
+            height: 42px;
+            padding: 0 14px;
+            border: 1px solid var(--ap-border);
+            border-radius: 9px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .ap-select-all:hover {
+            background: var(--ap-soft);
+        }
+
+        .ap-select-all svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        /* SELECTION */
+        .ap-selection {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 13px;
+            background: #111;
+            color: #fff;
+        }
+
+        .ap-selection.show {
+            display: flex;
+        }
+
+        .ap-selection-info {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .ap-selection-count {
+            min-width: 25px;
+            height: 25px;
+            padding: 0 7px;
+            border-radius: 20px;
+            background: #fff;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .ap-add-selected {
+            height: 38px;
+            padding: 0 14px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--ap-red);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .ap-add-selected:hover {
+            filter: brightness(.95);
+        }
+
+        .ap-add-selected svg {
+            width: 15px;
+        }
+
+        /* PRODUCT GRID */
+        .ap-products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .ap-product-card {
+            position: relative;
+            background: #fff;
+            border: 1px solid var(--ap-border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .2s ease;
+        }
+
+        .ap-product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 25px rgba(0,0,0,.06);
+        }
+
+        .ap-product-card.selected {
+            border: 2px solid #111;
+        }
+
+        .ap-product-check {
+            position: absolute;
+            top: 11px;
+            left: 11px;
+            z-index: 5;
+        }
+
+        .ap-product-check input {
+            display: none;
+        }
+
+        .ap-check-ui {
+            width: 25px;
+            height: 25px;
+            border-radius: 7px;
+            border: 1px solid #ddd;
+            background: #fff;
+            box-shadow: 0 3px 10px rgba(0,0,0,.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .ap-check-ui svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+        }
+
+        .ap-product-check input:checked + .ap-check-ui {
+            background: #111;
+            border-color: #111;
+        }
+
+        .ap-product-check input:checked + .ap-check-ui svg {
+            opacity: 1;
+        }
+
+        .ap-product-check input:disabled + .ap-check-ui {
+            background: #eee;
+            border-color: #ddd;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .ap-image {
+            height: 190px;
+            background: #f1f1f1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        .ap-image svg {
+            width: 38px;
+            color: #aaa;
+        }
+
+        .ap-status {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 5px 8px;
+            border-radius: 20px;
+            background: #fff;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .ap-status.active {
+            color: var(--ap-green);
+        }
+
+        .ap-status.inactive {
+            color: #888;
+        }
+
+        .ap-body {
+            padding: 14px;
+        }
+
+        .ap-category {
+            color: #999;
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+        }
+
+        .ap-name {
+            margin-top: 6px;
+            min-height: 34px;
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1.45;
+        }
+
+        .ap-description {
+            min-height: 32px;
+            margin-top: 5px;
+            color: #888;
+            font-size: 9px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .ap-price-row {
+            margin-top: 11px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .ap-price-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ap-price-item > span {
+            color: #999;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .ap-sale-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .ap-cost {
+            color: #555;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .ap-meta {
+            margin-top: 11px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .ap-meta span {
+            display: block;
+            color: #aaa;
+            font-size: 8px;
+        }
+
+        .ap-meta strong {
+            display: block;
+            margin-top: 3px;
+            font-size: 10px;
+        }
+
+        .ap-profit {
+            color: var(--ap-green);
+        }
+
+        .ap-added {
+            margin-top: 11px;
+            min-height: 33px;
+            border-radius: 8px;
+            background: #f0fdf4;
+            color: var(--ap-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .ap-added svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* EMPTY */
+        .ap-empty {
+            display: none;
+            min-height: 330px;
+            background: #fff;
+            border: 1px solid var(--ap-border);
+            border-radius: 15px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .ap-empty.show {
+            display: flex;
+        }
+
+        .ap-empty-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 17px;
+            background: var(--ap-soft);
+            color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-empty-icon svg {
+            width: 28px;
+        }
+
+        .ap-empty h2 {
+            margin-top: 14px;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .ap-empty p {
+            margin-top: 6px;
+            max-width: 430px;
+            color: #888;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        /* MODAL */
+        .ap-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            padding: 20px;
+            background: rgba(0,0,0,.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-modal-overlay.show {
+            display: flex;
+        }
+
+        .ap-modal {
+            width: 100%;
+            max-width: 430px;
+            padding: 23px;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 25px 70px rgba(0,0,0,.2);
+        }
+
+        .ap-modal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            background: #f0fdf4;
+            color: var(--ap-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ap-modal-icon svg {
+            width: 24px;
+        }
+
+        .ap-modal h2 {
+            margin-top: 14px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .ap-modal p {
+            margin-top: 7px;
+            color: #777;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .ap-modal-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .ap-modal-button {
+            min-height: 38px;
+            padding: 0 13px;
+            border: 0;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .ap-modal-cancel {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+        .ap-modal-confirm {
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ap-modal-confirm svg {
+            width: 14px;
+        }
+
+        /* TOAST */
+        .ap-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 25px;
+            z-index: 4000;
+            transform: translate(-50%, 20px);
+            opacity: 0;
+            pointer-events: none;
+            padding: 11px 15px;
+            border-radius: 10px;
+            background: #111;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            transition: .25s ease;
+        }
+
+        .ap-toast.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .ap-products-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .add-products-main {
+                margin-left: 0;
+            }
+
+            .ap-header {
+                padding: 0 18px;
+            }
+
+            .ap-menu-button {
+                display: flex;
+            }
+
+            .ap-content {
+                padding: 22px 18px 45px;
+            }
+
+            .ap-toolbar {
+                flex-wrap: wrap;
+            }
+
+            .ap-search {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .ap-products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 11px;
+            }
+
+            .ap-image {
+                height: 155px;
+            }
+
+            .ap-body {
+                padding: 11px;
+            }
+
+            .ap-name {
+                font-size: 11px;
+            }
+
+            .ap-sale-price {
+                font-size: 14px;
+            }
+
+            .ap-filter {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .ap-select-all {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .ap-header-right {
+                gap: 2px;
+            }
+
+            .ap-header-button {
+                display: none;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .ap-products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ap-image {
+                height: 220px;
+            }
+
+            .ap-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .ap-filter,
+            .ap-select-all {
+                width: 100%;
+            }
+
+            .ap-selection {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ap-add-selected {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <main class="add-products-main">
+
+        <header class="ap-header">
+
+            <div class="ap-header-left">
+
+                <button
+                    class="ap-menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="เปิดเมนู"
+                >
+                    <i data-lucide="menu"></i>
+                </button>
+
+                <div class="ap-heading">
+                    <h1>เพิ่มสินค้า</h1>
+                    <p>เลือกสินค้าจากรายการสินค้าเพื่อเพิ่มเข้าสู่ร้านค้าของคุณ</p>
+                </div>
+
+            </div>
+
+           
+
+        </header>
+
+        <div class="ap-content">
+
+            <div class="ap-intro">
+                <h2>รายการสินค้า</h2>
+                <p>เลือกสินค้าที่ผู้ดูแลระบบสร้างไว้เพื่อเพิ่มเข้าสู่ร้านค้าของคุณ</p>
+            </div>
+
+            <!-- TOOLBAR -->
+            <div class="ap-toolbar">
+
+                <div class="ap-search">
+                    <i data-lucide="search"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="ค้นหาสินค้า..."
+                        autocomplete="off"
+                    >
+                </div>
+
+                <select class="ap-filter" id="categoryFilter">
+                    <option value="all">ทุกหมวดหมู่</option>
+                </select>
+
+                <select class="ap-filter" id="statusFilter">
+                    <option value="all">ทุกสถานะ</option>
+                    <option value="active">เปิดใช้งาน</option>
+                    <option value="inactive">ปิดใช้งาน</option>
+                </select>
+
+                <button
+                    class="ap-select-all"
+                    id="selectAllButton"
+                    type="button"
+                >
+                    <i data-lucide="check-check"></i>
+                    เลือกทั้งหมด
+                </button>
+
+            </div>
+
+            <!-- SELECTION BAR -->
+            <div class="ap-selection" id="selectionBar">
+
+                <div class="ap-selection-info">
+                    <span class="ap-selection-count" id="selectedCount">0</span>
+                    <span>รายการที่เลือก</span>
+                </div>
+
+                <button
+                    class="ap-add-selected"
+                    id="addSelectedButton"
+                    type="button"
+                >
+                    <i data-lucide="plus"></i>
+                    เพิ่มสินค้า
+                </button>
+
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div class="ap-products-grid" id="productsGrid"></div>
+
+            <!-- EMPTY -->
+            <div class="ap-empty" id="emptyState">
+
+                <div class="ap-empty-icon">
+                    <i data-lucide="package-search"></i>
+                </div>
+
+                <h2 id="emptyTitle">ไม่มีสินค้า</h2>
+
+                <p id="emptyText">
+                    ยังไม่มีสินค้าที่ผู้ดูแลระบบสร้างไว้
+                </p>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- CONFIRM MODAL -->
+    <div class="ap-modal-overlay" id="confirmModal">
+
+        <div class="ap-modal">
+
+            <div class="ap-modal-icon">
+                <i data-lucide="circle-check"></i>
+            </div>
+
+            <h2>เพิ่มสินค้าที่เลือกหรือไม่?</h2>
+
+            <p id="confirmText">
+                สินค้าที่เลือกจะถูกเพิ่มเข้าสู่ร้านค้าของคุณ
+            </p>
+
+            <div class="ap-modal-actions">
+
+                <button
+                    class="ap-modal-button ap-modal-cancel"
+                    id="cancelModalButton"
+                    type="button"
+                >
+                    ยกเลิก
+                </button>
+
+                <button
+                    class="ap-modal-button ap-modal-confirm"
+                    id="confirmAddButton"
+                    type="button"
+                >
+                    <i data-lucide="plus"></i>
+                    เพิ่มสินค้า
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ap-toast" id="toast"></div>
+
+    <script src="js/sidebar.js"></script>
+
+    <script>
+        "use strict";
+
+        /*
+         * DATABASE MODE
+         * Admin products:
+         *   GET  /api/products
+         *
+         * Seller inventory:
+         *   GET  /api/seller/products
+         *   POST /api/seller/products
+         *
+         * POST body:
+         * {
+         *   adminProductId: "...",
+         *   quantity: 0
+         * }
+         *
+         * The server should create the seller-specific inventory record
+         * using the authenticated seller from the Bearer token.
+         */
+
+        const API_BASE_URL = "/api";
+        const ADMIN_PRODUCTS_API = `${API_BASE_URL}/products`;
+        const SELLER_PRODUCTS_API = `${API_BASE_URL}/seller/products`;
+
+        let currentUser = null;
+        let adminProducts = [];
+        let sellerProducts = [];
+        let selectedProducts = new Set();
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatMoney(value) {
+            return "$" + Number(value || 0).toLocaleString("th-TH", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function formatNumber(value) {
+            return Number(value || 0).toLocaleString("th-TH");
+        }
+
+        function formatCategory(value) {
+            if (!value) return "อื่น ๆ";
+
+            const key = String(value)
+                .trim()
+                .toLowerCase()
+                .replace(/[-_\s]+/g, "");
+
+            const categoryMap = {
+                fashion: "แฟชั่น",
+                clothing: "เสื้อผ้าและแฟชั่น",
+                electronics: "อุปกรณ์อิเล็กทรอนิกส์",
+                "computerandequipment": "คอมพิวเตอร์และอุปกรณ์เสริม",
+                computer: "คอมพิวเตอร์",
+                mobile: "โทรศัพท์มือถือ",
+                mobilephone: "โทรศัพท์มือถือ",
+                beauty: "ความงาม",
+                health: "สุขภาพ",
+                food: "อาหาร",
+                beverage: "อาหารและเครื่องดื่ม",
+                home: "บ้านและไลฟ์สไตล์",
+                homeandliving: "บ้านและไลฟ์สไตล์",
+                sports: "กีฬาและกิจกรรมกลางแจ้ง",
+                toys: "ของเล่น",
+                pet: "สัตว์เลี้ยง",
+                pets: "สัตว์เลี้ยง",
+                books: "หนังสือ",
+                automotive: "ยานยนต์",
+                accessories: "เครื่องประดับและอุปกรณ์เสริม",
+                other: "อื่น ๆ"
+            };
+
+            return categoryMap[key] || String(value)
+                .replace(/[-_]/g, " ");
+        }
+
+        function getToken() {
+            const keys = [
+                "tiktokShopToken",
+                "tiktokShopJWT",
+                "authToken",
+                "token"
+            ];
+
+            for (const key of keys) {
+                const value = localStorage.getItem(key);
+                if (value) return value;
+            }
+
+            return "";
+        }
+
+        function getCurrentUser() {
+            try {
+                return JSON.parse(
+                    localStorage.getItem("tiktokShopUser") || "null"
+                );
+            } catch {
+                return null;
+            }
+        }
+
+        function getUserId(user = currentUser) {
+            return String(
+                user?.id ||
+                user?._id ||
+                user?.userId ||
+                user?.username ||
+                user?.email ||
+                ""
+            );
+        }
+
+        function normalizeApiList(data) {
+            if (Array.isArray(data)) return data;
+
+            if (Array.isArray(data?.products)) {
+                return data.products;
+            }
+
+            if (Array.isArray(data?.data)) {
+                return data.data;
+            }
+
+            if (Array.isArray(data?.data?.products)) {
+                return data.data.products;
+            }
+
+            return [];
+        }
+
+        async function apiRequest(url, options = {}) {
+            const token = getToken();
+
+            const headers = {
+                Accept: "application/json",
+                ...(options.body ? { "Content-Type": "application/json" } : {}),
+                ...(token ? { Authorization: `Bearer ${token}` } : {})
+            };
+
+            const response = await fetch(url, {
+                ...options,
+                headers: {
+                    ...headers,
+                    ...(options.headers || {})
+                }
+            });
+
+            let data = null;
+
+            try {
+                data = await response.json();
+            } catch {
+                data = null;
+            }
+
+            if (!response.ok) {
+                const message =
+                    data?.message ||
+                    data?.error ||
+                    `Request failed (${response.status})`;
+
+                throw new Error(message);
+            }
+
+            return data;
+        }
+
+        async function loadAdminProductsFromDatabase() {
+            const data = await apiRequest(ADMIN_PRODUCTS_API);
+
+            adminProducts = normalizeApiList(data);
+
+            adminProducts = adminProducts.filter(product => {
+                const status = String(
+                    product.status || "active"
+                ).toLowerCase();
+
+                return status !== "deleted";
+            });
+        }
+
+        async function loadSellerProductsFromDatabase() {
+            const data = await apiRequest(SELLER_PRODUCTS_API);
+
+            sellerProducts = normalizeApiList(data);
+        }
+
+        async function loadData() {
+            currentUser = getCurrentUser();
+
+            const loggedIn =
+                localStorage.getItem("tiktokShopLoggedIn");
+
+            if (
+                loggedIn !== "true" ||
+                !currentUser
+            ) {
+                window.location.href = "auth.html?mode=login";
+                return false;
+            }
+
+            if (
+                currentUser.role &&
+                currentUser.role !== "seller"
+            ) {
+                window.location.href = "index.html";
+                return false;
+            }
+
+            if (!getToken()) {
+                showToast("ไม่พบ Token สำหรับเชื่อมต่อฐานข้อมูล");
+                return false;
+            }
+
+            try {
+                await Promise.all([
+                    loadAdminProductsFromDatabase(),
+                    loadSellerProductsFromDatabase()
+                ]);
+
+                return true;
+            } catch (error) {
+                console.error("Database loading error:", error);
+
+                adminProducts = [];
+                sellerProducts = [];
+
+                $("emptyTitle").textContent =
+                    "ไม่สามารถโหลดสินค้าได้";
+
+                $("emptyText").textContent =
+                    error.message ||
+                    "ไม่สามารถเชื่อมต่อฐานข้อมูลได้";
+
+                $("productsGrid").style.display = "none";
+                $("emptyState").classList.add("show");
+
+                showToast("เชื่อมต่อฐานข้อมูลไม่สำเร็จ");
+                return false;
+            }
+        }
+
+        function getAdminProductId(product) {
+            return String(
+                product.id ??
+                product._id ??
+                product.productId ??
+                ""
+            );
+        }
+
+        function getSellerAdminProductId(item) {
+            return String(
+                item.adminProductId ??
+                item.productId ??
+                item.adminProduct?._id ??
+                item.adminProduct?.id ??
+                ""
+            );
+        }
+
+        function isAlreadyAdded(product) {
+            const adminId = getAdminProductId(product);
+
+            return sellerProducts.some(item =>
+                getSellerAdminProductId(item) === adminId
+            );
+        }
+
+        function buildCategoryFilter() {
+            const select = $("categoryFilter");
+
+            select.innerHTML =
+                '<option value="all">ทุกหมวดหมู่</option>';
+
+            const categories = new Set();
+
+            adminProducts.forEach(product => {
+                if (product.category) {
+                    categories.add(String(product.category));
+                }
+            });
+
+            [...categories]
+                .sort()
+                .forEach(category => {
+                    const option =
+                        document.createElement("option");
+
+                    option.value = category;
+                    option.textContent =
+                        formatCategory(category);
+
+                    select.appendChild(option);
+                });
+        }
+
+        function getFilteredProducts() {
+            const keyword =
+                $("searchInput").value
+                    .trim()
+                    .toLowerCase();
+
+            const category =
+                $("categoryFilter").value;
+
+            const status =
+                $("statusFilter").value;
+
+            return adminProducts.filter(product => {
+                const name =
+                    String(product.name || "")
+                        .toLowerCase();
+
+                const sku =
+                    String(product.sku || "")
+                        .toLowerCase();
+
+                const description =
+                    String(product.description || "")
+                        .toLowerCase();
+
+                const productCategory =
+                    String(product.category || "");
+
+                const productStatus =
+                    String(
+                        product.status || "active"
+                    ).toLowerCase();
+
+                return (
+                    (
+                        !keyword ||
+                        name.includes(keyword) ||
+                        sku.includes(keyword) ||
+                        description.includes(keyword)
+                    ) &&
+                    (
+                        category === "all" ||
+                        productCategory === category
+                    ) &&
+                    (
+                        status === "all" ||
+                        productStatus === status
+                    )
+                );
+            });
+        }
+
+        function getProductImage(product) {
+            return (
+                product.image ||
+                product.imageUrl ||
+                product.thumbnail ||
+                product.photo ||
+                ""
+            );
+        }
+
+        function createProductCard(product) {
+            const id = getAdminProductId(product);
+
+            const alreadyAdded =
+                isAlreadyAdded(product);
+
+            const selected =
+                selectedProducts.has(id);
+
+            const image = getProductImage(product);
+
+            const salePrice =
+                Number(
+                    product.salePrice ??
+                    product.price ??
+                    0
+                );
+
+            const cost =
+                Number(
+                    product.costPrice ??
+                    product.cost ??
+                    product.productPrice ??
+                    0
+                );
+
+            const profit =
+                Number(
+                    product.profit ??
+                    (salePrice - cost)
+                );
+
+            const stock =
+                Number(
+                    product.stock ??
+                    product.quantity ??
+                    0
+                );
+
+            const status =
+                String(
+                    product.status || "active"
+                ).toLowerCase();
+
+            const card =
+                document.createElement("article");
+
+            card.className =
+                "ap-product-card" +
+                (selected ? " selected" : "");
+
+            let imageHTML;
+
+            if (image) {
+                imageHTML = `
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(product.name || "Product")}"
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement.insertAdjacentHTML(
+                                'afterbegin',
+                                '<i data-lucide=&quot;image-off&quot;></i>'
+                            );
+                            if (typeof lucide !== 'undefined') lucide.createIcons();
+                        "
+                    >
+                `;
+            } else {
+                imageHTML =
+                    `<i data-lucide="image-off"></i>`;
+            }
+
+            card.innerHTML = `
+                <label class="ap-product-check">
+                    <input
+                        type="checkbox"
+                        ${selected ? "checked" : ""}
+                        ${alreadyAdded ? "disabled" : ""}
+                    >
+                    <span class="ap-check-ui">
+                        <i data-lucide="check"></i>
+                    </span>
+                </label>
+
+                <div class="ap-image">
+                    ${imageHTML}
+
+                    <span class="ap-status ${status === "active" ? "active" : "inactive"}">
+                        ${status === "active" ? "เปิดใช้งาน" : "ปิดใช้งาน"}
+                    </span>
+                </div>
+
+                <div class="ap-body">
+                    <div class="ap-category">
+                        ${escapeHTML(
+                            formatCategory(product.category)
+                        )}
+                    </div>
+
+                    <div class="ap-name">
+                        ${escapeHTML(
+                            product.name ||
+                            "Unnamed Product"
+                        )}
+                    </div>
+
+                    <div class="ap-description">
+                        ${escapeHTML(
+                            product.description ||
+                            "No description available."
+                        )}
+                    </div>
+
+                    <div class="ap-price-row">
+
+                        <div class="ap-price-item">
+                            <span>ราคาขาย</span>
+                            <strong class="ap-sale-price">
+                                ${formatMoney(salePrice)}
+                            </strong>
+                        </div>
+
+                        <div class="ap-price-item">
+                            <span>ราคาต้นทุน</span>
+                            <strong class="ap-cost">
+                                ${formatMoney(cost)}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <div class="ap-meta">
+                        <div>
+                            <span>กำไร</span>
+                            <strong class="ap-profit">
+                                ${formatMoney(profit)}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>สต็อก</span>
+                            <strong>
+                                ${formatNumber(stock)} ชิ้น
+                            </strong>
+                        </div>
+                    </div>
+
+                    ${
+                        alreadyAdded
+                            ? `
+                                <div class="ap-added">
+                                    <i data-lucide="circle-check"></i>
+                                    มีสินค้าอยู่ในร้านแล้ว
+                                </div>
+                            `
+                            : ""
+                    }
+                </div>
+            `;
+
+            const checkbox =
+                card.querySelector(
+                    ".ap-product-check input"
+                );
+
+            checkbox?.addEventListener(
+                "change",
+                () => {
+                    if (checkbox.checked) {
+                        selectedProducts.add(id);
+                    } else {
+                        selectedProducts.delete(id);
+                    }
+
+                    updateSelection();
+                    renderSelectionStyles();
+                }
+            );
+
+            return card;
+        }
+
+        function renderProducts() {
+            const grid = $("productsGrid");
+            const empty = $("emptyState");
+
+            const products =
+                getFilteredProducts();
+
+            grid.innerHTML = "";
+
+            if (!products.length) {
+                grid.style.display = "none";
+                empty.classList.add("show");
+
+                if (!adminProducts.length) {
+                    $("emptyTitle").textContent =
+                        "ไม่มีสินค้า";
+
+                    $("emptyText").textContent =
+                        "ผู้ดูแลระบบยังไม่ได้สร้างสินค้า";
+                } else {
+                    $("emptyTitle").textContent =
+                        "ไม่พบสินค้าที่ตรงกับการค้นหา";
+
+                    $("emptyText").textContent =
+                        "ลองเปลี่ยนคำค้นหาหรือตัวกรอง";
+                }
+
+                if (typeof lucide !== "undefined") {
+                    lucide.createIcons();
+                }
+
+                updateSelection();
+                return;
+            }
+
+            grid.style.display = "grid";
+            empty.classList.remove("show");
+
+            products.forEach(product => {
+                grid.appendChild(
+                    createProductCard(product)
+                );
+            });
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
+
+            updateSelection();
+        }
+
+        function renderSelectionStyles() {
+            document
+                .querySelectorAll(".ap-product-card")
+                .forEach(card => {
+                    const checkbox =
+                        card.querySelector(
+                            ".ap-product-check input"
+                        );
+
+                    card.classList.toggle(
+                        "selected",
+                        checkbox?.checked === true
+                    );
+                });
+        }
+
+        function updateSelection() {
+            $("selectedCount").textContent =
+                selectedProducts.size;
+
+            $("selectionBar").classList.toggle(
+                "show",
+                selectedProducts.size > 0
+            );
+        }
+
+        function selectAllVisible() {
+            const visible =
+                getFilteredProducts()
+                    .filter(product =>
+                        !isAlreadyAdded(product)
+                    );
+
+            if (!visible.length) {
+                showToast(
+                    "ไม่มีสินค้าที่สามารถเลือกได้"
+                );
+                return;
+            }
+
+            const allSelected =
+                visible.every(product =>
+                    selectedProducts.has(
+                        getAdminProductId(product)
+                    )
+                );
+
+            visible.forEach(product => {
+                const id =
+                    getAdminProductId(product);
+
+                if (allSelected) {
+                    selectedProducts.delete(id);
+                } else {
+                    selectedProducts.add(id);
+                }
+            });
+
+            renderProducts();
+        }
+
+        function openConfirmModal() {
+            if (!selectedProducts.size) {
+                showToast(
+                    "กรุณาเลือกสินค้าอย่างน้อย 1 รายการ"
+                );
+                return;
+            }
+
+            $("confirmText").textContent =
+                `คุณกำลังจะเพิ่ม ${selectedProducts.size} รายการเข้าคลังสินค้าของร้าน`;
+
+            $("confirmModal")
+                .classList.add("show");
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
+        }
+
+        function closeConfirmModal() {
+            $("confirmModal")
+                .classList.remove("show");
+        }
+
+        async function addProductToSellerInventory(product) {
+            const adminProductId =
+                getAdminProductId(product);
+
+            /*
+             * Server creates the seller inventory record.
+             * Seller identity MUST come from the authenticated token.
+             */
+            return apiRequest(
+                SELLER_PRODUCTS_API,
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        adminProductId
+                    })
+                }
+            );
+        }
+
+        async function confirmAddProducts() {
+            const productsToAdd =
+                adminProducts.filter(product =>
+                    selectedProducts.has(
+                        getAdminProductId(product)
+                    )
+                );
+
+            if (!productsToAdd.length) {
+                closeConfirmModal();
+                return;
+            }
+
+            const button = $("confirmAddButton");
+            const originalHTML = button.innerHTML;
+
+            button.disabled = true;
+            button.innerHTML =
+                '<i data-lucide="loader-circle"></i> Adding...';
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
+
+            let addedCount = 0;
+            let skippedCount = 0;
+            let failedCount = 0;
+
+            try {
+                for (const product of productsToAdd) {
+                    if (isAlreadyAdded(product)) {
+                        skippedCount++;
+                        continue;
+                    }
+
+                    try {
+                        await addProductToSellerInventory(
+                            product
+                        );
+
+                        addedCount++;
+                    } catch (error) {
+                        console.error(
+                            "Add product failed:",
+                            product,
+                            error
+                        );
+
+                        failedCount++;
+                    }
+                }
+
+                /*
+                 * Reload seller inventory from database.
+                 * This makes the page reflect the real database,
+                 * not a temporary localStorage copy.
+                 */
+                await loadSellerProductsFromDatabase();
+
+                selectedProducts.clear();
+                closeConfirmModal();
+                renderProducts();
+
+                if (addedCount > 0 && failedCount === 0) {
+                    showToast(
+                        `เพิ่มสินค้าเข้าคลังร้านสำเร็จ ${addedCount} รายการ`
+                    );
+                } else if (addedCount > 0) {
+                    showToast(
+                        `เพิ่มสำเร็จ ${addedCount} รายการ / ล้มเหลว ${failedCount} รายการ`
+                    );
+                } else if (skippedCount > 0) {
+                    showToast(
+                        "สินค้าที่เลือกมีอยู่ในร้านแล้ว"
+                    );
+                } else {
+                    showToast(
+                        "ไม่สามารถเพิ่มสินค้าได้"
+                    );
+                }
+
+            } catch (error) {
+                console.error(error);
+
+                showToast(
+                    error.message ||
+                    "ไม่สามารถโหลดข้อมูลคลังสินค้าได้"
+                );
+            } finally {
+                button.disabled = false;
+                button.innerHTML = originalHTML;
+
+                if (typeof lucide !== "undefined") {
+                    lucide.createIcons();
+                }
+            }
+        }
+
+        function showToast(message) {
+            const toast = $("toast");
+
+            toast.textContent = message;
+            toast.classList.add("show");
+
+            clearTimeout(showToast.timer);
+
+            showToast.timer =
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 3000);
+        }
+
+        function setupNavigation() {
+            $("notificationButton")
+                ?.addEventListener(
+                    "click",
+                    () => {
+                        window.location.href =
+                            "account.html";
+                    }
+                );
+
+            $("messageButton")
+                ?.addEventListener(
+                    "click",
+                    () => {
+                        window.location.href =
+                            "account.html";
+                    }
+                );
+
+            $("shopButton")
+                ?.addEventListener(
+                    "click",
+                    () => {
+                        window.location.href =
+                            "my-shop.html";
+                    }
+                );
+        }
+
+        function initEvents() {
+            setupNavigation();
+
+            $("searchInput")
+                .addEventListener(
+                    "input",
+                    () => {
+                        selectedProducts.clear();
+                        renderProducts();
+                    }
+                );
+
+            $("categoryFilter")
+                .addEventListener(
+                    "change",
+                    () => {
+                        selectedProducts.clear();
+                        renderProducts();
+                    }
+                );
+
+            $("statusFilter")
+                .addEventListener(
+                    "change",
+                    () => {
+                        selectedProducts.clear();
+                        renderProducts();
+                    }
+                );
+
+            $("selectAllButton")
+                .addEventListener(
+                    "click",
+                    selectAllVisible
+                );
+
+            $("addSelectedButton")
+                .addEventListener(
+                    "click",
+                    openConfirmModal
+                );
+
+            $("cancelModalButton")
+                .addEventListener(
+                    "click",
+                    closeConfirmModal
+                );
+
+            $("confirmAddButton")
+                .addEventListener(
+                    "click",
+                    confirmAddProducts
+                );
+
+            $("confirmModal")
+                .addEventListener(
+                    "click",
+                    event => {
+                        if (
+                            event.target ===
+                            $("confirmModal")
+                        ) {
+                            closeConfirmModal();
+                        }
+                    }
+                );
+
+            document.addEventListener(
+                "keydown",
+                event => {
+                    if (event.key === "Escape") {
+                        closeConfirmModal();
+                    }
+                }
+            );
+        }
+
+        async function init() {
+            const ok = await loadData();
+
+            if (!ok) return;
+
+            buildCategoryFilter();
+            initEvents();
+            renderProducts();
+
+            if (typeof lucide !== "undefined") {
+                lucide.createIcons();
+            }
+        }
+
+        if (window.TikTokSharedSidebar?.ready) {
+            window.TikTokSharedSidebar.ready
+                .then(init);
+        } else {
+            document.addEventListener(
+                "DOMContentLoaded",
+                init
+            );
+        }
+
+        window.addEventListener(
+            "sharedSidebarLoaded",
+            () => {
+                if (typeof lucide !== "undefined") {
+                    lucide.createIcons();
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>

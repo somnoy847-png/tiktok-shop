@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        การแจ้งเตือน - TikTok Shop
+    </title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+
+    <!-- =====================================================
+         FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         LUCIDE
+    ====================================================== -->
+
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            background:
+                #f6f7f9;
+
+            color:
+                #111827;
+
+        }
+
+
+        button,
+        input {
+
+            font-family:
+                inherit;
+
+        }
+
+
+        /* =====================================================
+           PAGE
+        ====================================================== */
+
+        .user-notifications-page {
+
+            width:
+                100%;
+
+            min-height:
+                100vh;
+
+            padding:
+                30px 20px 50px;
+
+        }
+
+
+        .notifications-container {
+
+            width:
+                100%;
+
+            max-width:
+                850px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .notifications-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .notifications-header-left {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                13px;
+
+            min-width:
+                0;
+
+        }
+
+
+        .back-button {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            min-width:
+                42px;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius:
+                12px;
+
+            background:
+                #ffffff;
+
+            color:
+                #111827;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            cursor:
+                pointer;
+
+            transition:
+                .15s ease;
+
+        }
+
+
+        .back-button:hover {
+
+            background:
+                #f3f4f6;
+
+        }
+
+
+        .notifications-title-area {
+
+            min-width:
+                0;
+
+        }
+
+
+        .notifications-title {
+
+            margin:
+                0;
+
+            font-size:
+                22px;
+
+            font-weight:
+                800;
+
+            color:
+                #111827;
+
+        }
+
+
+        .notifications-subtitle {
+
+            margin-top:
+                4px;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                11px;
+
+        }
+
+
+        /* =====================================================
+           READ ALL
+        ====================================================== */
+
+        .read-all-button {
+
+            height:
+                40px;
+
+            padding:
+                0 14px;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius:
+                10px;
+
+            background:
+                #ffffff;
+
+            color:
+                #374151;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .read-all-button:hover {
+
+            background:
+                #f9fafb;
+
+        }
+
+
+        .read-all-button:disabled {
+
+            opacity:
+                .5;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        /* =====================================================
+           UNREAD SUMMARY
+        ====================================================== */
+
+        .notifications-summary {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                14px;
+
+            padding:
+                13px 16px;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius:
+                13px;
+
+            background:
+                #ffffff;
+
+        }
+
+
+        .summary-left {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+        }
+
+
+        .summary-dot {
+
+            width:
+                9px;
+
+            height:
+                9px;
+
+            border-radius:
+                50%;
+
+            background:
+                #ef4444;
+
+        }
+
+
+        .summary-text {
+
+            color:
+                #4b5563;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .summary-count {
+
+            color:
+                #111827;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           NOTIFICATION LIST
+        ====================================================== */
+
+        .notifications-list {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                12px;
+
+        }
+
+
+        /* =====================================================
+           NOTIFICATION ITEM
+        ====================================================== */
+
+        .user-notification {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            padding:
+                17px;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius:
+                16px;
+
+            background:
+                #ffffff;
+
+            cursor:
+                pointer;
+
+            transition:
+                border-color .15s ease,
+                background .15s ease,
+                box-shadow .15s ease;
+
+        }
+
+
+        .user-notification:hover {
+
+            border-color:
+                #d1d5db;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,.04);
+
+        }
+
+
+        /* =====================================================
+           UNREAD
+        ====================================================== */
+
+        .user-notification.unread {
+
+            background:
+                #ffffff;
+
+            border-color:
+                #d1d5db;
+
+        }
+
+
+        .user-notification.unread::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                0;
+
+            top:
+                16px;
+
+            bottom:
+                16px;
+
+            width:
+                3px;
+
+            border-radius:
+                0 5px 5px 0;
+
+            background:
+                #ef4444;
+
+        }
+
+
+        /* =====================================================
+           NOTIFICATION TOP
+        ====================================================== */
+
+        .user-notification-top {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                12px;
+
+        }
+
+
+        /* =====================================================
+           TIKTOK SHOP LOGO
+        ====================================================== */
+
+        .notification-logo {
+
+            width:
+                44px;
+
+            height:
+                44px;
+
+            min-width:
+                44px;
+
+            border-radius:
+                12px;
+
+            background:
+                #111111;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .notification-logo img {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            object-fit:
+                contain;
+
+            display:
+                block;
+
+            border-radius:
+                9px;
+
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ====================================================== */
+
+        .notification-content {
+
+            flex:
+                1;
+
+            min-width:
+                0;
+
+        }
+
+
+        .notification-title-row {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+        }
+
+
+        .notification-title {
+
+            color:
+                #111827;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.4;
+
+            word-break:
+                break-word;
+
+        }
+
+
+        .notification-time {
+
+            flex-shrink:
+                0;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                9px;
+
+            white-space:
+                nowrap;
+
+        }
+
+
+        .notification-message {
+
+            margin-top:
+                7px;
+
+            color:
+                #4b5563;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.65;
+
+            white-space:
+                pre-line;
+
+            word-break:
+                break-word;
+
+            text-align:
+                left;
+
+        }
+
+
+        /* =====================================================
+           IMAGE
+        ====================================================== */
+
+        .notification-image {
+
+            display:
+                block;
+
+            width:
+                auto;
+
+            max-width:
+                100%;
+
+            max-height:
+                360px;
+
+            margin-top:
+                14px;
+
+            border-radius:
+                12px;
+
+            object-fit:
+                contain;
+
+            background:
+                #f3f4f6;
+
+        }
+
+
+        /* =====================================================
+           LINK
+        ====================================================== */
+
+        .notification-link {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            margin-top:
+                13px;
+
+            padding:
+                9px 13px;
+
+            border-radius:
+                9px;
+
+            background:
+                #111827;
+
+            color:
+                #ffffff;
+
+            text-decoration:
+                none;
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+        }
+
+
+        .notification-link:hover {
+
+            opacity:
+                .9;
+
+        }
+
+
+        /* =====================================================
+           UNREAD BADGE
+        ====================================================== */
+
+        .unread-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            margin-top:
+                10px;
+
+            padding:
+                4px 7px;
+
+            border-radius:
+                999px;
+
+            background:
+                #fee2e2;
+
+            color:
+                #dc2626;
+
+            font-size:
+                9px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ====================================================== */
+
+        .notifications-empty {
+
+            min-height:
+                430px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                40px 20px;
+
+            border:
+                1px solid #e5e7eb;
+
+            border-radius:
+                16px;
+
+            background:
+                #ffffff;
+
+            text-align:
+                center;
+
+        }
+
+
+        .notifications-empty-icon {
+
+            width:
+                72px;
+
+            height:
+                72px;
+
+            margin-bottom:
+                15px;
+
+            border-radius:
+                50%;
+
+            background:
+                #f3f4f6;
+
+            color:
+                #9ca3af;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+        }
+
+
+        .notifications-empty-icon svg {
+
+            width:
+                31px;
+
+            height:
+                31px;
+
+        }
+
+
+        .notifications-empty h3 {
+
+            margin:
+                0 0 5px;
+
+            color:
+                #4b5563;
+
+            font-size:
+                15px;
+
+        }
+
+
+        .notifications-empty p {
+
+            margin:
+                0;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                11px;
+
+        }
+
+
+        /* =====================================================
+           LOADING
+        ====================================================== */
+
+        .notifications-loading {
+
+            min-height:
+                250px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                #9ca3af;
+
+            font-size:
+                12px;
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        .notification-toast {
+
+            position:
+                fixed;
+
+            right:
+                20px;
+
+            bottom:
+                20px;
+
+            z-index:
+                99999;
+
+            max-width:
+                340px;
+
+            padding:
+                12px 15px;
+
+            border-radius:
+                10px;
+
+            background:
+                #111827;
+
+            color:
+                #ffffff;
+
+            font-size:
+                11px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.18);
+
+            opacity:
+                0;
+
+            transform:
+                translateY(15px);
+
+            pointer-events:
+                none;
+
+            transition:
+                .2s ease;
+
+        }
+
+
+        .notification-toast.show {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .notification-toast.error {
+
+            background:
+                #dc2626;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 700px) {
+
+            .user-notifications-page {
+
+                padding:
+                    18px 12px 30px;
+
+            }
+
+
+            .notifications-header {
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .notifications-title {
+
+                font-size:
+                    19px;
+
+            }
+
+
+            .notifications-subtitle {
+
+                font-size:
+                    10px;
+
+            }
+
+
+            .read-all-button {
+
+                padding:
+                    0 10px;
+
+            }
+
+
+            .read-all-button span {
+
+                display:
+                    none;
+
+            }
+
+
+            .notifications-summary {
+
+                padding:
+                    11px 13px;
+
+            }
+
+
+            .user-notification {
+
+                padding:
+                    14px;
+
+            }
+
+
+            .notification-logo {
+
+                width:
+                    40px;
+
+                height:
+                    40px;
+
+                min-width:
+                    40px;
+
+            }
+
+
+            .notification-logo img {
+
+                width:
+                    31px;
+
+                height:
+                    31px;
+
+            }
+
+
+            .notification-title {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .notification-message {
+
+                font-size:
+                    11px;
+
+            }
+
+
+            .notification-image {
+
+                max-height:
+                    280px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main
+        class="user-notifications-page"
+    >
+
+        <div
+            class="notifications-container"
+        >
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <header
+                class="notifications-header"
+            >
+
+
+                <div
+                    class="notifications-header-left"
+                >
+
+                    <button
+                        type="button"
+                        class="back-button"
+                        id="backButton"
+                        aria-label="ย้อนกลับ"
+                    >
+
+                        <i
+                            data-lucide="arrow-left"
+                        ></i>
+
+                    </button>
+
+
+                    <div
+                        class="notifications-title-area"
+                    >
+
+                        <h1
+                            class="notifications-title"
+                        >
+                            การแจ้งเตือน
+                        </h1>
+
+
+                        <div
+                            class="notifications-subtitle"
+                            id="notificationSubtitle"
+                        >
+                            กำลังโหลด...
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="read-all-button"
+                    id="readAllButton"
+                >
+
+                    <i
+                        data-lucide="check-check"
+                    ></i>
+
+                    <span>
+                        อ่านทั้งหมด
+                    </span>
+
+                </button>
+
+            </header>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+
+            <div
+                class="notifications-summary"
+            >
+
+                <div
+                    class="summary-left"
+                >
+
+                    <span
+                        class="summary-dot"
+                    ></span>
+
+                    <div
+                        class="summary-text"
+                    >
+
+                        ยังไม่ได้อ่าน
+
+                        <span
+                            class="summary-count"
+                            id="unreadCount"
+                        >
+                            0
+                        </span>
+
+                        รายการ
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LIST
+            ================================================== -->
+
+            <section
+                class="notifications-list"
+                id="notificationsList"
+            >
+
+                <div
+                    class="notifications-empty"
+                >
+
+                    <div
+                        class="notifications-empty-icon"
+                    >
+
+                        <i
+                            data-lucide="loader-circle"
+                        ></i>
+
+                    </div>
+
+                    <h3>
+                        กำลังโหลด
+                    </h3>
+
+                    <p>
+                        กำลังโหลดการแจ้งเตือนของคุณ...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="notification-toast"
+        id="toast"
+    ></div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           API
+        ====================================================== */
+
+        const API_BASE_URL =
+            "/api/notifications";
+
+
+        /* =====================================================
+           STATE
+        ====================================================== */
+
+        let notifications = [];
+
+
+        /* =====================================================
+           GET TOKEN
+        ====================================================== */
+
+        function getToken() {
+
+            const keys = [
+
+                "tiktokShopToken",
+
+                "tiktokShopJWT",
+
+                "authToken",
+
+                "token"
+
+            ];
+
+
+            for (
+                const key of keys
+            ) {
+
+                const token =
+                    localStorage.getItem(
+                        key
+                    );
+
+
+                if (token) {
+
+                    return token;
+
+                }
+
+            }
+
+
+            return "";
+
+        }
+
+
+        /* =====================================================
+           API FETCH
+        ====================================================== */
+
+        async function apiFetch(
+            url,
+            options = {}
+        ) {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                throw new Error(
+                    "ไม่พบ Token กรุณาเข้าสู่ระบบก่อน"
+                );
+
+            }
+
+
+            const headers = {
+
+                ...(options.headers || {}),
+
+                Authorization:
+                    `Bearer ${token}`
+
+            };
+
+
+            if (
+                options.body &&
+                typeof options.body ===
+                "string"
+            ) {
+
+                headers[
+                    "Content-Type"
+                ] =
+                    "application/json";
+
+            }
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
+
+
+            let data = {};
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+
+            catch {
+
+                data = {};
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+
+                    data.message ||
+                    `Request failed (${response.status})`
+
+                );
+
+            }
+
+
+            return data;
+
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ====================================================== */
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value ?? ""
+            )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+        /* =====================================================
+           SAFE URL
+        ====================================================== */
+
+        function safeURL(
+            value
+        ) {
+
+            const raw =
+                String(
+                    value ?? ""
+                ).trim();
+
+
+            if (!raw) {
+
+                return "";
+
+            }
+
+
+            /*
+            -----------------------------------------
+            รองรับ URL แบบ absolute
+            -----------------------------------------
+            */
+
+            try {
+
+                const url =
+                    new URL(
+                        raw,
+                        window.location.origin
+                    );
+
+
+                if (
+                    url.protocol ===
+                    "http:" ||
+                    url.protocol ===
+                    "https:"
+                ) {
+
+                    return url.href;
+
+                }
+
+            }
+
+            catch {
+
+                return "";
+
+            }
+
+
+            return "";
+
+        }
+
+
+        /* =====================================================
+           FORMAT DATE
+        ====================================================== */
+
+        function formatDate(
+            value
+        ) {
+
+            if (!value) {
+
+                return "";
+
+            }
+
+
+            const date =
+                new Date(
+                    value
+                );
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "";
+
+            }
+
+
+            return date.toLocaleString(
+                "th-TH",
+                {
+
+                    day:
+                        "2-digit",
+
+                    month:
+                        "2-digit",
+
+                    year:
+                        "numeric",
+
+                    hour:
+                        "2-digit",
+
+                    minute:
+                        "2-digit"
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           TOAST
+        ====================================================== */
+
+        let toastTimer = null;
+
+
+        function showToast(
+            message,
+            type = "success"
+        ) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.className =
+                `notification-toast show ${type}`;
+
+
+            clearTimeout(
+                toastTimer
+            );
+
+
+            toastTimer =
+                setTimeout(
+                    function() {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2500
+                );
+
+        }
+
+
+        /* =====================================================
+           LUCIDE
+        ====================================================== */
+
+        function refreshIcons() {
+
+            if (
+                typeof lucide !==
+                "undefined"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOAD NOTIFICATIONS
+        ====================================================== */
+
+        async function loadNotifications() {
+
+            const list =
+                document.getElementById(
+                    "notificationsList"
+                );
+
+
+            list.innerHTML = `
+
+                <div class="notifications-empty">
+
+                    <div class="notifications-empty-icon">
+
+                        <i data-lucide="loader-circle"></i>
+
+                    </div>
+
+                    <h3>
+                        กำลังโหลด
+                    </h3>
+
+                    <p>
+                        กำลังโหลดการแจ้งเตือนของคุณ...
+                    </p>
+
+                </div>
+
+            `;
+
+
+            refreshIcons();
+
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        API_BASE_URL
+                    );
+
+
+                notifications =
+                    Array.isArray(
+                        data.notifications
+                    )
+                        ? data.notifications
+                        : [];
+
+
+                renderNotifications();
+
+
+                await updateUnreadCount();
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load notifications error:",
+                    error
+                );
+
+
+                list.innerHTML = `
+
+                    <div class="notifications-empty">
+
+                        <div class="notifications-empty-icon">
+
+                            <i data-lucide="alert-circle"></i>
+
+                        </div>
+
+                        <h3>
+                            โหลดการแจ้งเตือนไม่สำเร็จ
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                error.message
+                            )}
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+
+                document.getElementById(
+                    "notificationSubtitle"
+                ).textContent =
+                    "ไม่สามารถโหลดข้อมูลได้";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RENDER NOTIFICATIONS
+        ====================================================== */
+
+        function renderNotifications() {
+
+            const list =
+                document.getElementById(
+                    "notificationsList"
+                );
+
+
+            if (
+                !notifications.length
+            ) {
+
+                list.innerHTML = `
+
+                    <div class="notifications-empty">
+
+                        <div class="notifications-empty-icon">
+
+                            <i data-lucide="bell-off"></i>
+
+                        </div>
+
+                        <h3>
+                            ยังไม่มีการแจ้งเตือน
+                        </h3>
+
+                        <p>
+                            เมื่อมีการแจ้งเตือนใหม่ จะแสดงที่หน้านี้
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                document.getElementById(
+                    "notificationSubtitle"
+                ).textContent =
+                    "ไม่มีการแจ้งเตือน";
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            list.innerHTML =
+                notifications
+                    .map(
+                        notification =>
+                            renderNotification(
+                                notification
+                            )
+                    )
+                    .join("");
+
+
+            const unread =
+                notifications.filter(
+                    item =>
+                        !item.isRead
+                ).length;
+
+
+            document.getElementById(
+                "notificationSubtitle"
+            ).textContent =
+                `${notifications.length} รายการ`;
+
+
+            document.getElementById(
+                "unreadCount"
+            ).textContent =
+                unread;
+
+
+            refreshIcons();
+
+        }
+
+
+        /* =====================================================
+           RENDER ONE
+        ====================================================== */
+
+        function renderNotification(
+            notification
+        ) {
+
+            const isUnread =
+                !notification.isRead;
+
+
+            const title =
+                notification.title ||
+                "การแจ้งเตือน";
+
+
+            const message =
+                notification.message ||
+                "";
+
+
+            const imageUrl =
+                safeURL(
+                    notification.imageUrl
+                );
+
+
+            const linkUrl =
+                safeURL(
+                    notification.linkUrl
+                );
+
+
+            return `
+
+                <article
+                    class="user-notification ${isUnread ? "unread" : ""}"
+                    data-notification-id="${escapeHTML(
+                        notification._id || ""
+                    )}"
+                >
+
+
+                    <div
+                        class="user-notification-top"
+                    >
+
+
+                        <div
+                            class="notification-logo"
+                        >
+
+                            <img
+                                src="images/logo.png"
+                                alt="TikTok Shop"
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="notification-content"
+                        >
+
+
+                            <div
+                                class="notification-title-row"
+                            >
+
+                                <div
+                                    class="notification-title"
+                                >
+                                    ${escapeHTML(
+                                        title
+                                    )}
+                                </div>
+
+
+                                <div
+                                    class="notification-time"
+                                >
+                                    ${formatDate(
+                                        notification.createdAt
+                                    )}
+                                </div>
+
+                            </div>
+
+
+                            ${
+                                message
+                                    ? `
+                                        <div
+                                            class="notification-message"
+                                        >${escapeHTML(
+                                            message
+                                        )}</div>
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                imageUrl
+                                    ? `
+                                        <img
+                                            class="notification-image"
+                                            src="${escapeHTML(
+                                                imageUrl
+                                            )}"
+                                            alt="รูปภาพการแจ้งเตือน"
+                                            loading="lazy"
+                                        >
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                linkUrl
+                                    ? `
+                                        <a
+                                            class="notification-link"
+                                            href="${escapeHTML(
+                                                linkUrl
+                                            )}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-notification-link="true"
+                                        >
+
+                                            <i
+                                                data-lucide="external-link"
+                                            ></i>
+
+                                            ดูรายละเอียด
+
+                                        </a>
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                isUnread
+                                    ? `
+                                        <div
+                                            class="unread-badge"
+                                        >
+                                            ยังไม่ได้อ่าน
+                                        </div>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+           GET UNREAD COUNT
+        ====================================================== */
+
+        async function updateUnreadCount() {
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        `${API_BASE_URL}/unread-count`
+                    );
+
+
+                const count =
+                    Number(
+                        data.count || 0
+                    );
+
+
+                document.getElementById(
+                    "unreadCount"
+                ).textContent =
+                    count;
+
+
+                /*
+                -----------------------------------------
+                อัปเดต badge ที่กระดิ่งด้วย
+                -----------------------------------------
+                */
+
+                if (
+                    window
+                        .TikTokShopNotifications &&
+                    typeof window
+                        .TikTokShopNotifications
+                        .updateBadge ===
+                        "function"
+                ) {
+
+                    window
+                        .TikTokShopNotifications
+                        .updateBadge(
+                            count
+                        );
+
+                }
+
+
+                return count;
+
+            }
+
+            catch (error) {
+
+                console.warn(
+                    "Unread count error:",
+                    error.message
+                );
+
+
+                return 0;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MARK ONE AS READ
+        ====================================================== */
+
+        async function markAsRead(
+            notificationId
+        ) {
+
+            if (!notificationId) {
+
+                return;
+
+            }
+
+
+            try {
+
+                await apiFetch(
+
+                    `${API_BASE_URL}/${encodeURIComponent(
+                        notificationId
+                    )}/read`,
+
+                    {
+                        method:
+                            "PATCH"
+                    }
+
+                );
+
+
+                /*
+                -----------------------------------------
+                Update local state
+                -----------------------------------------
+                */
+
+                const notification =
+                    notifications.find(
+                        item =>
+                            String(
+                                item._id
+                            ) ===
+                            String(
+                                notificationId
+                            )
+                    );
+
+
+                if (notification) {
+
+                    notification.isRead =
+                        true;
+
+                    notification.readAt =
+                        new Date()
+                            .toISOString();
+
+                }
+
+
+                renderNotifications();
+
+
+                await updateUnreadCount();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Mark notification read error:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MARK ALL AS READ
+        ====================================================== */
+
+        async function markAllAsRead() {
+
+            const unreadCount =
+                notifications.filter(
+                    item =>
+                        !item.isRead
+                ).length;
+
+
+            if (
+                unreadCount <= 0
+            ) {
+
+                showToast(
+                    "ไม่มีแจ้งเตือนที่ยังไม่ได้อ่าน"
+                );
+
+
+                return;
+
+            }
+
+
+            const button =
+                document.getElementById(
+                    "readAllButton"
+                );
+
+
+            button.disabled =
+                true;
+
+
+            try {
+
+                await apiFetch(
+
+                    `${API_BASE_URL}/read-all`,
+
+                    {
+                        method:
+                            "PATCH"
+                    }
+
+                );
+
+
+                notifications =
+                    notifications.map(
+                        item => ({
+
+                            ...item,
+
+                            isRead:
+                                true,
+
+                            readAt:
+                                new Date()
+                                    .toISOString()
+
+                        })
+                    );
+
+
+                renderNotifications();
+
+
+                await updateUnreadCount();
+
+
+                showToast(
+                    "อ่านการแจ้งเตือนทั้งหมดแล้ว"
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Mark all notifications read error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message ||
+                    "ไม่สามารถอ่านทั้งหมดได้",
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                button.disabled =
+                    false;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           NOTIFICATION CLICK
+        ====================================================== */
+
+        async function handleNotificationClick(
+            event
+        ) {
+
+            /*
+            -----------------------------------------
+            ถ้าคลิก Link
+            ให้ Link ทำงานตามปกติ
+            -----------------------------------------
+            */
+
+            const link =
+                event.target.closest(
+                    "a"
+                );
+
+
+            if (link) {
+
+                return;
+
+            }
+
+
+            const card =
+                event.target.closest(
+                    ".user-notification"
+                );
+
+
+            if (!card) {
+
+                return;
+
+            }
+
+
+            const notificationId =
+                card.dataset
+                    .notificationId;
+
+
+            if (!notificationId) {
+
+                return;
+
+            }
+
+
+            const notification =
+                notifications.find(
+                    item =>
+                        String(
+                            item._id
+                        ) ===
+                        String(
+                            notificationId
+                        )
+                );
+
+
+            if (!notification) {
+
+                return;
+
+            }
+
+
+            /*
+            -----------------------------------------
+            ถ้ายังไม่ได้อ่าน
+            -----------------------------------------
+            */
+
+            if (
+                !notification.isRead
+            ) {
+
+                await markAsRead(
+                    notificationId
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BACK
+        ====================================================== */
+
+        function goBack() {
+
+            /*
+            -----------------------------------------
+            ถ้ามี history
+            -----------------------------------------
+            */
+
+            if (
+                window.history.length >
+                1
+            ) {
+
+                window.history.back();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+        /* =====================================================
+           EVENTS
+        ====================================================== */
+
+        document
+            .getElementById(
+                "backButton"
+            )
+            .addEventListener(
+                "click",
+                goBack
+            );
+
+
+        document
+            .getElementById(
+                "readAllButton"
+            )
+            .addEventListener(
+                "click",
+                markAllAsRead
+            );
+
+
+        document
+            .getElementById(
+                "notificationsList"
+            )
+            .addEventListener(
+                "click",
+                handleNotificationClick
+            );
+
+
+        /* =====================================================
+           INITIALIZE
+        ====================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async function() {
+
+                refreshIcons();
+
+                await loadNotifications();
+
+            }
+        );
+
+
+        /* =====================================================
+           AUTO REFRESH
+           ทุก 10 วินาที
+        ====================================================== */
+
+        setInterval(
+            async function() {
+
+                /*
+                -----------------------------------------
+                ถ้าหน้านี้ยังเปิดอยู่
+                -----------------------------------------
+                */
+
+                if (
+                    document.visibilityState ===
+                    "visible"
+                ) {
+
+                    await loadNotifications();
+
+                }
+
+            },
+            10000
+        );
+
+
+    </script>
+
+
+    <!-- =====================================================
+         GLOBAL NOTIFICATION JS
+    ====================================================== -->
+
+    <script
+        src="js/notifications.js"
+    ></script>
+
+
+</body>
+
+</html>

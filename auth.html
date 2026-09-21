@@ -1,0 +1,4278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <meta
+        name="theme-color"
+        content="#ffffff"
+    >
+
+    <title>TikTok Shop</title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            color: #171717;
+
+            background:
+                radial-gradient(
+                    circle at 15% 90%,
+                    rgba(37,211,102,.08),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(254,44,85,.08),
+                    transparent 28%
+                ),
+                #f7f7f7;
+
+            overflow-x: hidden;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        input,
+        select {
+            font-size: 16px !important;
+        }
+
+
+        /* =========================================
+           TOP BAR
+        ========================================== */
+
+        .topbar {
+            width: 100%;
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 28px;
+
+            background: rgba(255,255,255,.96);
+
+            border-bottom: 1px solid #ededed;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            backdrop-filter: blur(14px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            text-decoration: none;
+            color: #171717;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            overflow: hidden;
+
+            background: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+       .brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+        .brand-fallback {
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .brand-text strong {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .brand-text span {
+            margin-top: 4px;
+
+            font-size: 12px;
+
+            color: #8b8b8b;
+
+            font-weight: 500;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-button,
+        .home-button {
+            height: 42px;
+
+            padding: 0 13px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 7px;
+
+            border: 1px solid #dedede;
+
+            background: #fff;
+
+            border-radius: 12px;
+
+            color: #171717;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+            transition: .2s ease;
+        }
+
+        .language-button:hover,
+        .home-button:hover {
+            border-color: #cfcfcf;
+            transform: translateY(-1px);
+        }
+
+        .language-button svg,
+        .home-button svg {
+            width: 17px;
+            height: 17px;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================== */
+
+        .page {
+            width: 100%;
+            min-height: calc(100vh - 72px);
+
+            display: flex;
+            justify-content: center;
+
+            padding: 26px 16px 60px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 620px;
+
+            background: #fff;
+
+            border: 1px solid #e2e2e2;
+
+            border-radius: 20px;
+
+            padding: 34px 38px 40px;
+
+            box-shadow:
+                0 18px 60px rgba(0,0,0,.06);
+
+            align-self: flex-start;
+        }
+
+
+        /* =========================================
+           MODE SWITCH
+        ========================================== */
+
+        .mode-switch {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 5px;
+
+            padding: 5px;
+
+            background: #f3f3f3;
+
+            border-radius: 12px;
+
+            margin-bottom: 28px;
+        }
+
+        .mode-button {
+            height: 42px;
+
+            border: 0;
+
+            border-radius: 9px;
+
+            background: transparent;
+
+            color: #777;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+        .mode-button.active {
+            background: #fff;
+
+            color: #171717;
+
+            box-shadow:
+                0 3px 12px rgba(0,0,0,.07);
+        }
+
+
+        /* =========================================
+           VIEWS
+        ========================================== */
+
+        .auth-view {
+            display: none;
+        }
+
+        .auth-view.active {
+            display: block;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================== */
+
+        .auth-header {
+            text-align: center;
+
+            margin-bottom: 28px;
+        }
+
+        .auth-icon {
+            width: 48px;
+            height: 48px;
+
+            margin: 0 auto 13px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(254,44,85,.08);
+
+            color: #fe2c55;
+        }
+
+        .auth-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+
+            color: #fe2c55;
+
+            font-size: 10px;
+
+            letter-spacing: .18em;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+        }
+
+        .auth-header h1 {
+            margin: 0;
+
+            font-size: 28px;
+
+            line-height: 1.25;
+
+            font-weight: 800;
+
+            letter-spacing: -.03em;
+        }
+
+        .auth-header p {
+            margin: 8px 0 0;
+
+            color: #8a8a8a;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================== */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #333;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper > svg {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 18px;
+    height: 18px;
+
+    color: #9a9a9a;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+        .input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid #dcdcdc;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #fff;
+
+    color: #171717;
+
+    padding: 0 14px 0 43px;
+
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+
+/* =========================================
+   SELECT FIX
+   ป้องกันข้อความชนกับไอคอนบนมือถือ
+========================================= */
+
+.input-wrapper select {
+    padding-left: 60px !important;
+
+    padding-right: 42px !important;
+
+    -webkit-appearance: none;
+    appearance: none;
+
+    text-indent: 0 !important;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ลูกศรของช่อง Select */
+
+.input-wrapper:has(select)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 16px;
+
+    top: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border-right: 2px solid #777;
+    border-bottom: 2px solid #777;
+
+    transform:
+        translateY(-65%)
+        rotate(45deg);
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+        .input-wrapper input::placeholder {
+            color: #aaa;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
+            border-color: #fe2c55;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(254,44,85,.08);
+        }
+
+        .password-wrapper input {
+            padding-right: 48px;
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 7px;
+            top: 50%;
+
+            width: 36px;
+            height: 36px;
+
+            transform: translateY(-50%);
+
+            border: 0;
+
+            background: transparent;
+
+            color: #999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+        }
+
+        .password-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .field-error {
+            display: block;
+
+            min-height: 16px;
+
+            margin-top: 5px;
+
+            color: #e51d48;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           ACCOUNT TYPE
+        ========================================== */
+
+        .section-title {
+            margin: 0 0 10px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #444;
+        }
+
+        .account-type-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .account-type {
+            width: 100%;
+
+            min-height: 84px;
+
+            padding: 12px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            border: 1px solid #dedede;
+
+            border-radius: 12px;
+
+            background: #fff;
+
+            color: #171717;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            position: relative;
+
+            transition:
+                border-color .18s ease,
+                background .18s ease,
+                box-shadow .18s ease,
+                transform .12s ease;
+        }
+
+        .account-type:hover {
+            border-color: #c8c8c8;
+        }
+
+        .account-type.active {
+            border-color: #fe2c55;
+
+            background:
+                rgba(254,44,85,.035);
+
+            box-shadow:
+                0 0 0 1px
+                rgba(254,44,85,.04);
+        }
+
+        .account-type.disabled {
+            opacity: .48;
+
+            cursor: not-allowed;
+
+            background: #f7f7f7;
+        }
+
+        .account-type-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f2f2f2;
+
+            color: #555;
+
+            flex-shrink: 0;
+        }
+
+        .account-type.active .account-type-icon {
+            background:
+                rgba(254,44,85,.10);
+
+            color: #fe2c55;
+        }
+
+        .account-type-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .account-type-info {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-type-info strong {
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+        .account-type-info span {
+            color: #999;
+
+            font-size: 10px;
+
+            line-height: 1.3;
+        }
+
+        .account-radio {
+            width: 16px;
+            height: 16px;
+
+            border: 1.5px solid #c9c9c9;
+
+            border-radius: 50%;
+
+            margin-left: auto;
+
+            flex-shrink: 0;
+
+            position: relative;
+        }
+
+        .account-type.active .account-radio {
+            border-color: #fe2c55;
+        }
+
+        .account-type.active .account-radio::after {
+            content: "";
+
+            position: absolute;
+
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #fe2c55;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+
+        /* =========================================
+           RESTRICTION
+        ========================================== */
+
+        .restriction-message {
+            display: none;
+
+            margin-bottom: 17px;
+
+            padding: 10px 12px;
+
+            border-radius: 9px;
+
+            background: #fff5f6;
+
+            border: 1px solid #ffd0d8;
+
+            color: #d81f46;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            align-items: flex-start;
+
+            gap: 8px;
+        }
+
+        .restriction-message.show {
+            display: flex;
+        }
+
+        .restriction-message svg {
+            width: 16px;
+            height: 16px;
+
+            flex-shrink: 0;
+
+            margin-top: 1px;
+        }
+
+
+        /* =========================================
+           SHOP NAME
+        ========================================== */
+
+        #shopNameGroup {
+            display: none;
+        }
+
+        #shopNameGroup.show {
+            display: block;
+        }
+
+
+        /* =========================================
+           PASSWORD STRENGTH
+        ========================================== */
+
+        .strength {
+            margin-top: 7px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .strength-bars {
+            display: flex;
+
+            gap: 4px;
+
+            flex: 1;
+        }
+
+        .strength-bars span {
+            height: 4px;
+
+            flex: 1;
+
+            border-radius: 10px;
+
+            background: #e5e5e5;
+
+            transition:
+                background .2s ease;
+        }
+
+        .strength-bars span.active {
+            background: #fe2c55;
+        }
+
+        .strength-text {
+            min-width: 82px;
+
+            color: #999;
+
+            font-size: 10px;
+
+            text-align: right;
+        }
+
+
+        /* =========================================
+           REMEMBER
+        ========================================== */
+
+        .remember-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin:
+                3px 0 18px;
+        }
+
+        .remember-label {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #777;
+
+            font-size: 11px;
+
+            cursor: pointer;
+        }
+
+        .remember-label input {
+            width: 15px;
+            height: 15px;
+
+            accent-color: #fe2c55;
+        }
+
+        .forgot-link {
+            color: #fe2c55;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            cursor: pointer;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================== */
+
+        .submit-button {
+            width: 100%;
+
+            height: 50px;
+
+            border: 0;
+
+            border-radius: 11px;
+
+            background: #fe2c55;
+
+            color: #fff;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            box-shadow:
+                0 12px 28px
+                rgba(254,44,85,.18);
+
+            transition: .18s ease;
+        }
+
+        .submit-button:hover {
+            background: #ed2149;
+
+            transform: translateY(-1px);
+        }
+
+        .submit-button:active {
+            transform:
+                translateY(0)
+                scale(.99);
+        }
+
+        .submit-button:disabled {
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+        .submit-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .loading-spinner {
+            width: 18px;
+            height: 18px;
+
+            border: 2px solid rgba(255,255,255,.35);
+
+            border-top-color: #fff;
+
+            border-radius: 50%;
+
+            animation:
+                spin .7s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =========================================
+           ERROR
+        ========================================== */
+
+        .error-box {
+            display: none;
+
+            margin-bottom: 17px;
+
+            padding: 11px 12px;
+
+            border-radius: 10px;
+
+            background: #fff5f6;
+
+            border: 1px solid #ffd0d8;
+
+            color: #d81f46;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            align-items: flex-start;
+
+            gap: 8px;
+        }
+
+        .error-box.show {
+            display: flex;
+        }
+
+        .error-box svg {
+            width: 16px;
+            height: 16px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================
+           SECURITY / SWITCH
+        ========================================== */
+
+        .security-note {
+            margin: 14px 0 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            color: #999;
+
+            font-size: 10px;
+
+            text-align: center;
+        }
+
+        .security-note svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .auth-divider {
+            margin:
+                23px 0 17px;
+
+            border-top:
+                1px solid #ededed;
+
+            text-align: center;
+        }
+
+        .auth-divider span {
+            position: relative;
+
+            top: -8px;
+
+            padding: 0 10px;
+
+            background: #fff;
+
+            color: #aaa;
+
+            font-size: 10px;
+        }
+
+        .auth-switch {
+            text-align: center;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+        .auth-switch a {
+            color: #fe2c55;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            margin-left: 4px;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================================
+           SUCCESS MODAL
+        ========================================== */
+
+        .success-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,.45);
+
+            backdrop-filter: blur(5px);
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-card {
+            width: 100%;
+            max-width: 360px;
+
+            padding: 30px 24px;
+
+            background: #fff;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 70px rgba(0,0,0,.18);
+        }
+
+        .success-icon {
+            width: 58px;
+            height: 58px;
+
+            margin:
+                0 auto 15px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eafaf0;
+
+            color: #20a95a;
+        }
+
+        .success-icon svg {
+            width: 29px;
+            height: 29px;
+        }
+
+        .success-card h2 {
+            margin: 0;
+
+            font-size: 19px;
+
+            font-weight: 800;
+        }
+
+        .success-card p {
+            margin:
+                9px 0 20px;
+
+            color: #888;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        .loader {
+            width: 25px;
+            height: 25px;
+
+            margin: 0 auto;
+
+            border:
+                3px solid #eee;
+
+            border-top-color:
+                #fe2c55;
+
+            border-radius: 50%;
+
+            animation:
+                spin .7s linear infinite;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 650px) {
+
+            .topbar {
+                height: 64px;
+
+                padding:
+                    0 14px;
+            }
+
+            .brand-text span {
+                display: none;
+            }
+
+            .brand-logo {
+                width: 38px;
+                height: 38px;
+            }
+
+            .home-button span {
+                display: none;
+            }
+
+            .page {
+                padding:
+                    15px 10px 40px;
+            }
+
+            .auth-card {
+                padding:
+                    24px 18px 28px;
+
+                border-radius: 16px;
+            }
+
+            .auth-header h1 {
+                font-size: 24px;
+            }
+
+            .account-type-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .remember-row {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TOP BAR
+    ========================================== -->
+
+    <header class="topbar">
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <div class="brand-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="TikTok Shop"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+                >
+
+                <span
+                    class="brand-fallback"
+                    style="display:none;"
+                >
+                    T
+                </span>
+
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    TikTok Shop
+                </strong>
+
+                <span>
+                    Shop • Sell • Grow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="topbar-right">
+
+        
+
+
+            <button
+                type="button"
+                class="language-button"
+                id="languageToggle"
+            >
+
+                <i data-lucide="globe"></i>
+
+                <span id="languageLabel">
+                    TH
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         PAGE
+    ========================================== -->
+
+    <main class="page">
+
+
+        <section class="auth-card">
+
+
+            <!-- =================================
+                 LOGIN / REGISTER SWITCH
+            ================================== -->
+
+            <div class="mode-switch">
+
+                <button
+                    type="button"
+                    class="mode-button"
+                    id="loginModeButton"
+                    data-mode="login"
+                >
+                    <span data-i18n="loginTab">
+                        Log In
+                    </span>
+                </button>
+
+
+                <button
+                    type="button"
+                    class="mode-button"
+                    id="registerModeButton"
+                    data-mode="register"
+                >
+                    <span data-i18n="registerTab">
+                        Create Account
+                    </span>
+                </button>
+
+            </div>
+
+
+            <!-- =================================
+                 LOGIN VIEW
+            ================================== -->
+
+            <div
+                class="auth-view"
+                id="loginView"
+            >
+
+                <div class="auth-header">
+
+                    <div class="auth-icon">
+
+                        <i data-lucide="log-in"></i>
+
+                    </div>
+
+                    <div
+                        class="eyebrow"
+                        data-i18n="loginEyebrow"
+                    >
+                        WELCOME BACK
+                    </div>
+
+                    <h1 data-i18n="loginTitle">
+                        Log in to your account
+                    </h1>
+
+                    <p data-i18n="loginDescription">
+                        Access your shop and manage
+                        your products.
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN ERROR -->
+
+                <div
+                    class="error-box"
+                    id="loginError"
+                >
+
+                    <i data-lucide="circle-alert"></i>
+
+                    <span id="loginErrorText">
+                        Invalid username or password.
+                    </span>
+
+                </div>
+
+
+                <form id="loginForm">
+
+
+                    <!-- Identifier -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="identifier"
+                            class="form-label"
+                            data-i18n="identifier"
+                        >
+                            Username or Email / Phone
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="user"></i>
+
+                            <input
+                                type="text"
+                                id="identifier"
+                                name="identifier"
+                                placeholder="Enter username, email or phone"
+                                data-i18n-placeholder="identifierPlaceholder"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="loginPassword"
+                            class="form-label"
+                            data-i18n="password"
+                        >
+                            Password
+                        </label>
+
+                        <div class="input-wrapper password-wrapper">
+
+                            <i data-lucide="lock"></i>
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                name="password"
+                                placeholder="Enter your password"
+                                data-i18n-placeholder="loginPasswordPlaceholder"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="loginPasswordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i data-lucide="eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Remember -->
+
+                    <div class="remember-row">
+
+                        <label class="remember-label">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                                checked
+                            >
+
+                            <span data-i18n="keepSignedIn">
+                                Keep me signed in
+                            </span>
+
+                        </label>
+
+
+                        <a
+                            href="forgot-password.html"
+                            class="forgot-link"
+                            id="forgotPassword"
+                            data-i18n="forgotPassword"
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="loginButton"
+                    >
+
+                        <span id="loginButtonText">
+                            Log In
+                        </span>
+
+                        <i
+                            data-lucide="arrow-right"
+                            id="loginButtonIcon"
+                        ></i>
+
+                    </button>
+
+
+                    <div class="security-note">
+
+                        <i data-lucide="shield-check"></i>
+
+                        <span data-i18n="security">
+                            Your password is securely protected.
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-divider">
+
+                        <span data-i18n="newToShop">
+                            New to TikTok Shop?
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-switch">
+
+                        <span data-i18n="dontHaveAccount">
+                            Don't have an account?
+                        </span>
+
+                        <a
+                            href="#"
+                            id="switchToRegister"
+                            data-i18n="createAccountLink"
+                        >
+                            Create account
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- =================================
+                 REGISTER VIEW
+            ================================== -->
+
+            <div
+                class="auth-view"
+                id="registerView"
+            >
+
+                <div class="auth-header">
+
+                    <div class="auth-icon">
+
+                        <i data-lucide="user-plus"></i>
+
+                    </div>
+
+                    <div
+                        class="eyebrow"
+                        data-i18n="registerEyebrow"
+                    >
+                        JOIN TIKTOK SHOP
+                    </div>
+
+                    <h1 data-i18n="registerTitle">
+                        Create your account
+                    </h1>
+
+                    <p data-i18n="registerDescription">
+                        Start shopping or build your store
+                        with TikTok Shop.
+                    </p>
+
+                </div>
+
+
+                <!-- REGISTER ERROR -->
+
+                <div
+                    class="error-box"
+                    id="registerError"
+                >
+
+                    <i data-lucide="circle-alert"></i>
+
+                    <span id="registerErrorText">
+                        Registration failed.
+                    </span>
+
+                </div>
+
+
+                <form id="registerForm">
+
+
+                    <!-- ACCOUNT TYPE -->
+
+                    <div class="form-group">
+
+                        <div
+                            class="section-title"
+                            data-i18n="accountType"
+                        >
+                            Account type
+                        </div>
+
+
+                        <div class="account-type-grid">
+
+
+                            <!-- BUYER -->
+
+                            <button
+                                type="button"
+                                class="account-type active"
+                                id="buyerAccount"
+                            >
+
+                                <div class="account-type-icon">
+
+                                    <i data-lucide="shopping-bag"></i>
+
+                                </div>
+
+                                <div class="account-type-info">
+
+                                    <strong data-i18n="buyer">
+                                        Buyer
+                                    </strong>
+
+                                    <span data-i18n="buyerDesc">
+                                        Shop & buy products
+                                    </span>
+
+                                </div>
+
+                                <div class="account-radio"></div>
+
+                            </button>
+
+
+                            <!-- SELLER -->
+
+                            <button
+                                type="button"
+                                class="account-type"
+                                id="sellerAccount"
+                            >
+
+                                <div class="account-type-icon">
+
+                                    <i data-lucide="store"></i>
+
+                                </div>
+
+                                <div class="account-type-info">
+
+                                    <strong data-i18n="seller">
+                                        Seller
+                                    </strong>
+
+                                    <span data-i18n="sellerDesc">
+                                        Sell products & earn
+                                    </span>
+
+                                </div>
+
+                                <div class="account-radio"></div>
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="restriction-message"
+                            id="restrictionMessage"
+                        >
+
+                            <i data-lucide="triangle-alert"></i>
+
+                            <span data-i18n="sellerOnlyMessage">
+                                This country can register as Seller only.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="username"
+                            class="form-label"
+                            data-i18n="username"
+                        >
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="at-sign"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Create your username"
+                                data-i18n-placeholder="usernamePlaceholder"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="usernameError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- SHOP NAME -->
+
+                    <div
+                        class="form-group"
+                        id="shopNameGroup"
+                    >
+
+                        <label
+                            for="shopName"
+                            class="form-label"
+                            data-i18n="shopName"
+                        >
+                            Shop Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="store"></i>
+
+                            <input
+                                type="text"
+                                id="shopName"
+                                name="shopName"
+                                placeholder="Enter your shop name"
+                                data-i18n-placeholder="shopNamePlaceholder"
+                                autocomplete="organization"
+                            >
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="shopNameError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- CONTACT -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="contact"
+                            class="form-label"
+                            data-i18n="contact"
+                        >
+                            Email or phone number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="mail"></i>
+
+                            <input
+                                type="text"
+                                id="contact"
+                                name="contact"
+                                placeholder="Enter email or phone number"
+                                data-i18n-placeholder="contactPlaceholder"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="contactError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="registerPassword"
+                            class="form-label"
+                            data-i18n="password"
+                        >
+                            Password
+                        </label>
+
+                        <div class="input-wrapper password-wrapper">
+
+                            <i data-lucide="lock"></i>
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                placeholder="Create a password"
+                                data-i18n-placeholder="passwordPlaceholder"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="registerPasswordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i data-lucide="eye"></i>
+
+                            </button>
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="passwordError"
+                        ></span>
+
+
+                        <div class="strength">
+
+                            <div class="strength-bars">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                            <span
+                                class="strength-text"
+                                id="strengthText"
+                                data-i18n="strengthEnter"
+                            >
+                                Enter a password
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="confirmPassword"
+                            class="form-label"
+                            data-i18n="confirmPassword"
+                        >
+                            Confirm password
+                        </label>
+
+                        <div class="input-wrapper password-wrapper">
+
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Enter password again"
+                                data-i18n-placeholder="confirmPasswordPlaceholder"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="confirmPasswordToggle"
+                                aria-label="Show password"
+                            >
+
+                                <i data-lucide="eye"></i>
+
+                            </button>
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="confirmPasswordError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- NATIONALITY -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="nationality"
+                            class="form-label"
+                            data-i18n="nationality"
+                        >
+                            Nationality
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="globe"></i>
+
+                            <select
+                                id="nationality"
+                                name="nationality"
+                                required
+                            >
+
+                                <option value=""></option>
+
+                            </select>
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="nationalityError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- COUNTRY -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="country"
+                            class="form-label"
+                            data-i18n="country"
+                        >
+                            Country / Region
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i data-lucide="map-pin"></i>
+
+                            <select
+                                id="country"
+                                name="country"
+                                required
+                            >
+
+                                <option value=""></option>
+
+                            </select>
+
+                        </div>
+
+                        <span
+                            class="field-error"
+                            id="countryError"
+                        ></span>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="registerButton"
+                    >
+
+                        <span id="registerButtonText">
+                            Create account
+                        </span>
+
+                        <i
+                            data-lucide="arrow-right"
+                            id="registerButtonIcon"
+                        ></i>
+
+                    </button>
+
+
+                    <div class="security-note">
+
+                        <i data-lucide="shield-check"></i>
+
+                        <span data-i18n="security">
+                            Your password is securely protected.
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-divider">
+
+                        <span data-i18n="alreadyAccount">
+                            Already have an account?
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-switch">
+
+                        <span data-i18n="alreadyAccountText">
+                            Already have an account?
+                        </span>
+
+                        <a
+                            href="#"
+                            id="switchToLogin"
+                            data-i18n="login"
+                        >
+                            Log in
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         SUCCESS MODAL
+    ========================================== -->
+
+    <div
+        class="success-modal"
+        id="successModal"
+    >
+
+        <div class="success-card">
+
+            <div class="success-icon">
+
+                <i data-lucide="check"></i>
+
+            </div>
+
+            <h2 data-i18n="successTitle">
+                Account created
+            </h2>
+
+            <p data-i18n="successDescription">
+                Your account has been created successfully.
+                Redirecting you to Home...
+            </p>
+
+            <div class="loader"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        "use strict";
+
+
+        /* =========================================
+           TRANSLATIONS
+        ========================================== */
+
+        const TRANSLATIONS = {
+
+            en: {
+
+                backHome: "Back to home",
+
+                loginTab: "Log In",
+                registerTab: "Create Account",
+
+                loginEyebrow: "WELCOME BACK",
+                loginTitle: "Log in to your account",
+                loginDescription:
+                    "Access your shop and manage your products.",
+
+                identifier:
+                    "Username or Email / Phone",
+
+                identifierPlaceholder:
+                    "Enter username, email or phone",
+
+                password:
+                    "Password",
+
+                loginPasswordPlaceholder:
+                    "Enter your password",
+
+                keepSignedIn:
+                    "Keep me signed in",
+
+                forgotPassword:
+                    "Forgot password?",
+
+                loginButton:
+                    "Log In",
+
+                security:
+                    "Your password is securely protected.",
+
+                newToShop:
+                    "New to TikTok Shop?",
+
+                dontHaveAccount:
+                    "Don't have an account?",
+
+                createAccountLink:
+                    "Create account",
+
+                loginRequired:
+                    "Please enter your username/email/phone and password.",
+
+                invalidLogin:
+                    "Invalid username or password.",
+
+                connectionError:
+                    "Unable to connect to the server. Please make sure the Backend is running.",
+
+                signingIn:
+                    "Signing in...",
+
+                loginSuccessful:
+                    "Login successful",
+
+                passwordRecovery:
+                    "Password recovery is not available yet.",
+
+
+                registerEyebrow:
+                    "JOIN TIKTOK SHOP",
+
+                registerTitle:
+                    "Create your account",
+
+                registerDescription:
+                    "Start shopping or build your store with TikTok Shop.",
+
+                accountType:
+                    "Account type",
+
+                buyer:
+                    "Buyer",
+
+                buyerDesc:
+                    "Shop & buy products",
+
+                seller:
+                    "Seller",
+
+                sellerDesc:
+                    "Sell products & earn",
+
+                sellerOnlyMessage:
+                    "This country can register as Seller only.",
+
+                username:
+                    "Username",
+
+                usernamePlaceholder:
+                    "Create your username",
+
+                shopName:
+                    "Shop Name",
+
+                shopNamePlaceholder:
+                    "Enter your shop name",
+
+                contact:
+                    "Email or phone number",
+
+                contactPlaceholder:
+                    "Enter email or phone number",
+
+                passwordPlaceholder:
+                    "Create a password",
+
+                confirmPassword:
+                    "Confirm password",
+
+                confirmPasswordPlaceholder:
+                    "Enter password again",
+
+                nationality:
+                    "Nationality",
+
+                selectNationality:
+                    "Select nationality",
+
+                country:
+                    "Country / Region",
+
+                selectCountry:
+                    "Select country / region",
+
+                createAccount:
+                    "Create account",
+
+                strengthEnter:
+                    "Enter a password",
+
+                strengthWeak:
+                    "Weak",
+
+                strengthMedium:
+                    "Medium",
+
+                strengthStrong:
+                    "Strong",
+
+                strengthVeryStrong:
+                    "Very strong",
+
+                usernameRequired:
+                    "Please enter a username.",
+
+                usernameShort:
+                    "Username must be at least 3 characters.",
+
+                usernameInvalid:
+                    "Username can contain only letters, numbers, _ and .",
+
+                contactRequired:
+                    "Please enter your email or phone number.",
+
+                contactInvalid:
+                    "Please enter a valid email or phone number.",
+
+                passwordRequired:
+                    "Please enter a password.",
+
+                passwordShort:
+                    "Password must be at least 8 characters.",
+
+                confirmRequired:
+                    "Please confirm your password.",
+
+                passwordMismatch:
+                    "Passwords do not match.",
+
+                nationalityRequired:
+                    "Please select your nationality.",
+
+                countryRequired:
+                    "Please select your country / region.",
+
+                shopNameRequired:
+                    "Please enter your shop name.",
+
+                registerFailed:
+                    "Registration failed.",
+
+                networkError:
+                    "Unable to connect to the server. Please make sure the Backend is running.",
+
+                successTitle:
+                    "Account created",
+
+                successDescription:
+                    "Your account has been created successfully. Redirecting you to Home...",
+
+                alreadyAccount:
+                    "Already have an account?",
+
+                alreadyAccountText:
+                    "Already have an account?",
+
+                login:
+                    "Log in"
+
+            },
+
+
+            th: {
+
+                backHome:
+                    "กลับหน้าหลัก",
+
+                loginTab:
+                    "เข้าสู่ระบบ",
+
+                registerTab:
+                    "สร้างบัญชี",
+
+                loginEyebrow:
+                    "ยินดีต้อนรับกลับ",
+
+                loginTitle:
+                    "เข้าสู่ระบบบัญชีของคุณ",
+
+                loginDescription:
+                    "เข้าสู่ร้านค้าและจัดการสินค้าของคุณ",
+
+                identifier:
+                    "ชื่อผู้ใช้ หรือ อีเมล / เบอร์โทร",
+
+                identifierPlaceholder:
+                    "กรอกชื่อผู้ใช้ อีเมล หรือเบอร์โทร",
+
+                password:
+                    "รหัสผ่าน",
+
+                loginPasswordPlaceholder:
+                    "กรอกรหัสผ่าน",
+
+                keepSignedIn:
+                    "ให้ฉันอยู่ในระบบต่อไป",
+
+                forgotPassword:
+                    "ลืมรหัสผ่าน?",
+
+                loginButton:
+                    "เข้าสู่ระบบ",
+
+                security:
+                    "รหัสผ่านของคุณได้รับการปกป้องอย่างปลอดภัย",
+
+                newToShop:
+                    "ยังไม่มีบัญชี TikTok Shop?",
+
+                dontHaveAccount:
+                    "ยังไม่มีบัญชี?",
+
+                createAccountLink:
+                    "สร้างบัญชี",
+
+                loginRequired:
+                    "กรุณากรอกชื่อผู้ใช้/อีเมล/เบอร์โทร และรหัสผ่าน",
+
+                invalidLogin:
+                    "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง",
+
+                connectionError:
+                    "ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาตรวจสอบว่า Backend กำลังทำงานอยู่",
+
+                signingIn:
+                    "กำลังเข้าสู่ระบบ...",
+
+                loginSuccessful:
+                    "เข้าสู่ระบบสำเร็จ",
+
+                passwordRecovery:
+                    "ระบบกู้คืนรหัสผ่านจะเปิดให้ใช้งานเร็ว ๆ นี้",
+
+
+                registerEyebrow:
+                    "เข้าร่วม TIKTOK SHOP",
+
+                registerTitle:
+                    "สร้างบัญชีของคุณ",
+
+                registerDescription:
+                    "เริ่มช้อปปิ้งหรือสร้างร้านค้าของคุณกับ TikTok Shop",
+
+                accountType:
+                    "ประเภทบัญชี",
+
+                buyer:
+                    "ผู้ซื้อ",
+
+                buyerDesc:
+                    "เลือกซื้อและสั่งสินค้า",
+
+                seller:
+                    "ผู้ขาย",
+
+                sellerDesc:
+                    "ขายสินค้าและสร้างรายได้",
+
+                sellerOnlyMessage:
+                    "ประเทศนี้สามารถสมัครเป็นผู้ขายเท่านั้น",
+
+                username:
+                    "ชื่อผู้ใช้",
+
+                usernamePlaceholder:
+                    "สร้างชื่อผู้ใช้ของคุณ",
+
+                shopName:
+                    "ชื่อร้านค้า",
+
+                shopNamePlaceholder:
+                    "กรอกชื่อร้านค้าของคุณ",
+
+                contact:
+                    "อีเมลหรือเบอร์โทรศัพท์",
+
+                contactPlaceholder:
+                    "กรอกอีเมลหรือเบอร์โทรศัพท์",
+
+                passwordPlaceholder:
+                    "สร้างรหัสผ่าน",
+
+                confirmPassword:
+                    "ยืนยันรหัสผ่าน",
+
+                confirmPasswordPlaceholder:
+                    "กรอกรหัสผ่านอีกครั้ง",
+
+                nationality:
+                    "สัญชาติ",
+
+                selectNationality:
+                    "เลือกสัญชาติ",
+
+                country:
+                    "ประเทศ / ภูมิภาค",
+
+                selectCountry:
+                    "เลือกประเทศ / ภูมิภาค",
+
+                createAccount:
+                    "สร้างบัญชี",
+
+                strengthEnter:
+                    "กรอกรหัสผ่าน",
+
+                strengthWeak:
+                    "อ่อน",
+
+                strengthMedium:
+                    "ปานกลาง",
+
+                strengthStrong:
+                    "แข็งแรง",
+
+                strengthVeryStrong:
+                    "แข็งแรงมาก",
+
+                usernameRequired:
+                    "กรุณากรอกชื่อผู้ใช้",
+
+                usernameShort:
+                    "ชื่อผู้ใช้ต้องมีอย่างน้อย 3 ตัวอักษร",
+
+                usernameInvalid:
+                    "ชื่อผู้ใช้ใช้ได้เฉพาะตัวอักษร ตัวเลข _ และ .",
+
+                contactRequired:
+                    "กรุณากรอกอีเมลหรือเบอร์โทรศัพท์",
+
+                contactInvalid:
+                    "กรุณากรอกอีเมลหรือเบอร์โทรศัพท์ให้ถูกต้อง",
+
+                passwordRequired:
+                    "กรุณากรอกรหัสผ่าน",
+
+                passwordShort:
+                    "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษร",
+
+                confirmRequired:
+                    "กรุณายืนยันรหัสผ่าน",
+
+                passwordMismatch:
+                    "รหัสผ่านไม่ตรงกัน",
+
+                nationalityRequired:
+                    "กรุณาเลือกสัญชาติ",
+
+                countryRequired:
+                    "กรุณาเลือกประเทศ / ภูมิภาค",
+
+                shopNameRequired:
+                    "กรุณากรอกชื่อร้านค้า",
+
+                registerFailed:
+                    "สมัครสมาชิกไม่สำเร็จ",
+
+                networkError:
+                    "ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาตรวจสอบว่า Backend กำลังทำงานอยู่",
+
+                successTitle:
+                    "สร้างบัญชีสำเร็จ",
+
+                successDescription:
+                    "สร้างบัญชีของคุณเรียบร้อยแล้ว กำลังพาไปหน้าหลัก...",
+
+                alreadyAccount:
+                    "มีบัญชีอยู่แล้ว?",
+
+                alreadyAccountText:
+                    "มีบัญชีอยู่แล้ว?",
+
+                login:
+                    "เข้าสู่ระบบ"
+
+            }
+
+        };
+
+
+        /* =========================================
+           COUNTRIES
+        ========================================== */
+
+        const COUNTRY_NAMES = {
+
+            thailand: ["Thailand", "ประเทศไทย"],
+            laos: ["Laos", "ลาว"],
+            vietnam: ["Vietnam", "เวียดนาม"],
+            myanmar: ["Myanmar", "เมียนมา"],
+            cambodia: ["Cambodia", "กัมพูชา"],
+            malaysia: ["Malaysia", "มาเลเซีย"],
+            singapore: ["Singapore", "สิงคโปร์"],
+            indonesia: ["Indonesia", "อินโดนีเซีย"],
+            philippines: ["Philippines", "ฟิลิปปินส์"],
+            brunei: ["Brunei", "บรูไน"],
+            "timor-leste": ["Timor-Leste", "ติมอร์-เลสเต"],
+
+            china: ["China", "จีน"],
+            japan: ["Japan", "ญี่ปุ่น"],
+            "south-korea": ["South Korea", "เกาหลีใต้"],
+            "north-korea": ["North Korea", "เกาหลีเหนือ"],
+            mongolia: ["Mongolia", "มองโกเลีย"],
+            taiwan: ["Taiwan", "ไต้หวัน"],
+
+            india: ["India", "อินเดีย"],
+pakistan: ["Pakistan", "ปากีสถาน"],
+bangladesh: ["Bangladesh", "บังกลาเทศ"],
+nepal: ["Nepal", "เนปาล"],
+bhutan: ["Bhutan", "ภูฏาน"],
+"sri-lanka": ["Sri Lanka", "ศรีลังกา"],
+maldives: ["Maldives", "มัลดีฟส์"],
+
+afghanistan: ["Afghanistan", "อัฟกานิสถาน"],
+iran: ["Iran", "อิหร่าน"],
+iraq: ["Iraq", "อิรัก"],
+israel: ["Israel", "อิสราเอล"],
+jordan: ["Jordan", "จอร์แดน"],
+lebanon: ["Lebanon", "เลบานอน"],
+syria: ["Syria", "ซีเรีย"],
+yemen: ["Yemen", "เยเมน"],
+oman: ["Oman", "โอมาน"],
+qatar: ["Qatar", "กาตาร์"],
+bahrain: ["Bahrain", "บาห์เรน"],
+kuwait: ["Kuwait", "คูเวต"],
+"saudi-arabia": ["Saudi Arabia", "ซาอุดีอาระเบีย"],
+uae: ["United Arab Emirates", "สหรัฐอาหรับเอมิเรตส์"],
+armenia: ["Armenia", "อาร์เมเนีย"],
+azerbaijan: ["Azerbaijan", "อาเซอร์ไบจาน"],
+georgia: ["Georgia", "จอร์เจีย"],
+turkey: ["Turkey", "ตุรกี"],
+cyprus: ["Cyprus", "ไซปรัส"]
+        };
+
+
+        const COUNTRY_LIST = Object.keys(
+            COUNTRY_NAMES
+        );
+
+
+        const SELLER_ONLY_COUNTRIES = [
+
+            "thailand",
+            "laos",
+            "vietnam",
+            "myanmar",
+            "cambodia",
+            "china"
+
+        ];
+
+
+        /* =========================================
+           ELEMENTS
+        ========================================== */
+
+        const loginView =
+            document.getElementById("loginView");
+
+        const registerView =
+            document.getElementById("registerView");
+
+        const loginModeButton =
+            document.getElementById("loginModeButton");
+
+        const registerModeButton =
+            document.getElementById("registerModeButton");
+
+        const languageToggle =
+            document.getElementById("languageToggle");
+
+        const languageLabel =
+            document.getElementById("languageLabel");
+
+
+        /* LOGIN */
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const identifier =
+            document.getElementById("identifier");
+
+        const loginPassword =
+            document.getElementById("loginPassword");
+
+        const loginPasswordToggle =
+            document.getElementById("loginPasswordToggle");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const loginButtonText =
+            document.getElementById("loginButtonText");
+
+        const loginButtonIcon =
+            document.getElementById("loginButtonIcon");
+
+        const loginError =
+            document.getElementById("loginError");
+
+        const loginErrorText =
+            document.getElementById("loginErrorText");
+
+        const rememberMe =
+            document.getElementById("rememberMe");
+
+    
+
+
+        /* REGISTER */
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+        const buyerAccount =
+            document.getElementById("buyerAccount");
+
+        const sellerAccount =
+            document.getElementById("sellerAccount");
+
+        const restrictionMessage =
+            document.getElementById("restrictionMessage");
+
+        const username =
+            document.getElementById("username");
+
+        const usernameError =
+            document.getElementById("usernameError");
+
+        const shopName =
+            document.getElementById("shopName");
+
+        const shopNameGroup =
+            document.getElementById("shopNameGroup");
+
+        const shopNameError =
+            document.getElementById("shopNameError");
+
+        const contact =
+            document.getElementById("contact");
+
+        const contactError =
+            document.getElementById("contactError");
+
+        const registerPassword =
+            document.getElementById("registerPassword");
+
+        const passwordError =
+            document.getElementById("passwordError");
+
+        const confirmPassword =
+            document.getElementById("confirmPassword");
+
+        const confirmPasswordError =
+            document.getElementById("confirmPasswordError");
+
+        const nationality =
+            document.getElementById("nationality");
+
+        const nationalityError =
+            document.getElementById("nationalityError");
+
+        const country =
+            document.getElementById("country");
+
+        const countryError =
+            document.getElementById("countryError");
+
+        const registerPasswordToggle =
+            document.getElementById("registerPasswordToggle");
+
+        const confirmPasswordToggle =
+            document.getElementById("confirmPasswordToggle");
+
+        const strengthText =
+            document.getElementById("strengthText");
+
+        const strengthBars =
+            document.querySelectorAll(
+                ".strength-bars span"
+            );
+
+        const registerButton =
+            document.getElementById("registerButton");
+
+        const registerButtonText =
+            document.getElementById("registerButtonText");
+
+        const registerButtonIcon =
+            document.getElementById("registerButtonIcon");
+
+        const registerError =
+            document.getElementById("registerError");
+
+        const registerErrorText =
+            document.getElementById("registerErrorText");
+
+        const successModal =
+            document.getElementById("successModal");
+
+
+        /* =========================================
+           STATE
+        ========================================== */
+
+        let accountType = "buyer";
+
+        let currentLanguage =
+            localStorage.getItem(
+                "tiktokShopLanguage"
+            ) || "en";
+
+        if (
+            currentLanguage !== "en" &&
+            currentLanguage !== "th"
+        ) {
+            currentLanguage = "en";
+        }
+
+
+        /* =========================================
+           HELPERS
+        ========================================== */
+
+        function t(key) {
+
+            return (
+                TRANSLATIONS[currentLanguage]?.[key] ||
+                TRANSLATIONS.en[key] ||
+                key
+            );
+
+        }
+
+
+        function refreshIcons() {
+
+            if (
+                typeof lucide !== "undefined" &&
+                typeof lucide.createIcons === "function"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        function getRedirectUrl(user) {
+
+    /*
+     * =========================================
+     * ADMIN
+     * =========================================
+     *
+     * Admin ที่ถูกกำหนดจาก MongoDB เท่านั้น
+     * จะเข้าสู่หน้า Admin Dashboard
+     */
+    if (
+        user &&
+        (
+            String(user.accountType).toLowerCase() === "admin" ||
+            String(user.role).toLowerCase() === "admin"
+        )
+    ) {
+        return "admin-dashboard.html";
+    }
+
+
+    /*
+     * =========================================
+     * NORMAL USER
+     * =========================================
+     *
+     * Buyer / Seller ให้เข้าสู่หน้า Home
+     */
+    return "index.html";
+}
+
+
+        /* =========================================
+           LANGUAGE
+        ========================================== */
+
+        function applyLanguage() {
+
+            document.documentElement.lang =
+                currentLanguage;
+
+            document.title =
+                currentLanguage === "th"
+                    ? "เข้าสู่ระบบ / สมัครสมาชิก - TikTok Shop"
+                    : "Log In / Create Account - TikTok Shop";
+
+
+            document
+                .querySelectorAll("[data-i18n]")
+                .forEach(element => {
+
+                    const key =
+                        element.dataset.i18n;
+
+                    if (
+                        key &&
+                        TRANSLATIONS[currentLanguage]?.[key]
+                    ) {
+
+                        element.textContent =
+                            TRANSLATIONS[currentLanguage][key];
+
+                    }
+
+                });
+
+
+            document
+                .querySelectorAll("[data-i18n-placeholder]")
+                .forEach(element => {
+
+                    const key =
+                        element.dataset.i18nPlaceholder;
+
+                    if (key) {
+
+                        element.placeholder =
+                            t(key);
+
+                    }
+
+                });
+
+
+            languageLabel.textContent =
+                currentLanguage === "en"
+                    ? "TH"
+                    : "EN";
+
+
+            updateCountryNames();
+
+            updateStrengthText();
+
+            refreshIcons();
+
+        }
+
+
+        function updateCountryNames() {
+
+            [
+                nationality,
+                country
+            ].forEach(select => {
+
+                if (!select) return;
+
+                Array.from(select.options)
+                    .forEach(option => {
+
+                        if (
+                            option.value &&
+                            COUNTRY_NAMES[option.value]
+                        ) {
+
+                            option.textContent =
+                                COUNTRY_NAMES[option.value][
+                                    currentLanguage === "th"
+                                        ? 1
+                                        : 0
+                                ];
+
+                        }
+
+                    });
+
+            });
+
+        }
+
+
+        /* =========================================
+           COUNTRY OPTIONS
+        ========================================== */
+
+        function buildCountryOptions() {
+
+            COUNTRY_LIST.forEach(code => {
+
+                const name =
+                    COUNTRY_NAMES[code][
+                        currentLanguage === "th"
+                            ? 1
+                            : 0
+                    ];
+
+
+                const nationalityOption =
+                    document.createElement("option");
+
+                nationalityOption.value = code;
+
+                nationalityOption.textContent =
+                    name;
+
+                nationality.appendChild(
+                    nationalityOption
+                );
+
+
+                const countryOption =
+                    document.createElement("option");
+
+                countryOption.value = code;
+
+                countryOption.textContent =
+                    name;
+
+                country.appendChild(
+                    countryOption
+                );
+
+            });
+
+        }
+
+
+        /* =========================================
+           MODE
+        ========================================== */
+
+        function showMode(mode) {
+
+            const isLogin =
+                mode === "login";
+
+
+            loginView.classList.toggle(
+                "active",
+                isLogin
+            );
+
+            registerView.classList.toggle(
+                "active",
+                !isLogin
+            );
+
+
+            loginModeButton.classList.toggle(
+                "active",
+                isLogin
+            );
+
+            registerModeButton.classList.toggle(
+                "active",
+                !isLogin
+            );
+
+
+            const url =
+                new URL(
+                    window.location.href
+                );
+
+            url.searchParams.set(
+                "mode",
+                mode
+            );
+
+            window.history.replaceState(
+                {},
+                "",
+                url
+            );
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================================
+           LOGIN ERROR
+        ========================================== */
+
+        function showLoginError(message) {
+
+            loginErrorText.textContent =
+                message;
+
+            loginError.classList.add("show");
+
+            refreshIcons();
+
+        }
+
+
+        function hideLoginError() {
+
+            loginError.classList.remove("show");
+
+        }
+
+
+        /* =========================================
+           REGISTER ERROR
+        ========================================== */
+
+        function showRegisterError(message) {
+
+            registerErrorText.textContent =
+                message;
+
+            registerError.classList.add("show");
+
+            refreshIcons();
+
+        }
+
+
+        function hideRegisterError() {
+
+            registerError.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* =========================================
+           PASSWORD TOGGLE
+        ========================================== */
+
+        function togglePassword(
+            input,
+            button
+        ) {
+
+            if (
+                input.type === "password"
+            ) {
+
+                input.type = "text";
+
+                button.innerHTML =
+                    '<i data-lucide="eye-off"></i>';
+
+            }
+
+            else {
+
+                input.type = "password";
+
+                button.innerHTML =
+                    '<i data-lucide="eye"></i>';
+
+            }
+
+            refreshIcons();
+
+        }
+
+
+        loginPasswordToggle.addEventListener(
+            "click",
+            () => {
+
+                togglePassword(
+                    loginPassword,
+                    loginPasswordToggle
+                );
+
+            }
+        );
+
+
+        registerPasswordToggle.addEventListener(
+            "click",
+            () => {
+
+                togglePassword(
+                    registerPassword,
+                    registerPasswordToggle
+                );
+
+            }
+        );
+
+
+        confirmPasswordToggle.addEventListener(
+            "click",
+            () => {
+
+                togglePassword(
+                    confirmPassword,
+                    confirmPasswordToggle
+                );
+
+            }
+        );
+
+
+        /* =========================================
+           ACCOUNT TYPE
+        ========================================== */
+
+        function selectAccountType(
+            type
+        ) {
+
+            accountType =
+                type;
+
+
+            buyerAccount.classList.toggle(
+                "active",
+                type === "buyer"
+            );
+
+            sellerAccount.classList.toggle(
+                "active",
+                type === "seller"
+            );
+
+
+            shopNameGroup.classList.toggle(
+                "show",
+                type === "seller"
+            );
+
+
+            if (
+                type === "buyer"
+            ) {
+
+                shopName.value = "";
+
+                shopNameError.textContent = "";
+
+            }
+
+        }
+
+
+        buyerAccount.addEventListener(
+            "click",
+            () => {
+
+                const selectedNationality =
+                    nationality.value;
+
+                if (
+                    SELLER_ONLY_COUNTRIES.includes(
+                        selectedNationality
+                    )
+                ) {
+
+                    restrictionMessage.classList.add(
+                        "show"
+                    );
+
+                    selectAccountType(
+                        "seller"
+                    );
+
+                    return;
+
+                }
+
+
+                restrictionMessage.classList.remove(
+                    "show"
+                );
+
+                selectAccountType(
+                    "buyer"
+                );
+
+            }
+        );
+
+
+        sellerAccount.addEventListener(
+            "click",
+            () => {
+
+                restrictionMessage.classList.remove(
+                    "show"
+                );
+
+                selectAccountType(
+                    "seller"
+                );
+
+            }
+        );
+
+
+        nationality.addEventListener(
+            "change",
+            () => {
+
+                const selected =
+                    nationality.value;
+
+
+                if (
+                    SELLER_ONLY_COUNTRIES.includes(
+                        selected
+                    )
+                ) {
+
+                    restrictionMessage.classList.add(
+                        "show"
+                    );
+
+                    selectAccountType(
+                        "seller"
+                    );
+
+                }
+
+                else {
+
+                    restrictionMessage.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           PASSWORD STRENGTH
+        ========================================== */
+
+        function getPasswordStrength(
+            value
+        ) {
+
+            if (!value) return 0;
+
+            let score = 0;
+
+            if (value.length >= 8)
+                score++;
+
+            if (/[a-z]/.test(value))
+                score++;
+
+            if (/[A-Z]/.test(value))
+                score++;
+
+            if (/[0-9]/.test(value))
+                score++;
+
+            if (
+                /[^A-Za-z0-9]/.test(value)
+            )
+                score++;
+
+            return Math.min(
+                score,
+                4
+            );
+
+        }
+
+
+        function updateStrengthText() {
+
+            const value =
+                registerPassword.value;
+
+            const strength =
+                getPasswordStrength(
+                    value
+                );
+
+
+            strengthBars.forEach(
+                (bar, index) => {
+
+                    bar.classList.toggle(
+                        "active",
+                        index < strength
+                    );
+
+                }
+            );
+
+
+            if (!value) {
+
+                strengthText.textContent =
+                    t("strengthEnter");
+
+            }
+
+            else if (strength <= 1) {
+
+                strengthText.textContent =
+                    t("strengthWeak");
+
+            }
+
+            else if (strength === 2) {
+
+                strengthText.textContent =
+                    t("strengthMedium");
+
+            }
+
+            else if (strength === 3) {
+
+                strengthText.textContent =
+                    t("strengthStrong");
+
+            }
+
+            else {
+
+                strengthText.textContent =
+                    t("strengthVeryStrong");
+
+            }
+
+        }
+
+
+        registerPassword.addEventListener(
+            "input",
+            updateStrengthText
+        );
+
+
+        /* =========================================
+           FIELD VALIDATION
+        ========================================== */
+
+        function clearRegisterErrors() {
+
+            usernameError.textContent = "";
+
+            shopNameError.textContent = "";
+
+            contactError.textContent = "";
+
+            passwordError.textContent = "";
+
+            confirmPasswordError.textContent = "";
+
+            nationalityError.textContent = "";
+
+            countryError.textContent = "";
+
+            hideRegisterError();
+
+        }
+
+
+        function validateEmailOrPhone(
+            value
+        ) {
+
+            const email =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            const phone =
+                /^[0-9+\-\s()]{7,20}$/;
+
+            return (
+                email.test(value) ||
+                phone.test(value)
+            );
+
+        }
+
+
+        function validateRegisterForm() {
+
+            clearRegisterErrors();
+
+            let valid = true;
+
+
+            const usernameValue =
+                username.value.trim();
+
+
+            const shopNameValue =
+                shopName.value.trim();
+
+
+            const contactValue =
+                contact.value.trim();
+
+
+            const passwordValue =
+                registerPassword.value;
+
+
+            const confirmValue =
+                confirmPassword.value;
+
+
+            const nationalityValue =
+                nationality.value;
+
+
+            const countryValue =
+                country.value;
+
+
+            /* USERNAME */
+
+            if (!usernameValue) {
+
+                usernameError.textContent =
+                    t("usernameRequired");
+
+                valid = false;
+
+            }
+
+            else if (
+                usernameValue.length < 3
+            ) {
+
+                usernameError.textContent =
+                    t("usernameShort");
+
+                valid = false;
+
+            }
+
+            else if (
+                !/^[a-zA-Z0-9_.]{3,30}$/.test(
+                    usernameValue
+                )
+            ) {
+
+                usernameError.textContent =
+                    t("usernameInvalid");
+
+                valid = false;
+
+            }
+
+
+            /* SHOP */
+
+            if (
+                accountType === "seller" &&
+                !shopNameValue
+            ) {
+
+                shopNameError.textContent =
+                    t("shopNameRequired");
+
+                valid = false;
+
+            }
+
+
+            /* CONTACT */
+
+            if (!contactValue) {
+
+                contactError.textContent =
+                    t("contactRequired");
+
+                valid = false;
+
+            }
+
+            else if (
+                !validateEmailOrPhone(
+                    contactValue
+                )
+            ) {
+
+                contactError.textContent =
+                    t("contactInvalid");
+
+                valid = false;
+
+            }
+
+
+            /* PASSWORD */
+
+            if (!passwordValue) {
+
+                passwordError.textContent =
+                    t("passwordRequired");
+
+                valid = false;
+
+            }
+
+            else if (
+                passwordValue.length < 8
+            ) {
+
+                passwordError.textContent =
+                    t("passwordShort");
+
+                valid = false;
+
+            }
+
+
+            /* CONFIRM */
+
+            if (!confirmValue) {
+
+                confirmPasswordError.textContent =
+                    t("confirmRequired");
+
+                valid = false;
+
+            }
+
+            else if (
+                passwordValue !==
+                confirmValue
+            ) {
+
+                confirmPasswordError.textContent =
+                    t("passwordMismatch");
+
+                valid = false;
+
+            }
+
+
+            /* NATIONALITY */
+
+            if (!nationalityValue) {
+
+                nationalityError.textContent =
+                    t("nationalityRequired");
+
+                valid = false;
+
+            }
+
+
+            /* COUNTRY */
+
+            if (!countryValue) {
+
+                countryError.textContent =
+                    t("countryRequired");
+
+                valid = false;
+
+            }
+
+
+            /* SELLER-ONLY COUNTRY */
+
+            if (
+                SELLER_ONLY_COUNTRIES.includes(
+                    nationalityValue
+                ) &&
+                accountType !== "seller"
+            ) {
+
+                restrictionMessage.classList.add(
+                    "show"
+                );
+
+                valid = false;
+
+            }
+
+
+            return valid;
+
+        }
+
+
+        /* =========================================
+           LOGIN
+        ========================================== */
+
+        loginForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+                hideLoginError();
+
+
+                const identifierValue =
+                    identifier.value.trim();
+
+                const passwordValue =
+                    loginPassword.value;
+
+
+                if (
+                    !identifierValue ||
+                    !passwordValue
+                ) {
+
+                    showLoginError(
+                        t("loginRequired")
+                    );
+
+                    return;
+
+                }
+
+
+                loginButton.disabled =
+                    true;
+
+                loginButtonText.textContent =
+                    t("signingIn");
+
+                loginButtonIcon.style.display =
+                    "none";
+
+
+                const loading =
+                    document.createElement(
+                        "span"
+                    );
+
+                loading.className =
+                    "loading-spinner";
+
+
+                loginButton.appendChild(
+                    loading
+                );
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "/api/auth/login",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        identifier:
+                                            identifierValue,
+
+                                        password:
+                                            passwordValue
+
+                                    })
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !response.ok ||
+                        !data.success
+                    ) {
+
+                        showLoginError(
+                            data.message ||
+                            t("invalidLogin")
+                        );
+
+                        return;
+
+                    }
+
+
+                    const user =
+                        data.user;
+
+
+                    /* SAVE SAFE SESSION */
+
+                    localStorage.setItem(
+                        "tiktokShopUser",
+                        JSON.stringify(user)
+                    );
+
+
+                    if (data.token) {
+
+                        localStorage.setItem(
+                            "tiktokShopToken",
+                            data.token
+                        );
+
+                    }
+
+
+                    localStorage.setItem(
+                        "tiktokShopLoggedIn",
+                        "true"
+                    );
+
+
+                    loginButtonText.textContent =
+                        t("loginSuccessful");
+
+
+                    loading.remove();
+
+                    loginButtonIcon.style.display =
+                        "";
+
+                    loginButtonIcon.setAttribute(
+                        "data-lucide",
+                        "check"
+                    );
+
+                    refreshIcons();
+
+
+                    setTimeout(
+                        () => {
+
+                         window.location.href =
+                           getRedirectUrl(user);
+
+                      },
+                  600
+                  );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Login request failed:",
+                        error
+                    );
+
+
+                    showLoginError(
+                        t("connectionError")
+                    );
+
+                }
+
+                finally {
+
+                    if (
+                        !localStorage.getItem(
+                            "tiktokShopLoggedIn"
+                        )
+                    ) {
+
+                        loginButton.disabled =
+                            false;
+
+                        loginButtonText.textContent =
+                            t("loginButton");
+
+                        loginButtonIcon.style.display =
+                            "";
+
+                        loading.remove();
+
+                        refreshIcons();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+       
+
+        /* =========================================
+           REGISTER
+        ========================================== */
+
+        registerForm.addEventListener(
+            "submit",
+            async event => {
+
+                event.preventDefault();
+
+
+                if (
+                    !validateRegisterForm()
+                ) {
+
+                    return;
+
+                }
+
+
+                registerButton.disabled =
+                    true;
+
+                registerButtonText.textContent =
+                    currentLanguage === "th"
+                        ? "กำลังสร้างบัญชี..."
+                        : "Creating account...";
+
+                registerButtonIcon.style.display =
+                    "none";
+
+
+                const loading =
+                    document.createElement(
+                        "span"
+                    );
+
+                loading.className =
+                    "loading-spinner";
+
+
+                registerButton.appendChild(
+                    loading
+                );
+
+
+                try {
+
+                    const body = {
+
+                        username:
+                            username.value.trim(),
+
+                        shopName:
+                            accountType === "seller"
+                                ? shopName.value.trim()
+                                : "",
+
+                        contact:
+                            contact.value.trim(),
+
+                        password:
+                            registerPassword.value,
+
+                        nationality:
+                            nationality.value,
+
+                        country:
+                            country.value,
+
+                        accountType:
+                            accountType
+
+                    };
+
+
+                    const response =
+                        await fetch(
+                            "/api/auth/register",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body:
+                                    JSON.stringify(body)
+
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (
+                        !response.ok ||
+                        !data.success
+                    ) {
+
+                        showRegisterError(
+                            data.message ||
+                            t("registerFailed")
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* =================================
+                       SAVE SESSION
+                    ================================= */
+
+                    if (data.user) {
+
+                        localStorage.setItem(
+                            "tiktokShopUser",
+                            JSON.stringify(
+                                data.user
+                            )
+                        );
+
+                    }
+
+
+                    if (data.token) {
+
+                        localStorage.setItem(
+                            "tiktokShopToken",
+                            data.token
+                        );
+
+                    }
+
+
+                    localStorage.setItem(
+                        "tiktokShopLoggedIn",
+                        "true"
+                    );
+
+
+                    /* =================================
+                       SUCCESS
+                    ================================= */
+
+                    loading.remove();
+
+                    registerButtonText.textContent =
+                        t("createAccount");
+
+                    registerButtonIcon.style.display =
+                        "";
+
+                    registerButtonIcon.setAttribute(
+                        "data-lucide",
+                        "check"
+                    );
+
+                    refreshIcons();
+
+
+                    successModal.classList.add(
+                        "show"
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "index.html";
+
+                        },
+                        1500
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Register request failed:",
+                        error
+                    );
+
+
+                    showRegisterError(
+                        t("networkError")
+                    );
+
+                }
+
+                finally {
+
+                    if (
+                        !successModal.classList.contains(
+                            "show"
+                        )
+                    ) {
+
+                        registerButton.disabled =
+                            false;
+
+                        registerButtonText.textContent =
+                            t("createAccount");
+
+                        registerButtonIcon.style.display =
+                            "";
+
+                        loading.remove();
+
+                        refreshIcons();
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           MODE BUTTONS
+        ========================================== */
+
+        loginModeButton.addEventListener(
+            "click",
+            () => {
+
+                showMode("login");
+
+            }
+        );
+
+
+        registerModeButton.addEventListener(
+            "click",
+            () => {
+
+                showMode("register");
+
+            }
+        );
+
+
+        document
+            .getElementById("switchToRegister")
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    showMode("register");
+
+                }
+            );
+
+
+        document
+            .getElementById("switchToLogin")
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    showMode("login");
+
+                }
+            );
+
+
+        /* =========================================
+           LANGUAGE TOGGLE
+        ========================================== */
+
+        languageToggle.addEventListener(
+            "click",
+            () => {
+
+                currentLanguage =
+                    currentLanguage === "en"
+                        ? "th"
+                        : "en";
+
+
+                localStorage.setItem(
+                    "tiktokShopLanguage",
+                    currentLanguage
+                );
+
+
+                applyLanguage();
+
+            }
+        );
+
+
+        /* =========================================
+           INITIALIZE
+        ========================================== */
+
+        buildCountryOptions();
+
+        selectAccountType("buyer");
+
+        applyLanguage();
+
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const initialMode =
+            params.get("mode") === "register"
+                ? "register"
+                : "login";
+
+
+        showMode(
+            initialMode
+        );
+
+
+        refreshIcons();
+
+    </script>
+
+</body>
+
+</html>

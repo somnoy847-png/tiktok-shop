@@ -1,0 +1,392 @@
+/* =========================================================
+   GLOBAL RESPONSIVE SYSTEM
+   TikTok Shop
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. BASIC RESET
+--------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+html {
+    width: 100%;
+    min-height: 100%;
+
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+
+body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+
+    overflow-x: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   2. IMAGES
+--------------------------------------------------------- */
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+
+/* ---------------------------------------------------------
+   3. FORM ELEMENTS
+--------------------------------------------------------- */
+
+input,
+textarea,
+select,
+button {
+    max-width: 100%;
+
+    font: inherit;
+
+    box-sizing: border-box;
+}
+
+
+/* ป้องกัน iPhone Safari zoom ตอนกด input
+   ต้องใช้ font-size อย่างน้อย 16px */
+input,
+textarea,
+select {
+    font-size: 16px;
+}
+
+
+/* ---------------------------------------------------------
+   4. BUTTON
+--------------------------------------------------------- */
+
+button {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   5. CONTAINER
+--------------------------------------------------------- */
+
+.container,
+.page-container,
+.main-container,
+.content-container {
+    width: 100%;
+    max-width: 1400px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: clamp(16px, 3vw, 40px);
+    padding-right: clamp(16px, 3vw, 40px);
+}
+
+
+/* ---------------------------------------------------------
+   6. FLEX ELEMENTS
+--------------------------------------------------------- */
+
+.flex,
+.row,
+.form-row {
+    max-width: 100%;
+}
+
+
+/* ป้องกันข้อความหรือ element ดันหน้าจอ */
+.flex,
+.row {
+    min-width: 0;
+}
+
+
+/* ---------------------------------------------------------
+   7. TABLE
+--------------------------------------------------------- */
+
+.table-container,
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+table {
+    max-width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   8. LONG TEXT
+--------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+a {
+    overflow-wrap: anywhere;
+}
+
+
+/* ---------------------------------------------------------
+   9. DESKTOP
+--------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+
+    html {
+        font-size: 16px;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   10. TABLET
+--------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+
+    .container,
+    .page-container,
+    .main-container,
+    .content-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+
+    .form-row {
+        flex-wrap: wrap;
+    }
+
+
+    .grid,
+    .product-grid {
+        width: 100%;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   11. MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    html {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    .container,
+    .page-container,
+    .main-container,
+    .content-container {
+        width: 100%;
+
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+
+    /* ไม่ให้ fixed width ทำหน้าจอล้น */
+
+    [style*="width"],
+    [style*="min-width"] {
+        max-width: 100%;
+    }
+
+
+    /* Form */
+
+    .form-row {
+        display: flex;
+
+        flex-direction: column;
+
+        width: 100%;
+
+        gap: 16px;
+    }
+
+
+    .form-group {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+
+    /* Buttons */
+
+    button {
+        max-width: 100%;
+    }
+
+
+    /* Grid */
+
+    .grid,
+    .product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   12. SMALL MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .container,
+    .page-container,
+    .main-container,
+    .content-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+
+    .grid,
+    .product-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    h1 {
+        font-size: clamp(22px, 7vw, 32px);
+    }
+
+
+    h2 {
+        font-size: clamp(19px, 6vw, 28px);
+    }
+
+
+    h3 {
+        font-size: clamp(17px, 5vw, 22px);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   13. VERY SMALL SCREEN
+--------------------------------------------------------- */
+
+@media (max-width: 360px) {
+
+    .container,
+    .page-container,
+    .main-container,
+    .content-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    button {
+        min-width: 0;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   14. PREVENT HORIZONTAL OVERFLOW
+--------------------------------------------------------- */
+
+main,
+section,
+article,
+aside,
+header,
+footer,
+nav {
+    max-width: 100%;
+    min-width: 0;
+}
+
+
+/* ---------------------------------------------------------
+   15. MOBILE TOUCH
+--------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    button,
+    a,
+    input,
+    select,
+    textarea {
+        touch-action: manipulation;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   16. SAFE RESPONSIVE VIDEO / IFRAME
+--------------------------------------------------------- */
+
+video,
+iframe {
+    max-width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   17. HIDE HORIZONTAL SCROLLBAR
+--------------------------------------------------------- */
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}

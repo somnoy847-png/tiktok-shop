@@ -1,0 +1,322 @@
+<aside class="sidebar admin-sidebar" id="sidebar">
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <div class="sidebar-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="TikTok Shop"
+                    onerror="
+                        this.style.display='none';
+                        this.parentElement.innerHTML='<span class=&quot;logo-t&quot;>t</span>';
+                    "
+                >
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>TikTok</strong>
+
+                <span>Shop</span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="close-sidebar"
+            id="closeSidebar"
+            type="button"
+            aria-label="Close menu"
+        >
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================================
+         ADMIN USER
+    ========================================== -->
+
+    <div class="sidebar-user">
+
+        <div
+            class="avatar"
+            id="sidebarAvatar"
+        >
+            A
+        </div>
+
+
+        <div class="user-info">
+
+            <strong id="sidebarUsername">
+                Admin
+            </strong>
+
+            <span id="sidebarRole">
+                Administrator
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ADMIN NAVIGATION
+    ========================================== -->
+
+    <nav class="sidebar-nav">
+
+        <!-- MAIN -->
+
+        <div class="nav-title">
+            ADMIN
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a
+            href="admin-dashboard.html"
+            class="nav-item"
+            id="navAdminDashboard"
+        >
+
+            <i data-lucide="layout-dashboard"></i>
+
+            <span>
+                Admin Dashboard
+            </span>
+
+        </a>
+
+
+        <!-- Users -->
+
+        <a
+            href="admin-users.html"
+            class="nav-item"
+            id="navAdminUsers"
+        >
+
+            <i data-lucide="users"></i>
+
+            <span>
+                จัดการผู้ใช้
+            </span>
+
+        </a>
+
+
+        <!-- Wallet -->
+
+        <a
+            href="admin-wallet.html"
+            class="nav-item"
+            id="navAdminWallet"
+        >
+
+            <i data-lucide="wallet-cards"></i>
+
+            <span>
+                จัดการ Wallet
+            </span>
+
+        </a>
+
+
+        <!-- Products -->
+
+        <a
+            href="admin-products.html"
+            class="nav-item"
+            id="navAdminProducts"
+        >
+
+            <i data-lucide="package"></i>
+
+            <span>
+                จัดการสินค้า
+            </span>
+
+        </a>
+
+
+        <!-- Orders -->
+
+        <a
+            href="admin-orders.html"
+            class="nav-item"
+            id="navAdminOrders"
+        >
+
+            <i data-lucide="shopping-cart"></i>
+
+            <span>
+                จัดการ Orders
+            </span>
+
+        </a>
+
+
+                <!-- Shop Order -->
+
+        <a
+            href="admin-shop-order.html"
+            class="nav-item"
+            id="navAdminShopOrder"
+        >
+
+            <i data-lucide="shopping-bag"></i>
+
+            <span>
+                สั่งซื้อสินค้า
+            </span>
+
+        </a>
+
+
+        <!-- Chat -->
+
+        <a
+            href="admin-chat.html"
+            class="nav-item"
+            id="navAdminChat"
+        >
+
+            <i data-lucide="messages-square"></i>
+
+            <span>
+                Live Chat
+            </span>
+
+        </a>
+
+
+        <!-- Notifications -->
+
+        <a
+            href="admin-notifications.html"
+            class="nav-item"
+            id="navAdminNotifications"
+        >
+
+            <i data-lucide="bell"></i>
+
+            <span>
+                Notifications
+            </span>
+
+        </a>
+
+
+
+    </nav>
+
+
+    <!-- =========================================
+         BOTTOM
+    ========================================== -->
+
+    <div class="sidebar-bottom">
+
+        <div
+            style="
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+                background: rgba(255,255,255,.06);
+                border: 1px solid rgba(255,255,255,.08);
+            "
+        >
+
+            <div
+                style="
+                    display:flex;
+                    align-items:center;
+                    gap:9px;
+                "
+            >
+
+                <i
+                    data-lucide="shield-check"
+                    style="
+                        width:18px;
+                        height:18px;
+                    "
+                ></i>
+
+
+                <div>
+
+                    <strong
+                        style="
+                            display:block;
+                            font-size:12px;
+                        "
+                    >
+                        Admin Panel
+                    </strong>
+
+                    <span
+                        style="
+                            display:block;
+                            margin-top:3px;
+                            font-size:10px;
+                            opacity:.6;
+                        "
+                    >
+                        Platform Management
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Logout -->
+
+        <button
+            class="logout-button"
+            id="logoutButton"
+            type="button"
+        >
+
+            <i data-lucide="log-out"></i>
+
+            <span>
+                Log out
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     MOBILE OVERLAY
+========================================== -->
+
+<div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+></div>

@@ -1,0 +1,5728 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+
+    <title>Wallet - TikTok Shop</title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+
+        /* =====================================================
+           WALLET PAGE
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body.wallet-page {
+            background: #f6f6f7;
+        }
+
+
+        .wallet-main {
+            min-height: 100vh;
+            padding: 28px;
+        }
+
+
+        .wallet-container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .wallet-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+
+        .wallet-title-wrap h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 800;
+            color: #111;
+        }
+
+
+        .wallet-title-wrap p {
+            margin: 7px 0 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        .wallet-refresh-btn {
+            border: 1px solid #e4e4e7;
+            background: #fff;
+            border-radius: 12px;
+            padding: 11px 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            color: #222;
+        }
+
+
+        .wallet-refresh-btn:hover {
+            background: #fafafa;
+        }
+
+
+        /* =====================================================
+           BALANCE CARD
+        ===================================================== */
+
+        .wallet-balance-card {
+            background: #181818;
+            color: #fff;
+            border-radius: 22px;
+            padding: 28px;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .wallet-balance-card::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            right: -90px;
+            top: -110px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.05);
+        }
+
+
+        .wallet-balance-label {
+            font-size: 13px;
+            color: #bdbdbd;
+            margin-bottom: 8px;
+        }
+
+
+        .wallet-balance {
+            font-size: 42px;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+
+        .wallet-balance-currency {
+            font-size: 14px;
+            color: #bdbdbd;
+            margin-left: 7px;
+            font-weight: 600;
+        }
+
+
+        .wallet-balance-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+
+        .wallet-mini-stat {
+            padding: 15px;
+            background: rgba(255,255,255,.07);
+            border-radius: 13px;
+        }
+
+
+        .wallet-mini-stat span {
+            display: block;
+            font-size: 12px;
+            color: #a9a9a9;
+            margin-bottom: 5px;
+        }
+
+
+        .wallet-mini-stat strong {
+            font-size: 16px;
+            color: #fff;
+        }
+
+
+        .wallet-action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+
+        .wallet-primary-btn,
+        .wallet-secondary-btn {
+            border: 0;
+            border-radius: 11px;
+            padding: 12px 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+        }
+
+
+        .wallet-primary-btn {
+            background: #ff2d55;
+            color: #fff;
+        }
+
+
+        .wallet-secondary-btn {
+            background: #fff;
+            color: #111;
+        }
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        .wallet-tabs {
+            background: #fff;
+            border: 1px solid #e8e8eb;
+            padding: 5px;
+            border-radius: 14px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+
+        .wallet-tab {
+            border: 0;
+            background: transparent;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+
+        .wallet-tab.active {
+            background: #181818;
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           PANEL
+        ===================================================== */
+
+        .wallet-panel {
+            display: none;
+        }
+
+
+        .wallet-panel.active {
+            display: block;
+        }
+
+
+        .wallet-card {
+            background: #fff;
+            border: 1px solid #e8e8eb;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 18px;
+        }
+
+
+        .wallet-card-header {
+            margin-bottom: 22px;
+        }
+
+
+        .wallet-card-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #111;
+        }
+
+
+        .wallet-card-header p {
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: #858585;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .wallet-form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .wallet-form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+
+        .wallet-input-wrap {
+            position: relative;
+        }
+
+
+        .wallet-input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #dedee3;
+            border-radius: 11px;
+            padding: 0 15px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            color: #111;
+            background: #fff;
+        }
+
+
+        .wallet-input:focus {
+            border-color: #111;
+            box-shadow: 0 0 0 3px rgba(0,0,0,.05);
+        }
+
+
+        .wallet-input-with-currency {
+            padding-right: 70px;
+        }
+
+
+        .wallet-currency {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: 800;
+            color: #777;
+        }
+
+
+        /* =====================================================
+           METHOD
+        ===================================================== */
+
+        .wallet-method-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+
+        .wallet-method {
+            border: 1px solid #dedee3;
+            border-radius: 14px;
+            background: #fff;
+            padding: 17px;
+            cursor: pointer;
+            text-align: left;
+            transition: .18s;
+        }
+
+
+        .wallet-method:hover {
+            border-color: #aaa;
+        }
+
+
+        .wallet-method.active {
+            border: 2px solid #111;
+            padding: 16px;
+            background: #fafafa;
+        }
+
+
+        .wallet-method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #f1f1f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 11px;
+        }
+
+
+        .wallet-method strong {
+            display: block;
+            color: #111;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+
+        .wallet-method span {
+            font-size: 12px;
+            color: #858585;
+        }
+
+
+        /* =====================================================
+           SEARCH ACCOUNT
+        ===================================================== */
+
+        .wallet-search-box {
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #f7f7f8;
+            display: none;
+        }
+
+
+        .wallet-search-box.show {
+            display: block;
+        }
+
+
+        .wallet-search-btn {
+            width: 100%;
+            height: 46px;
+            border: 0;
+            border-radius: 11px;
+            background: #111;
+            color: #fff;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+        }
+
+
+        .wallet-search-btn:disabled {
+            opacity: .65;
+            cursor: wait;
+        }
+
+
+        .wallet-search-animation {
+            display: none;
+            text-align: center;
+            padding: 24px 10px;
+        }
+
+
+        .wallet-search-animation.show {
+            display: block;
+        }
+
+
+        .wallet-spinner {
+            width: 38px;
+            height: 38px;
+            border: 4px solid #ddd;
+            border-top-color: #111;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            animation: walletSpin .8s linear infinite;
+        }
+
+
+        @keyframes walletSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .wallet-search-animation strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+
+        .wallet-search-animation span {
+            font-size: 12px;
+            color: #888;
+        }
+
+
+        /* =====================================================
+           ADMIN ACCOUNT RESULT
+        ===================================================== */
+
+        .wallet-admin-account {
+            display: none;
+            margin-top: 18px;
+            border: 1px solid #dfe0e3;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+
+        .wallet-admin-account.show {
+            display: block;
+        }
+
+
+        .wallet-admin-account-header {
+            padding: 15px 17px;
+            background: #f6f6f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+
+        .wallet-admin-account-header strong {
+            font-size: 14px;
+        }
+
+
+        .wallet-status-badge {
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #e8fff0;
+            color: #008b42;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+
+        .wallet-account-body {
+            padding: 18px;
+        }
+
+
+        .wallet-account-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+
+        .wallet-account-row:last-child {
+            border-bottom: 0;
+        }
+
+
+        .wallet-account-row span {
+            color: #888;
+            font-size: 12px;
+        }
+
+
+        .wallet-account-row strong {
+            text-align: right;
+            font-size: 13px;
+            color: #111;
+            word-break: break-all;
+        }
+
+
+        .wallet-copy-btn {
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 8px;
+            padding: 5px 9px;
+            font-size: 11px;
+            font-family: inherit;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+
+        /* =====================================================
+           SLIP
+        ===================================================== */
+
+        .wallet-slip-area {
+            display: none;
+            margin-top: 20px;
+        }
+
+
+        .wallet-slip-area.show {
+            display: block;
+        }
+
+
+        .wallet-file-box {
+            border: 1.5px dashed #cfcfd4;
+            border-radius: 14px;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            background: #fafafa;
+        }
+
+
+        .wallet-file-box:hover {
+            background: #f5f5f6;
+        }
+
+
+        .wallet-file-box input {
+            display: none;
+        }
+
+
+        .wallet-file-box strong {
+            display: block;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+
+        .wallet-file-box span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+
+        .wallet-slip-preview {
+            display: none;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+
+        .wallet-slip-preview.show {
+            display: block;
+        }
+
+
+        .wallet-slip-preview img {
+            max-width: 260px;
+            max-height: 330px;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+
+
+        /* =====================================================
+           WITHDRAW ACCOUNT
+        ===================================================== */
+
+        .wallet-account-list {
+            display: grid;
+            gap: 10px;
+        }
+
+
+        .wallet-user-account {
+            width: 100%;
+            border: 1px solid #dedee3;
+            border-radius: 14px;
+            background: #fff;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+
+        .wallet-user-account:hover {
+            border-color: #999;
+        }
+
+
+        .wallet-user-account.selected {
+            border: 2px solid #111;
+            padding: 14px;
+            background: #fafafa;
+        }
+
+
+        .wallet-user-account-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+
+        .wallet-user-account-type {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+
+        .wallet-user-account-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: #f1f1f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .wallet-user-account strong {
+            font-size: 13px;
+        }
+
+
+        .wallet-user-account p {
+            margin: 7px 0 0;
+            color: #777;
+            font-size: 12px;
+        }
+
+
+        .wallet-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .wallet-user-account.selected .wallet-check {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+
+        .wallet-add-account {
+            display: flex;
+            gap: 9px;
+            margin-top: 13px;
+        }
+
+
+        .wallet-add-account button {
+            flex: 1;
+            height: 44px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           HISTORY
+        ===================================================== */
+
+        .wallet-history-list {
+            display: grid;
+            gap: 10px;
+        }
+
+
+        .wallet-history-item {
+            border: 1px solid #e8e8eb;
+            border-radius: 14px;
+            padding: 15px;
+            background: #fff;
+            cursor: pointer;
+        }
+
+
+        .wallet-history-item:hover {
+            background: #fafafa;
+        }
+
+
+        .wallet-history-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+
+        .wallet-history-left {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+
+        .wallet-history-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: #f2f2f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .wallet-history-icon.deposit {
+            color: #008b42;
+        }
+
+
+        .wallet-history-icon.withdrawal {
+            color: #d81b46;
+        }
+
+
+        .wallet-history-name strong {
+            display: block;
+            font-size: 13px;
+            color: #111;
+        }
+
+
+        .wallet-history-name span {
+            display: block;
+            font-size: 11px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+
+        .wallet-history-amount {
+            text-align: right;
+        }
+
+
+        .wallet-history-amount strong {
+            display: block;
+            font-size: 14px;
+        }
+
+
+        .wallet-history-amount.deposit strong {
+            color: #008b42;
+        }
+
+
+        .wallet-history-amount.withdrawal strong {
+            color: #d81b46;
+        }
+
+
+        .wallet-history-status {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #f1f1f2;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .wallet-empty {
+            text-align: center;
+            padding: 55px 20px;
+            color: #888;
+        }
+
+
+        .wallet-empty-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            background: #f1f1f2;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .wallet-empty strong {
+            display: block;
+            color: #444;
+            font-size: 14px;
+        }
+
+
+        .wallet-empty span {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .wallet-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+
+        .wallet-modal-overlay.show {
+            display: flex;
+        }
+
+
+        .wallet-modal {
+            width: 100%;
+            max-width: 470px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.2);
+        }
+
+
+        .wallet-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+
+        .wallet-modal-header h3 {
+            margin: 0;
+            font-size: 19px;
+        }
+
+
+        .wallet-close-btn {
+            width: 35px;
+            height: 35px;
+            border: 0;
+            border-radius: 9px;
+            background: #f2f2f3;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .wallet-confirm-box {
+            background: #f7f7f8;
+            border-radius: 13px;
+            padding: 15px;
+            margin-bottom: 17px;
+        }
+
+
+        .wallet-confirm-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 8px 0;
+        }
+
+
+        .wallet-confirm-row span {
+            color: #888;
+            font-size: 12px;
+        }
+
+
+        .wallet-confirm-row strong {
+            font-size: 13px;
+            text-align: right;
+            word-break: break-word;
+        }
+
+
+        .wallet-confirm-amount {
+            font-size: 25px !important;
+        }
+
+
+        .wallet-modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+
+        .wallet-modal-actions button {
+            flex: 1;
+            height: 45px;
+            border-radius: 10px;
+            border: 0;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+
+        .wallet-cancel {
+            background: #eee;
+            color: #333;
+        }
+
+
+        .wallet-confirm {
+            background: #111;
+            color: #fff;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .wallet-toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 10000;
+            min-width: 260px;
+            max-width: 360px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: #181818;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,.2);
+            display: none;
+        }
+
+
+        .wallet-toast.show {
+            display: block;
+            animation: walletToastIn .2s ease;
+        }
+
+
+        .wallet-toast.success {
+            background: #008b42;
+        }
+
+
+        .wallet-toast.error {
+            background: #d81b46;
+        }
+
+
+        @keyframes walletToastIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.wallet-mobile-menu {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #dedee3;
+    border-radius: 11px;
+    background: #ffffff;
+    color: #111111;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+
+.wallet-mobile-menu:hover {
+    background: #f5f5f5;
+}
+
+
+@media (max-width: 900px) {
+
+    .wallet-mobile-menu {
+        display: flex;
+    }
+
+}
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+    .wallet-main {
+        padding: 72px 16px 16px;
+    }
+
+
+
+
+            .wallet-page-header {
+                align-items: flex-start;
+            }
+
+
+            .wallet-title-wrap h1 {
+                font-size: 24px;
+            }
+
+
+            .wallet-balance-card {
+                padding: 21px;
+                border-radius: 18px;
+            }
+
+
+            .wallet-balance {
+                font-size: 34px;
+            }
+
+
+            .wallet-balance-info {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+
+            .wallet-action-row {
+                flex-direction: column;
+            }
+
+
+            .wallet-primary-btn,
+            .wallet-secondary-btn {
+                width: 100%;
+            }
+
+
+            .wallet-method-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .wallet-card {
+                padding: 18px;
+                border-radius: 15px;
+            }
+
+
+            .wallet-account-row {
+                align-items: flex-start;
+            }
+
+
+            .wallet-account-row strong {
+                max-width: 60%;
+            }
+
+
+            .wallet-add-account {
+                flex-direction: column;
+            }
+
+
+            .wallet-history-top {
+                align-items: flex-start;
+            }
+
+
+            .wallet-history-left {
+                min-width: 0;
+            }
+
+
+            .wallet-history-name {
+                min-width: 0;
+            }
+
+
+            .wallet-history-name strong {
+                white-space: normal;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="wallet-page">
+
+
+    <!-- =====================================================
+         SHARED SIDEBAR
+    ===================================================== -->
+
+    <div id="sidebar-container"></div>
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+   <!-- =====================================================
+     MOBILE MENU BUTTON
+===================================================== -->
+
+<button
+    class="wallet-mobile-menu"
+    id="menuButton"
+    type="button"
+    aria-label="Open menu"
+>
+    <i data-lucide="menu"></i>
+</button>
+
+
+<main class="main-content">
+
+        <div class="wallet-main">
+
+            <div class="wallet-container">
+
+
+                <!-- =================================================
+                     PAGE HEADER
+                ================================================= -->
+
+                <div class="wallet-page-header">
+
+                    <div class="wallet-title-wrap">
+
+                        <h1>กระเป๋าเงิน</h1>
+
+                        <p>
+                            จัดการยอดเงิน การฝาก ถอน และประวัติธุรกรรม
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="wallet-refresh-btn"
+                        id="refreshWalletButton"
+                        type="button"
+                    >
+
+                        <i
+                            data-lucide="refresh-cw"
+                            width="16"
+                        ></i>
+
+                        รีเฟรช
+
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     BALANCE
+                ================================================= -->
+
+                <section class="wallet-balance-card">
+
+                    <div class="wallet-balance-label">
+                        ยอดเงินที่ใช้ได้
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="wallet-balance"
+                            id="walletBalance"
+                        >
+                            $0.00
+                        </span>
+
+                        <span class="wallet-balance-currency">
+                            USD
+                        </span>
+
+                    </div>
+
+
+                    <div class="wallet-balance-info">
+
+
+                        <div class="wallet-mini-stat">
+
+                            <span>
+                                Total Assets
+                            </span>
+
+                            <strong id="walletTotalAssets">
+                                $0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="wallet-mini-stat">
+
+                            <span>
+                                ฝากทั้งหมด
+                            </span>
+
+                            <strong id="walletTotalDeposited">
+                                $0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="wallet-mini-stat">
+
+                            <span>
+                                ถอนทั้งหมด
+                            </span>
+
+                            <strong id="walletTotalWithdrawn">
+                                $0.00
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="wallet-action-row">
+
+                        <button
+                            class="wallet-primary-btn"
+                            type="button"
+                            id="quickDepositButton"
+                        >
+
+                            <i
+                                data-lucide="plus"
+                                width="17"
+                            ></i>
+
+                            ฝากเงิน
+
+                        </button>
+
+
+                        <button
+                            class="wallet-secondary-btn"
+                            type="button"
+                            id="quickWithdrawButton"
+                        >
+
+                            <i
+                                data-lucide="arrow-up-right"
+                                width="17"
+                            ></i>
+
+                            ถอนเงิน
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     TABS
+                ================================================= -->
+
+                <div class="wallet-tabs">
+
+                    <button
+                        class="wallet-tab active"
+                        data-tab="deposit"
+                        type="button"
+                    >
+                        ฝากเงิน
+                    </button>
+
+
+                    <button
+                        class="wallet-tab"
+                        data-tab="withdraw"
+                        type="button"
+                    >
+                        ถอนเงิน
+                    </button>
+
+
+                    <button
+                        class="wallet-tab"
+                        data-tab="accounts"
+                        type="button"
+                    >
+                        บัญชีของฉัน
+                    </button>
+
+
+                    <button
+                        class="wallet-tab"
+                        data-tab="history"
+                        type="button"
+                    >
+                        ประวัติ
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     DEPOSIT
+                ================================================= -->
+
+                <section
+                    class="wallet-panel active"
+                    id="depositPanel"
+                >
+
+                    <div class="wallet-card">
+
+                        <div class="wallet-card-header">
+
+                            <h2>
+                                ฝากเงิน
+                            </h2>
+
+                            <p>
+                                เลือกช่องทางและจำนวนเงินที่ต้องการฝาก
+                            </p>
+
+                        </div>
+
+
+                        <div class="wallet-form-group">
+
+                            <label>
+                                จำนวนเงิน
+                            </label>
+
+                            <div class="wallet-input-wrap">
+
+                                <input
+                                    class="wallet-input wallet-input-with-currency"
+                                    id="depositAmount"
+                                    type="number"
+                                    min="1"
+                                    step="0.01"
+                                    placeholder="0.00"
+                                >
+
+                                <span class="wallet-currency">
+                                    USD
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="wallet-form-group">
+
+                            <label>
+                                ช่องทางฝากเงิน
+                            </label>
+
+
+                            <div class="wallet-method-grid">
+
+
+                                <button
+                                    class="wallet-method"
+                                    id="depositBankMethod"
+                                    data-method="bank"
+                                    type="button"
+                                >
+
+                                    <div class="wallet-method-icon">
+
+                                        <i
+                                            data-lucide="building-2"
+                                            width="20"
+                                        ></i>
+
+                                    </div>
+
+                                    <strong>
+                                        Bank Account
+                                    </strong>
+
+                                    <span>
+                                        ฝากผ่านบัญชีธนาคาร
+                                    </span>
+
+                                </button>
+
+
+                                <button
+                                    class="wallet-method"
+                                    id="depositCryptoMethod"
+                                    data-method="crypto"
+                                    type="button"
+                                >
+
+                                    <div class="wallet-method-icon">
+
+                                        <i
+                                            data-lucide="bitcoin"
+                                            width="20"
+                                        ></i>
+
+                                    </div>
+
+                                    <strong>
+                                        Crypto
+                                    </strong>
+
+                                    <span>
+                                        ฝากผ่าน Crypto Wallet
+                                    </span>
+
+                                </button>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="wallet-search-box"
+                            id="depositSearchBox"
+                        >
+
+                            <button
+                                class="wallet-search-btn"
+                                id="searchDepositAccountButton"
+                                type="button"
+                            >
+
+                                <i
+                                    data-lucide="search"
+                                    width="17"
+                                ></i>
+
+                                ค้นหาบัญชีสำหรับฝากเงิน
+
+                            </button>
+
+
+                            <div
+                                class="wallet-search-animation"
+                                id="depositSearching"
+                            >
+
+                                <div class="wallet-spinner"></div>
+
+                                <strong>
+                                    กำลังค้นหาบัญชี...
+                                </strong>
+
+                                <span>
+                                    กำลังส่งคำขอไปยังผู้ดูแลระบบ
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="wallet-admin-account"
+                                id="adminPaymentAccount"
+                            >
+
+                                <div class="wallet-admin-account-header">
+
+                                    <strong>
+                                        ข้อมูลสำหรับชำระเงิน
+                                    </strong>
+
+                                    <span class="wallet-status-badge">
+                                        พร้อมโอน
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    class="wallet-account-body"
+                                    id="adminPaymentAccountBody"
+                                ></div>
+
+                            </div>
+
+
+                            <div
+                                class="wallet-slip-area"
+                                id="depositSlipArea"
+                            >
+
+                                <div class="wallet-form-group">
+
+                                    <label>
+                                        แจ้งสลิปการโอนเงิน
+                                    </label>
+
+
+                                    <label class="wallet-file-box">
+
+                                        <input
+                                            type="file"
+                                            id="depositSlipInput"
+                                            accept="image/png,image/jpeg,image/webp,application/pdf"
+                                        >
+
+                                        <div>
+
+                                            <i
+                                                data-lucide="upload"
+                                                width="28"
+                                            ></i>
+
+                                            <strong>
+                                                คลิกเพื่อเลือกสลิป
+                                            </strong>
+
+                                            <span>
+                                                JPG, PNG, WEBP หรือ PDF
+                                            </span>
+
+                                        </div>
+
+                                    </label>
+
+
+                                    <div
+                                        class="wallet-slip-preview"
+                                        id="depositSlipPreview"
+                                    >
+
+                                        <img
+                                            id="depositSlipImage"
+                                            alt="Payment Slip"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    class="wallet-primary-btn"
+                                    id="submitDepositSlipButton"
+                                    type="button"
+                                    style="width:100%;"
+                                >
+
+                                    <i
+                                        data-lucide="send"
+                                        width="17"
+                                    ></i>
+
+                                    ส่งสลิปให้ตรวจสอบ
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     WITHDRAW
+                ================================================= -->
+
+                <section
+                    class="wallet-panel"
+                    id="withdrawPanel"
+                >
+
+                    <div class="wallet-card">
+
+                        <div class="wallet-card-header">
+
+                            <h2>
+                                ถอนเงิน
+                            </h2>
+
+                            <p>
+                                เลือกบัญชีปลายทางและจำนวนเงินที่ต้องการถอน
+                            </p>
+
+                        </div>
+
+
+                        <div class="wallet-form-group">
+
+                            <label>
+                                บัญชีปลายทาง
+                            </label>
+
+
+                            <div
+                                class="wallet-account-list"
+                                id="withdrawAccountList"
+                            ></div>
+
+
+                            <div class="wallet-add-account">
+
+                                <button
+                                    type="button"
+                                    id="addBankButton"
+                                >
+
+                                    <i
+                                        data-lucide="building-2"
+                                        width="15"
+                                    ></i>
+
+                                    เพิ่มบัญชีธนาคาร
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    id="addCryptoButton"
+                                >
+
+                                    <i
+                                        data-lucide="bitcoin"
+                                        width="15"
+                                    ></i>
+
+                                    เพิ่ม Crypto
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="wallet-form-group">
+
+                            <label>
+                                จำนวนเงิน
+                            </label>
+
+
+                            <div class="wallet-input-wrap">
+
+                                <input
+                                    class="wallet-input wallet-input-with-currency"
+                                    id="withdrawAmount"
+                                    type="number"
+                                    min="1"
+                                    step="0.01"
+                                    placeholder="0.00"
+                                >
+
+                                <span class="wallet-currency">
+                                    USD
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                style="
+                                    margin-top:7px;
+                                    color:#888;
+                                    font-size:12px;
+                                "
+                            >
+
+                                ยอดเงินที่ใช้ได้:
+                                <strong
+                                    id="withdrawAvailableBalance"
+                                    style="color:#111;"
+                                >
+                                    $0.00
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="wallet-primary-btn"
+                            id="withdrawButton"
+                            type="button"
+                            style="width:100%;"
+                        >
+
+                            <i
+                                data-lucide="arrow-up-right"
+                                width="17"
+                            ></i>
+
+                            ถอนเงิน
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ACCOUNTS
+                ================================================= -->
+
+                <section
+                    class="wallet-panel"
+                    id="accountsPanel"
+                >
+
+                    <div class="wallet-card">
+
+                        <div class="wallet-card-header">
+
+                            <h2>
+                                บัญชีของฉัน
+                            </h2>
+
+                            <p>
+                                บัญชีธนาคารและ Crypto ที่ใช้สำหรับถอนเงิน
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="wallet-account-list"
+                            id="myAccountList"
+                        ></div>
+
+
+                        <div class="wallet-add-account">
+
+                            <button
+                                type="button"
+                                id="accountBankButton"
+                            >
+
+                                <i
+                                    data-lucide="building-2"
+                                    width="16"
+                                ></i>
+
+                                เพิ่มบัญชีธนาคาร
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="accountCryptoButton"
+                            >
+
+                                <i
+                                    data-lucide="bitcoin"
+                                    width="16"
+                                ></i>
+
+                                เพิ่ม Crypto Wallet
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     HISTORY
+                ================================================= -->
+
+                <section
+                    class="wallet-panel"
+                    id="historyPanel"
+                >
+
+                    <div class="wallet-card">
+
+                        <div class="wallet-card-header">
+
+                            <h2>
+                                ประวัติธุรกรรม
+                            </h2>
+
+                            <p>
+                                รายการฝากและถอนทั้งหมด
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="wallet-history-list"
+                            id="walletHistoryList"
+                        ></div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         ACCOUNT MODAL
+    ===================================================== -->
+
+    <div
+        class="wallet-modal-overlay"
+        id="accountModal"
+    >
+
+        <div class="wallet-modal">
+
+            <div class="wallet-modal-header">
+
+                <h3 id="accountModalTitle">
+                    เพิ่มบัญชี
+                </h3>
+
+
+                <button
+                    class="wallet-close-btn"
+                    id="closeAccountModal"
+                    type="button"
+                >
+
+                    <i
+                        data-lucide="x"
+                        width="17"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+            <div id="bankAccountForm">
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        ชื่อบัญชี
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="bankAccountName"
+                        type="text"
+                        placeholder="ชื่อเจ้าของบัญชี"
+                    >
+
+                </div>
+
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        ธนาคาร
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="bankName"
+                        type="text"
+                        placeholder="ชื่อธนาคาร"
+                    >
+
+                </div>
+
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        เลขบัญชี
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="bankAccountNumber"
+                        type="text"
+                        placeholder="เลขบัญชี"
+                    >
+
+                </div>
+
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        สาขา
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="bankBranch"
+                        type="text"
+                        placeholder="สาขา (ถ้ามี)"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="cryptoAccountForm"
+                style="display:none;"
+            >
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        Network
+                    </label>
+
+                    <select
+                        class="wallet-input"
+                        id="cryptoNetwork"
+                    >
+
+                        <option value="">
+                            เลือก Network
+                        </option>
+
+                        <option value="USDT-TRC20">
+                            USDT - TRC20
+                        </option>
+
+                        <option value="USDT-ERC20">
+                            USDT - ERC20
+                        </option>
+
+                        <option value="USDT-BEP20">
+                            USDT - BEP20
+                        </option>
+
+                        <option value="BTC">
+                            Bitcoin
+                        </option>
+
+                        <option value="ETH">
+                            Ethereum
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        Wallet Address
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="cryptoWalletAddress"
+                        type="text"
+                        placeholder="ป้อน Wallet Address"
+                    >
+
+                </div>
+
+
+                <div class="wallet-form-group">
+
+                    <label>
+                        ชื่อบัญชี
+                    </label>
+
+                    <input
+                        class="wallet-input"
+                        id="cryptoLabel"
+                        type="text"
+                        placeholder="เช่น My USDT Wallet"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="wallet-modal-actions">
+
+                <button
+                    class="wallet-cancel"
+                    id="cancelAccountButton"
+                    type="button"
+                >
+                    ยกเลิก
+                </button>
+
+
+                <button
+                    class="wallet-confirm"
+                    id="saveAccountButton"
+                    type="button"
+                >
+                    บันทึกบัญชี
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         WITHDRAW CONFIRM MODAL
+    ===================================================== -->
+
+    <div
+        class="wallet-modal-overlay"
+        id="withdrawConfirmModal"
+    >
+
+        <div class="wallet-modal">
+
+            <div class="wallet-modal-header">
+
+                <h3>
+                    ยืนยันการถอนเงิน
+                </h3>
+
+
+                <button
+                    class="wallet-close-btn"
+                    id="closeWithdrawConfirm"
+                    type="button"
+                >
+
+                    <i
+                        data-lucide="x"
+                        width="17"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+            <p
+                style="
+                    color:#777;
+                    font-size:13px;
+                    line-height:1.6;
+                    margin-top:0;
+                "
+            >
+                คุณต้องการทำธุรกรรมนี้หรือไม่?
+                กรุณาตรวจสอบข้อมูลก่อนยืนยัน
+            </p>
+
+
+            <div class="wallet-confirm-box">
+
+                <div class="wallet-confirm-row">
+
+                    <span>
+                        จำนวนเงิน
+                    </span>
+
+                    <strong
+                        class="wallet-confirm-amount"
+                        id="confirmWithdrawAmount"
+                    >
+                        $0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="wallet-confirm-row">
+
+                    <span>
+                        ปลายทาง
+                    </span>
+
+                    <strong id="confirmWithdrawDestination">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="wallet-confirm-row">
+
+                    <span>
+                        ยอดเงินหลังถอน
+                    </span>
+
+                    <strong id="confirmWithdrawBalance">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="wallet-modal-actions">
+
+                <button
+                    class="wallet-cancel"
+                    id="cancelWithdrawButton"
+                    type="button"
+                >
+                    ยกเลิก
+                </button>
+
+
+                <button
+                    class="wallet-confirm"
+                    id="confirmWithdrawButton"
+                    type="button"
+                >
+                    ยืนยันการถอน
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TRANSACTION DETAIL MODAL
+    ===================================================== -->
+
+    <div
+        class="wallet-modal-overlay"
+        id="transactionModal"
+    >
+
+        <div class="wallet-modal">
+
+            <div class="wallet-modal-header">
+
+                <h3>
+                    รายละเอียดธุรกรรม
+                </h3>
+
+
+                <button
+                    class="wallet-close-btn"
+                    id="closeTransactionModal"
+                    type="button"
+                >
+
+                    <i
+                        data-lucide="x"
+                        width="17"
+                    ></i>
+
+                </button>
+
+            </div>
+
+
+            <div id="transactionDetail"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOAST
+    ===================================================== -->
+
+    <div
+        class="wallet-toast"
+        id="walletToast"
+    ></div>
+
+
+    <!-- =====================================================
+         SHARED SIDEBAR
+    ===================================================== -->
+
+    <script src="js/sidebar.js"></script>
+
+
+    <script>
+
+        // =====================================================
+        // CONFIG
+        // =====================================================
+
+        const API_BASE_URL =
+            "/api";
+
+
+        const WALLET_API =
+            `${API_BASE_URL}/wallet`;
+
+        
+        // =====================================================
+        // STATE
+        // =====================================================
+
+        let wallet = {
+
+            balance: 0,
+
+            totalAssets: 0,
+
+            pendingAmount: 0,
+
+            totalDeposited: 0,
+
+            totalWithdrawn: 0
+
+        };
+
+
+        let accounts = [];
+
+        let transactions = [];
+
+        let selectedDepositMethod = "";
+
+        let selectedWithdrawAccount = null;
+
+        let currentDepositTransaction = null;
+
+        let currentSlipData = null;
+
+        let accountModalMode = "bank";
+
+        let walletTransactionPollTimer = null;
+        // =====================================================
+        // HELPERS
+        // =====================================================
+
+        function $(id) {
+
+            return document.getElementById(id);
+
+        }
+
+
+        function getToken() {
+
+            return (
+                localStorage.getItem(
+                    "tiktokShopToken"
+                ) ||
+                localStorage.getItem(
+                    "token"
+                ) ||
+                ""
+            );
+
+        }
+
+
+        function money(value) {
+
+            const number =
+                Number(value || 0);
+
+
+            return new Intl.NumberFormat(
+                "en-US",
+                {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 2
+                }
+            ).format(number);
+
+        }
+
+
+        function escapeHtml(value) {
+
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        function formatDate(value) {
+
+            if (!value) {
+                return "-";
+            }
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "-";
+
+            }
+
+
+            return date.toLocaleString(
+                "th-TH",
+                {
+                    dateStyle: "medium",
+                    timeStyle: "short"
+                }
+            );
+
+        }
+
+
+        function showToast(
+            message,
+            type = ""
+        ) {
+
+            const toast =
+                $("walletToast");
+
+
+            toast.textContent =
+                message;
+
+
+            toast.className =
+                "wallet-toast show " +
+                type;
+
+
+            clearTimeout(
+                window.walletToastTimer
+            );
+
+
+            window.walletToastTimer =
+                setTimeout(
+                    () => {
+
+                        toast.className =
+                            "wallet-toast";
+
+                    },
+                    3500
+                );
+
+        }
+
+
+        async function apiFetch(
+            url,
+            options = {}
+        ) {
+
+            const token =
+                getToken();
+
+
+            const headers = {
+
+                ...(options.headers || {})
+
+            };
+
+
+            if (
+                options.body &&
+                !headers["Content-Type"]
+            ) {
+
+                headers["Content-Type"] =
+                    "application/json";
+
+            }
+
+
+            if (token) {
+
+                headers.Authorization =
+                    `Bearer ${token}`;
+
+            }
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
+
+
+            let data = null;
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+
+            catch {
+
+                data = null;
+
+            }
+
+
+            if (
+                response.status === 401
+            ) {
+
+                localStorage.removeItem(
+                    "tiktokShopToken"
+                );
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                throw new Error(
+                    "Authentication required."
+                );
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data?.message ||
+                    "Request failed."
+                );
+
+            }
+
+
+            return data;
+
+        }
+
+
+        // =====================================================
+        // LOAD WALLET
+        // =====================================================
+
+        async function loadWallet() {
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        `${WALLET_API}`
+                    );
+
+
+                wallet =
+                    data.wallet || wallet;
+
+
+                renderWallet();
+
+
+                $("withdrawAvailableBalance")
+                    .textContent =
+                    money(
+                        wallet.balance
+                    );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load wallet error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // RENDER WALLET
+        // =====================================================
+
+        function renderWallet() {
+
+            $("walletBalance")
+                .textContent =
+                money(
+                    wallet.balance
+                );
+
+
+            $("walletTotalAssets")
+                .textContent =
+                money(
+                    wallet.totalAssets
+                );
+
+
+            $("walletTotalDeposited")
+                .textContent =
+                money(
+                    wallet.totalDeposited
+                );
+
+
+            $("walletTotalWithdrawn")
+                .textContent =
+                money(
+                    wallet.totalWithdrawn
+                );
+
+
+            $("withdrawAvailableBalance")
+                .textContent =
+                money(
+                    wallet.balance
+                );
+
+        }
+
+
+        // =====================================================
+        // LOAD ACCOUNTS
+        // =====================================================
+
+        async function loadAccounts() {
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        `${WALLET_API}/accounts`
+                    );
+
+
+                accounts =
+                    data.accounts || [];
+
+
+                renderAccounts();
+
+                renderWithdrawAccounts();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load accounts error:",
+                    error
+                );
+
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // RENDER ACCOUNTS
+        // =====================================================
+
+        function renderAccounts() {
+
+            const container =
+                $("myAccountList");
+
+
+            if (!accounts.length) {
+
+                container.innerHTML = `
+
+                    <div class="wallet-empty">
+
+                        <div class="wallet-empty-icon">
+
+                            <i
+                                data-lucide="wallet-cards"
+                                width="25"
+                            ></i>
+
+                        </div>
+
+                        <strong>
+                            ยังไม่มีบัญชีปลายทาง
+                        </strong>
+
+                        <span>
+                            เพิ่มบัญชีธนาคารหรือ Crypto Wallet
+                            สำหรับใช้ถอนเงิน
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                accounts
+                    .map(
+                        account =>
+                            accountCard(
+                                account,
+                                true
+                            )
+                    )
+                    .join("");
+
+
+            refreshIcons();
+
+
+            container
+                .querySelectorAll(
+                    "[data-delete-account]"
+                )
+                .forEach(
+                    button => {
+
+                        button.addEventListener(
+                            "click",
+                            async event => {
+
+                                event.stopPropagation();
+
+
+                                const id =
+                                    button.dataset.deleteAccount;
+
+
+                                await deleteAccount(
+                                    id
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        function accountCard(
+            account,
+            showDelete
+        ) {
+
+            const isBank =
+                account.type === "bank";
+
+
+            let detail = "";
+
+
+            if (isBank) {
+
+                detail =
+                    `${escapeHtml(account.bankName)} • ${escapeHtml(account.accountNumber)}`;
+
+            }
+
+            else {
+
+                detail =
+                    `${escapeHtml(account.network)} • ${escapeHtml(account.walletAddress)}`;
+
+            }
+
+
+            return `
+
+                <div
+                    class="wallet-user-account"
+                    data-account-id="${account._id}"
+                >
+
+                    <div class="wallet-user-account-top">
+
+                        <div class="wallet-user-account-type">
+
+                            <div class="wallet-user-account-icon">
+
+                                <i
+                                    data-lucide="${isBank ? "building-2" : "bitcoin"}"
+                                    width="18"
+                                ></i>
+
+                            </div>
+
+                            <strong>
+                                ${escapeHtml(
+                                    account.label ||
+                                    (
+                                        isBank
+                                            ? "Bank Account"
+                                            : "Crypto Wallet"
+                                    )
+                                )}
+                            </strong>
+
+                        </div>
+
+
+                        ${
+                            showDelete
+                                ? `
+                                    <button
+                                        type="button"
+                                        data-delete-account="${account._id}"
+                                        style="
+                                            border:0;
+                                            background:transparent;
+                                            color:#d81b46;
+                                            cursor:pointer;
+                                            padding:5px;
+                                        "
+                                    >
+                                        <i
+                                            data-lucide="trash-2"
+                                            width="16"
+                                        ></i>
+                                    </button>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <p>
+                        ${detail}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // =====================================================
+        // RENDER WITHDRAW ACCOUNTS
+        // =====================================================
+
+        function renderWithdrawAccounts() {
+
+            const container =
+                $("withdrawAccountList");
+
+
+            if (!accounts.length) {
+
+                container.innerHTML = `
+
+                    <div
+                        style="
+                            border:1px dashed #d5d5d8;
+                            border-radius:14px;
+                            padding:25px;
+                            text-align:center;
+                            color:#888;
+                        "
+                    >
+
+                        <i
+                            data-lucide="wallet-cards"
+                            width="25"
+                        ></i>
+
+                        <div
+                            style="
+                                margin-top:8px;
+                                font-size:13px;
+                                font-weight:700;
+                                color:#555;
+                            "
+                        >
+                            ยังไม่มีบัญชีปลายทาง
+                        </div>
+
+                        <div
+                            style="
+                                margin-top:5px;
+                                font-size:11px;
+                            "
+                        >
+                            เพิ่มบัญชีธนาคารหรือ Crypto ก่อนถอนเงิน
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                accounts
+                    .map(
+                        account =>
+                            accountCard(
+                                account,
+                                false
+                            )
+                    )
+                    .join("");
+
+
+            refreshIcons();
+
+
+            container
+                .querySelectorAll(
+                    ".wallet-user-account"
+                )
+                .forEach(
+                    element => {
+
+                        element.addEventListener(
+                            "click",
+                            () => {
+
+                                const id =
+                                    element.dataset.accountId;
+
+
+                                selectedWithdrawAccount =
+                                    accounts.find(
+                                        account =>
+                                            String(
+                                                account._id
+                                            ) ===
+                                            String(id)
+                                    );
+
+
+                                container
+                                    .querySelectorAll(
+                                        ".wallet-user-account"
+                                    )
+                                    .forEach(
+                                        item =>
+                                            item.classList.remove(
+                                                "selected"
+                                            )
+                                    );
+
+
+                                element.classList.add(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        // =====================================================
+        // DELETE ACCOUNT
+        // =====================================================
+
+        async function deleteAccount(id) {
+
+            const confirmed =
+                confirm(
+                    "ต้องการลบบัญชีนี้หรือไม่?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                await apiFetch(
+                    `${WALLET_API}/accounts/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+                if (
+                    selectedWithdrawAccount &&
+                    String(
+                        selectedWithdrawAccount._id
+                    ) ===
+                    String(id)
+                ) {
+
+                    selectedWithdrawAccount =
+                        null;
+
+                }
+
+
+                await loadAccounts();
+
+
+                showToast(
+                    "ลบบัญชีเรียบร้อยแล้ว",
+                    "success"
+                );
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // CREATE BANK ACCOUNT
+        // =====================================================
+
+        async function saveBankAccount() {
+
+            const accountName =
+                $("bankAccountName")
+                    .value
+                    .trim();
+
+
+            const bankName =
+                $("bankName")
+                    .value
+                    .trim();
+
+
+            const accountNumber =
+                $("bankAccountNumber")
+                    .value
+                    .trim();
+
+
+            const branch =
+                $("bankBranch")
+                    .value
+                    .trim();
+
+
+            if (
+                !accountName ||
+                !bankName ||
+                !accountNumber
+            ) {
+
+                showToast(
+                    "กรุณากรอกข้อมูลบัญชีให้ครบ",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await apiFetch(
+                    `${WALLET_API}/accounts/bank`,
+                    {
+
+                        method: "POST",
+
+                        body:
+                            JSON.stringify({
+
+                                accountName,
+
+                                bankName,
+
+                                accountNumber,
+
+                                branch
+
+                            })
+
+                    }
+                );
+
+
+                closeAccountModal();
+
+
+                $("bankAccountName").value =
+                    "";
+
+                $("bankName").value =
+                    "";
+
+                $("bankAccountNumber").value =
+                    "";
+
+                $("bankBranch").value =
+                    "";
+
+
+                await loadAccounts();
+
+
+                showToast(
+                    "เพิ่มบัญชีธนาคารเรียบร้อยแล้ว",
+                    "success"
+                );
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // CREATE CRYPTO ACCOUNT
+        // =====================================================
+
+        async function saveCryptoAccount() {
+
+            const network =
+                $("cryptoNetwork")
+                    .value
+                    .trim();
+
+
+            const walletAddress =
+                $("cryptoWalletAddress")
+                    .value
+                    .trim();
+
+
+            const label =
+                $("cryptoLabel")
+                    .value
+                    .trim();
+
+
+            if (
+                !network ||
+                !walletAddress
+            ) {
+
+                showToast(
+                    "กรุณาเลือก Network และกรอก Wallet Address",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                await apiFetch(
+                    `${WALLET_API}/accounts/crypto`,
+                    {
+
+                        method: "POST",
+
+                        body:
+                            JSON.stringify({
+
+                                network,
+
+                                walletAddress,
+
+                                label
+
+                            })
+
+                    }
+                );
+
+
+                closeAccountModal();
+
+
+                $("cryptoNetwork").value =
+                    "";
+
+                $("cryptoWalletAddress").value =
+                    "";
+
+                $("cryptoLabel").value =
+                    "";
+
+
+                await loadAccounts();
+
+
+                showToast(
+                    "เพิ่ม Crypto Wallet เรียบร้อยแล้ว",
+                    "success"
+                );
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // OPEN ACCOUNT MODAL
+        // =====================================================
+
+        function openAccountModal(
+            mode
+        ) {
+
+            accountModalMode =
+                mode;
+
+
+            $("accountModalTitle")
+                .textContent =
+                mode === "bank"
+                    ? "เพิ่มบัญชีธนาคาร"
+                    : "เพิ่ม Crypto Wallet";
+
+
+            $("bankAccountForm")
+                .style.display =
+                mode === "bank"
+                    ? "block"
+                    : "none";
+
+
+            $("cryptoAccountForm")
+                .style.display =
+                mode === "crypto"
+                    ? "block"
+                    : "none";
+
+
+            $("accountModal")
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+        function closeAccountModal() {
+
+            $("accountModal")
+                .classList.remove(
+                    "show"
+                );
+
+        }
+
+
+        // =====================================================
+        // DEPOSIT METHOD
+        // =====================================================
+
+        function selectDepositMethod(
+            method
+        ) {
+
+            selectedDepositMethod =
+                method;
+
+
+            $("depositBankMethod")
+                .classList.toggle(
+                    "active",
+                    method === "bank"
+                );
+
+
+            $("depositCryptoMethod")
+                .classList.toggle(
+                    "active",
+                    method === "crypto"
+                );
+
+
+            $("depositSearchBox")
+                .classList.add(
+                    "show"
+                );
+
+
+            $("adminPaymentAccount")
+                .classList.remove(
+                    "show"
+                );
+
+
+            $("depositSlipArea")
+                .classList.remove(
+                    "show"
+                );
+
+
+            currentDepositTransaction =
+                null;
+
+
+            currentSlipData =
+                null;
+
+        }
+
+
+        // =====================================================
+        // SEARCH DEPOSIT ACCOUNT
+        // =====================================================
+
+        async function searchDepositAccount() {
+
+            const amount =
+                Number(
+                    $("depositAmount")
+                        .value
+                );
+
+
+            if (
+                !Number.isFinite(amount) ||
+                amount <= 0
+            ) {
+
+                showToast(
+                    "กรุณาป้อนจำนวนเงินฝาก",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !selectedDepositMethod
+            ) {
+
+                showToast(
+                    "กรุณาเลือกช่องทางฝากเงิน",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const button =
+                $("searchDepositAccountButton");
+
+
+            const animation =
+                $("depositSearching");
+
+
+            button.disabled =
+                true;
+
+
+            button.style.display =
+                "none";
+
+
+            animation.classList.add(
+                "show"
+            );
+
+
+            try {
+
+                const payload = {
+
+                    amount,
+
+                    method:
+                        selectedDepositMethod,
+
+                    currency:
+                        "USD"
+
+                };
+
+
+                if (
+                    selectedDepositMethod ===
+                    "crypto"
+                ) {
+
+                    payload.network =
+                        "USDT-TRC20";
+
+                    payload.currency =
+                        "USDT";
+
+                }
+
+
+                const data =
+                    await apiFetch(
+                        `${WALLET_API}/deposit`,
+                        {
+
+                            method: "POST",
+
+                            body:
+                                JSON.stringify(
+                                    payload
+                                )
+
+                        }
+                    );
+
+
+                currentDepositTransaction =
+                    data.transaction;
+
+
+                /*
+                 * จำลองช่วงเวลาค้นหาบัญชี
+                 * เพื่อให้ UI เหมือนกำลังค้นหา
+                 */
+
+                await new Promise(
+                    resolve =>
+                        setTimeout(
+                            resolve,
+                            1800
+                        )
+                );
+
+
+                animation.classList.remove(
+                    "show"
+                );
+
+
+                /*
+                 * Backend ตอนนี้ยังไม่มี Admin API
+                 * สำหรับส่ง payment account กลับมา
+                 *
+                 * ดังนั้นแสดงสถานะรอ Admin ก่อน
+                 */
+
+                renderWaitingForAdmin();
+
+            }
+
+            catch (error) {
+
+                button.disabled =
+                    false;
+
+
+                button.style.display =
+                    "flex";
+
+
+                animation.classList.remove(
+                    "show"
+                );
+
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // WAITING FOR ADMIN
+        // =====================================================
+
+        function renderWaitingForAdmin() {
+
+            const body =
+                $("adminPaymentAccountBody");
+
+
+            body.innerHTML = `
+
+                <div
+                    style="
+                        text-align:center;
+                        padding:20px 5px;
+                    "
+                >
+
+                    <div
+                        style="
+                            width:46px;
+                            height:46px;
+                            border-radius:50%;
+                            background:#f2f2f3;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            margin:0 auto 12px;
+                        "
+                    >
+
+                        <i
+                            data-lucide="clock-3"
+                            width="23"
+                        ></i>
+
+                    </div>
+
+
+                    <strong
+                        style="
+                            display:block;
+                            font-size:14px;
+                            margin-bottom:5px;
+                        "
+                    >
+                        ระบบกำลังค้าหาบัญชีร้าน P2P
+                    </strong>
+
+
+                    <span
+                        style="
+                            color:#888;
+                            font-size:12px;
+                            line-height:1.6;
+                        "
+                    >
+                        ระบบส่งคำขอฝากเงินไปยัง ร้าน P2P แล้ว
+                        <br>
+                        ข้อมูลบัญชีร้านP2P จะแสดงข้อมูลที่นี่
+                    </span>
+
+
+                    <div
+                        style="
+                            margin-top:14px;
+                            padding:10px;
+                            border-radius:9px;
+                            background:#f6f6f7;
+                            font-size:11px;
+                            color:#666;
+                        "
+                    >
+                        Transaction:
+                        <strong>
+                            ${escapeHtml(
+                                currentDepositTransaction?.transactionId ||
+                                "-"
+                            )}
+                        </strong>
+                    </div>
+
+                </div>
+
+            `;
+
+
+            $("adminPaymentAccount")
+                .classList.add(
+                    "show"
+                );
+
+
+            refreshIcons();
+
+
+            /*
+             * ปุ่มค้นหาจะไม่สร้างรายการซ้ำ
+             * จนกว่าจะเริ่มรายการฝากใหม่
+             */
+
+            $("searchDepositAccountButton")
+                .style.display =
+                "none";
+
+
+            $("searchDepositAccountButton")
+                .disabled =
+                true;
+
+        }
+
+
+       // =====================================================
+// DISPLAY ADMIN PAYMENT ACCOUNT
+// =====================================================
+
+function showAdminPaymentAccount(
+    account
+) {
+
+    if (!account) {
+        return;
+    }
+
+
+    const body =
+        $("adminPaymentAccountBody");
+
+
+    /*
+     * Backend เก็บ method ไว้ที่ transaction.method
+     * ส่วน account ที่ส่งเข้ามาคือ transaction.adminAccount
+     *
+     * ดังนั้นต้องรองรับทั้ง:
+     *
+     * account.type
+     * transaction.method
+     */
+
+    const accountType =
+        account.type ||
+        currentDepositTransaction?.method ||
+        selectedDepositMethod ||
+        "";
+
+
+    let html = "";
+
+
+    // =================================================
+    // BANK
+    // =================================================
+
+    if (
+        accountType ===
+        "bank"
+    ) {
+
+        html += `
+
+            ${accountRow(
+                "ธนาคาร",
+                account.bankName || "-"
+            )}
+
+            ${accountRow(
+                "ชื่อบัญชี",
+                account.accountName || "-"
+            )}
+
+            ${accountRowWithCopy(
+                "เลขบัญชี",
+                account.accountNumber || "-"
+            )}
+
+            ${
+                account.branch
+                    ? accountRow(
+                        "สาขา",
+                        account.branch
+                    )
+                    : ""
+            }
+
+        `;
+
+    }
+
+
+    // =================================================
+    // CRYPTO
+    // =================================================
+
+    else if (
+        accountType ===
+        "crypto"
+    ) {
+
+        html += `
+
+            ${accountRow(
+                "Network",
+                account.network || "-"
+            )}
+
+            ${accountRowWithCopy(
+                "Wallet Address",
+                account.walletAddress || "-"
+            )}
+
+        `;
+
+    }
+
+
+    else {
+
+        html = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:20px;
+                    color:#777;
+                "
+            >
+                ไม่พบข้อมูลบัญชีสำหรับฝากเงิน
+            </div>
+
+        `;
+
+    }
+
+
+    body.innerHTML =
+        html;
+
+
+    $("adminPaymentAccount")
+        .classList.add(
+            "show"
+        );
+
+
+    /*
+     * แสดงพื้นที่ Upload Slip
+     * เมื่อ Admin ส่งบัญชีมาแล้ว
+     */
+
+    if (
+        currentDepositTransaction &&
+        [
+            "account_assigned",
+            "awaiting_slip"
+        ].includes(
+            currentDepositTransaction.status
+        )
+    ) {
+
+        $("depositSlipArea")
+            .classList.add(
+                "show"
+            );
+
+    }
+
+
+    /*
+     * ซ่อนปุ่มค้นหา
+     */
+
+    $("searchDepositAccountButton")
+        .style.display =
+        "none";
+
+    $("searchDepositAccountButton")
+        .disabled =
+        true;
+
+
+    refreshIcons();
+
+}
+
+
+        function accountRow(
+            label,
+            value
+        ) {
+
+            return `
+
+                <div class="wallet-account-row">
+
+                    <span>
+                        ${escapeHtml(label)}
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(value)}
+                    </strong>
+
+                </div>
+
+            `;
+
+        }
+
+
+        function accountRowWithCopy(
+            label,
+            value
+        ) {
+
+            return `
+
+                <div class="wallet-account-row">
+
+                    <span>
+                        ${escapeHtml(label)}
+                    </span>
+
+                    <strong>
+
+                        ${escapeHtml(value)}
+
+                        <button
+                            class="wallet-copy-btn"
+                            type="button"
+                            onclick="copyWalletText('${String(value)
+                                .replace(/\\/g, "\\\\")
+                                .replace(/'/g, "\\'")}'
+                            )"
+                        >
+                            Copy
+                        </button>
+
+                    </strong>
+
+                </div>
+
+            `;
+
+        }
+
+
+        async function copyWalletText(
+            value
+        ) {
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    value
+                );
+
+
+                showToast(
+                    "คัดลอกแล้ว",
+                    "success"
+                );
+
+            }
+
+            catch {
+
+                showToast(
+                    "ไม่สามารถคัดลอกได้",
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // SLIP SELECT
+        // =====================================================
+
+        $("depositSlipInput")
+            .addEventListener(
+                "change",
+                event => {
+
+                    const file =
+                        event.target.files[0];
+
+
+                    if (!file) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        file.size >
+                        10 * 1024 * 1024
+                    ) {
+
+                        showToast(
+                            "ไฟล์ใหญ่เกิน 10MB",
+                            "error"
+                        );
+
+
+                        event.target.value =
+                            "";
+
+
+                        return;
+
+                    }
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        () => {
+
+                            currentSlipData =
+                                {
+
+                                    dataUrl:
+                                        reader.result,
+
+                                    filename:
+                                        file.name
+
+                                };
+
+
+                            if (
+                                file.type
+                                    .startsWith(
+                                        "image/"
+                                    )
+                            ) {
+
+                                $("depositSlipImage")
+                                    .src =
+                                    reader.result;
+
+
+                                $("depositSlipPreview")
+                                    .classList.add(
+                                        "show"
+                                    );
+
+                            }
+
+                            else {
+
+                                $("depositSlipPreview")
+                                    .classList.remove(
+                                        "show"
+                                    );
+
+                            }
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+            );
+
+
+        // =====================================================
+        // SUBMIT SLIP
+        // =====================================================
+
+        async function submitDepositSlip() {
+
+            if (
+                !currentDepositTransaction
+            ) {
+
+                showToast(
+                    "ยังไม่มีรายการฝากเงิน",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !currentSlipData
+            ) {
+
+                showToast(
+                    "กรุณาเลือกสลิปก่อน",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const button =
+                    $("submitDepositSlipButton");
+
+
+                button.disabled =
+                    true;
+
+
+                const data =
+                    await apiFetch(
+
+                        `${WALLET_API}/deposit/` +
+                        `${currentDepositTransaction.transactionId}/slip`,
+
+                        {
+
+                            method: "POST",
+
+                            body:
+                                JSON.stringify({
+
+                                    url:
+                                        currentSlipData.dataUrl,
+
+                                    filename:
+                                        currentSlipData.filename
+
+                                })
+
+                        }
+
+                    );
+
+
+                currentDepositTransaction =
+                    data.transaction;
+
+
+                showToast(
+                    "ส่งสลิปเรียบร้อยแล้ว รอ Admin ตรวจสอบ",
+                    "success"
+                );
+
+
+                renderDepositReviewStatus();
+
+
+                await loadTransactions();
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                $("submitDepositSlipButton")
+                    .disabled =
+                    false;
+
+            }
+
+        }
+
+
+        // =====================================================
+        // DEPOSIT REVIEW STATUS
+        // =====================================================
+
+        function renderDepositReviewStatus() {
+
+            const body =
+                $("adminPaymentAccountBody");
+
+
+            body.innerHTML = `
+
+                <div
+                    style="
+                        text-align:center;
+                        padding:20px 5px;
+                    "
+                >
+
+                    <div
+                        style="
+                            width:52px;
+                            height:52px;
+                            border-radius:50%;
+                            background:#fff4df;
+                            color:#b86a00;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            margin:0 auto 12px;
+                        "
+                    >
+
+                        <i
+                            data-lucide="clock-3"
+                            width="25"
+                        ></i>
+
+                    </div>
+
+
+                    <strong
+                        style="
+                            display:block;
+                            font-size:14px;
+                        "
+                    >
+                        รอ Admin ตรวจสอบสลิป
+                    </strong>
+
+
+                    <span
+                        style="
+                            display:block;
+                            color:#888;
+                            font-size:12px;
+                            margin-top:5px;
+                        "
+                    >
+                        เงินจะยังไม่เข้ากระเป๋า
+                        จนกว่า Admin จะอนุมัติ
+                    </span>
+
+                </div>
+
+            `;
+
+
+            $("depositSlipArea")
+                .classList.remove(
+                    "show"
+                );
+
+
+            refreshIcons();
+
+        }
+
+
+        // =====================================================
+        // WITHDRAW
+        // =====================================================
+
+        function startWithdraw() {
+
+            const amount =
+                Number(
+                    $("withdrawAmount")
+                        .value
+                );
+
+
+            if (
+                !selectedWithdrawAccount
+            ) {
+
+                showToast(
+                    "กรุณาเลือกบัญชีปลายทางก่อน",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isFinite(amount) ||
+                amount <= 0
+            ) {
+
+                showToast(
+                    "กรุณาป้อนจำนวนเงินถอน",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                amount >
+                Number(
+                    wallet.balance || 0
+                )
+            ) {
+
+                showToast(
+                    `ยอดเงินไม่พอ คุณมี ${money(wallet.balance)}`,
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const account =
+                selectedWithdrawAccount;
+
+
+            const destination =
+                account.type === "bank"
+
+                    ? `${account.bankName} • ${account.accountNumber}`
+
+                    : `${account.network} • ${account.walletAddress}`;
+
+
+            $("confirmWithdrawAmount")
+                .textContent =
+                money(amount);
+
+
+            $("confirmWithdrawDestination")
+                .textContent =
+                destination;
+
+
+            $("confirmWithdrawBalance")
+                .textContent =
+                money(
+                    Number(wallet.balance) -
+                    amount
+                );
+
+
+            $("withdrawConfirmModal")
+                .classList.add(
+                    "show"
+                );
+
+        }
+
+
+        // =====================================================
+        // CONFIRM WITHDRAW
+        // =====================================================
+
+        async function confirmWithdraw() {
+
+            if (
+                !selectedWithdrawAccount
+            ) {
+
+                showToast(
+                    "กรุณาเลือกบัญชีปลายทาง",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const amount =
+                Number(
+                    $("withdrawAmount")
+                        .value
+                );
+
+
+            if (
+                amount >
+                Number(
+                    wallet.balance || 0
+                )
+            ) {
+
+                closeWithdrawConfirm();
+
+
+                showToast(
+                    "ยอดเงินไม่เพียงพอ",
+                    "error"
+                );
+
+
+                return;
+
+            }
+
+
+            try {
+
+                const button =
+                    $("confirmWithdrawButton");
+
+
+                button.disabled =
+                    true;
+
+
+                await apiFetch(
+                    `${WALLET_API}/withdraw`,
+                    {
+
+                        method: "POST",
+
+                        body:
+                            JSON.stringify({
+
+                                walletAccountId:
+                                    selectedWithdrawAccount._id,
+
+                                amount,
+
+                                currency:
+                                    "USD"
+
+                            })
+
+                    }
+                );
+
+
+                closeWithdrawConfirm();
+
+
+                $("withdrawAmount")
+                    .value =
+                    "";
+
+
+                showToast(
+                    "ส่งคำขอถอนเงินแล้ว รอ Admin ตรวจสอบ",
+                    "success"
+                );
+
+
+                await loadTransactions();
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+            finally {
+
+                $("confirmWithdrawButton")
+                    .disabled =
+                    false;
+
+            }
+
+        }
+
+
+        function closeWithdrawConfirm() {
+
+            $("withdrawConfirmModal")
+                .classList.remove(
+                    "show"
+                );
+
+        }
+
+
+       // =====================================================
+// LOAD TRANSACTIONS
+// =====================================================
+
+async function loadTransactions() {
+
+    try {
+
+        const data =
+            await apiFetch(
+                `${WALLET_API}/transactions`
+            );
+
+
+        transactions =
+            Array.isArray(
+                data.transactions
+            )
+                ? data.transactions
+                : [];
+
+
+        renderHistory();
+
+
+        // =================================================
+        // RESTORE ACTIVE DEPOSIT
+        // =================================================
+
+        const activeDeposits =
+            transactions
+                .filter(
+                    transaction =>
+                        transaction.type ===
+                        "deposit"
+                        &&
+                        [
+                            "pending",
+                            "account_assigned",
+                            "awaiting_slip",
+                            "under_review"
+                        ].includes(
+                            transaction.status
+                        )
+                )
+                .sort(
+                    (a, b) =>
+                        new Date(
+                            b.createdAt
+                        ) -
+                        new Date(
+                            a.createdAt
+                        )
+                );
+
+
+        const activeDeposit =
+            activeDeposits[0] ||
+            null;
+
+
+        if (
+            activeDeposit
+        ) {
+
+            currentDepositTransaction =
+                activeDeposit;
+
+
+            /*
+             * Admin ส่งบัญชีมาแล้ว
+             */
+
+            if (
+                activeDeposit.status ===
+                "account_assigned"
+            ) {
+
+                showAdminPaymentAccount(
+                    {
+                        ...(
+                            activeDeposit.adminAccount ||
+                            {}
+                        ),
+                        type:
+                            activeDeposit.method
+                    }
+                );
+
+            }
+
+
+            /*
+             * รอสลิป
+             */
+
+            else if (
+                activeDeposit.status ===
+                "awaiting_slip"
+            ) {
+
+                showAdminPaymentAccount(
+                    {
+                        ...(
+                            activeDeposit.adminAccount ||
+                            {}
+                        ),
+                        type:
+                            activeDeposit.method
+                    }
+                );
+
+            }
+
+
+            /*
+             * ส่งสลิปแล้ว
+             */
+
+            else if (
+                activeDeposit.status ===
+                "under_review"
+            ) {
+
+                renderDepositReviewStatus();
+
+            }
+
+
+            /*
+             * ยังรอ Admin
+             */
+
+            else if (
+                activeDeposit.status ===
+                "pending"
+            ) {
+
+                renderWaitingForAdmin();
+
+            }
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Load transactions error:",
+            error
+        );
+
+
+        showToast(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+
+// =====================================================
+// AUTO CHECK WALLET TRANSACTION
+// =====================================================
+
+function startWalletTransactionPolling() {
+
+    if (
+        walletTransactionPollTimer
+    ) {
+
+        clearInterval(
+            walletTransactionPollTimer
+        );
+
+    }
+
+
+    walletTransactionPollTimer =
+        setInterval(
+            async () => {
+
+                /*
+                 * ถ้าไม่มีรายการฝากที่กำลังดำเนินการ
+                 * ไม่จำเป็นต้องโหลดบ่อย
+                 */
+
+                const hasActiveDeposit =
+                    transactions.some(
+                        transaction =>
+                            transaction.type ===
+                            "deposit"
+                            &&
+                            [
+                                "pending",
+                                "account_assigned",
+                                "awaiting_slip",
+                                "under_review"
+                            ].includes(
+                                transaction.status
+                            )
+                    );
+
+
+                if (
+                    !hasActiveDeposit &&
+                    !currentDepositTransaction
+                ) {
+
+                    return;
+
+                }
+
+
+                await loadTransactions();
+
+            },
+            3000
+        );
+
+}
+
+        // =====================================================
+        // HISTORY
+        // =====================================================
+
+        function renderHistory() {
+
+            const container =
+                $("walletHistoryList");
+
+
+            if (!transactions.length) {
+
+                container.innerHTML = `
+
+                    <div class="wallet-empty">
+
+                        <div class="wallet-empty-icon">
+
+                            <i
+                                data-lucide="receipt-text"
+                                width="25"
+                            ></i>
+
+                        </div>
+
+                        <strong>
+                            ยังไม่มีธุรกรรม
+                        </strong>
+
+                        <span>
+                            ประวัติฝากและถอนจะแสดงที่นี่
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                transactions
+                    .map(
+                        transaction =>
+                            historyItem(
+                                transaction
+                            )
+                    )
+                    .join("");
+
+
+            refreshIcons();
+
+
+            container
+                .querySelectorAll(
+                    "[data-transaction-id]"
+                )
+                .forEach(
+                    item => {
+
+                        item.addEventListener(
+                            "click",
+                            () => {
+
+                                openTransaction(
+                                    item.dataset.transactionId
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        function historyItem(
+            transaction
+        ) {
+
+            const isDeposit =
+                transaction.type ===
+                "deposit";
+
+
+            const sign =
+                isDeposit
+                    ? "+"
+                    : "-";
+
+
+            const typeName =
+                isDeposit
+                    ? "ฝากเงิน"
+                    : "ถอนเงิน";
+
+
+            const methodName =
+                transaction.method ===
+                "bank"
+                    ? "Bank Account"
+                    : "Crypto";
+
+
+            const status =
+                transactionStatus(
+                    transaction.status
+                );
+
+
+            return `
+
+                <div
+                    class="wallet-history-item"
+                    data-transaction-id="${escapeHtml(
+                        transaction.transactionId
+                    )}"
+                >
+
+                    <div class="wallet-history-top">
+
+
+                        <div class="wallet-history-left">
+
+                            <div
+                                class="
+                                    wallet-history-icon
+                                    ${isDeposit
+                                        ? "deposit"
+                                        : "withdrawal"}
+                                "
+                            >
+
+                                <i
+                                    data-lucide="${
+                                        isDeposit
+                                            ? "arrow-down-left"
+                                            : "arrow-up-right"
+                                    }"
+                                    width="19"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="wallet-history-name">
+
+                                <strong>
+                                    ${typeName}
+                                </strong>
+
+                                <span>
+                                    ${methodName}
+                                    •
+                                    ${formatDate(
+                                        transaction.createdAt
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="
+                                wallet-history-amount
+                                ${isDeposit
+                                    ? "deposit"
+                                    : "withdrawal"}
+                            "
+                        >
+
+                            <strong>
+                                ${sign}${money(
+                                    transaction.amount
+                                )}
+                            </strong>
+
+                            <span class="wallet-history-status">
+                                ${status}
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        function transactionStatus(
+            status
+        ) {
+
+            const map = {
+
+                pending:
+                    "รอ Admin",
+
+                account_assigned:
+                    "ได้รับบัญชีแล้ว",
+
+                awaiting_slip:
+                    "รอสลิป",
+
+                under_review:
+                    "กำลังตรวจสอบ",
+
+                completed:
+                    "สำเร็จ",
+
+                rejected:
+                    "ถูกปฏิเสธ",
+
+                cancelled:
+                    "ยกเลิก"
+
+            };
+
+
+            return (
+                map[status] ||
+                status ||
+                "-"
+            );
+
+        }
+
+
+        // =====================================================
+        // TRANSACTION DETAIL
+        // =====================================================
+
+        async function openTransaction(
+            transactionId
+        ) {
+
+            try {
+
+                const data =
+                    await apiFetch(
+                        `${WALLET_API}/transactions/${transactionId}`
+                    );
+
+
+                const transaction =
+                    data.transaction;
+
+
+                renderTransactionDetail(
+                    transaction
+                );
+
+
+                $("transactionModal")
+                    .classList.add(
+                        "show"
+                    );
+
+            }
+
+            catch (error) {
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }
+
+
+        function renderTransactionDetail(
+            transaction
+        ) {
+
+            const isDeposit =
+                transaction.type ===
+                "deposit";
+
+
+            const amountSign =
+                isDeposit
+                    ? "+"
+                    : "-";
+
+
+            const amountClass =
+                isDeposit
+                    ? "#008b42"
+                    : "#d81b46";
+
+
+            let html = `
+
+                <div
+                    style="
+                        text-align:center;
+                        padding:10px 0 20px;
+                    "
+                >
+
+                    <div
+                        style="
+                            width:52px;
+                            height:52px;
+                            border-radius:50%;
+                            background:#f2f2f3;
+                            margin:0 auto 10px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                        "
+                    >
+
+                        <i
+                            data-lucide="${
+                                isDeposit
+                                    ? "arrow-down-left"
+                                    : "arrow-up-right"
+                            }"
+                            width="25"
+                        ></i>
+
+                    </div>
+
+
+                    <strong
+                        style="
+                            font-size:26px;
+                            color:${amountClass};
+                        "
+                    >
+                        ${amountSign}${money(
+                            transaction.amount
+                        )}
+                    </strong>
+
+
+                    <div
+                        style="
+                            margin-top:6px;
+                            color:#888;
+                            font-size:12px;
+                        "
+                    >
+                        ${transactionStatus(
+                            transaction.status
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="wallet-confirm-box">
+
+                    ${detailRow(
+                        "Transaction ID",
+                        transaction.transactionId
+                    )}
+
+                    ${detailRow(
+                        "ประเภท",
+                        isDeposit
+                            ? "ฝากเงิน"
+                            : "ถอนเงิน"
+                    )}
+
+                    ${detailRow(
+                        "ช่องทาง",
+                        transaction.method === "bank"
+                            ? "Bank Account"
+                            : "Crypto"
+                    )}
+
+                    ${detailRow(
+                        "จำนวนเงิน",
+                        money(transaction.amount)
+                    )}
+
+                    ${detailRow(
+                        "สถานะ",
+                        transactionStatus(
+                            transaction.status
+                        )
+                    )}
+
+                    ${detailRow(
+                        "สร้างรายการ",
+                        formatDate(
+                            transaction.createdAt
+                        )
+                    )}
+
+                </div>
+
+            `;
+
+
+            if (
+                transaction.slip &&
+                transaction.slip.url
+            ) {
+
+                if (
+                    transaction.slip.url
+                        .startsWith(
+                            "data:image/"
+                        )
+                ) {
+
+                    html += `
+
+                        <div
+                            style="
+                                margin-top:15px;
+                            "
+                        >
+
+                            <strong
+                                style="
+                                    display:block;
+                                    margin-bottom:10px;
+                                    font-size:14px;
+                                "
+                            >
+                                สลิปการโอน
+                            </strong>
+
+                            <img
+                                src="${transaction.slip.url}"
+                                style="
+                                    width:100%;
+                                    max-height:500px;
+                                    object-fit:contain;
+                                    border:1px solid #ddd;
+                                    border-radius:12px;
+                                "
+                                alt="Payment Slip"
+                            >
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+
+
+            if (
+                transaction.adminNote
+            ) {
+
+                html += `
+
+                    <div
+                        style="
+                            margin-top:15px;
+                            padding:13px;
+                            border-radius:11px;
+                            background:#fff5f6;
+                            color:#555;
+                            font-size:12px;
+                        "
+                    >
+
+                        <strong>
+                            หมายเหตุจาก Admin
+                        </strong>
+
+                        <div style="margin-top:5px;">
+                            ${escapeHtml(
+                                transaction.adminNote
+                            )}
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            $("transactionDetail")
+                .innerHTML =
+                html;
+
+
+            refreshIcons();
+
+        }
+
+
+        function detailRow(
+            label,
+            value
+        ) {
+
+            return `
+
+                <div class="wallet-confirm-row">
+
+                    <span>
+                        ${escapeHtml(label)}
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(value)}
+                    </strong>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // =====================================================
+        // TABS
+        // =====================================================
+
+        function activateTab(
+            tab
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".wallet-tab"
+                )
+                .forEach(
+                    button => {
+
+                        button.classList.toggle(
+                            "active",
+                            button.dataset.tab ===
+                            tab
+                        );
+
+                    }
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".wallet-panel"
+                )
+                .forEach(
+                    panel => {
+
+                        panel.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            const panel =
+                $(
+                    `${tab}Panel`
+                );
+
+
+            if (panel) {
+
+                panel.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // ICONS
+        // =====================================================
+
+        function refreshIcons() {
+
+            if (
+                window.lucide &&
+                typeof lucide.createIcons ===
+                "function"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        // =====================================================
+        // EVENT LISTENERS
+        // =====================================================
+
+        document
+            .querySelectorAll(
+                ".wallet-tab"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            activateTab(
+                                button.dataset.tab
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        $("quickDepositButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    activateTab(
+                        "deposit"
+                    );
+
+                }
+            );
+
+
+        $("quickWithdrawButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    activateTab(
+                        "withdraw"
+                    );
+
+                }
+            );
+
+
+        $("refreshWalletButton")
+            .addEventListener(
+                "click",
+                async () => {
+
+                    await Promise.all([
+
+                        loadWallet(),
+
+                        loadAccounts(),
+
+                        loadTransactions()
+
+                    ]);
+
+
+                    showToast(
+                        "รีเฟรชข้อมูลแล้ว",
+                        "success"
+                    );
+
+                }
+            );
+
+
+        $("depositBankMethod")
+            .addEventListener(
+                "click",
+                () =>
+                    selectDepositMethod(
+                        "bank"
+                    )
+            );
+
+
+        $("depositCryptoMethod")
+            .addEventListener(
+                "click",
+                () =>
+                    selectDepositMethod(
+                        "crypto"
+                    )
+            );
+
+
+        $("searchDepositAccountButton")
+            .addEventListener(
+                "click",
+                searchDepositAccount
+            );
+
+
+        $("submitDepositSlipButton")
+            .addEventListener(
+                "click",
+                submitDepositSlip
+            );
+
+
+        $("withdrawButton")
+            .addEventListener(
+                "click",
+                startWithdraw
+            );
+
+
+        $("confirmWithdrawButton")
+            .addEventListener(
+                "click",
+                confirmWithdraw
+            );
+
+
+        $("cancelWithdrawButton")
+            .addEventListener(
+                "click",
+                closeWithdrawConfirm
+            );
+
+
+        $("closeWithdrawConfirm")
+            .addEventListener(
+                "click",
+                closeWithdrawConfirm
+            );
+
+
+        $("addBankButton")
+            .addEventListener(
+                "click",
+                () =>
+                    openAccountModal(
+                        "bank"
+                    )
+            );
+
+
+        $("addCryptoButton")
+            .addEventListener(
+                "click",
+                () =>
+                    openAccountModal(
+                        "crypto"
+                    )
+            );
+
+
+        $("accountBankButton")
+            .addEventListener(
+                "click",
+                () =>
+                    openAccountModal(
+                        "bank"
+                    )
+            );
+
+
+        $("accountCryptoButton")
+            .addEventListener(
+                "click",
+                () =>
+                    openAccountModal(
+                        "crypto"
+                    )
+            );
+
+
+        $("closeAccountModal")
+            .addEventListener(
+                "click",
+                closeAccountModal
+            );
+
+
+        $("cancelAccountButton")
+            .addEventListener(
+                "click",
+                closeAccountModal
+            );
+
+
+        $("saveAccountButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        accountModalMode ===
+                        "bank"
+                    ) {
+
+                        saveBankAccount();
+
+                    }
+
+                    else {
+
+                        saveCryptoAccount();
+
+                    }
+
+                }
+            );
+
+
+        $("closeTransactionModal")
+            .addEventListener(
+                "click",
+                () => {
+
+                    $("transactionModal")
+                        .classList.remove(
+                            "show"
+                        );
+
+                }
+            );
+
+
+        // =====================================================
+        // CLOSE MODALS WHEN CLICK OUTSIDE
+        // =====================================================
+
+        [
+            "accountModal",
+            "withdrawConfirmModal",
+            "transactionModal"
+        ]
+            .forEach(
+                id => {
+
+                    $(id)
+                        .addEventListener(
+                            "click",
+                            event => {
+
+                                if (
+                                    event.target ===
+                                    $(id)
+                                ) {
+
+                                    $(id)
+                                        .classList.remove(
+                                            "show"
+                                        );
+
+                                }
+
+                            }
+                        );
+
+                }
+            );
+
+
+        // =====================================================
+        // INITIALIZE
+        // =====================================================
+
+        async function initializeWallet() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return;
+
+            }
+
+
+            /*
+             * โหลดข้อมูลพร้อมกัน
+             */
+
+            await Promise.all([
+
+                loadWallet(),
+
+                loadAccounts(),
+
+                loadTransactions()
+
+            ]);
+
+            startWalletTransactionPolling();
+
+
+            refreshIcons();
+
+
+            /*
+             * Shared Sidebar
+             */
+
+            if (
+                window.TikTokSharedSidebar &&
+                window.TikTokSharedSidebar.ready
+            ) {
+
+                try {
+
+                    await
+                        window.TikTokSharedSidebar.ready;
+
+                }
+
+                catch {
+
+                }
+
+            }
+
+
+            refreshIcons();
+
+        }
+
+
+        initializeWallet();
+
+    </script>
+
+
+</body>
+
+</html>

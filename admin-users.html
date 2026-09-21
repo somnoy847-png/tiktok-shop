@@ -1,0 +1,3103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin - Users | TikTok Shop</title>
+
+    <!-- App Icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="images/logo.png"
+>
+
+<!-- iPhone / iPad Home Screen Icon -->
+<link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="images/apple-touch-icon.png"
+>
+
+<!-- PWA Manifest -->
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<!-- Mobile Web App -->
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="TikTok Shop"
+>
+
+<meta
+    name="theme-color"
+    content="#000000"
+>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        /* =========================================================
+           ADMIN USERS PAGE
+        ========================================================= */
+
+        .admin-page {
+            padding: 28px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .page-title h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .page-title p {
+            margin: 7px 0 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .refresh-btn {
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            color: #374151;
+            height: 42px;
+            padding: 0 16px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .refresh-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        /* =========================================================
+           STAT CARDS
+        ========================================================= */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f4f6;
+            color: #111827;
+            flex-shrink: 0;
+        }
+
+        .stat-info span {
+            display: block;
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .stat-info strong {
+            display: block;
+            font-size: 24px;
+            color: #111827;
+            line-height: 1.1;
+        }
+
+        /* =========================================================
+           FILTER
+        ========================================================= */
+
+        .users-panel {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .panel-toolbar {
+            padding: 18px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            width: 18px;
+            height: 18px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 42px;
+            padding: 0 14px 0 40px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .search-box input:focus {
+            border-color: #9ca3af;
+        }
+
+        .filter-select {
+            height: 42px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: #fff;
+            padding: 0 36px 0 12px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #374151;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           TABLE
+        ========================================================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 950px;
+        }
+
+        .users-table th {
+            text-align: left;
+            padding: 14px 18px;
+            background: #f9fafb;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .users-table td {
+            padding: 15px 18px;
+            border-top: 1px solid #f0f0f0;
+            color: #374151;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .users-table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #374151;
+            font-weight: 700;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-main {
+            min-width: 0;
+        }
+
+        .user-name {
+            font-weight: 700;
+            color: #111827;
+            white-space: nowrap;
+        }
+
+        .user-shop {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        .role-badge,
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .role-buyer {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .role-seller {
+            background: #f5f3ff;
+            color: #7c3aed;
+        }
+
+        .role-admin {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-active {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .status-suspended {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .wallet-value {
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .date-value {
+            color: #6b7280;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            color: #4b5563;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .icon-btn:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        .icon-btn.danger {
+            color: #dc2626;
+        }
+
+        .icon-btn.danger:hover {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+
+        .icon-btn.success {
+            color: #059669;
+        }
+
+        .icon-btn.success:hover {
+            background: #ecfdf5;
+            border-color: #a7f3d0;
+        }
+
+        /* =========================================================
+           EMPTY / LOADING
+        ========================================================= */
+
+        .table-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .table-state i {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 12px;
+        }
+
+        .table-state strong {
+            display: block;
+            color: #4b5563;
+            margin-bottom: 5px;
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, .55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 620px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,.2);
+        }
+
+        .modal-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #111827;
+        }
+
+        .modal-close {
+            border: 0;
+            background: transparent;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        .modal-close:hover {
+            background: #f3f4f6;
+        }
+
+        .modal-body {
+            padding: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 42px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            padding: 0 12px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #9ca3af;
+        }
+
+        .modal-footer {
+            padding: 16px 22px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            height: 42px;
+            padding: 0 16px;
+            border-radius: 9px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #111827;
+            border-color: #111827;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #1f2937;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: #fff;
+        }
+
+        .btn-success {
+            background: #059669;
+            border-color: #059669;
+            color: #fff;
+        }
+
+        /* =========================================================
+           USER DETAIL
+        ========================================================= */
+
+        .detail-profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-avatar {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .detail-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-profile h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+            color: #111827;
+        }
+
+        .detail-profile p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .detail-item {
+            padding: 13px;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+
+        .detail-item span {
+            display: block;
+            color: #9ca3af;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .detail-item strong {
+            color: #374151;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        /* =========================================================
+           WALLET MODAL
+        ========================================================= */
+
+        .wallet-current {
+            padding: 15px;
+            border-radius: 10px;
+            background: #f9fafb;
+            margin-bottom: 18px;
+        }
+
+        .wallet-current span {
+            display: block;
+            color: #6b7280;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .wallet-current strong {
+            font-size: 25px;
+            color: #111827;
+        }
+
+        .operation-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .operation-btn {
+            flex: 1;
+            height: 40px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .operation-btn.active {
+            background: #111827;
+            color: #fff;
+            border-color: #111827;
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            min-width: 260px;
+            max-width: 400px;
+            background: #111827;
+            color: #fff;
+            padding: 14px 16px;
+            border-radius: 10px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.18);
+            display: none;
+            z-index: 10000;
+            font-size: 14px;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.success {
+            background: #059669;
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .admin-page {
+                padding: 18px 14px;
+            }
+
+            .page-header {
+                align-items: stretch;
+            }
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+
+            .refresh-btn {
+                width: 42px;
+                padding: 0;
+                justify-content: center;
+            }
+
+            .refresh-btn span {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .stat-info strong {
+                font-size: 20px;
+            }
+
+            .panel-toolbar {
+                padding: 12px;
+            }
+
+            .search-box {
+                width: 100%;
+                flex-basis: 100%;
+            }
+
+            .filter-select {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .form-grid,
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .modal {
+                max-height: 94vh;
+            }
+
+            .modal-body {
+                padding: 18px;
+            }
+
+            .modal-footer {
+                padding: 14px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================= -->
+
+    <div id="sidebar-container"></div>
+
+    <!-- =========================================================
+         MAIN
+    ========================================================= -->
+
+    <main class="main-content">
+
+        <div class="admin-page">
+
+            <!-- HEADER -->
+            <div class="page-header">
+
+                <div class="page-title">
+                    <h1>จัดการผู้ใช้</h1>
+                    <p>จัดการบัญชี Buyer, Seller และ Admin ในระบบ</p>
+                </div>
+
+                <button
+                    class="refresh-btn"
+                    id="refreshButton"
+                    type="button"
+                >
+                    <i data-lucide="refresh-cw"></i>
+                    <span>Refresh</span>
+                </button>
+
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>ผู้ใช้ทั้งหมด</span>
+                        <strong id="totalUsers">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="shopping-bag"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Buyer</span>
+                        <strong id="buyerUsers">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="store"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Seller</span>
+                        <strong id="sellerUsers">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <span>Admin</span>
+                        <strong id="adminUsers">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- USERS -->
+            <section class="users-panel">
+
+                <div class="panel-toolbar">
+
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="ค้นหา Username, Shop หรือ Contact..."
+                        >
+                    </div>
+
+                    <select
+                        id="roleFilter"
+                        class="filter-select"
+                    >
+                        <option value="">ทุก Role</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="admin">Admin</option>
+                    </select>
+
+                    <select
+                        id="statusFilter"
+                        class="filter-select"
+                    >
+                        <option value="">ทุกสถานะ</option>
+                        <option value="active">Active</option>
+                        <option value="suspended">Suspended</option>
+                    </select>
+
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table class="users-table">
+
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Contact</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Wallet</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTableBody">
+
+                            <tr>
+                                <td colspan="7">
+
+                                    <div class="table-state">
+                                        <i data-lucide="loader-circle"></i>
+
+                                        <strong>กำลังโหลดผู้ใช้...</strong>
+
+                                        <span>
+                                            กรุณารอสักครู่
+                                        </span>
+                                    </div>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         EDIT USER MODAL
+    ========================================================= -->
+
+    <div
+        class="modal-overlay"
+        id="editModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>แก้ไขข้อมูลผู้ใช้</h2>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="editModal"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <form id="editUserForm">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="editUserId"
+                    >
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Username</label>
+
+                            <input
+                                type="text"
+                                id="editUsername"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Shop Name</label>
+
+                            <input
+                                type="text"
+                                id="editShopName"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contact</label>
+
+                            <input
+                                type="text"
+                                id="editContact"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nationality</label>
+
+                            <input
+                                type="text"
+                                id="editNationality"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Country</label>
+
+                            <input
+                                type="text"
+                                id="editCountry"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Profile Image URL</label>
+
+                            <input
+                                type="text"
+                                id="editProfileImage"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Role</label>
+
+                            <select id="editAccountType">
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+
+                            <select id="editStatus">
+                                <option value="active">Active</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Daily Withdraw Limit</label>
+
+                            <input
+                                type="number"
+                                id="editDailyWithdrawLimit"
+                                min="0"
+                                step="0.01"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn"
+                        data-close-modal="editModal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         DETAIL MODAL
+    ========================================================= -->
+
+    <div
+        class="modal-overlay"
+        id="detailModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>รายละเอียดผู้ใช้</h2>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="detailModal"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="detail-profile">
+
+                    <div
+                        class="detail-avatar"
+                        id="detailAvatar"
+                    >
+                        U
+                    </div>
+
+                    <div>
+                        <h3 id="detailName">-</h3>
+                        <p id="detailContact">-</p>
+                    </div>
+
+                </div>
+
+                <div class="detail-grid">
+
+                    <div class="detail-item">
+                        <span>Username</span>
+                        <strong id="detailUsername">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Shop Name</span>
+                        <strong id="detailShopName">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Role</span>
+                        <strong id="detailRole">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Status</span>
+                        <strong id="detailStatus">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Country</span>
+                        <strong id="detailCountry">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Nationality</span>
+                        <strong id="detailNationality">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Balance</span>
+                        <strong id="detailBalance">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Total Assets</span>
+                        <strong id="detailAssets">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Total Deposited</span>
+                        <strong id="detailDeposited">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Total Withdrawn</span>
+                        <strong id="detailWithdrawn">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Pending Amount</span>
+                        <strong id="detailPending">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Daily Withdraw Limit</span>
+                        <strong id="detailWithdrawLimit">$0.00</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Created At</span>
+                        <strong id="detailCreated">-</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Updated At</span>
+                        <strong id="detailUpdated">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn"
+                    data-close-modal="detailModal"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         WALLET MODAL
+    ========================================================= -->
+
+    <div
+        class="modal-overlay"
+        id="walletModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>ปรับ Wallet</h2>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="walletModal"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <form id="walletForm">
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="walletUserId"
+                    >
+
+                    <div class="wallet-current">
+
+                        <span>
+                            Current Balance
+                        </span>
+
+                        <strong id="walletCurrentBalance">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                    <div class="operation-buttons">
+
+                        <button
+                            type="button"
+                            class="operation-btn active"
+                            data-operation="add"
+                        >
+                            + เพิ่มเงิน
+                        </button>
+
+                        <button
+                            type="button"
+                            class="operation-btn"
+                            data-operation="subtract"
+                        >
+                            − หักเงิน
+                        </button>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            จำนวนเงิน
+                        </label>
+
+                        <input
+                            type="number"
+                            id="walletAmount"
+                            min="0"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn"
+                        data-close-modal="walletModal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Update Wallet
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================= -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================= -->
+
+    <script src="js/admin-sidebar.js"></script>
+
+    <script>
+        /* =========================================================
+           CONFIG
+        ========================================================= */
+
+        const API_BASE = "/api";
+
+        let allUsers = [];
+        let currentWalletOperation = "add";
+
+
+        /* =========================================================
+           ELEMENTS
+        ========================================================= */
+
+        const usersTableBody =
+            document.getElementById("usersTableBody");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const roleFilter =
+            document.getElementById("roleFilter");
+
+        const statusFilter =
+            document.getElementById("statusFilter");
+
+        const editModal =
+            document.getElementById("editModal");
+
+        const detailModal =
+            document.getElementById("detailModal");
+
+        const walletModal =
+            document.getElementById("walletModal");
+
+
+        /* =========================================================
+           TOKEN
+        ========================================================= */
+
+        function getToken() {
+
+            return (
+                localStorage.getItem("tiktokShopToken") ||
+                localStorage.getItem("token") ||
+                ""
+            );
+        }
+
+
+        /* =========================================================
+           AUTH
+        ========================================================= */
+
+        async function verifyAdmin() {
+
+            const token = getToken();
+
+            if (!token) {
+
+                window.location.href = "auth.html?mode=login";
+                return false;
+            }
+
+            try {
+
+                const response = await fetch(
+                    `${API_BASE}/auth/me`,
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+
+                const data =
+                    await response.json();
+
+                if (
+                    !response.ok ||
+                    !data.success ||
+                    !data.user
+                ) {
+
+                    localStorage.removeItem(
+                        "tiktokShopToken"
+                    );
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    window.location.href =
+                        "auth.html?mode=login";
+
+                    return false;
+                }
+
+                const user = data.user;
+
+                if (
+                    String(user.role || "").toLowerCase() !==
+                    "admin"
+                ) {
+
+                    alert(
+                        "คุณไม่มีสิทธิ์เข้าถึงหน้า Admin"
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                    return false;
+                }
+
+                return true;
+
+            } catch (error) {
+
+                console.error(
+                    "Admin verification error:",
+                    error
+                );
+
+                alert(
+                    "ไม่สามารถตรวจสอบสิทธิ์ Admin ได้"
+                );
+
+                window.location.href =
+                    "index.html";
+
+                return false;
+            }
+        }
+
+
+        /* =========================================================
+           API REQUEST
+        ========================================================= */
+
+        async function apiRequest(
+            url,
+            options = {}
+        ) {
+
+            const token = getToken();
+
+            const headers = {
+                "Content-Type":
+                    "application/json",
+
+                ...(options.headers || {})
+            };
+
+            if (token) {
+
+                headers.Authorization =
+                    `Bearer ${token}`;
+            }
+
+            const response =
+                await fetch(
+                    `${API_BASE}${url}`,
+                    {
+                        ...options,
+                        headers
+                    }
+                );
+
+            let data = {};
+
+            try {
+                data =
+                    await response.json();
+            } catch (error) {
+                data = {};
+            }
+
+            if (
+                response.status === 401
+            ) {
+
+                localStorage.removeItem(
+                    "tiktokShopToken"
+                );
+
+                localStorage.removeItem(
+                    "token"
+                );
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                throw new Error(
+                    "Session expired."
+                );
+            }
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    "เกิดข้อผิดพลาด"
+                );
+            }
+
+            return data;
+        }
+
+
+        /* =========================================================
+           LOAD USERS
+        ========================================================= */
+
+        async function loadUsers() {
+
+            usersTableBody.innerHTML = `
+                <tr>
+                    <td colspan="7">
+                        <div class="table-state">
+                            <i data-lucide="loader-circle"></i>
+                            <strong>กำลังโหลดผู้ใช้...</strong>
+                            <span>กรุณารอสักครู่</span>
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            refreshIcons();
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        "/admin/users"
+                    );
+
+                allUsers =
+                    Array.isArray(data.users)
+                        ? data.users
+                        : [];
+
+                updateStats();
+
+                renderUsers();
+
+            } catch (error) {
+
+                console.error(
+                    "Load users error:",
+                    error
+                );
+
+                usersTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="table-state">
+                                <i data-lucide="circle-alert"></i>
+                                <strong>โหลดข้อมูลไม่สำเร็จ</strong>
+                                <span>
+                                    ${escapeHtml(error.message)}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+
+                refreshIcons();
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+            }
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        function updateStats() {
+
+            const total =
+                allUsers.length;
+
+            const buyers =
+                allUsers.filter(
+                    user =>
+                        String(
+                            user.accountType ||
+                            user.role ||
+                            ""
+                        ).toLowerCase() ===
+                        "buyer"
+                ).length;
+
+            const sellers =
+                allUsers.filter(
+                    user =>
+                        String(
+                            user.accountType ||
+                            user.role ||
+                            ""
+                        ).toLowerCase() ===
+                        "seller"
+                ).length;
+
+            const admins =
+                allUsers.filter(
+                    user =>
+                        String(
+                            user.accountType ||
+                            user.role ||
+                            ""
+                        ).toLowerCase() ===
+                        "admin"
+                ).length;
+
+            document.getElementById(
+                "totalUsers"
+            ).textContent = total;
+
+            document.getElementById(
+                "buyerUsers"
+            ).textContent = buyers;
+
+            document.getElementById(
+                "sellerUsers"
+            ).textContent = sellers;
+
+            document.getElementById(
+                "adminUsers"
+            ).textContent = admins;
+        }
+
+
+        /* =========================================================
+           FILTER
+        ========================================================= */
+
+        function getFilteredUsers() {
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+            const role =
+                roleFilter.value
+                    .toLowerCase();
+
+            const status =
+                statusFilter.value
+                    .toLowerCase();
+
+            return allUsers.filter(
+                user => {
+
+                    const username =
+                        String(
+                            user.username || ""
+                        ).toLowerCase();
+
+                    const shopName =
+                        String(
+                            user.shopName || ""
+                        ).toLowerCase();
+
+                    const contact =
+                        String(
+                            user.contact || ""
+                        ).toLowerCase();
+
+                    const userRole =
+                        String(
+                            user.accountType ||
+                            user.role ||
+                            ""
+                        ).toLowerCase();
+
+                    const userStatus =
+                        String(
+                            user.status || ""
+                        ).toLowerCase();
+
+                    const matchesSearch =
+                        !search ||
+                        username.includes(search) ||
+                        shopName.includes(search) ||
+                        contact.includes(search);
+
+                    const matchesRole =
+                        !role ||
+                        userRole === role;
+
+                    const matchesStatus =
+                        !status ||
+                        userStatus === status;
+
+                    return (
+                        matchesSearch &&
+                        matchesRole &&
+                        matchesStatus
+                    );
+                }
+            );
+        }
+
+
+        /* =========================================================
+           RENDER USERS
+        ========================================================= */
+
+        function renderUsers() {
+
+            const users =
+                getFilteredUsers();
+
+            if (!users.length) {
+
+                usersTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="table-state">
+                                <i data-lucide="user-round-x"></i>
+                                <strong>ไม่พบผู้ใช้</strong>
+                                <span>
+                                    ลองเปลี่ยนคำค้นหาหรือตัวกรอง
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+
+                refreshIcons();
+
+                return;
+            }
+
+            usersTableBody.innerHTML =
+                users.map(
+                    user => {
+
+                        const role =
+                            String(
+                                user.accountType ||
+                                user.role ||
+                                "buyer"
+                            ).toLowerCase();
+
+                        const status =
+                            String(
+                                user.status ||
+                                "active"
+                            ).toLowerCase();
+
+                        const avatar =
+                            user.profileImage
+                                ? `
+                                    <img
+                                        src="${escapeAttribute(
+                                            user.profileImage
+                                        )}"
+                                        alt=""
+                                        onerror="this.style.display='none'"
+                                    >
+                                  `
+                                : `
+                                    ${getInitial(
+                                        user.shopName ||
+                                        user.username
+                                    )}
+                                  `;
+
+                        const wallet =
+                            Number(
+                                user.balance || 0
+                            );
+
+                        return `
+                            <tr>
+
+                                <td>
+
+                                    <div class="user-cell">
+
+                                        <div class="user-avatar">
+                                            ${avatar}
+                                        </div>
+
+                                        <div class="user-main">
+
+                                            <div class="user-name">
+                                                ${escapeHtml(
+                                                    user.username ||
+                                                    "-"
+                                                )}
+                                            </div>
+
+                                            <div class="user-shop">
+                                                ${escapeHtml(
+                                                    user.shopName ||
+                                                    "No shop"
+                                                )}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+                                    ${escapeHtml(
+                                        user.contact ||
+                                        "-"
+                                    )}
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="role-badge role-${role}"
+                                    >
+                                        ${formatRole(role)}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span
+                                        class="status-badge status-${status}"
+                                    >
+                                        ${formatStatus(status)}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="wallet-value">
+                                        $${formatMoney(wallet)}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="date-value">
+                                        ${formatDate(
+                                            user.createdAt
+                                        )}
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <button
+                                            class="icon-btn"
+                                            title="ดูรายละเอียด"
+                                            onclick="openDetail('${user._id || user.id}')"
+                                        >
+                                            <i data-lucide="eye"></i>
+                                        </button>
+
+                                        <button
+                                            class="icon-btn"
+                                            title="แก้ไข"
+                                            onclick="openEdit('${user._id || user.id}')"
+                                        >
+                                            <i data-lucide="pencil"></i>
+                                        </button>
+
+                                        <button
+                                            class="icon-btn"
+                                            title="ปรับ Wallet"
+                                            onclick="openWallet('${user._id || user.id}')"
+                                        >
+                                            <i data-lucide="wallet"></i>
+                                        </button>
+
+                                        ${
+                                            status === "active"
+                                                ? `
+                                                    <button
+                                                        class="icon-btn danger"
+                                                        title="Suspend"
+                                                        onclick="toggleUserStatus(
+                                                            '${user._id || user.id}',
+                                                            'suspended'
+                                                        )"
+                                                    >
+                                                        <i data-lucide="user-round-x"></i>
+                                                    </button>
+                                                  `
+                                                : `
+                                                    <button
+                                                        class="icon-btn success"
+                                                        title="Activate"
+                                                        onclick="toggleUserStatus(
+                                                            '${user._id || user.id}',
+                                                            'active'
+                                                        )"
+                                                    >
+                                                        <i data-lucide="user-check"></i>
+                                                    </button>
+                                                  `
+                                        }
+
+                                        <button
+                                            class="icon-btn danger"
+                                            title="ลบผู้ใช้"
+                                            onclick="deleteUser(
+                                                '${user._id || user.id}'
+                                            )"
+                                        >
+                                            <i data-lucide="trash-2"></i>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        `;
+                    }
+                ).join("");
+
+            refreshIcons();
+        }
+
+
+        /* =========================================================
+           OPEN DETAIL
+        ========================================================= */
+
+        async function openDetail(id) {
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        `/admin/users/${id}`
+                    );
+
+                const user =
+                    data.user;
+
+                if (!user) {
+                    throw new Error(
+                        "ไม่พบข้อมูลผู้ใช้"
+                    );
+                }
+
+                const role =
+                    String(
+                        user.accountType ||
+                        user.role ||
+                        "buyer"
+                    ).toLowerCase();
+
+                const status =
+                    String(
+                        user.status ||
+                        "active"
+                    ).toLowerCase();
+
+                const avatar =
+                    document.getElementById(
+                        "detailAvatar"
+                    );
+
+                if (user.profileImage) {
+
+                    avatar.innerHTML = `
+                        <img
+                            src="${escapeAttribute(
+                                user.profileImage
+                            )}"
+                            alt=""
+                        >
+                    `;
+
+                } else {
+
+                    avatar.textContent =
+                        getInitial(
+                            user.shopName ||
+                            user.username
+                        );
+                }
+
+                document.getElementById(
+                    "detailName"
+                ).textContent =
+                    user.shopName ||
+                    user.username ||
+                    "-";
+
+                document.getElementById(
+                    "detailContact"
+                ).textContent =
+                    user.contact ||
+                    "-";
+
+                document.getElementById(
+                    "detailUsername"
+                ).textContent =
+                    user.username ||
+                    "-";
+
+                document.getElementById(
+                    "detailShopName"
+                ).textContent =
+                    user.shopName ||
+                    "-";
+
+                document.getElementById(
+                    "detailRole"
+                ).textContent =
+                    formatRole(role);
+
+                document.getElementById(
+                    "detailStatus"
+                ).textContent =
+                    formatStatus(status);
+
+                document.getElementById(
+                    "detailCountry"
+                ).textContent =
+                    user.country ||
+                    "-";
+
+                document.getElementById(
+                    "detailNationality"
+                ).textContent =
+                    user.nationality ||
+                    "-";
+
+                document.getElementById(
+                    "detailBalance"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.balance
+                    );
+
+                document.getElementById(
+                    "detailAssets"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.totalAssets
+                    );
+
+                document.getElementById(
+                    "detailDeposited"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.totalDeposited
+                    );
+
+                document.getElementById(
+                    "detailWithdrawn"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.totalWithdrawn
+                    );
+
+                document.getElementById(
+                    "detailPending"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.pendingAmount
+                    );
+
+                document.getElementById(
+                    "detailWithdrawLimit"
+                ).textContent =
+                    "$" +
+                    formatMoney(
+                        user.dailyWithdrawLimit
+                    );
+
+                document.getElementById(
+                    "detailCreated"
+                ).textContent =
+                    formatDate(
+                        user.createdAt
+                    );
+
+                document.getElementById(
+                    "detailUpdated"
+                ).textContent =
+                    formatDate(
+                        user.updatedAt
+                    );
+
+                openModal(
+                    "detailModal"
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+            }
+        }
+
+
+        /* =========================================================
+           OPEN EDIT
+        ========================================================= */
+
+        async function openEdit(id) {
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        `/admin/users/${id}`
+                    );
+
+                const user =
+                    data.user;
+
+                if (!user) {
+                    throw new Error(
+                        "ไม่พบข้อมูลผู้ใช้"
+                    );
+                }
+
+                document.getElementById(
+                    "editUserId"
+                ).value =
+                    user._id ||
+                    user.id;
+
+                document.getElementById(
+                    "editUsername"
+                ).value =
+                    user.username || "";
+
+                document.getElementById(
+                    "editShopName"
+                ).value =
+                    user.shopName || "";
+
+                document.getElementById(
+                    "editContact"
+                ).value =
+                    user.contact || "";
+
+                document.getElementById(
+                    "editNationality"
+                ).value =
+                    user.nationality || "";
+
+                document.getElementById(
+                    "editCountry"
+                ).value =
+                    user.country || "";
+
+                document.getElementById(
+                    "editProfileImage"
+                ).value =
+                    user.profileImage || "";
+
+                document.getElementById(
+                    "editAccountType"
+                ).value =
+                    String(
+                        user.accountType ||
+                        user.role ||
+                        "buyer"
+                    ).toLowerCase();
+
+                document.getElementById(
+                    "editStatus"
+                ).value =
+                    String(
+                        user.status ||
+                        "active"
+                    ).toLowerCase();
+
+                document.getElementById(
+                    "editDailyWithdrawLimit"
+                ).value =
+                    Number(
+                        user.dailyWithdrawLimit ||
+                        0
+                    );
+
+                openModal(
+                    "editModal"
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+            }
+        }
+
+
+        /* =========================================================
+           SAVE USER
+        ========================================================= */
+
+        document
+            .getElementById("editUserForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+                    const id =
+                        document.getElementById(
+                            "editUserId"
+                        ).value;
+
+                    const payload = {
+                        username:
+                            document.getElementById(
+                                "editUsername"
+                            ).value.trim(),
+
+                        shopName:
+                            document.getElementById(
+                                "editShopName"
+                            ).value.trim(),
+
+                        contact:
+                            document.getElementById(
+                                "editContact"
+                            ).value.trim(),
+
+                        nationality:
+                            document.getElementById(
+                                "editNationality"
+                            ).value.trim(),
+
+                        country:
+                            document.getElementById(
+                                "editCountry"
+                            ).value.trim(),
+
+                        profileImage:
+                            document.getElementById(
+                                "editProfileImage"
+                            ).value.trim(),
+
+                        accountType:
+                            document.getElementById(
+                                "editAccountType"
+                            ).value,
+
+                        status:
+                            document.getElementById(
+                                "editStatus"
+                            ).value,
+
+                        dailyWithdrawLimit:
+                            Number(
+                                document.getElementById(
+                                    "editDailyWithdrawLimit"
+                                ).value || 0
+                            )
+                    };
+
+                    if (!payload.username) {
+
+                        showToast(
+                            "กรุณากรอก Username",
+                            "error"
+                        );
+
+                        return;
+                    }
+
+                    try {
+
+                        await apiRequest(
+                            `/admin/users/${id}`,
+                            {
+                                method: "PATCH",
+                                body:
+                                    JSON.stringify(
+                                        payload
+                                    )
+                            }
+                        );
+
+                        closeModal(
+                            "editModal"
+                        );
+
+                        showToast(
+                            "บันทึกข้อมูลผู้ใช้แล้ว",
+                            "success"
+                        );
+
+                        await loadUsers();
+
+                    } catch (error) {
+
+                        console.error(error);
+
+                        showToast(
+                            error.message,
+                            "error"
+                        );
+                    }
+                }
+            );
+
+
+        /* =========================================================
+           OPEN WALLET
+        ========================================================= */
+
+        function openWallet(id) {
+
+            const user =
+                allUsers.find(
+                    item =>
+                        String(
+                            item._id ||
+                            item.id
+                        ) ===
+                        String(id)
+                );
+
+            if (!user) {
+
+                showToast(
+                    "ไม่พบข้อมูลผู้ใช้",
+                    "error"
+                );
+
+                return;
+            }
+
+            document.getElementById(
+                "walletUserId"
+            ).value =
+                user._id ||
+                user.id;
+
+            document.getElementById(
+                "walletCurrentBalance"
+            ).textContent =
+                "$" +
+                formatMoney(
+                    user.balance
+                );
+
+            document.getElementById(
+                "walletAmount"
+            ).value = "";
+
+            currentWalletOperation =
+                "add";
+
+            document
+                .querySelectorAll(
+                    ".operation-btn"
+                )
+                .forEach(
+                    button => {
+
+                        button.classList.toggle(
+                            "active",
+                            button.dataset.operation ===
+                                "add"
+                        );
+                    }
+                );
+
+            openModal(
+                "walletModal"
+            );
+        }
+
+
+        /* =========================================================
+           WALLET OPERATION
+        ========================================================= */
+
+        document
+            .querySelectorAll(
+                ".operation-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            currentWalletOperation =
+                                this.dataset.operation;
+
+                            document
+                                .querySelectorAll(
+                                    ".operation-btn"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList.remove(
+                                            "active"
+                                        )
+                                );
+
+                            this.classList.add(
+                                "active"
+                            );
+                        }
+                    );
+                }
+            );
+
+
+        /* =========================================================
+           SAVE WALLET
+        ========================================================= */
+
+        document
+            .getElementById("walletForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+                    const id =
+                        document.getElementById(
+                            "walletUserId"
+                        ).value;
+
+                    const amount =
+                        Number(
+                            document.getElementById(
+                                "walletAmount"
+                            ).value
+                        );
+
+                    if (
+                        !Number.isFinite(amount) ||
+                        amount <= 0
+                    ) {
+
+                        showToast(
+                            "กรุณาระบุจำนวนเงินที่ถูกต้อง",
+                            "error"
+                        );
+
+                        return;
+                    }
+
+                    try {
+
+                        await apiRequest(
+                            `/admin/users/${id}/wallet`,
+                            {
+                                method: "PATCH",
+                                body:
+                                    JSON.stringify({
+                                        operation:
+                                            currentWalletOperation,
+                                        amount
+                                    })
+                            }
+                        );
+
+                        closeModal(
+                            "walletModal"
+                        );
+
+                        showToast(
+                            "อัปเดต Wallet แล้ว",
+                            "success"
+                        );
+
+                        await loadUsers();
+
+                    } catch (error) {
+
+                        console.error(error);
+
+                        showToast(
+                            error.message,
+                            "error"
+                        );
+                    }
+                }
+            );
+
+
+        /* =========================================================
+           CHANGE STATUS
+        ========================================================= */
+
+        async function toggleUserStatus(
+            id,
+            status
+        ) {
+
+            const user =
+                allUsers.find(
+                    item =>
+                        String(
+                            item._id ||
+                            item.id
+                        ) ===
+                        String(id)
+                );
+
+            if (!user) {
+
+                showToast(
+                    "ไม่พบข้อมูลผู้ใช้",
+                    "error"
+                );
+
+                return;
+            }
+
+            const action =
+                status === "active"
+                    ? "Activate"
+                    : "Suspend";
+
+            const confirmed =
+                confirm(
+                    `${action} ผู้ใช้ "${user.username}" ใช่หรือไม่?`
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            try {
+
+                await apiRequest(
+                    `/admin/users/${id}`,
+                    {
+                        method: "PATCH",
+                        body:
+                            JSON.stringify({
+                                status
+                            })
+                    }
+                );
+
+                showToast(
+                    status === "active"
+                        ? "เปิดใช้งานผู้ใช้แล้ว"
+                        : "ระงับผู้ใช้แล้ว",
+                    "success"
+                );
+
+                await loadUsers();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+            }
+        }
+
+
+        /* =========================================================
+           DELETE USER
+        ========================================================= */
+
+        async function deleteUser(id) {
+
+            const user =
+                allUsers.find(
+                    item =>
+                        String(
+                            item._id ||
+                            item.id
+                        ) ===
+                        String(id)
+                );
+
+            if (!user) {
+
+                showToast(
+                    "ไม่พบข้อมูลผู้ใช้",
+                    "error"
+                );
+
+                return;
+            }
+
+            const confirmed =
+                confirm(
+                    `ต้องการลบผู้ใช้ "${user.username}" หรือไม่?\n\nการลบนี้ไม่สามารถย้อนกลับได้`
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            try {
+
+                await apiRequest(
+                    `/admin/users/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+                showToast(
+                    "ลบผู้ใช้แล้ว",
+                    "success"
+                );
+
+                await loadUsers();
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+            }
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        function openModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (!modal) {
+                return;
+            }
+
+            modal.classList.add("show");
+
+            document.body.style.overflow =
+                "hidden";
+
+            refreshIcons();
+        }
+
+
+        function closeModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (!modal) {
+                return;
+            }
+
+            modal.classList.remove(
+                "show"
+            );
+
+            document.body.style.overflow =
+                "";
+        }
+
+
+        document
+            .querySelectorAll(
+                "[data-close-modal]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            closeModal(
+                                this.dataset.closeModal
+                            );
+                        }
+                    );
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                ".modal-overlay"
+            )
+            .forEach(
+                modal => {
+
+                    modal.addEventListener(
+                        "click",
+                        function(event) {
+
+                            if (
+                                event.target ===
+                                modal
+                            ) {
+
+                                closeModal(
+                                    modal.id
+                                );
+                            }
+                        }
+                    );
+                }
+            );
+
+
+        document
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (
+                        event.key ===
+                        "Escape"
+                    ) {
+
+                        document
+                            .querySelectorAll(
+                                ".modal-overlay.show"
+                            )
+                            .forEach(
+                                modal =>
+                                    closeModal(
+                                        modal.id
+                                    )
+                            );
+                    }
+                }
+            );
+
+
+        /* =========================================================
+           SEARCH / FILTER EVENTS
+        ========================================================= */
+
+        searchInput.addEventListener(
+            "input",
+            renderUsers
+        );
+
+        roleFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+        statusFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+        /* =========================================================
+           REFRESH
+        ========================================================= */
+
+        document
+            .getElementById(
+                "refreshButton"
+            )
+            .addEventListener(
+                "click",
+                loadUsers
+            );
+
+
+        /* =========================================================
+           HELPERS
+        ========================================================= */
+
+        function formatRole(role) {
+
+            switch (
+                String(role).toLowerCase()
+            ) {
+
+                case "admin":
+                    return "Admin";
+
+                case "seller":
+                    return "Seller";
+
+                case "buyer":
+                    return "Buyer";
+
+                default:
+                    return role || "-";
+            }
+        }
+
+
+        function formatStatus(status) {
+
+            switch (
+                String(status).toLowerCase()
+            ) {
+
+                case "active":
+                    return "Active";
+
+                case "suspended":
+                    return "Suspended";
+
+                default:
+                    return status || "-";
+            }
+        }
+
+
+        function formatMoney(value) {
+
+            const number =
+                Number(value || 0);
+
+            return number.toLocaleString(
+                "en-US",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            );
+        }
+
+
+        function formatDate(value) {
+
+            if (!value) {
+                return "-";
+            }
+
+            const date =
+                new Date(value);
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+                return "-";
+            }
+
+            return date.toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+        }
+
+
+        function getInitial(value) {
+
+            const text =
+                String(value || "U")
+                    .trim();
+
+            return (
+                text
+                    .charAt(0)
+                    .toUpperCase() ||
+                "U"
+            );
+        }
+
+
+        function escapeHtml(value) {
+
+            return String(
+                value ?? ""
+            )
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+        }
+
+
+        function escapeAttribute(value) {
+
+            return escapeHtml(value);
+        }
+
+
+        function refreshIcons() {
+
+            if (
+                window.lucide &&
+                typeof lucide.createIcons ===
+                    "function"
+            ) {
+
+                lucide.createIcons();
+            }
+        }
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        let toastTimer;
+
+        function showToast(
+            message,
+            type = ""
+        ) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+            toast.textContent =
+                message;
+
+            toast.className =
+                `toast show ${type}`;
+
+            clearTimeout(
+                toastTimer
+            );
+
+            toastTimer =
+                setTimeout(
+                    () => {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    3500
+                );
+        }
+
+
+        /* =========================================================
+           START
+        ========================================================= */
+
+        async function initAdminUsers() {
+
+            refreshIcons();
+
+            const isAdmin =
+                await verifyAdmin();
+
+            if (!isAdmin) {
+                return;
+            }
+
+            await loadUsers();
+
+            refreshIcons();
+        }
+
+
+        initAdminUsers();
+
+    </script>
+
+</body>
+</html>

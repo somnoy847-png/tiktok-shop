@@ -1,0 +1,1286 @@
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>TikTok Shop</title>
+
+    <!-- ===============================
+         App / Browser Icon
+    ================================ -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="images/logo.png"
+    >
+
+    <!-- ===============================
+         iPhone / iPad Home Screen Icon
+         ใช้ไฟล์สำหรับ Apple โดยเฉพาะ
+    ================================ -->
+    <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="images/apple-touch-icon.png"
+    >
+
+    <!-- ===============================
+         PWA Manifest
+    ================================ -->
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <!-- ===============================
+         Mobile Web App
+    ================================ -->
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="TikTok Shop"
+    >
+
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <!-- ===============================
+         Google Fonts
+    ================================ -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- ===============================
+         CSS
+    ================================ -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
+    <!-- ===============================
+         Lucide Icons
+    ================================ -->
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+    <style>
+/* =====================================================
+   Homepage enhancements
+   ===================================================== */
+
+.hero-buttons button {
+    cursor: pointer;
+}
+
+.product-image {
+    background: #f7f7f8;
+}
+
+.product-image img {
+    object-fit: contain !important;
+    object-position: center;
+    padding: 10px;
+}
+
+.region-modal[hidden] {
+    display: none;
+}
+
+.region-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.region-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 15, 18, 0.58);
+    backdrop-filter: blur(7px);
+}
+
+.region-modal-dialog {
+    position: relative;
+    width: min(440px, 100%);
+    padding: 34px 30px 28px;
+    border: 1px solid rgba(255,255,255,.75);
+    border-radius: 24px;
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 24px 80px rgba(0,0,0,.22);
+    text-align: center;
+    animation: regionModalIn .22s ease-out;
+}
+
+.region-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: #555;
+    cursor: pointer;
+}
+
+.region-modal-close:hover {
+    background: #e9eaed;
+}
+
+.region-modal-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    background: #fff0f2;
+    color: #ef233c;
+}
+
+.region-modal-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.region-modal-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    color: #ef233c;
+}
+
+.region-modal-content h3 {
+    margin: 0 auto 10px;
+    max-width: 350px;
+    font-size: 21px;
+    line-height: 1.35;
+    color: #171717;
+}
+
+.region-modal-content p {
+    margin: 0 auto 24px;
+    max-width: 340px;
+    color: #737373;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.region-modal-action {
+    width: 100%;
+    min-height: 46px;
+    border: 0;
+    border-radius: 12px;
+    background: #ef233c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .18s ease, opacity .18s ease;
+}
+
+.region-modal-action:hover {
+    opacity: .92;
+    transform: translateY(-1px);
+}
+
+@keyframes regionModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .region-modal {
+        padding: 16px;
+    }
+
+    .region-modal-dialog {
+        padding: 30px 20px 22px;
+        border-radius: 20px;
+    }
+
+    .region-modal-content h3 {
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Shared Sidebar -->
+<div id="sidebar-container"></div>
+
+<main class="main-content">
+
+<header class="header">
+    <div class="header-left">
+        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu">
+            <i data-lucide="menu"></i>
+        </button>
+
+        <div class="mobile-logo">
+            <img src="images/logo.png" alt="TikTok Shop">
+            <strong>TikTok Shop</strong>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off">
+        <button class="search-button" id="searchButton" type="button">Search</button>
+    </div>
+
+    <div class="header-right">
+        <button class="header-icon" id="headerNotificationButton" type="button" title="Notifications">
+            <i data-lucide="bell"></i><span class="dot"></span>
+        </button>
+
+        <button class="header-icon" id="headerCartButton" type="button" title="add-products.html">
+            <i data-lucide="shopping-bag"></i>
+        </button>
+
+        <div class="language-selector" id="languageSelector">
+            <button class="language-button" id="languageButton" type="button" aria-label="Select language">
+                <i data-lucide="globe-2"></i>
+                <span id="currentLanguage">EN</span>
+                <i data-lucide="chevron-down"></i>
+            </button>
+
+            <div class="language-menu" id="languageMenu">
+                <button type="button" class="language-option" data-language="en">
+                    <span>English</span><span class="language-check" id="checkEN">✓</span>
+                </button>
+                <button type="button" class="language-option" data-language="th">
+                    <span>ไทย</span><span class="language-check" id="checkTH"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-profile" id="headerProfile" role="button" tabindex="0">
+            <div class="small-avatar" id="headerAvatar">U</div>
+            <div class="header-profile-text">
+                <strong id="headerUsername">Guest</strong>
+                <span id="headerRole">Store Owner</span>
+            </div>
+            <i data-lucide="chevron-down"></i>
+        </div>
+    </div>
+</header>
+
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-small-title" id="heroSmallTitle">TIKTOK SHOP</div>
+
+            <h1 id="heroTitle">
+                Everything you love.
+                <span>All in one shop.</span>
+            </h1>
+
+            <p id="heroDescription">
+                Discover trending products, exclusive deals,
+                and the best sellers from shops around the world.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-button" id="heroShopButton" type="button">
+                    Shop Now <i data-lucide="arrow-right"></i>
+                </button>
+
+                <button class="secondary-button" id="heroExploreButton" type="button">
+                    Explore Products
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-circle circle-one"></div>
+            <div class="hero-circle circle-two"></div>
+
+            <div class="hero-card card-one">
+                <div class="hero-card-icon"><i data-lucide="shopping-bag"></i></div>
+                <div><strong>Trending</strong><span>Products</span></div>
+            </div>
+
+            <div class="hero-card card-two">
+                <div class="hero-card-icon"><i data-lucide="badge-dollar-sign"></i></div>
+                <div><strong>Best</strong><span>Deals</span></div>
+            </div>
+
+            <div class="hero-product-image">
+                <div class="product-placeholder">
+                    <i data-lucide="package"></i><span>SHOP</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="explore-section">
+    <div class="section-heading">
+        <div>
+            <span class="section-label">DISCOVER</span>
+            <h2>Explore</h2>
+        </div>
+
+        <a href="add-products.html" class="view-all" id="exploreViewAll">
+            View all <i data-lucide="arrow-right"></i>
+        </a>
+    </div>
+
+    <div class="explore-grid">
+        <a href="add-products.html?category=Fashion" class="explore-card" data-category="Fashion">
+            <div class="explore-icon"><i data-lucide="shirt"></i></div>
+            <strong>Fashion</strong><span>Products</span>
+        </a>
+
+        <a href="add-products.html?category=Electronics" class="explore-card" data-category="Electronics">
+            <div class="explore-icon"><i data-lucide="smartphone"></i></div>
+            <strong>Electronics</strong><span>Products</span>
+        </a>
+
+        <a href="add-products.html?category=Beauty" class="explore-card" data-category="Beauty">
+            <div class="explore-icon"><i data-lucide="sparkles"></i></div>
+            <strong>Beauty</strong><span>Products</span>
+        </a>
+
+        <a href="add-products.html?category=Home" class="explore-card" data-category="Home">
+            <div class="explore-icon"><i data-lucide="home"></i></div>
+            <strong>Home</strong><span>Products</span>
+        </a>
+
+        <a href="add-products.html?category=Accessories" class="explore-card" data-category="Accessories">
+            <div class="explore-icon"><i data-lucide="watch"></i></div>
+            <strong>Accessories</strong><span>Products</span>
+        </a>
+
+        <a href="add-products.html?category=Sports" class="explore-card" data-category="Sports">
+            <div class="explore-icon"><i data-lucide="dumbbell"></i></div>
+            <strong>Sports</strong><span>Products</span>
+        </a>
+    </div>
+</section>
+
+<section class="products-section">
+    <div class="section-heading">
+        <div>
+            <span class="section-label">TRENDING NOW</span>
+            <h2>Popular Products</h2>
+        </div>
+
+        <a href="add-products.html" class="view-all" id="productsViewAll">
+            View all <i data-lucide="arrow-right"></i>
+        </a>
+
+        <div class="product-tabs">
+            <button class="product-tab active" data-category="All" type="button">All</button>
+            <button class="product-tab" data-category="Fashion" type="button">Fashion</button>
+            <button class="product-tab" data-category="Electronics" type="button">Electronics</button>
+            <button class="product-tab" data-category="Beauty" type="button">Beauty</button>
+            <button class="product-tab" data-category="Home" type="button">Home</button>
+            <button class="product-tab" data-category="Accessories" type="button">Accessories</button>
+            <button class="product-tab" data-category="Sports" type="button">Sports</button>
+        </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+        <div style="grid-column:1/-1;padding:40px;text-align:center;color:#6b7280;">
+            Loading products...
+        </div>
+    </div>
+</section>
+
+<!-- Region unavailable modal -->
+<div class="region-modal" id="regionModal" hidden>
+    <div class="region-modal-backdrop" id="regionModalBackdrop"></div>
+    <div class="region-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="regionModalTitle">
+        <button class="region-modal-close" id="regionModalClose" type="button" aria-label="Close">
+            <i data-lucide="x"></i>
+        </button>
+
+        <div class="region-modal-icon">
+            <i data-lucide="map-pin-off"></i>
+        </div>
+
+        <div class="region-modal-content">
+            <span class="region-modal-label">TIKTOK SHOP</span>
+            <h3 id="regionModalTitle">ฟังก์ชั่นนี้ไม่พร้อมใช้งานในภูมิภาคของคุณ</h3>
+            <p>ขณะนี้ฟังก์ชั่น Shop Now ยังไม่เปิดให้บริการในภูมิภาคของคุณ</p>
+        </div>
+
+        <button class="region-modal-action" id="regionModalAction" type="button">
+            ตกลง
+        </button>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-brand">
+        <div class="brand-logo"><img src="images/logo.png" alt="TikTok Shop"></div>
+        <div><strong>TikTok Shop</strong><span>Shopping made simple.</span></div>
+    </div>
+
+    <div class="footer-links">
+        <a href="#">About</a>
+        <a href="account.html">Help Center</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+    </div>
+
+    <span class="copyright">© 2026 TikTok Shop </span>
+</footer>
+
+</main>
+
+<script src="js/sidebar.js"></script>
+
+<script>
+const API_BASE_URL = "";
+
+let currentUser = null;
+let allProducts = [];
+let activeCategory = "All";
+
+function $(id) {
+    return document.getElementById(id);
+}
+
+function getToken() {
+    const keys = ["tiktokShopToken", "tiktokShopJWT", "authToken", "token"];
+
+    for (const key of keys) {
+        const value = localStorage.getItem(key);
+        if (value) return value;
+    }
+
+    return null;
+}
+
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function money(value) {
+    return "$" + Number(value || 0).toFixed(2);
+}
+
+function openMobileMenu() {
+    $("sidebar")?.classList.add("open");
+    $("sidebarOverlay")?.classList.add("active");
+    document.body.classList.add("sidebar-open");
+}
+
+function closeMobileMenu() {
+    $("sidebar")?.classList.remove("open");
+    $("sidebarOverlay")?.classList.remove("active");
+    document.body.classList.remove("sidebar-open");
+}
+
+/* =====================================================
+   AUTH
+   ===================================================== */
+
+async function loadCurrentUser() {
+
+    const token = getToken();
+
+    // Guest Mode: ไม่มี Login ก็เข้า Home และดูสินค้าได้
+    if (!token) {
+
+        currentUser = null;
+        updateGuestUI();
+        return true;
+    }
+
+    try {
+
+        const response = await fetch(
+            `${API_BASE_URL}/api/auth/me`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success || !data.user) {
+            throw new Error(
+                data.message ||
+                "Authentication failed"
+            );
+        }
+
+        currentUser = data.user;
+
+        localStorage.setItem(
+            "tiktokShopUser",
+            JSON.stringify(currentUser)
+        );
+
+        localStorage.setItem(
+            "tiktokShopLoggedIn",
+            "true"
+        );
+
+        updateUserUI();
+        return true;
+
+    } catch (error) {
+
+        console.error("Auth error:", error);
+
+        [
+            "tiktokShopToken",
+            "tiktokShopJWT",
+            "authToken",
+            "token",
+            "tiktokShopUser",
+            "tiktokShopLoggedIn"
+        ].forEach(key => localStorage.removeItem(key));
+
+        // Token หมดอายุหรือใช้ไม่ได้: กลับเป็น Guest
+        currentUser = null;
+        updateGuestUI();
+
+        return true;
+    }
+}
+
+function updateUserUI() {
+    if (!currentUser) return;
+
+    const displayName =
+        currentUser.shopName ||
+        currentUser.displayName ||
+        currentUser.username ||
+        "User";
+
+    const avatarLetter =
+        displayName.charAt(0).toUpperCase();
+
+    const profileImage =
+        currentUser.profileImage || "";
+
+
+    /* =====================================
+       SIDEBAR USER
+    ===================================== */
+
+    const sidebarAvatar = $("sidebarAvatar");
+
+    if (sidebarAvatar) {
+
+        if (profileImage) {
+
+            sidebarAvatar.innerHTML = `
+                <img
+                    src="${escapeHTML(profileImage)}"
+                    alt="${escapeHTML(displayName)}"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                        display:block;
+                    "
+                    onerror="
+                        this.style.display='none';
+                        this.parentElement.textContent='${escapeHTML(avatarLetter)}';
+                    "
+                >
+            `;
+
+        } else {
+
+            sidebarAvatar.textContent =
+                avatarLetter;
+        }
+    }
+
+
+    $("sidebarUsername").textContent =
+        displayName;
+
+    $("sidebarRole").textContent =
+        "Store Owner";
+
+
+    /* =====================================
+       HEADER USER
+    ===================================== */
+
+    const headerAvatar = $("headerAvatar");
+
+    if (headerAvatar) {
+
+        if (profileImage) {
+
+            headerAvatar.innerHTML = `
+                <img
+                    src="${escapeHTML(profileImage)}"
+                    alt="${escapeHTML(displayName)}"
+                    style="
+                        width:100%;
+                        height:100%;
+                        object-fit:cover;
+                        border-radius:50%;
+                        display:block;
+                    "
+                    onerror="
+                        this.style.display='none';
+                        this.parentElement.textContent='${escapeHTML(avatarLetter)}';
+                    "
+                >
+            `;
+
+        } else {
+
+            headerAvatar.textContent =
+                avatarLetter;
+        }
+    }
+
+
+    $("headerUsername").textContent =
+        displayName;
+
+    $("headerRole").textContent =
+        "Store Owner";
+
+
+    /* =====================================
+       MY SHOP BOX
+    ===================================== */
+
+    $("sellerBoxTitle").textContent =
+        currentUser.shopName ||
+        currentUser.username ||
+        "My Shop";
+
+    $("sellerBoxText").textContent =
+        "Manage your shop";
+}
+
+/* =====================================================
+   GUEST UI
+   ===================================================== */
+
+function updateGuestUI() {
+
+    const sidebarAvatar = $("sidebarAvatar");
+
+    if (sidebarAvatar) {
+        sidebarAvatar.innerHTML = `
+            <i data-lucide="log-in"></i>
+        `;
+    }
+
+    const sidebarUsername = $("sidebarUsername");
+    if (sidebarUsername) {
+        sidebarUsername.textContent = "เข้าสู่ระบบ";
+    }
+
+    const sidebarRole = $("sidebarRole");
+    if (sidebarRole) {
+        sidebarRole.textContent = "Login to continue";
+    }
+
+    const headerAvatar = $("headerAvatar");
+
+    if (headerAvatar) {
+        headerAvatar.innerHTML = `
+            <i data-lucide="log-in"></i>
+        `;
+    }
+
+    const headerUsername = $("headerUsername");
+    if (headerUsername) {
+        headerUsername.textContent = "Guest";
+    }
+
+    const headerRole = $("headerRole");
+    if (headerRole) {
+        headerRole.textContent = "เข้าสู่ระบบ";
+    }
+
+    const sellerBoxTitle = $("sellerBoxTitle");
+    if (sellerBoxTitle) {
+        sellerBoxTitle.textContent = "เข้าสู่ระบบ";
+    }
+
+    const sellerBoxText = $("sellerBoxText");
+    if (sellerBoxText) {
+        sellerBoxText.textContent = "Login to continue";
+    }
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+}
+
+/* =====================================================
+   LOGIN GUARD
+   ===================================================== */
+
+function requireLogin() {
+
+    const token = getToken();
+
+    if (!token || !currentUser) {
+
+        const redirectUrl =
+            window.location.href;
+
+        window.location.href =
+    "auth.html?mode=login&redirect=" +
+    encodeURIComponent(redirectUrl);
+
+        return false;
+    }
+
+    return true;
+}
+
+/* =====================================================
+   GUEST SIDEBAR SHOP BUTTON
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        const sellerBox =
+            event.target.closest(
+                "#sellerBox, #sellerBoxTitle, #sellerBoxText"
+            );
+
+        if (!sellerBox) return;
+
+        if (!currentUser) {
+
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+
+            window.location.href =
+    "auth.html?mode=login&redirect=" +
+    encodeURIComponent(window.location.href);
+        }
+    },
+    true
+);
+
+/* PRODUCTS */
+async function loadProducts() {
+    const grid = $("productGrid");
+    if (!grid) return;
+
+    grid.innerHTML = `
+        <div style="grid-column:1/-1;padding:50px;text-align:center;color:#6b7280;">
+            <i data-lucide="loader-circle" style="width:32px;height:32px;"></i>
+            <p>Loading products...</p>
+        </div>
+    `;
+
+    if (typeof lucide !== "undefined") lucide.createIcons();
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/products`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to load products");
+        }
+
+        allProducts =
+            Array.isArray(data)
+                ? data
+                : Array.isArray(data.products)
+                    ? data.products
+                    : [];
+
+        renderProducts();
+
+    } catch (error) {
+        console.error("Product API error:", error);
+
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;padding:50px 20px;text-align:center;border:1px dashed #d7dbe2;border-radius:20px;background:#fff;">
+                <i data-lucide="wifi-off" style="width:42px;height:42px;margin-bottom:12px;"></i>
+                <h3 style="margin:0 0 8px;">Unable to load products</h3>
+                <p style="margin:0 0 18px;color:#6b7280;">
+                    Please make sure the backend is running on port 5000.
+                </p>
+                <button type="button" id="retryProducts" class="primary-button">Try Again</button>
+            </div>
+        `;
+
+        if (typeof lucide !== "undefined") lucide.createIcons();
+
+        $("retryProducts")?.addEventListener("click", loadProducts);
+    }
+}
+
+function renderProducts() {
+    const grid = $("productGrid");
+    if (!grid) return;
+
+    const keyword =
+        ($("searchInput")?.value || "").trim().toLowerCase();
+
+    const products = allProducts.filter(product => {
+        const status = String(product.status || "active").toLowerCase();
+        const category = String(product.category || "");
+        const name = String(product.name || "").toLowerCase();
+        const description = String(product.description || "").toLowerCase();
+
+        const categoryMatch =
+            activeCategory === "All" ||
+            category.toLowerCase() === activeCategory.toLowerCase();
+
+        const searchMatch =
+            !keyword ||
+            name.includes(keyword) ||
+            description.includes(keyword) ||
+            category.toLowerCase().includes(keyword);
+
+        return status === "active" && categoryMatch && searchMatch;
+    });
+
+    if (!products.length) {
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;padding:50px 20px;text-align:center;border:1px dashed #d7dbe2;border-radius:20px;background:#fff;">
+                <i data-lucide="package-open" style="width:42px;height:42px;margin-bottom:12px;"></i>
+                <h3 style="margin:0 0 8px;">No products found</h3>
+                <p style="margin:0;color:#6b7280;">Try another search or category.</p>
+            </div>
+        `;
+
+        if (typeof lucide !== "undefined") lucide.createIcons();
+        return;
+    }
+
+    grid.innerHTML = products.slice(0, 20).map((product, index) => {
+        const id = product._id || product.id;
+        const image = product.image || "https://placehold.co/600x600?text=Product";
+        const price = Number(product.salePrice ?? product.price ?? 0);
+        const category = product.category || "Product";
+        const name = product.name || "Unnamed Product";
+
+        return `
+            <article
+                class="product-card"
+                data-product-id="${escapeHTML(id)}"
+                tabindex="0"
+                role="button"
+            >
+                <div class="product-image" style="position:relative;overflow:hidden;">
+                    ${index === 0 ? '<span class="product-badge">FEATURED</span>' : ""}
+
+                    <button class="favorite-button" type="button" aria-label="Favorite">
+                        <i data-lucide="heart"></i>
+                    </button>
+
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(name)}"
+                        loading="lazy"
+                        style="width:100%;height:100%;object-fit:cover;display:block;"
+                        onerror="this.src='https://placehold.co/600x600?text=Product'"
+                    >
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">${escapeHTML(category)}</span>
+
+                    <h3>${escapeHTML(name)}</h3>
+
+                    <div class="rating">
+                        <i data-lucide="star"></i>
+                        <strong>
+                            ${
+                                Number(product.rating || 0) > 0
+                                    ? Number(product.rating).toFixed(1)
+                                    : "New"
+                            }
+                        </strong>
+                    </div>
+
+                    <div class="product-bottom">
+                        <div class="price">${money(price)}</div>
+                        <span class="sold">Available</span>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
+
+    if (typeof lucide !== "undefined") lucide.createIcons();
+
+    grid.querySelectorAll(".product-card").forEach(card => {
+        card.addEventListener("click", event => {
+            const favoriteButton = event.target.closest(".favorite-button");
+
+            if (favoriteButton) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if (!requireLogin()) {
+                    return;
+                }
+
+                favoriteButton.classList.toggle("active");
+                return;
+            }
+
+            const id = card.dataset.productId;
+            if (!id) return;
+
+            window.location.href =
+                "product-detail.html?id=" + encodeURIComponent(id);
+        });
+
+        card.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                card.click();
+            }
+        });
+    });
+}
+
+/* SEARCH */
+$("searchButton")?.addEventListener("click", renderProducts);
+
+$("searchInput")?.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        renderProducts();
+    }
+});
+
+/* PRODUCT TABS */
+document.querySelectorAll(".product-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document
+            .querySelectorAll(".product-tab")
+            .forEach(item => item.classList.remove("active"));
+
+        tab.classList.add("active");
+        activeCategory = tab.dataset.category || "All";
+
+        renderProducts();
+    });
+});
+
+/* CATEGORY CARDS
+   Each category opens add-products.html with a category query.
+   Example: add-products.html?category=Fashion
+   The add-products page can use this value to show only that category.
+*/
+document.querySelectorAll(".explore-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const category = card.dataset.category || "All";
+        card.href = `add-products.html?category=${encodeURIComponent(category)}`;
+    });
+});
+
+/* HERO */
+const regionModal = $("regionModal");
+const regionModalClose = $("regionModalClose");
+const regionModalAction = $("regionModalAction");
+const regionModalBackdrop = $("regionModalBackdrop");
+
+function openRegionModal() {
+    if (!regionModal) return;
+
+    regionModal.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+    setTimeout(() => regionModalClose?.focus(), 0);
+}
+
+function closeRegionModal() {
+    if (!regionModal) return;
+
+    regionModal.hidden = true;
+    document.body.style.overflow = "";
+}
+
+$("heroShopButton")?.addEventListener("click", openRegionModal);
+
+$("heroExploreButton")?.addEventListener("click", () => {
+    window.location.href = "add-products.html";
+});
+
+regionModalClose?.addEventListener("click", closeRegionModal);
+regionModalAction?.addEventListener("click", closeRegionModal);
+regionModalBackdrop?.addEventListener("click", closeRegionModal);
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && regionModal && !regionModal.hidden) {
+        closeRegionModal();
+    }
+});
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+$("headerNotificationButton")?.addEventListener(
+    "click",
+    () => {
+        if (!requireLogin()) return;
+
+        window.location.href =
+            "notifications.html";
+    }
+);
+
+$("headerCartButton")?.addEventListener(
+    "click",
+    () => {
+        if (!requireLogin()) return;
+
+        window.location.href =
+            "add-products.html";
+    }
+);
+
+$("headerProfile")?.addEventListener(
+    "click",
+    () => {
+        if (!requireLogin()) return;
+
+        window.location.href =
+            "account.html";
+    }
+);
+
+$("headerProfile")?.addEventListener(
+    "keydown",
+    event => {
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+            event.preventDefault();
+
+            if (!requireLogin()) return;
+
+            window.location.href =
+                "account.html";
+        }
+    }
+);
+
+/* MOBILE MENU
+   This is intentionally attached after the DOM exists.
+   It does not depend on any other navigation code. */
+/* Shared Sidebar mobile controls are handled by js/sidebar.js */
+
+/* LOGOUT */
+/* Logout is handled by js/sidebar.js */
+
+/* LANGUAGE */
+const languageButton = $("languageButton");
+const languageMenu = $("languageMenu");
+const languageSelector = $("languageSelector");
+
+let currentLanguage =
+    localStorage.getItem("tiktokShopLanguage") || "en";
+
+const translations = {
+    en: {
+        search: "Search products...",
+        searchButton: "Search",
+        products: "Products",
+        orders: "Dashboard",
+        favorites: "My Shop",
+        wallet: "Wallet",
+        notifications: "Notifications",
+        messages: "Messages",
+        profile: "Profile",
+        settings: "Settings",
+        help: "Help Center",
+        logout: "Log out"
+    },
+
+    th: {
+        search: "ค้นหาสินค้า...",
+        searchButton: "ค้นหา",
+        products: "สินค้า",
+        orders: "แดชบอร์ด",
+        favorites: "ร้านค้าของฉัน",
+        wallet: "กระเป๋าเงิน",
+        notifications: "การแจ้งเตือน",
+        messages: "ข้อความ",
+        profile: "โปรไฟล์",
+        settings: "ตั้งค่า",
+        help: "ศูนย์ช่วยเหลือ",
+        logout: "ออกจากระบบ"
+    }
+};
+
+function applyLanguage() {
+    const t = translations[currentLanguage];
+    if (!t) return;
+
+    $("currentLanguage").textContent =
+        currentLanguage === "th" ? "TH" : "EN";
+
+    $("searchInput").placeholder = t.search;
+    $("searchButton").textContent = t.searchButton;
+
+    const map = {
+        navProducts: t.products,
+        navOrders: t.orders,
+        navFavorites: t.favorites,
+        navWallet: t.wallet,
+        navNotifications: t.notifications,
+        navMessages: t.messages,
+        navProfile: t.profile,
+        navSettings: t.settings,
+        navHelp: t.help
+    };
+
+    Object.entries(map).forEach(([id, text]) => {
+        const element = $(id);
+        const span = element?.querySelector("span");
+        if (span) span.textContent = text;
+    });
+
+    const logoutSpan = $("logoutButton")?.querySelector("span");
+    if (logoutSpan) logoutSpan.textContent = t.logout;
+
+    $("checkEN").textContent =
+        currentLanguage === "en" ? "✓" : "";
+
+    $("checkTH").textContent =
+        currentLanguage === "th" ? "✓" : "";
+}
+
+languageButton?.addEventListener("click", event => {
+    event.stopPropagation();
+    languageMenu?.classList.toggle("show");
+});
+
+document.addEventListener("click", event => {
+    if (languageSelector && !languageSelector.contains(event.target)) {
+        languageMenu?.classList.remove("show");
+    }
+});
+
+document.querySelectorAll(".language-option").forEach(option => {
+    option.addEventListener("click", () => {
+        currentLanguage = option.dataset.language;
+
+        localStorage.setItem(
+            "tiktokShopLanguage",
+            currentLanguage
+        );
+
+        applyLanguage();
+        languageMenu?.classList.remove("show");
+    });
+});
+
+/* =====================================================
+   START
+   ===================================================== */
+
+window.addEventListener(
+    "sharedSidebarLoaded",
+    () => {
+        if (currentUser) {
+            updateUserUI();
+        } else {
+            updateGuestUI();
+        }
+    }
+);
+
+(async function start() {
+
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+    applyLanguage();
+
+    // ตรวจ Login แต่ไม่บังคับ Login
+    await loadCurrentUser();
+
+    // ทุกคนสามารถดูสินค้าในหน้า Home ได้
+    await loadProducts();
+
+})();
+</script>
+<script src="js/notifications.js"></script>
+</body>
+</html>
