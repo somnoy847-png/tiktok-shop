@@ -556,7 +556,7 @@
 
             height: 220px;
 
-            background: #f4f4f4;
+            background: #fff;
 
             overflow: hidden;
         }
@@ -638,15 +638,15 @@
 
 
         .product-info {
-            display: grid;
+    display: grid;
 
-            grid-template-columns:
-                repeat(3, 1fr);
+    grid-template-columns:
+        1fr;
 
-            gap: 6px;
+    gap: 6px;
 
-            margin-top: 12px;
-        }
+    margin-top: 12px;
+}
 
 
         .product-stat {
@@ -3010,54 +3010,23 @@
                     </div>
 
 
-                    <div class="product-info">
+                   <div class="product-info">
 
-                        <div class="product-stat">
+    <div class="product-stat">
 
-                            <span>
-                                กำไร
-                            </span>
+        <span>
+            กำไร
+        </span>
 
-                            <strong
-                                style="color:#16a34a"
-                            >
-                                ${money(profit)}
-                            </strong>
+        <strong
+            style="color:#16a34a"
+        >
+            ${money(profit)}
+        </strong>
 
-                        </div>
+    </div>
 
-
-                        <div class="product-stat">
-
-                            <span>
-                                Stock
-                            </span>
-
-                            <strong
-                                class="${stockClass}"
-                            >
-                                ${stock}
-                            </strong>
-
-                        </div>
-
-
-                        <div class="product-stat">
-
-                            <span>
-                                SKU
-                            </span>
-
-                            <strong>
-                                ${escapeHTML(
-                                    product.sku ||
-                                    "-"
-                                )}
-                            </strong>
-
-                        </div>
-
-                    </div>
+</div>
 
 
                     <div class="stock-actions">
