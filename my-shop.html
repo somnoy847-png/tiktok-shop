@@ -692,15 +692,23 @@
 
 
         .product-actions {
-            display: grid;
+         display: grid;
 
-            grid-template-columns:
-                1fr 1fr;
+       grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
             gap: 7px;
 
             margin-top: 12px;
-        }
+         }
+
+          .product-actions .shop-button {
+           width: 100%;
+            min-width: 0;
+           padding-left: 8px;
+            padding-right: 8px;
+         }
 
 
         .stock-actions {
