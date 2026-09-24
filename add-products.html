@@ -776,23 +776,30 @@
         }
 
         @media (max-width: 430px) {
-            .ap-products-grid {
-                grid-template-columns: 1fr;
-            }
+             .ap-products-grid {
+             grid-template-columns: repeat(2, minmax(0, 1fr));
+             }
 
             .ap-image {
                 height: 220px;
             }
 
             .ap-toolbar {
-                flex-direction: column;
-                align-items: stretch;
-            }
+             flex-direction: row;
+             flex-wrap: wrap;
+             align-items: center;
+             }
 
-            .ap-filter,
-            .ap-select-all {
-                width: 100%;
-            }
+             .ap-search {
+              flex-basis: 100%;
+              }
+
+              .ap-filter,
+              .ap-select-all {
+              width: auto;
+              flex: 1;
+               min-width: 0;
+              }
 
             .ap-selection {
                 align-items: flex-start;
@@ -861,12 +868,6 @@
 
                 <select class="ap-filter" id="categoryFilter">
                     <option value="all">ทุกหมวดหมู่</option>
-                </select>
-
-                <select class="ap-filter" id="statusFilter">
-                    <option value="all">ทุกสถานะ</option>
-                    <option value="active">เปิดใช้งาน</option>
-                    <option value="inactive">ปิดใช้งาน</option>
                 </select>
 
                 <button
@@ -1286,8 +1287,6 @@
             const category =
                 $("categoryFilter").value;
 
-            const status =
-                $("statusFilter").value;
 
             return adminProducts.filter(product => {
                 const name =
@@ -1305,10 +1304,6 @@
                 const productCategory =
                     String(product.category || "");
 
-                const productStatus =
-                    String(
-                        product.status || "active"
-                    ).toLowerCase();
 
                 return (
                     (
@@ -1320,11 +1315,8 @@
                     (
                         category === "all" ||
                         productCategory === category
-                    ) &&
-                    (
-                        status === "all" ||
-                        productStatus === status
-                    )
+                    ) 
+                   
                 );
             });
         }
@@ -1839,14 +1831,6 @@
                     }
                 );
 
-            $("statusFilter")
-                .addEventListener(
-                    "change",
-                    () => {
-                        selectedProducts.clear();
-                        renderProducts();
-                    }
-                );
 
             $("selectAllButton")
                 .addEventListener(
