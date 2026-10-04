@@ -943,6 +943,14 @@
                         รอดำเนินการ
                     </button>
 
+                    <button
+                    class="admin-filter"
+                     data-filter="account_assigned"
+                   type="button"
+                   >
+                      รอส่งสลิป
+                     </button>
+
 
                     <button
                         class="admin-filter"
@@ -1487,7 +1495,7 @@
                     "รอดำเนินการ",
 
                 account_assigned:
-                    "ส่งบัญชีแล้ว",
+                       "รอส่งสลิป",
 
                 awaiting_slip:
                     "รอสลิป",
@@ -2063,6 +2071,27 @@
                     }
                 );
 
+                list
+    .querySelectorAll(
+        "[data-cancel-account]"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    cancelAssignedAccount(
+                        button.dataset.cancelAccount
+                    );
+
+                }
+            );
+
+        }
+    );
+
 
             list
                 .querySelectorAll(
@@ -2156,6 +2185,26 @@
                 `;
 
             }
+
+            if (
+    isDeposit &&
+    tx.status ===
+    "account_assigned"
+) {
+
+    action = `
+
+        <button
+            class="admin-action-btn"
+            data-cancel-account="${escapeHtml(tx._id)}"
+            style="border-color:#d81b46;color:#d81b46;"
+        >
+            ยกเลิกส่งบัญชี
+        </button>
+
+    `;
+
+}
 
 
             if (
@@ -3003,6 +3052,110 @@
             }
 
         }
+
+        // =====================================================
+// CANCEL ASSIGNED ACCOUNT
+// =====================================================
+
+async function cancelAssignedAccount(id) {
+
+    const tx =
+        transactions.find(
+            item =>
+                String(item._id) ===
+                String(id)
+        );
+
+
+    if (!tx) {
+
+        return;
+
+    }
+
+
+    if (
+        tx.type !==
+        "deposit"
+    ) {
+
+        showToast(
+            "สามารถยกเลิกบัญชีสำหรับรายการฝากเงินเท่านั้น",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        tx.status !==
+        "account_assigned"
+    ) {
+
+        showToast(
+            "รายการนี้ไม่สามารถยกเลิกบัญชีได้",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "ยืนยันยกเลิกการส่งบัญชีให้ผู้ใช้?\n\n" +
+            "ผู้ใช้ยังไม่ได้ส่งสลิป ระบบจะล้างบัญชีที่ส่งไปและให้ผู้ใช้ขอบัญชีใหม่ได้"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await apiFetch(
+
+            `${ADMIN_WALLET_API}/deposits/` +
+            `${id}/cancel-account`,
+
+            {
+
+                method:
+                    "POST"
+
+            }
+
+        );
+
+
+        showToast(
+            "ยกเลิกส่งบัญชีแล้ว",
+            "success"
+        );
+
+
+        await loadTransactions();
+
+    }
+
+    catch (error) {
+
+        showToast(
+            error.message ||
+            "ไม่สามารถยกเลิกส่งบัญชีได้",
+            "error"
+        );
+
+    }
+
+}
 
 
         // =====================================================

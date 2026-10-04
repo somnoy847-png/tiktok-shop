@@ -1235,5 +1235,201 @@ router.get(
 );
 
 
+// =====================================================
+// REQUEST NEW PAYMENT ACCOUNT
+// POST /api/wallet/deposits/:id/request-account
+// =====================================================
+//
+// ผู้ใช้ขอบัญชีใหม่ หลัง Admin ยกเลิกบัญชีเดิม
+// ใช้ Transaction เดิม
+// ไม่สร้าง Transaction ใหม่
+//
+// =====================================================
+
+router.post(
+    "/deposits/:id/request-account",
+    authenticateToken,
+    async (req, res) => {
+
+        try {
+
+            // =================================================
+            // FIND TRANSACTION
+            // =================================================
+
+            const transaction =
+                await WalletTransaction.findById(
+                    req.params.id
+                );
+
+
+            // =================================================
+            // CHECK TRANSACTION
+            // =================================================
+
+            if (!transaction) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Deposit transaction not found."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CHECK OWNER
+            // =================================================
+
+            if (
+                String(
+                    transaction.userId
+                ) !==
+                String(
+                    req.user.id
+                )
+            ) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    message:
+                        "You are not allowed to modify this transaction."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CHECK TYPE
+            // =================================================
+
+            if (
+                transaction.type !==
+                "deposit"
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "This transaction is not a deposit."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CHECK ADMIN CANCELLATION
+            // =================================================
+
+            if (
+                transaction.accountAssignmentCancelled !==
+                true
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "This deposit does not require a new payment account."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CHECK STATUS
+            // =================================================
+
+            if (
+                transaction.status !==
+                "pending"
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "This deposit is not waiting for a new payment account."
+
+                });
+
+            }
+
+
+            // =================================================
+            // RESET CANCELLATION FLAG
+            // =================================================
+
+            transaction.accountAssignmentCancelled =
+                false;
+
+
+            // =================================================
+            // UPDATE ADMIN NOTE
+            // =================================================
+
+            transaction.adminNote =
+                "User requested a new payment account.";
+
+
+            // =================================================
+            // SAVE
+            // =================================================
+
+            await transaction.save();
+
+
+            // =================================================
+            // RESPONSE
+            // =================================================
+
+            return res.json({
+
+                success: true,
+
+                message:
+                    "New payment account requested successfully.",
+
+                transaction
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Request new payment account error:",
+                error
+            );
+
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Failed to request a new payment account."
+
+            });
+
+        }
+
+    }
+);
+
 module.exports =
     router;

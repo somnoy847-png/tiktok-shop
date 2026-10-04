@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ยืนยันตัวตน - TikTok Shop</title>
+
+    <link
+        rel="icon"
+        href="images/logo.png"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                Arial,
+                sans-serif;
+
+            background: #f6f6f7;
+
+            color: #171717;
+        }
+
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            border: 0;
+        }
+
+
+        /* =========================================
+           TOP BAR
+        ========================================= */
+
+        .topbar {
+
+            height: 68px;
+
+            background: #ffffff;
+
+            border-bottom:
+                1px solid #ededed;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 28px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            color: #171717;
+
+            text-decoration: none;
+        }
+
+
+        .brand-logo {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 11px;
+
+            overflow: hidden;
+
+            background: #fdfdfd;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .brand-logo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    background: #fff;
+}
+
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 2px;
+        }
+
+
+        .brand-text strong {
+
+            font-size: 16px;
+
+            font-weight: 800;
+        }
+
+
+        .brand-text span {
+
+            font-size: 10px;
+
+            color: #8a8a8a;
+        }
+
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                9px 14px;
+
+            border-radius: 10px;
+
+            background: #f4f4f5;
+
+            color: #333;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: .2s ease;
+        }
+
+
+        .back-button:hover {
+
+            background: #e9e9eb;
+        }
+
+
+        .back-button svg {
+
+            width: 16px;
+
+            height: 16px;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .page {
+
+            width: 100%;
+
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            padding:
+                36px 20px 60px;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            margin: 0 auto 14px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fff4cc;
+
+            color: #b77900;
+        }
+
+
+        .page-icon svg {
+
+            width: 28px;
+
+            height: 28px;
+        }
+
+
+        .page-header h1 {
+
+            margin: 0;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            letter-spacing: -.4px;
+        }
+
+
+        .page-header p {
+
+            margin:
+                9px auto 0;
+
+            max-width: 560px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           CARD
+        ========================================= */
+
+        .card {
+
+            background: #fff;
+
+            border:
+                1px solid #e9e9e9;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0,0,0,.04);
+        }
+
+
+        /* =========================================
+           USER INFO
+        ========================================= */
+
+        .user-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 15px;
+
+            background: #fafafa;
+
+            border:
+                1px solid #eeeeee;
+
+            border-radius: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .user-avatar {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #efefef;
+
+            overflow: hidden;
+
+            flex: 0 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #777;
+        }
+
+
+        .user-avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .user-info {
+
+            min-width: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+        }
+
+
+        .user-info strong {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .user-info span {
+
+            color: #888;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding:
+                11px 13px;
+
+            border-radius: 10px;
+
+            margin-bottom: 24px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .status-box svg {
+
+            width: 17px;
+
+            height: 17px;
+
+            flex: 0 0 auto;
+        }
+
+
+        .status-unverified {
+
+            background: #fff8e5;
+
+            color: #9b6b00;
+
+            border:
+                1px solid #f5e4aa;
+        }
+
+
+        .status-pending {
+
+            background: #fff4e8;
+
+            color: #bd6500;
+
+            border:
+                1px solid #f3d5ae;
+        }
+
+
+        .status-verified {
+
+            background: #edf9f0;
+
+            color: #187a38;
+
+            border:
+                1px solid #d2ecd8;
+        }
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .section-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .section-title-icon {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 9px;
+
+            background: #f4f4f5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #444;
+        }
+
+
+        .section-title-icon svg {
+
+            width: 16px;
+
+            height: 16px;
+        }
+
+
+        .section-title strong {
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #333;
+        }
+
+
+        .required {
+
+            color: #fe2c55;
+        }
+
+
+        .input-wrap {
+
+            position: relative;
+        }
+
+
+        .input-wrap > svg {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 17px;
+
+            height: 17px;
+
+            color: #999;
+
+            pointer-events: none;
+        }
+
+
+        .input,
+        .select {
+
+            width: 100%;
+
+            height: 46px;
+
+            border:
+                1px solid #dedede;
+
+            border-radius: 11px;
+
+            background: #fff;
+
+            color: #222;
+
+            outline: none;
+
+            padding:
+                0 13px;
+
+            font-size: 13px;
+
+            transition: .2s ease;
+        }
+
+
+        .input.with-icon {
+
+            padding-left: 40px;
+        }
+
+
+        .input:focus,
+        .select:focus {
+
+            border-color: #999;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0,0,0,.04);
+        }
+
+
+        .select {
+
+    cursor: pointer;
+
+    padding-left: 40px;
+}
+
+
+        .hint {
+
+            margin:
+                6px 0 0;
+
+            color: #999;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           UPLOAD
+        ========================================= */
+
+        .upload-area {
+
+            position: relative;
+
+            border:
+                1.5px dashed #cfcfcf;
+
+            border-radius: 14px;
+
+            min-height: 220px;
+
+            background: #fafafa;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .upload-area:hover {
+
+            border-color: #999;
+
+            background: #f7f7f7;
+        }
+
+
+        .upload-area.has-image {
+
+            border-style: solid;
+
+            border-color: #ddd;
+
+            background: #fff;
+        }
+
+
+        .upload-content {
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+
+        .upload-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 14px;
+
+            background: #eeeeef;
+
+            color: #555;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .upload-icon svg {
+
+            width: 23px;
+
+            height: 23px;
+        }
+
+
+        .upload-content strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .upload-content span {
+
+            display: block;
+
+            color: #999;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .upload-preview {
+
+            display: none;
+
+            width: 100%;
+
+            min-height: 220px;
+
+            max-height: 420px;
+
+            object-fit: contain;
+
+            background: #fff;
+        }
+
+
+        .upload-area.has-image
+        .upload-preview {
+
+            display: block;
+        }
+
+
+        .upload-area.has-image
+        .upload-content {
+
+            display: none;
+        }
+
+
+        #idCardInput {
+
+            display: none;
+        }
+
+
+        .change-image {
+
+            display: none;
+
+            position: absolute;
+
+            right: 10px;
+
+            bottom: 10px;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                8px 11px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(0,0,0,.72);
+
+            color: #fff;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .upload-area.has-image
+        .change-image {
+
+            display: inline-flex;
+        }
+
+
+        .change-image svg {
+
+            width: 14px;
+
+            height: 14px;
+        }
+
+
+        /* =========================================
+           NOTICE
+        ========================================= */
+
+        .notice {
+
+            display: flex;
+
+            gap: 9px;
+
+            padding: 12px 13px;
+
+            margin-top: 20px;
+
+            background: #f7f7f8;
+
+            border-radius: 11px;
+
+            color: #666;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        .notice svg {
+
+            width: 16px;
+
+            height: 16px;
+
+            flex: 0 0 auto;
+
+            margin-top: 1px;
+
+            color: #777;
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        .message {
+
+            display: none;
+
+            align-items: flex-start;
+
+            gap: 9px;
+
+            padding:
+                12px 13px;
+
+            border-radius: 10px;
+
+            margin-bottom: 18px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .message.show {
+
+            display: flex;
+        }
+
+
+        .message svg {
+
+            width: 17px;
+
+            height: 17px;
+
+            flex: 0 0 auto;
+
+            margin-top: 1px;
+        }
+
+
+        .message.error {
+
+            background: #fff0f2;
+
+            color: #c52845;
+
+            border:
+                1px solid #ffd8de;
+        }
+
+
+        .message.success {
+
+            background: #edf9f0;
+
+            color: #217b38;
+
+            border:
+                1px solid #d6efd9;
+        }
+
+
+        /* =========================================
+           SUBMIT
+        ========================================= */
+
+        .submit-button {
+
+            width: 100%;
+
+            height: 48px;
+
+            margin-top: 24px;
+
+            border-radius: 11px;
+
+            background: #171717;
+
+            color: #fff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+
+        .submit-button:hover {
+
+            background: #000;
+        }
+
+
+        .submit-button:disabled {
+
+            background: #bcbcbc;
+
+            cursor: not-allowed;
+        }
+
+
+        .submit-button svg {
+
+            width: 17px;
+
+            height: 17px;
+        }
+
+
+        .loading-spinner {
+
+            width: 17px;
+
+            height: 17px;
+
+            border:
+                2px solid
+                rgba(255,255,255,.35);
+
+            border-top-color: #fff;
+
+            border-radius: 50%;
+
+            animation:
+                spin .7s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================
+           LOCKED
+        ========================================= */
+
+        .locked-box {
+
+            display: none;
+
+            text-align: center;
+
+            padding:
+                35px 20px;
+        }
+
+
+        .locked-box.show {
+
+            display: block;
+        }
+
+
+        .locked-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            margin:
+                0 auto 14px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #edf9f0;
+
+            color: #18813b;
+        }
+
+
+        .locked-icon.pending {
+
+            background: #fff4e8;
+
+            color: #bd6500;
+        }
+
+
+        .locked-icon svg {
+
+            width: 28px;
+
+            height: 28px;
+        }
+
+
+        .locked-box h2 {
+
+            margin: 0;
+
+            font-size: 19px;
+
+            font-weight: 800;
+        }
+
+
+        .locked-box p {
+
+            max-width: 450px;
+
+            margin:
+                9px auto 0;
+
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        .locked-back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 20px;
+
+            padding:
+                10px 16px;
+
+            border-radius: 10px;
+
+            background: #f1f1f2;
+
+            color: #333;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .locked-back svg {
+
+            width: 15px;
+
+            height: 15px;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 650px) {
+
+            .topbar {
+
+                height: 62px;
+
+                padding:
+                    0 14px;
+            }
+
+
+            .brand-text span {
+
+                display: none;
+            }
+
+
+            .brand-logo {
+
+                width: 37px;
+
+                height: 37px;
+            }
+
+
+            .back-button {
+
+                padding:
+                    8px 10px;
+            }
+
+
+            .back-button span {
+
+                display: none;
+            }
+
+
+            .page {
+
+                padding:
+                    22px 12px 45px;
+            }
+
+
+            .page-header {
+
+                margin-bottom: 18px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 23px;
+            }
+
+
+            .page-header p {
+
+                font-size: 11px;
+            }
+
+
+            .card {
+
+                padding:
+                    19px 15px 22px;
+
+                border-radius: 17px;
+            }
+
+
+            .upload-area {
+
+                min-height: 190px;
+            }
+
+
+            .upload-preview {
+
+                min-height: 190px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TOP BAR
+    ========================================= -->
+
+    <header class="topbar">
+
+        <a
+            href="account.html"
+            class="brand"
+        >
+
+            <div class="brand-logo">
+
+                <img
+                    src="images/logo.png"
+                    alt="TikTok Shop"
+                >
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <strong>TikTok Shop</strong>
+
+                <span>
+                    Shop • Sell • Grow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <a
+            href="account.html"
+            class="back-button"
+        >
+
+            <i data-lucide="arrow-left"></i>
+
+            <span>กลับโปรไฟล์</span>
+
+        </a>
+
+    </header>
+
+
+    <!-- =========================================
+         PAGE
+    ========================================= -->
+
+    <main class="page">
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div class="page-icon">
+
+                <i data-lucide="badge-check"></i>
+
+            </div>
+
+
+            <h1>
+                ยืนยันตัวตน
+            </h1>
+
+
+            <p>
+                กรุณากรอกข้อมูลตามเอกสารประจำตัว
+                และอัปโหลดรูปเอกสารเพื่อยืนยันตัวตน
+            </p>
+
+        </section>
+
+
+        <!-- CARD -->
+
+        <section class="card">
+
+
+            <!-- USER -->
+
+            <div
+                class="user-box"
+                id="userBox"
+            >
+
+                <div
+                    class="user-avatar"
+                    id="userAvatar"
+                >
+
+                    <i data-lucide="user"></i>
+
+                </div>
+
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        กำลังโหลด...
+                    </strong>
+
+                    <span id="userContact">
+                        กำลังโหลด...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div
+                class="status-box status-unverified"
+                id="statusBox"
+            >
+
+                <i data-lucide="shield-alert"></i>
+
+                <span id="statusText">
+                    กำลังตรวจสอบสถานะ...
+                </span>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="message"
+                id="messageBox"
+            >
+
+                <i data-lucide="alert-circle"></i>
+
+                <span id="messageText"></span>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form
+                id="kycForm"
+            >
+
+
+                <!-- PERSONAL INFO -->
+
+                <div class="section-title">
+
+                    <div class="section-title-icon">
+
+                        <i data-lucide="user-round"></i>
+
+                    </div>
+
+                    <strong>
+                        ข้อมูลส่วนตัว
+                    </strong>
+
+                </div>
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="fullName">
+
+                        ชื่อ - นามสกุล
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <i data-lucide="user"></i>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            class="input with-icon"
+                            placeholder="กรอกชื่อและนามสกุลตามเอกสาร"
+                            maxlength="120"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ID NUMBER -->
+
+                <div class="form-group">
+
+                    <label for="idNumber">
+
+                        เลขบัตรประชาชน / เลขเอกสาร
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <i data-lucide="credit-card"></i>
+
+                        <input
+                            type="text"
+                            id="idNumber"
+                            class="input with-icon"
+                            placeholder="กรอกเลขบัตรหรือเลขเอกสาร"
+                            maxlength="40"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+                    <p class="hint">
+                        กรอกหมายเลขตามเอกสารจริง
+                    </p>
+
+                </div>
+
+
+                <!-- NATIONALITY -->
+
+                <div class="form-group">
+
+                    <label for="nationality">
+
+                        สัญชาติ
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <div class="input-wrap">
+
+                        <i data-lucide="globe"></i>
+
+                        <select
+                            id="nationality"
+                            class="select"
+                            required
+                        >
+
+                            <option value="">
+                                -- เลือกสัญชาติ --
+                            </option>
+
+                            <option value="Thailand">
+                                ไทย
+                            </option>
+
+                            <option value="Laos">
+                                ลาว
+                            </option>
+
+                            <option value="Vietnam">
+                                เวียดนาม
+                            </option>
+
+                            <option value="Myanmar">
+                                เมียนมา
+                            </option>
+
+                            <option value="Cambodia">
+                                กัมพูชา
+                            </option>
+
+                            <option value="China">
+                                จีน
+                            </option>
+
+                            <option value="Japan">
+                                ญี่ปุ่น
+                            </option>
+
+                            <option value="South Korea">
+                                เกาหลีใต้
+                            </option>
+
+                            <option value="North Korea">
+                                เกาหลีเหนือ
+                            </option>
+
+                            <option value="Malaysia">
+                                มาเลเซีย
+                            </option>
+
+                            <option value="Singapore">
+                                สิงคโปร์
+                            </option>
+
+                            <option value="Indonesia">
+                                อินโดนีเซีย
+                            </option>
+
+                            <option value="Philippines">
+                                ฟิลิปปินส์
+                            </option>
+
+                            <option value="Brunei">
+                                บรูไน
+                            </option>
+
+                            <option value="Timor-Leste">
+                                ติมอร์-เลสเต
+                            </option>
+
+                            <option value="India">
+                                อินเดีย
+                            </option>
+
+                            <option value="Bangladesh">
+                                บังกลาเทศ
+                            </option>
+
+                            <option value="Nepal">
+                                เนปาล
+                            </option>
+
+                            <option value="Bhutan">
+                                ภูฏาน
+                            </option>
+
+                            <option value="Pakistan">
+                                ปากีสถาน
+                            </option>
+
+                            <option value="Sri Lanka">
+                                ศรีลังกา
+                            </option>
+
+                            <option value="Maldives">
+                                มัลดีฟส์
+                            </option>
+
+                            <option value="Mongolia">
+                                มองโกเลีย
+                            </option>
+
+                            <option value="Kazakhstan">
+                                คาซัคสถาน
+                            </option>
+
+                            <option value="Uzbekistan">
+                                อุซเบกิสถาน
+                            </option>
+
+                            <option value="Kyrgyzstan">
+                                คีร์กีซสถาน
+                            </option>
+
+                            <option value="Tajikistan">
+                                ทาจิกิสถาน
+                            </option>
+
+                            <option value="Turkmenistan">
+                                เติร์กเมนิสถาน
+                            </option>
+
+                            <option value="Afghanistan">
+                                อัฟกานิสถาน
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DOCUMENT -->
+
+                <div class="section-title">
+
+                    <div class="section-title-icon">
+
+                        <i data-lucide="image"></i>
+
+                    </div>
+
+                    <strong>
+                        เอกสารยืนยันตัวตน
+                    </strong>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        รูปบัตร / เอกสารด้านหน้า
+
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="idCardInput"
+                        accept="image/png,image/jpeg,image/jpg,image/webp"
+                    >
+
+
+                    <div
+                        class="upload-area"
+                        id="uploadArea"
+                    >
+
+                        <div class="upload-content">
+
+                            <div class="upload-icon">
+
+                                <i data-lucide="upload"></i>
+
+                            </div>
+
+
+                            <strong>
+                                คลิกเพื่อเลือกรูป
+                            </strong>
+
+
+                            <span>
+                                PNG, JPG หรือ WEBP
+                                <br>
+                                ขนาดไม่เกิน 5 MB
+                            </span>
+
+                        </div>
+
+
+                        <img
+                            id="uploadPreview"
+                            class="upload-preview"
+                            alt="ตัวอย่างเอกสาร"
+                        >
+
+
+                        <span
+                            class="change-image"
+                            id="changeImage"
+                        >
+
+                            <i data-lucide="image-up"></i>
+
+                            เปลี่ยนรูป
+
+                        </span>
+
+                    </div>
+
+
+                    <p class="hint">
+                        กรุณาใช้รูปที่เห็นข้อมูลบนเอกสารชัดเจน
+                        และไม่มีส่วนสำคัญถูกตัดออก
+                    </p>
+
+                </div>
+
+
+                <!-- NOTICE -->
+
+                <div class="notice">
+
+                    <i data-lucide="shield-check"></i>
+
+                    <span>
+                        ข้อมูลนี้ใช้สำหรับการยืนยันตัวตนของบัญชีเท่านั้น
+                        กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนส่ง
+                    </span>
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitButton"
+                >
+
+                    <i
+                        data-lucide="send"
+                        id="submitIcon"
+                    ></i>
+
+                    <span id="submitText">
+                        ส่งข้อมูลยืนยันตัวตน
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <!-- LOCKED -->
+
+            <div
+                class="locked-box"
+                id="lockedBox"
+            >
+
+                <div
+                    class="locked-icon pending"
+                    id="lockedIcon"
+                >
+
+                    <i
+                        data-lucide="clock"
+                        id="lockedIconSvg"
+                    ></i>
+
+                </div>
+
+
+                <h2 id="lockedTitle">
+                    กำลังตรวจสอบข้อมูล
+                </h2>
+
+
+                <p id="lockedText">
+                    ข้อมูล KYC ของคุณถูกส่งแล้ว
+                    กรุณารอการตรวจสอบจากผู้ดูแลระบบ
+                </p>
+
+
+                <a
+                    href="account.html"
+                    class="locked-back"
+                >
+
+                    <i data-lucide="arrow-left"></i>
+
+                    กลับโปรไฟล์
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           CONFIG
+        ========================================= */
+
+        const API_BASE_URL = "";
+
+
+        /* =========================================
+           HELPERS
+        ========================================= */
+
+        function $(id) {
+
+            return document.getElementById(id);
+
+        }
+
+
+        function getToken() {
+
+            const keys = [
+                "tiktokShopToken",
+                "tiktokShopJWT",
+                "authToken",
+                "token"
+            ];
+
+
+            for (const key of keys) {
+
+                const value =
+                    localStorage.getItem(key);
+
+                if (value) {
+
+                    return value;
+
+                }
+
+            }
+
+
+            return null;
+
+        }
+
+
+        function refreshIcons() {
+
+            if (
+                window.lucide &&
+                typeof lucide.createIcons === "function"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        function showMessage(
+            message,
+            type = "error"
+        ) {
+
+            const box =
+                $("messageBox");
+
+            const text =
+                $("messageText");
+
+            if (!box || !text) {
+                return;
+            }
+
+
+            text.textContent =
+                message;
+
+
+            box.className =
+                `message show ${type}`;
+
+
+            const icon =
+                box.querySelector("svg");
+
+
+            if (icon) {
+
+                icon.remove();
+
+            }
+
+
+            const iconName =
+                type === "success"
+                    ? "check-circle"
+                    : "alert-circle";
+
+
+            box.insertAdjacentHTML(
+                "afterbegin",
+                `<i data-lucide="${iconName}"></i>`
+            );
+
+
+            refreshIcons();
+
+        }
+
+
+        function hideMessage() {
+
+            const box =
+                $("messageBox");
+
+            if (box) {
+
+                box.className =
+                    "message";
+
+            }
+
+        }
+
+
+        /* =========================================
+           LOAD USER
+        ========================================= */
+
+        async function loadUser() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                window.location.href =
+                    "auth.html?mode=login";
+
+                return null;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/api/profile`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success ||
+                    !data.user
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "ไม่สามารถโหลดข้อมูลผู้ใช้ได้"
+                    );
+
+                }
+
+
+                const user =
+                    data.user;
+
+
+                $("userName").textContent =
+                    user.shopName ||
+                    user.username ||
+                    "ผู้ใช้";
+
+
+                $("userContact").textContent =
+                    user.contact ||
+                    "";
+
+
+                if (user.profileImage) {
+
+                    $("userAvatar").innerHTML = `
+
+                        <img
+                            src="${escapeAttribute(user.profileImage)}"
+                            alt="โปรไฟล์"
+                        >
+
+                    `;
+
+                }
+
+
+                return user;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "KYC profile error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "ไม่สามารถโหลดข้อมูลผู้ใช้ได้"
+                );
+
+
+                return null;
+
+            }
+
+        }
+
+
+        function escapeAttribute(value) {
+
+            return String(value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/"/g, "&quot;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+        }
+
+
+        /* =========================================
+           KYC STATUS
+        ========================================= */
+
+        async function loadKycStatus() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                return null;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/api/kyc/status`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "ไม่สามารถตรวจสอบสถานะ KYC ได้"
+                    );
+
+                }
+
+
+                renderStatus(
+                    data.status
+                );
+
+
+                return data.status;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "KYC status error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "ไม่สามารถตรวจสอบสถานะ KYC ได้"
+                );
+
+
+                return null;
+
+            }
+
+        }
+
+
+        function renderStatus(status) {
+
+            const statusBox =
+                $("statusBox");
+
+            const statusText =
+                $("statusText");
+
+            const form =
+                $("kycForm");
+
+            const lockedBox =
+                $("lockedBox");
+
+            const lockedIcon =
+                $("lockedIcon");
+
+            const lockedTitle =
+                $("lockedTitle");
+
+            const lockedText =
+                $("lockedText");
+
+
+            if (!statusBox) {
+                return;
+            }
+
+
+            if (status === "verified") {
+
+                statusBox.className =
+                    "status-box status-verified";
+
+
+                statusBox.innerHTML = `
+
+                    <i data-lucide="badge-check"></i>
+
+                    <span>
+                        ยืนยันตัวตนเรียบร้อยแล้ว
+                    </span>
+
+                `;
+
+
+                if (form) {
+
+                    form.style.display =
+                        "none";
+
+                }
+
+
+                if (lockedBox) {
+
+                    lockedBox.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+                if (lockedIcon) {
+
+                    lockedIcon.className =
+                        "locked-icon";
+
+                    lockedIcon.innerHTML = `
+
+                        <i data-lucide="badge-check"></i>
+
+                    `;
+
+                }
+
+
+                if (lockedTitle) {
+
+                    lockedTitle.textContent =
+                        "ยืนยันตัวตนแล้ว";
+
+                }
+
+
+                if (lockedText) {
+
+                    lockedText.textContent =
+                        "บัญชีของคุณได้รับการยืนยันตัวตนเรียบร้อยแล้ว";
+
+                }
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            if (status === "pending") {
+
+                statusBox.className =
+                    "status-box status-pending";
+
+
+                statusBox.innerHTML = `
+
+                    <i data-lucide="clock-3"></i>
+
+                    <span>
+                        ข้อมูลกำลังรอการตรวจสอบ
+                    </span>
+
+                `;
+
+
+                if (form) {
+
+                    form.style.display =
+                        "none";
+
+                }
+
+
+                if (lockedBox) {
+
+                    lockedBox.classList.add(
+                        "show"
+                    );
+
+                }
+
+
+                if (lockedIcon) {
+
+                    lockedIcon.className =
+                        "locked-icon pending";
+
+                    lockedIcon.innerHTML = `
+
+                        <i data-lucide="clock-3"></i>
+
+                    `;
+
+                }
+
+
+                if (lockedTitle) {
+
+                    lockedTitle.textContent =
+                        "กำลังตรวจสอบข้อมูล";
+
+                }
+
+
+                if (lockedText) {
+
+                    lockedText.textContent =
+                        "ข้อมูล KYC ของคุณถูกส่งแล้ว กรุณารอการตรวจสอบจากผู้ดูแลระบบ";
+
+                }
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            /* =====================================
+               UNVERIFIED
+            ===================================== */
+
+            statusBox.className =
+                "status-box status-unverified";
+
+
+            statusBox.innerHTML = `
+
+                <i data-lucide="shield-alert"></i>
+
+                <span>
+                    บัญชียังไม่ได้ยืนยันตัวตน
+                </span>
+
+            `;
+
+
+            if (form) {
+
+                form.style.display =
+                    "";
+
+            }
+
+
+            if (lockedBox) {
+
+                lockedBox.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            refreshIcons();
+
+        }
+
+
+        /* =========================================
+           IMAGE
+        ========================================= */
+
+        let selectedImageData =
+            "";
+
+
+        $("uploadArea")
+            .addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target.closest(
+                            "#changeImage"
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    $("idCardInput").click();
+
+                }
+            );
+
+
+        $("changeImage")
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    $("idCardInput").click();
+
+                }
+            );
+
+
+        $("idCardInput")
+            .addEventListener(
+                "change",
+                event => {
+
+                    const file =
+                        event.target.files?.[0];
+
+
+                    if (!file) {
+                        return;
+                    }
+
+
+                    const allowedTypes = [
+                        "image/png",
+                        "image/jpeg",
+                        "image/jpg",
+                        "image/webp"
+                    ];
+
+
+                    if (
+                        !allowedTypes.includes(
+                            file.type
+                        )
+                    ) {
+
+                        showMessage(
+                            "รองรับเฉพาะไฟล์ PNG, JPG และ WEBP"
+                        );
+
+
+                        event.target.value =
+                            "";
+
+                        return;
+
+                    }
+
+
+                    const maxSize =
+                        5 * 1024 * 1024;
+
+
+                    if (
+                        file.size >
+                        maxSize
+                    ) {
+
+                        showMessage(
+                            "รูปภาพต้องมีขนาดไม่เกิน 5 MB"
+                        );
+
+
+                        event.target.value =
+                            "";
+
+                        return;
+
+                    }
+
+
+                    hideMessage();
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        () => {
+
+                            selectedImageData =
+                                String(
+                                    reader.result || ""
+                                );
+
+
+                            $("uploadPreview").src =
+                                selectedImageData;
+
+
+                            $("uploadArea")
+                                .classList.add(
+                                    "has-image"
+                                );
+
+
+                            refreshIcons();
+
+                        };
+
+
+                    reader.onerror =
+                        () => {
+
+                            selectedImageData =
+                                "";
+
+                            showMessage(
+                                "ไม่สามารถอ่านไฟล์รูปภาพได้"
+                            );
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                }
+            );
+
+
+        /* =========================================
+           SUBMIT
+        ========================================= */
+
+        $("kycForm")
+            .addEventListener(
+                "submit",
+                async event => {
+
+                    event.preventDefault();
+
+
+                    hideMessage();
+
+
+                    const token =
+                        getToken();
+
+
+                    if (!token) {
+
+                        window.location.href =
+                            "auth.html?mode=login";
+
+                        return;
+
+                    }
+
+
+                    const fullName =
+                        $("fullName")
+                            .value
+                            .trim();
+
+
+                    const idNumber =
+                        $("idNumber")
+                            .value
+                            .trim();
+
+
+                    const nationality =
+                        $("nationality")
+                            .value
+                            .trim();
+
+
+                    if (!fullName) {
+
+                        showMessage(
+                            "กรุณากรอกชื่อ - นามสกุล"
+                        );
+
+                        $("fullName").focus();
+
+                        return;
+
+                    }
+
+
+                    if (!idNumber) {
+
+                        showMessage(
+                            "กรุณากรอกเลขบัตรประชาชนหรือเลขเอกสาร"
+                        );
+
+                        $("idNumber").focus();
+
+                        return;
+
+                    }
+
+
+                    if (!nationality) {
+
+                        showMessage(
+                            "กรุณาเลือกสัญชาติ"
+                        );
+
+                        $("nationality").focus();
+
+                        return;
+
+                    }
+
+
+                    if (!selectedImageData) {
+
+                        showMessage(
+                            "กรุณาอัปโหลดรูปบัตรหรือเอกสาร"
+                        );
+
+                        return;
+
+                    }
+
+
+                    const button =
+                        $("submitButton");
+
+
+                    const buttonText =
+                        $("submitText");
+
+
+                    const buttonIcon =
+                        $("submitIcon");
+
+
+                    button.disabled =
+                        true;
+
+
+                    buttonText.textContent =
+                        "กำลังส่งข้อมูล...";
+
+
+                    if (buttonIcon) {
+
+                        buttonIcon.style.display =
+                            "none";
+
+                    }
+
+
+                    const spinner =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    spinner.className =
+                        "loading-spinner";
+
+
+                    button.insertBefore(
+                        spinner,
+                        buttonText
+                    );
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `${API_BASE_URL}/api/kyc/submit`,
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json",
+
+                                        Authorization:
+                                            `Bearer ${token}`
+                                    },
+
+                                    body:
+                                        JSON.stringify({
+                                            fullName:
+                                                fullName,
+
+                                            idNumber:
+                                                idNumber,
+
+                                            nationality:
+                                                nationality,
+
+                                            imageData:
+                                                selectedImageData
+                                        })
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (
+                            !response.ok ||
+                            !data.success
+                        ) {
+
+                            throw new Error(
+                                data.message ||
+                                "ไม่สามารถส่งข้อมูล KYC ได้"
+                            );
+
+                        }
+
+
+                        showMessage(
+                            "ส่งข้อมูล KYC เรียบร้อยแล้ว กำลังเข้าสู่หน้าบัญชี...",
+                            "success"
+                        );
+
+
+                        buttonText.textContent =
+                            "ส่งข้อมูลสำเร็จ";
+
+
+                        setTimeout(
+                            () => {
+
+                                window.location.href =
+                                    "account.html";
+
+                            },
+                            1200
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "KYC submit error:",
+                            error
+                        );
+
+
+                        showMessage(
+                            error.message ||
+                            "ไม่สามารถส่งข้อมูล KYC ได้"
+                        );
+
+
+                        button.disabled =
+                            false;
+
+
+                        buttonText.textContent =
+                            "ส่งข้อมูลยืนยันตัวตน";
+
+
+                        if (buttonIcon) {
+
+                            buttonIcon.style.display =
+                                "";
+
+                        }
+
+
+                        spinner.remove();
+
+
+                        refreshIcons();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           START
+        ========================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            async () => {
+
+                refreshIcons();
+
+
+                const user =
+                    await loadUser();
+
+
+                if (!user) {
+                    return;
+                }
+
+
+                /*
+                =========================================
+                PRE-FILL NATIONALITY
+                =========================================
+                */
+
+                const nationality =
+                    String(
+                        user.nationality || ""
+                    )
+                    .trim();
+
+
+                const nationalitySelect =
+                    $("nationality");
+
+
+                if (
+                    nationality &&
+                    nationalitySelect
+                ) {
+
+                    const option =
+                        Array.from(
+                            nationalitySelect.options
+                        ).find(
+                            option =>
+                                option.value.toLowerCase() ===
+                                nationality.toLowerCase()
+                        );
+
+
+                    if (option) {
+
+                        nationalitySelect.value =
+                            option.value;
+
+                    }
+
+                }
+
+
+                await loadKycStatus();
+
+
+                refreshIcons();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

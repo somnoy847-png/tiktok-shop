@@ -655,18 +655,20 @@
         }
 
 
-        .wallet-file-box {
-            border: 1.5px dashed #cfcfd4;
-            border-radius: 14px;
-            min-height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            cursor: pointer;
-            background: #fafafa;
-        }
+       .wallet-file-box {
+    position: relative;
+    border: 1.5px dashed #cfcfd4;
+    border-radius: 14px;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    background: #fafafa;
+    overflow: hidden;
+}
 
 
         .wallet-file-box:hover {
@@ -695,24 +697,30 @@
 
 
         .wallet-slip-preview {
-            display: none;
-            margin-top: 12px;
-            text-align: center;
-        }
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: #fff;
+}
 
 
-        .wallet-slip-preview.show {
-            display: block;
-        }
+.wallet-slip-preview.show {
+    display: flex;
+}
 
 
-        .wallet-slip-preview img {
-            max-width: 260px;
-            max-height: 330px;
-            object-fit: contain;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-        }
+.wallet-slip-preview img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 0;
+}
 
 
         /* =====================================================
@@ -1701,30 +1709,43 @@
 
                                     <label class="wallet-file-box">
 
-                                        <input
-                                            type="file"
-                                            id="depositSlipInput"
-                                            accept="image/png,image/jpeg,image/webp,application/pdf"
-                                        >
+                                    <input
+                                     type="file"
+                                       id="depositSlipInput"
+                                             accept="image/png,image/jpeg,image/webp,application/pdf"
+                               >
 
-                                        <div>
+                                        <div id="depositSlipPlaceholder">
 
-                                            <i
-                                                data-lucide="upload"
-                                                width="28"
-                                            ></i>
+                                        <i
+                                            data-lucide="upload"
+                                            width="28"
+                                        ></i>
 
-                                            <strong>
-                                                คลิกเพื่อเลือกสลิป
-                                            </strong>
+                                       <strong>
+                                       คลิกเพื่อเลือกสลิป
+                                          </strong>
 
-                                            <span>
-                                                JPG, PNG, WEBP หรือ PDF
+                                         <span>
+                                        JPG, PNG, WEBP หรือ PDF
                                             </span>
+
+                                       </div>
+
+
+                                        <div
+                                        class="wallet-slip-preview"
+                                        id="depositSlipPreview"
+                                            >
+
+                                             <img
+                                           id="depositSlipImage"
+                                          alt="Payment Slip"
+                                            >
 
                                         </div>
 
-                                    </label>
+                                      </label>
 
 
                                     <div
@@ -3776,6 +3797,265 @@
         }
 
 
+        // =====================================================
+// SEARCH ACCOUNT AGAIN
+// =====================================================
+
+function renderSearchAccountAgain() {
+
+    const body =
+        $("adminPaymentAccountBody");
+
+
+    body.innerHTML = `
+
+        <div
+            style="
+                text-align:center;
+                padding:20px 5px;
+            "
+        >
+
+            <div
+                style="
+                    width:52px;
+                    height:52px;
+                    border-radius:50%;
+                    background:#fff1f4;
+                    color:#d81b46;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    margin:0 auto 12px;
+                "
+            >
+
+                <i
+                    data-lucide="refresh-cw"
+                    width="25"
+                ></i>
+
+            </div>
+
+
+            <strong
+                style="
+                    display:block;
+                    font-size:14px;
+                    margin-bottom:6px;
+                "
+            >
+                บัญชีเดิมถูกยกเลิก
+            </strong>
+
+
+            <span
+                style="
+                    display:block;
+                    color:#888;
+                    font-size:12px;
+                    line-height:1.6;
+                    margin-bottom:15px;
+                "
+            >
+                ระบบยกเลิกบัญชีสำหรับชำระเงินแล้ว
+                <br>
+                กรุณาค้นหาบัญชีใหม่อีกครั้ง
+            </span>
+
+
+            <button
+                type="button"
+                id="retryDepositAccountButton"
+                class="wallet-search-btn"
+            >
+
+                <i
+                    data-lucide="search"
+                    width="17"
+                ></i>
+
+                ค้นหาบัญชีใหม่
+
+            </button>
+
+
+            <div
+                style="
+                    margin-top:14px;
+                    padding:10px;
+                    border-radius:9px;
+                    background:#f6f6f7;
+                    font-size:11px;
+                    color:#666;
+                "
+            >
+                Transaction:
+                <strong>
+                    ${escapeHtml(
+                        currentDepositTransaction?.transactionId ||
+                        "-"
+                    )}
+                </strong>
+            </div>
+
+        </div>
+
+    `;
+
+
+    $("adminPaymentAccount")
+        .classList.add(
+            "show"
+        );
+
+
+    $("depositSlipArea")
+        .classList.remove(
+            "show"
+        );
+
+
+    refreshIcons();
+
+
+    const retryButton =
+        $("retryDepositAccountButton");
+
+
+    if (retryButton) {
+
+        retryButton.addEventListener(
+            "click",
+            retryDepositAccountSearch
+        );
+
+    }
+
+}
+
+
+
+
+
+
+// =====================================================
+// RETRY DEPOSIT ACCOUNT SEARCH
+// =====================================================
+
+async function retryDepositAccountSearch() {
+
+    if (
+        !currentDepositTransaction
+    ) {
+
+        showToast(
+            "ไม่พบรายการฝากเงิน",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        currentDepositTransaction.status !==
+        "pending"
+    ) {
+
+        showToast(
+            "รายการนี้ไม่อยู่ในสถานะรอค้นหาบัญชี",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        $("retryDepositAccountButton");
+
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.innerHTML = `
+
+            <i
+                data-lucide="loader-circle"
+                width="17"
+            ></i>
+
+            กำลังค้นหาบัญชี...
+
+        `;
+
+        refreshIcons();
+
+    }
+
+
+    try {
+
+    /*
+     * ใช้ Transaction เดิม
+     * ไม่สร้างรายการฝากใหม่
+     *
+     * แจ้ง Backend ว่าผู้ใช้ต้องการบัญชีใหม่
+     */
+
+    await apiFetch(
+        `${WALLET_API}/deposits/${currentDepositTransaction._id}/request-account`,
+        {
+            method: "POST"
+        }
+    );
+
+
+    /*
+     * แสดงสถานะรอ Admin
+     */
+
+    renderWaitingForAdmin();
+
+
+    showToast(
+        "ส่งคำขอบัญชีใหม่แล้ว",
+        "success"
+    );
+
+
+    /*
+     * โหลดรายการล่าสุด
+     */
+
+    await loadTransactions();
+
+}
+
+    catch (error) {
+
+        console.error(
+            "Retry deposit account search error:",
+            error
+        );
+
+
+        showToast(
+            error.message ||
+            "ไม่สามารถค้นหาบัญชีใหม่ได้",
+            "error"
+        );
+
+    }
+
+}
+
+
+
        // =====================================================
 // DISPLAY ADMIN PAYMENT ACCOUNT
 // =====================================================
@@ -4116,6 +4396,9 @@ function showAdminPaymentAccount(
                                         "show"
                                     );
 
+                                $("depositSlipPlaceholder")
+                                  .style.display = "none";    
+
                             }
 
                             else {
@@ -4124,6 +4407,8 @@ function showAdminPaymentAccount(
                                     .classList.remove(
                                         "show"
                                     );
+                                $("depositSlipPlaceholder")
+                                  .style.display = "block";    
 
                             }
 
@@ -4292,7 +4577,7 @@ function showAdminPaymentAccount(
                             font-size:14px;
                         "
                     >
-                        รอ Admin ตรวจสอบสลิป
+                        ระบบกำลังตรวจสอบสลิป
                     </strong>
 
 
@@ -4305,7 +4590,7 @@ function showAdminPaymentAccount(
                         "
                     >
                         เงินจะยังไม่เข้ากระเป๋า
-                        จนกว่า Admin จะอนุมัติ
+                        จนกว่าระบบจะตรวจสอบสำเร็จ
                     </span>
 
                 </div>
@@ -4684,13 +4969,26 @@ async function loadTransactions() {
              */
 
             else if (
-                activeDeposit.status ===
-                "pending"
-            ) {
+    activeDeposit.status ===
+    "pending"
+) {
 
-                renderWaitingForAdmin();
+    if (
+        activeDeposit.accountAssignmentCancelled ===
+        true
+    ) {
 
-            }
+        renderSearchAccountAgain();
+
+    }
+
+    else {
+
+        renderWaitingForAdmin();
+
+    }
+
+}
 
         }
 

@@ -114,6 +114,9 @@ const notificationRoutes =
  const passwordResetRoutes =
     require("./routes/passwordReset");   
 
+const kycRoutes =
+    require("./routes/kyc");    
+
 // =====================================================
 // API Route Registration
 // =====================================================
@@ -178,6 +181,16 @@ app.use(
 app.use(
     "/api/password-reset",
     passwordResetRoutes
+);
+
+app.use(
+    "/api/kyc",
+    kycRoutes
+);
+
+app.use(
+    "/api/admin/kyc",
+    kycRoutes
 );
 
 

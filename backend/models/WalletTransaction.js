@@ -213,6 +213,20 @@ const walletTransactionSchema = new mongoose.Schema(
             maxlength: 1000
         },
 
+                // =================================================
+        // ACCOUNT ASSIGNMENT CANCELLED
+        // =================================================
+        // true = Admin ยกเลิกบัญชีที่ส่งให้ผู้ใช้
+        // ผู้ใช้สามารถกลับไปค้นหาบัญชีใหม่ได้
+        // =================================================
+
+        accountAssignmentCancelled: {
+            type: Boolean,
+            default: false,
+            index: true
+        },
+
+
 
         // =================================================
         // BALANCE SNAPSHOT

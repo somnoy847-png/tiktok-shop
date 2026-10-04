@@ -518,15 +518,16 @@ router.post(
 
 
             transaction.adminAccount =
-                adminAccount;
+               adminAccount;
 
+               transaction.method =
+                    method;
 
-            transaction.method =
-                method;
+                transaction.status =
+                 "account_assigned";
 
-
-            transaction.status =
-                "account_assigned";
+                transaction.accountAssignmentCancelled =
+                      false;
 
 
             transaction.adminNote =
@@ -573,6 +574,184 @@ router.post(
     }
 );
 
+
+// =====================================================
+// CANCEL ASSIGNED PAYMENT ACCOUNT
+// POST /api/admin/wallet/deposits/:id/cancel-account
+// =====================================================
+//
+// ยกเลิกเฉพาะบัญชีที่ Admin ส่งให้ผู้ใช้
+// ไม่ยกเลิกรายการฝากเงิน
+//
+// หลังยกเลิก:
+// status -> pending
+// adminAccount -> ล้างข้อมูล
+//
+// ผู้ใช้สามารถขอบัญชีใหม่ได้
+//
+// =====================================================
+
+router.post(
+    "/deposits/:id/cancel-account",
+    async (req, res) => {
+
+        try {
+
+            const transaction =
+                await WalletTransaction.findById(
+                    req.params.id
+                );
+
+
+            // =================================================
+            // CHECK TRANSACTION
+            // =================================================
+
+            if (!transaction) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "Deposit transaction not found."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CHECK TYPE
+            // =================================================
+
+            if (
+                transaction.type !==
+                "deposit"
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "This transaction is not a deposit."
+
+                });
+
+            }
+
+
+            // =================================================
+            // ONLY CANCEL ASSIGNED ACCOUNT
+            // =================================================
+
+            if (
+                transaction.status !==
+                "account_assigned"
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Only an assigned payment account can be cancelled."
+
+                });
+
+            }
+
+
+            // =================================================
+            // CLEAR ADMIN PAYMENT ACCOUNT
+            // =================================================
+
+            transaction.adminAccount = {
+
+                bankName: "",
+
+                accountName: "",
+
+                accountNumber: "",
+
+                branch: "",
+
+                network: "",
+
+                walletAddress: ""
+
+            };
+
+
+            // =================================================
+            // RESET STATUS
+            // =================================================
+
+            transaction.status =
+                "pending";
+
+            transaction.accountAssignmentCancelled =
+             true;
+
+
+            // =================================================
+            // ADMIN NOTE
+            // =================================================
+
+            transaction.adminNote =
+                String(
+                    req.body?.note ||
+                    "Payment account cancelled by admin."
+                ).trim();
+
+
+            // =================================================
+            // SAVE
+            // =================================================
+
+            await transaction.save();
+
+
+            // =================================================
+            // RESPONSE
+            // =================================================
+
+            return res.json({
+
+                success: true,
+
+                message:
+                    "Payment account cancelled successfully.",
+
+                transaction
+
+            });
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Admin cancel payment account error:",
+                error
+            );
+
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Failed to cancel payment account."
+
+            });
+
+        }
+
+    }
+);
 
 // =====================================================
 // APPROVE DEPOSIT

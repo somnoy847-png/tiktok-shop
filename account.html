@@ -257,6 +257,57 @@
         }
 
         /* =========================================
+   KYC STATUS
+========================================= */
+
+.kyc-status-button {
+    margin-top: 7px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    border: 0;
+    border-radius: 7px;
+
+    padding: 5px 9px;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.kyc-status-button svg {
+    width: 13px;
+    height: 13px;
+}
+
+.kyc-unverified {
+    background: #fff4cc;
+    color: #b77900;
+}
+
+.kyc-unverified:hover {
+    background: #ffe9a3;
+}
+
+.kyc-pending {
+    background: #fff0d6;
+    color: #c56a00;
+    cursor: default;
+}
+
+.kyc-verified {
+    background: #eaf8ee;
+    color: #16833a;
+    cursor: default;
+}
+
+        /* =========================================
            STATS
         ========================================= */
 
@@ -1021,6 +1072,15 @@
                         <h2 id="profileShopName">
                             กำลังโหลด...
                         </h2>
+
+                        <button
+                            type="button"
+                             id="kycStatusButton"
+                               class="kyc-status-button kyc-unverified"
+                                >
+                           <i data-lucide="badge-check"></i>
+                          <span>ยืนยัน</span>
+                        </button>
 
                         <div class="profile-role">
 
@@ -1961,6 +2021,141 @@
 
     }
 
+    async function loadKycStatus() {
+
+    const token = getToken();
+
+    if (!token) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/kyc/status`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+            return;
+        }
+
+        renderKycStatus(
+            data.status
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "KYC status error:",
+            error
+        );
+
+    }
+
+}
+
+function renderKycStatus(status) {
+
+    const button =
+        $("kycStatusButton");
+
+    if (!button) {
+        return;
+    }
+
+    /* ยังไม่ได้ยืนยัน */
+
+    if (
+        status === "unverified"
+    ) {
+
+        button.className =
+            "kyc-status-button kyc-unverified";
+
+        button.innerHTML = `
+            <i data-lucide="badge-check"></i>
+            <span>ยืนยัน</span>
+        `;
+
+        button.disabled = false;
+
+        button.onclick = () => {
+
+            window.location.href =
+                "kyc.html";
+
+        };
+
+    }
+
+    /* ส่งแล้ว รอตรวจ */
+
+    else if (
+        status === "pending"
+    ) {
+
+        button.className =
+            "kyc-status-button kyc-pending";
+
+        button.innerHTML = `
+            <i data-lucide="clock-3"></i>
+            <span>รอตรวจสอบ</span>
+        `;
+
+        button.disabled = true;
+
+        button.onclick = null;
+
+    }
+
+    /* ผ่านแล้ว */
+
+    else if (
+        status === "verified"
+    ) {
+
+        button.className =
+            "kyc-status-button kyc-verified";
+
+        button.innerHTML = `
+            <i data-lucide="badge-check"></i>
+            <span>ยืนยันแล้ว</span>
+        `;
+
+        button.disabled = true;
+
+        button.onclick = null;
+
+    }
+
+    if (
+        typeof lucide !==
+        "undefined"
+    ) {
+
+        lucide.createIcons();
+
+    }
+
+}
+
 
     /* =========================================
        SET AVATAR IMAGE
@@ -2130,6 +2325,8 @@ async function loadโปรไฟล์() {
         ========================================== */
 
         renderUser(user);
+
+        loadKycStatus();
 
 
         /* =========================================

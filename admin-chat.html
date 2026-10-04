@@ -668,6 +668,8 @@
 
         .chat-header {
 
+            position: relative;
+
             height: 72px;
 
             min-height: 72px;
@@ -1705,6 +1707,59 @@
         }
 
 
+        /* =====================================================
+   MOBILE CHAT BACK BUTTON
+====================================================== */
+
+.mobile-chat-back {
+
+    display: none;
+
+    position: absolute;
+
+    left: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+
+    height: 42px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+}
+
+.mobile-chat-back:hover {
+
+    background: #f9fafb;
+
+}
+
+.mobile-chat-back svg {
+
+    width: 20px;
+
+    height: 20px;
+
+}
+
+
 
         /* =====================================================
            RESPONSIVE
@@ -1732,76 +1787,100 @@
 
         @media (max-width: 900px) {
 
-            body {
+    body {
 
-                overflow: hidden;
+        overflow: hidden;
 
-            }
-
-
-            #menuButton {
-
-                display: flex;
-
-            }
+    }
 
 
-            .chat-page {
+    #menuButton {
 
-                width: 100%;
+        display: flex;
 
-                margin-left: 0;
-
-            }
+    }
 
 
-            .chat-sidebar {
+    .chat-page {
 
-                position: fixed;
+        width: 100%;
 
-                top: 0;
-                left: 0;
-                bottom: 0;
+        margin-left: 0;
 
-                width: 310px;
-
-                z-index: 9000;
-
-                transform: translateX(-105%);
-
-                transition:
-                    transform .25s ease;
-
-                box-shadow:
-                    10px
-                    0
-                    30px
-                    rgba(0,0,0,.08);
-
-            }
+    }
 
 
-            .chat-sidebar.mobile-show {
+    .chat-sidebar {
 
-                transform: translateX(0);
+        position: fixed;
 
-            }
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 310px;
+
+        z-index: 9000;
+
+        transform: translateX(0);
+
+        transition:
+            transform .25s ease;
+
+        box-shadow:
+            10px
+            0
+            30px
+            rgba(0,0,0,.08);
+
+    }
 
 
-            .chat-main {
+    .chat-main {
 
-                width: 100%;
+        width: 100%;
 
-            }
+        display: none;
+
+    }
 
 
-            .chat-header {
+    .chat-page.mobile-chat-open .chat-sidebar {
 
-                padding-left: 70px;
+        transform: translateX(-105%);
 
-            }
+    }
 
-        }
+
+    .chat-page.mobile-chat-open .chat-main {
+
+        display: flex;
+
+    }
+
+
+    .chat-page.mobile-chat-open .mobile-chat-back {
+
+        display: flex;
+
+    }
+
+
+   body.mobile-chat-open #menuButton,
+   body.sidebar-open #menuButton {
+
+    display: none !important;
+
+}
+
+
+    .chat-header {
+
+        padding-left: 70px;
+
+    }
+
+}
 
 
 
@@ -1814,6 +1893,16 @@
                 max-width: 100%;
 
             }
+
+            .chat-sidebar-header {
+
+            padding:
+               20px
+               20px
+               20px
+               65px;
+
+               }
 
 
             .chat-header {
@@ -1955,7 +2044,7 @@
                 <div class="chat-sidebar-title">
 
                     <h2>
-                        ข้อความ
+                     ข้อความ
                     </h2>
 
                     <span class="chat-admin-badge">
@@ -2021,6 +2110,15 @@
             <header
                 class="chat-header"
             >
+
+             <button
+           type="button"
+           class="mobile-chat-back"
+           id="mobileChatBackButton"
+           aria-label="ย้อนกลับ"
+           >
+            <i data-lucide="arrow-left"></i>
+              </button>
 
 
                 <div
@@ -4582,27 +4680,32 @@
 
         function closeChatRoomsOnMobile() {
 
-            if (
-                window.innerWidth <= 900
-            ) {
+    if (
+        window.innerWidth <= 900
+    ) {
 
-                const sidebar =
-                    document.getElementById(
-                        "chatRoomSidebar"
-                    );
+        const chatPage =
+            document.querySelector(
+                ".chat-page"
+            );
 
 
-                if (sidebar) {
+        if (chatPage) {
 
-                    sidebar.classList.remove(
-                        "mobile-show"
-                    );
-
-                }
-
-            }
+            chatPage.classList.add(
+                "mobile-chat-open"
+            );
 
         }
+
+
+        document.body.classList.add(
+            "mobile-chat-open"
+        );
+
+    }
+
+}
 
 
 
@@ -4610,29 +4713,51 @@
            OPEN MOBILE CHAT ROOMS
         ====================================================== */
 
-        function openChatRoomsOnMobile() {
+       function openChatRoomsOnMobile() {
 
-            if (
-                window.innerWidth <= 900
-            ) {
+    if (
+        window.innerWidth <= 900
+    ) {
 
-                const sidebar =
-                    document.getElementById(
-                        "chatRoomSidebar"
-                    );
+        const chatPage =
+            document.querySelector(
+                ".chat-page"
+            );
 
 
-                if (sidebar) {
+        if (chatPage) {
 
-                    sidebar.classList.add(
-                        "mobile-show"
-                    );
-
-                }
-
-            }
+            chatPage.classList.remove(
+                "mobile-chat-open"
+            );
 
         }
+
+
+        document.body.classList.remove(
+            "mobile-chat-open"
+        );
+
+    }
+
+}
+
+/* =====================================================
+   MOBILE CHAT BACK
+====================================================== */
+
+document
+    .getElementById(
+        "mobileChatBackButton"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            openChatRoomsOnMobile();
+
+        }
+    );
 
 
 
@@ -5003,88 +5128,25 @@
 
 
 
-        /* =====================================================
-           MOBILE ADMIN MENU
-        ====================================================== */
+/* =====================================================
+   ESC - BACK TO CHAT ROOM LIST
+====================================================== */
 
-        document
-            .getElementById(
-                "menuButton"
-            )
-            .addEventListener(
-                "click",
-                function() {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-                    const sidebar =
-                        document.getElementById(
-                            "sidebar"
-                        );
+        if (
+            event.key === "Escape" &&
+            window.innerWidth <= 900
+        ) {
 
+            openChatRoomsOnMobile();
 
-                    const overlay =
-                        document.getElementById(
-                            "sidebarOverlay"
-                        );
+        }
 
-
-                    if (sidebar) {
-
-                        sidebar.classList.add(
-                            "open"
-                        );
-
-                    }
-
-
-                    if (overlay) {
-
-                        overlay.classList.add(
-                            "active"
-                        );
-
-                    }
-
-
-                    document.body.classList.add(
-                        "sidebar-open"
-                    );
-
-                }
-            );
-
-
-
-        /* =====================================================
-           MOBILE CHAT ROOM TOGGLE
-        ====================================================== */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    const chatSidebar =
-                        document.getElementById(
-                            "chatRoomSidebar"
-                        );
-
-
-                    if (chatSidebar) {
-
-                        chatSidebar.classList.remove(
-                            "mobile-show"
-                        );
-
-                    }
-
-                }
-
-            }
-        );
-
+    }
+);
 
 
         /* =====================================================

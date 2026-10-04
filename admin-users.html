@@ -643,6 +643,185 @@
         }
 
         /* =========================================================
+           KYC
+        ========================================================= */
+
+        .kyc-table-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .kyc-table-badge svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .kyc-table-pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .kyc-table-verified {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .kyc-table-unverified {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .kyc-modal-user {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .kyc-modal-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 800;
+            color: #374151;
+        }
+
+        .kyc-modal-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kyc-modal-user h3 {
+            margin: 0 0 4px;
+            font-size: 17px;
+            color: #111827;
+        }
+
+        .kyc-modal-user p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .kyc-status-large {
+            margin-bottom: 18px;
+        }
+
+        .kyc-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .kyc-info-item {
+            padding: 13px;
+            border-radius: 10px;
+            background: #f9fafb;
+        }
+
+        .kyc-info-item span {
+            display: block;
+            color: #9ca3af;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .kyc-info-item strong {
+            color: #374151;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .kyc-document-title {
+            margin: 0 0 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #374151;
+        }
+
+        .kyc-document {
+            width: 100%;
+            min-height: 180px;
+            max-height: 460px;
+            object-fit: contain;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .kyc-document-empty {
+            min-height: 180px;
+            border: 1px dashed #d1d5db;
+            border-radius: 12px;
+            background: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            gap: 8px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .kyc-document-empty svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .kyc-review-note {
+            margin-top: 12px;
+            padding: 11px 13px;
+            border-radius: 9px;
+            background: #fff7ed;
+            color: #9a3412;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .kyc-no-record {
+            padding: 35px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .kyc-no-record svg {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 10px;
+        }
+
+        .kyc-no-record strong {
+            display: block;
+            color: #4b5563;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 700px) {
+            .kyc-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* =========================================================
            WALLET MODAL
         ========================================================= */
 
@@ -807,6 +986,93 @@
                 padding: 14px 18px;
             }
         }
+    
+        /* =========================================================
+   ADMIN USERS - MOBILE FIX
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .users-panel {
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .panel-toolbar {
+        width: 100%;
+        padding: 12px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: 42px 42px 42px;
+        gap: 10px;
+        box-sizing: border-box;
+        align-items: stretch;
+        overflow: visible;
+    }
+
+    /* ช่องค้นหา */
+    .panel-toolbar > .search-box {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        height: 42px !important;
+
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+
+        margin: 0 !important;
+        padding: 0 0 0 14px !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        box-sizing: border-box !important;
+    }
+
+    .panel-toolbar > .search-box input {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 100% !important;
+
+        box-sizing: border-box !important;
+        margin: 0 !important;
+    }
+
+    /* Role */
+    .panel-toolbar > #roleFilter {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 42px !important;
+
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Status */
+    .panel-toolbar > #statusFilter {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 42px !important;
+
+        grid-column: 1 !important;
+        grid-row: 3 !important;
+
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+}
+
     </style>
 </head>
 
@@ -940,6 +1206,7 @@
                                 <th>Contact</th>
                                 <th>Role</th>
                                 <th>Status</th>
+                                <th>KYC</th>
                                 <th>Wallet</th>
                                 <th>Created</th>
                                 <th>Actions</th>
@@ -949,7 +1216,7 @@
                         <tbody id="usersTableBody">
 
                             <tr>
-                                <td colspan="7">
+                                <td colspan="8">
 
                                     <div class="table-state">
                                         <i data-lucide="loader-circle"></i>
@@ -1265,6 +1532,141 @@
 
 
     <!-- =========================================================
+         KYC MODAL
+    ========================================================= -->
+
+    <div
+        class="modal-overlay"
+        id="kycModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h2>ตรวจสอบ KYC</h2>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="kycModal"
+                >
+                    <i data-lucide="x"></i>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="kyc-modal-user">
+
+                    <div
+                        class="kyc-modal-avatar"
+                        id="kycModalAvatar"
+                    >
+                        U
+                    </div>
+
+                    <div>
+                        <h3 id="kycModalUserName">-</h3>
+                        <p id="kycModalUserContact">-</p>
+                    </div>
+
+                </div>
+
+                <div class="kyc-status-large">
+                    <span
+                        id="kycModalStatus"
+                        class="kyc-table-badge kyc-table-unverified"
+                    >
+                        <i data-lucide="circle-help"></i>
+                        ยังไม่มีข้อมูล
+                    </span>
+                </div>
+
+                <div id="kycModalContent">
+
+                    <div class="kyc-info-grid">
+
+                        <div class="kyc-info-item">
+                            <span>ชื่อ-นามสกุล</span>
+                            <strong id="kycFullName">-</strong>
+                        </div>
+
+                        <div class="kyc-info-item">
+                            <span>เลขบัตร / เลขเอกสาร</span>
+                            <strong id="kycIdNumber">-</strong>
+                        </div>
+
+                        <div class="kyc-info-item">
+                            <span>สัญชาติ</span>
+                            <strong id="kycNationality">-</strong>
+                        </div>
+
+                        <div class="kyc-info-item">
+                            <span>ส่งคำขอเมื่อ</span>
+                            <strong id="kycSubmittedAt">-</strong>
+                        </div>
+
+                        <div class="kyc-info-item">
+                            <span>ยืนยันเมื่อ</span>
+                            <strong id="kycVerifiedAt">-</strong>
+                        </div>
+
+                        <div class="kyc-info-item">
+                            <span>ยืนยันโดย</span>
+                            <strong id="kycVerifiedBy">-</strong>
+                        </div>
+
+                    </div>
+
+                    <h3 class="kyc-document-title">รูปเอกสารยืนยันตัวตน</h3>
+
+                    <div id="kycDocumentContainer">
+                        <div class="kyc-document-empty">
+                            <i data-lucide="image-off"></i>
+                            <span>ยังไม่มีรูปเอกสาร</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="kyc-review-note"
+                        id="kycReviewNote"
+                        style="display:none;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn"
+                    data-close-modal="kycModal"
+                >
+                    ปิด
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-success"
+                    id="verifyKycButton"
+                    style="display:none;"
+                >
+                    <i data-lucide="badge-check"></i>
+                    ยืนยัน KYC
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
          WALLET MODAL
     ========================================================= -->
 
@@ -1399,6 +1801,9 @@
         const API_BASE = "/api";
 
         let allUsers = [];
+        let allKyc = [];
+        let kycByUserId = {};
+        let currentKycId = null;
         let currentWalletOperation = "add";
 
 
@@ -1426,6 +1831,12 @@
 
         const walletModal =
             document.getElementById("walletModal");
+
+        const kycModal =
+            document.getElementById("kycModal");
+
+        const verifyKycButton =
+            document.getElementById("verifyKycButton");
 
 
         /* =========================================================
@@ -1611,7 +2022,7 @@
 
             usersTableBody.innerHTML = `
                 <tr>
-                    <td colspan="7">
+                    <td colspan="8">
                         <div class="table-state">
                             <i data-lucide="loader-circle"></i>
                             <strong>กำลังโหลดผู้ใช้...</strong>
@@ -1635,6 +2046,8 @@
                         ? data.users
                         : [];
 
+                await loadKycRecords();
+
                 updateStats();
 
                 renderUsers();
@@ -1648,7 +2061,7 @@
 
                 usersTableBody.innerHTML = `
                     <tr>
-                        <td colspan="7">
+                        <td colspan="8">
                             <div class="table-state">
                                 <i data-lucide="circle-alert"></i>
                                 <strong>โหลดข้อมูลไม่สำเร็จ</strong>
@@ -1666,6 +2079,55 @@
                     error.message,
                     "error"
                 );
+            }
+        }
+
+
+        /* =========================================================
+           LOAD KYC
+        ========================================================= */
+
+        async function loadKycRecords() {
+
+            try {
+
+                const data =
+                    await apiRequest(
+                        "/admin/kyc"
+                    );
+
+                allKyc =
+                    Array.isArray(data.kyc)
+                        ? data.kyc
+                        : [];
+
+                kycByUserId = {};
+
+                allKyc.forEach(
+                    record => {
+
+                        const userId =
+                            record.userId &&
+                            typeof record.userId === "object"
+                                ? record.userId._id || record.userId.id
+                                : record.userId;
+
+                        if (userId) {
+                            kycByUserId[String(userId)] = record;
+                        }
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Load KYC error:",
+                    error
+                );
+
+                allKyc = [];
+                kycByUserId = {};
+
             }
         }
 
@@ -1816,7 +2278,7 @@
 
                 usersTableBody.innerHTML = `
                     <tr>
-                        <td colspan="7">
+                        <td colspan="8">
                             <div class="table-state">
                                 <i data-lucide="user-round-x"></i>
                                 <strong>ไม่พบผู้ใช้</strong>
@@ -1930,6 +2392,12 @@
                                 </td>
 
                                 <td>
+                                    ${renderKycBadge(
+                                        kycByUserId[String(user._id || user.id)]
+                                    )}
+                                </td>
+
+                                <td>
                                     <span class="wallet-value">
                                         $${formatMoney(wallet)}
                                     </span>
@@ -1961,6 +2429,14 @@
                                             onclick="openEdit('${user._id || user.id}')"
                                         >
                                             <i data-lucide="pencil"></i>
+                                        </button>
+
+                                        <button
+                                            class="icon-btn"
+                                            title="ตรวจสอบ KYC"
+                                            onclick="openKyc('${user._id || user.id}')"
+                                        >
+                                            <i data-lucide="badge-check"></i>
                                         </button>
 
                                         <button
@@ -2020,6 +2496,365 @@
 
             refreshIcons();
         }
+
+
+        /* =========================================================
+           KYC HELPERS
+        ========================================================= */
+
+        function getKycForUser(userId) {
+
+            return kycByUserId[String(userId)] || null;
+        }
+
+
+        function renderKycBadge(kyc) {
+
+            if (!kyc) {
+
+                return `
+                    <span class="kyc-table-badge kyc-table-unverified">
+                        <i data-lucide="circle-minus"></i>
+                        ยังไม่มี
+                    </span>
+                `;
+            }
+
+            const status =
+                String(kyc.status || "unverified").toLowerCase();
+
+            if (status === "verified") {
+
+                return `
+                    <span class="kyc-table-badge kyc-table-verified">
+                        <i data-lucide="badge-check"></i>
+                        ยืนยันแล้ว
+                    </span>
+                `;
+            }
+
+            if (status === "pending") {
+
+                return `
+                    <span class="kyc-table-badge kyc-table-pending">
+                        <i data-lucide="clock-3"></i>
+                        รอตรวจสอบ
+                    </span>
+                `;
+            }
+
+            return `
+                <span class="kyc-table-badge kyc-table-unverified">
+                    <i data-lucide="circle-minus"></i>
+                    ยังไม่ยืนยัน
+                </span>
+            `;
+        }
+
+
+        function getKycStatusLabel(status) {
+
+            switch (String(status || "").toLowerCase()) {
+
+                case "verified":
+                    return "ยืนยันแล้ว";
+
+                case "pending":
+                    return "รอตรวจสอบ";
+
+                case "unverified":
+                    return "ยังไม่ยืนยัน";
+
+                default:
+                    return "ยังไม่มีข้อมูล";
+            }
+        }
+
+
+        function renderKycModalStatus(status) {
+
+            const element =
+                document.getElementById("kycModalStatus");
+
+            const normalized =
+                String(status || "unverified").toLowerCase();
+
+            let className =
+                "kyc-table-badge kyc-table-unverified";
+
+            let icon = "circle-help";
+
+            if (normalized === "pending") {
+                className =
+                    "kyc-table-badge kyc-table-pending";
+                icon = "clock-3";
+            }
+
+            if (normalized === "verified") {
+                className =
+                    "kyc-table-badge kyc-table-verified";
+                icon = "badge-check";
+            }
+
+            element.className = className;
+            element.innerHTML = `
+                <i data-lucide="${icon}"></i>
+                ${getKycStatusLabel(normalized)}
+            `;
+        }
+
+
+        function getKycImageUrl(value) {
+
+            const image =
+                String(value || "").trim();
+
+            if (!image) {
+                return "";
+            }
+
+            if (
+                image.startsWith("http://") ||
+                image.startsWith("https://") ||
+                image.startsWith("/")
+            ) {
+                return image;
+            }
+
+            return `/${image.replace(/^\/+/, "")}`;
+        }
+
+
+        function openKyc(userId) {
+
+            const user =
+                allUsers.find(
+                    item =>
+                        String(item._id || item.id) ===
+                        String(userId)
+                );
+
+            if (!user) {
+                showToast(
+                    "ไม่พบข้อมูลผู้ใช้",
+                    "error"
+                );
+                return;
+            }
+
+            const kyc =
+                getKycForUser(userId);
+
+            currentKycId =
+                kyc?._id ||
+                kyc?.id ||
+                null;
+
+            document.getElementById("kycModalUserName").textContent =
+                user.shopName || user.username || "-";
+
+            document.getElementById("kycModalUserContact").textContent =
+                user.contact || "-";
+
+            const avatar =
+                document.getElementById("kycModalAvatar");
+
+            if (user.profileImage) {
+                avatar.innerHTML = `
+                    <img
+                        src="${escapeAttribute(user.profileImage)}"
+                        alt=""
+                    >
+                `;
+            } else {
+                avatar.textContent =
+                    getInitial(user.shopName || user.username);
+            }
+
+            if (!kyc) {
+
+                renderKycModalStatus("unverified");
+
+                document.getElementById("kycFullName").textContent = "-";
+                document.getElementById("kycIdNumber").textContent = "-";
+                document.getElementById("kycNationality").textContent = "-";
+                document.getElementById("kycSubmittedAt").textContent = "-";
+                document.getElementById("kycVerifiedAt").textContent = "-";
+                document.getElementById("kycVerifiedBy").textContent = "-";
+
+                document.getElementById("kycDocumentContainer").innerHTML = `
+                    <div class="kyc-no-record">
+                        <i data-lucide="file-question"></i>
+                        <strong>ผู้ใช้ยังไม่ได้ส่งข้อมูล KYC</strong>
+                        <span>ยังไม่มีเอกสารให้ตรวจสอบ</span>
+                    </div>
+                `;
+
+                document.getElementById("kycReviewNote").style.display = "none";
+                verifyKycButton.style.display = "none";
+
+                openModal("kycModal");
+                return;
+            }
+
+            const status =
+                String(kyc.status || "unverified").toLowerCase();
+
+            renderKycModalStatus(status);
+
+            document.getElementById("kycFullName").textContent =
+                kyc.fullName || "-";
+
+            document.getElementById("kycIdNumber").textContent =
+                kyc.idNumber || "-";
+
+            document.getElementById("kycNationality").textContent =
+                kyc.nationality || "-";
+
+            document.getElementById("kycSubmittedAt").textContent =
+                formatDateTime(kyc.submittedAt || kyc.createdAt);
+
+            document.getElementById("kycVerifiedAt").textContent =
+                formatDateTime(kyc.verifiedAt);
+
+            const verifiedBy =
+                kyc.verifiedBy &&
+                typeof kyc.verifiedBy === "object"
+                    ? kyc.verifiedBy.shopName ||
+                      kyc.verifiedBy.username ||
+                      "-"
+                    : "-";
+
+            document.getElementById("kycVerifiedBy").textContent =
+                verifiedBy;
+
+            const imageUrl =
+                getKycImageUrl(kyc.idCardFront);
+
+            const documentContainer =
+                document.getElementById("kycDocumentContainer");
+
+            if (imageUrl) {
+
+    documentContainer.innerHTML = `
+        <img
+            class="kyc-document"
+            src="${escapeAttribute(imageUrl)}"
+            alt="KYC document"
+        >
+    `;
+
+    const kycImage =
+        documentContainer.querySelector(".kyc-document");
+
+    kycImage.addEventListener("error", () => {
+
+        documentContainer.innerHTML = `
+            <div class="kyc-document-empty">
+                <i data-lucide="image-off"></i>
+                <span>ไม่สามารถโหลดรูปเอกสารได้</span>
+            </div>
+        `;
+
+        refreshIcons();
+
+    });
+
+} else {
+
+                documentContainer.innerHTML = `
+                    <div class="kyc-document-empty">
+                        <i data-lucide="image-off"></i>
+                        <span>ไม่พบรูปเอกสาร</span>
+                    </div>
+                `;
+            }
+
+            const reviewNote =
+                document.getElementById("kycReviewNote");
+
+            if (status === "pending") {
+
+                reviewNote.textContent =
+                    "กรุณาตรวจสอบชื่อ เลขเอกสาร สัญชาติ และรูปเอกสารก่อนกดยืนยัน KYC";
+                reviewNote.style.display = "block";
+                verifyKycButton.style.display = "inline-flex";
+
+            } else if (status === "verified") {
+
+                reviewNote.textContent =
+                    "KYC รายการนี้ได้รับการยืนยันแล้ว";
+                reviewNote.style.display = "block";
+                verifyKycButton.style.display = "none";
+
+            } else {
+
+                reviewNote.style.display = "none";
+                verifyKycButton.style.display = "none";
+            }
+
+            openModal("kycModal");
+        }
+
+
+        async function verifyCurrentKyc() {
+
+            if (!currentKycId) {
+                return;
+            }
+
+            const confirmed =
+                confirm("ยืนยัน KYC รายการนี้หรือไม่?");
+
+            if (!confirmed) {
+                return;
+            }
+
+            verifyKycButton.disabled = true;
+
+            try {
+
+                await apiRequest(
+                    `/admin/kyc/${currentKycId}/verify`,
+                    {
+                        method: "POST"
+                    }
+                );
+
+                showToast(
+                    "ยืนยัน KYC เรียบร้อยแล้ว",
+                    "success"
+                );
+
+                closeModal("kycModal");
+
+                currentKycId = null;
+
+                await loadUsers();
+
+            } catch (error) {
+
+                console.error(
+                    "Verify KYC error:",
+                    error
+                );
+
+                showToast(
+                    error.message,
+                    "error"
+                );
+
+            } finally {
+
+                verifyKycButton.disabled = false;
+            }
+        }
+
+
+        verifyKycButton.addEventListener(
+            "click",
+            verifyCurrentKyc
+        );
 
 
         /* =========================================================
@@ -2967,6 +3802,32 @@
                     day: "2-digit",
                     month: "short",
                     year: "numeric"
+                }
+            );
+        }
+
+
+        function formatDateTime(value) {
+
+            if (!value) {
+                return "-";
+            }
+
+            const date =
+                new Date(value);
+
+            if (Number.isNaN(date.getTime())) {
+                return "-";
+            }
+
+            return date.toLocaleString(
+                "th-TH",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
                 }
             );
         }

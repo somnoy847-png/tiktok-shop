@@ -1,4 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -8,36 +12,33 @@
 
     <title>TikTok Shop</title>
 
-    <!-- ===============================
-         App / Browser Icon
-    ================================ -->
+
+    <!-- =====================================================
+         APP ICON
+    ====================================================== -->
+
     <link
         rel="icon"
         type="image/png"
         href="images/logo.png"
     >
 
-    <!-- ===============================
-         iPhone / iPad Home Screen Icon
-         ใช้ไฟล์สำหรับ Apple โดยเฉพาะ
-    ================================ -->
     <link
         rel="apple-touch-icon"
         sizes="180x180"
         href="images/apple-touch-icon.png"
     >
 
-    <!-- ===============================
-         PWA Manifest
-    ================================ -->
     <link
         rel="manifest"
         href="manifest.json"
     >
 
-    <!-- ===============================
-         Mobile Web App
-    ================================ -->
+
+    <!-- =====================================================
+         MOBILE WEB APP
+    ====================================================== -->
+
     <meta
         name="mobile-web-app-capable"
         content="yes"
@@ -63,9 +64,11 @@
         content="#000000"
     >
 
-    <!-- ===============================
-         Google Fonts
-    ================================ -->
+
+    <!-- =====================================================
+         FONT
+    ====================================================== -->
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -82,9 +85,11 @@
         rel="stylesheet"
     >
 
-    <!-- ===============================
-         CSS
-    ================================ -->
+
+    <!-- =====================================================
+         EXISTING CSS
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="css/style.css"
@@ -95,20 +100,176 @@
         href="css/responsive.css"
     >
 
-    <!-- ===============================
-         Lucide Icons
-    ================================ -->
+
+    <!-- =====================================================
+         LUCIDE
+    ====================================================== -->
+
     <script
         src="https://unpkg.com/lucide@latest"
     ></script>
 
-    <style>
-/* =====================================================
-   Homepage enhancements
-   ===================================================== */
 
-.hero-buttons button {
+    <!-- =====================================================
+         TIKTOK SHOP HOME UI
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           HOME RESET / BASE
+        ====================================================== */
+
+        .main-content {
+            background: #f6f6f6;
+        }
+
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #eeeeee;
+        }
+
+
+        /* =====================================================
+           SHOP HOME
+        ====================================================== */
+
+        .shop-home {
+            width: 100%;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 18px 24px 50px;
+        }
+
+
+        /* =====================================================
+           PROMOTION BANNER
+        ====================================================== */
+
+        .shop-banner {
+            position: relative;
+            overflow: hidden;
+            min-height: 210px;
+            border-radius: 18px;
+            background:
+                radial-gradient(
+                    circle at 88% 20%,
+                    rgba(255,255,255,.28),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    110deg,
+                    #111111 0%,
+                    #1b1b1d 48%,
+                    #32151c 100%
+                );
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 34px 42px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 28px rgba(0,0,0,.08);
+        }
+
+
+        .shop-banner::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            right: -90px;
+            top: -110px;
+            border-radius: 50%;
+            background: rgba(255,43,78,.72);
+        }
+
+
+        .shop-banner::after {
+            content: "";
+            position: absolute;
+            width: 210px;
+            height: 210px;
+            right: 120px;
+            bottom: -145px;
+            border-radius: 50%;
+            background: rgba(38,190,180,.38);
+        }
+
+
+        .shop-banner-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+
+        .shop-banner-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: rgba(255,255,255,.12);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .12em;
+            margin-bottom: 10px;
+        }
+
+
+        .shop-banner h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 46px);
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -.04em;
+        }
+
+
+        .shop-banner h1 span {
+            color: #ff3150;
+        }
+
+
+        .shop-banner p {
+            margin: 13px 0 18px;
+            color: rgba(255,255,255,.78);
+            font-size: 14px;
+            line-height: 1.55;
+            max-width: 510px;
+        }
+
+
+        .shop-banner-actions {
+            display: flex;
+            gap: 9px;
+        }
+
+
+        .shop-banner-button {
+    border: 0;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 8px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+
     cursor: pointer;
+    transition: .18s ease;
 }
 
 .product-image {
@@ -121,1167 +282,4071 @@
     padding: 0;
     background: #fff;
 }
-
-.region-modal[hidden] {
-    display: none;
+.shop-banner-button i {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    display: block;
 }
 
-.region-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+
+        .shop-banner-button.primary {
+            background: #ff3150;
+            color: #ffffff;
+        }
+
+
+        .shop-banner-button.primary:hover {
+            transform: translateY(-1px);
+            background: #ef2444;
+        }
+
+
+        .shop-banner-button.secondary {
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            color: #ffffff;
+        }
+
+
+        .shop-banner-button.secondary:hover {
+            background: rgba(255,255,255,.16);
+        }
+
+
+        .shop-banner-product {
+    position: absolute;
+    z-index: 1;
+    right: 70px;
+    bottom: 18px;
+    width: 190px;
+    height: 175px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    pointer-events: none;
 }
 
-.region-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 15, 18, 0.58);
-    backdrop-filter: blur(7px);
+
+        .shop-banner-product-card {
+    width: 132px;
+    height: 155px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.92);
+    transform: rotate(7deg);
+    box-shadow: 0 20px 45px rgba(0,0,0,.28);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
-.region-modal-dialog {
-    position: relative;
-    width: min(440px, 100%);
-    padding: 34px 30px 28px;
-    border: 1px solid rgba(255,255,255,.75);
-    border-radius: 24px;
-    background: rgba(255,255,255,.98);
-    box-shadow: 0 24px 80px rgba(0,0,0,.22);
-    text-align: center;
-    animation: regionModalIn .22s ease-out;
-}
-
-.region-modal-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 36px;
-    height: 36px;
-    display: grid;
-    place-items: center;
-    border: 0;
-    border-radius: 50%;
-    background: #f3f4f6;
-    color: #555;
-    cursor: pointer;
-}
-
-.region-modal-close:hover {
-    background: #e9eaed;
-}
-
-.region-modal-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 18px;
-    display: grid;
-    place-items: center;
-    border-radius: 20px;
-    background: #fff0f2;
-    color: #ef233c;
-}
-
-.region-modal-icon svg {
-    width: 30px;
-    height: 30px;
-}
-
-.region-modal-label {
-    display: inline-block;
-    margin-bottom: 8px;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .14em;
-    color: #ef233c;
-}
-
-.region-modal-content h3 {
-    margin: 0 auto 10px;
-    max-width: 350px;
-    font-size: 21px;
-    line-height: 1.35;
-    color: #171717;
-}
-
-.region-modal-content p {
-    margin: 0 auto 24px;
-    max-width: 340px;
-    color: #737373;
-    font-size: 14px;
-    line-height: 1.65;
-}
-
-.region-modal-action {
+.shop-banner-product-card img {
     width: 100%;
-    min-height: 46px;
-    border: 0;
-    border-radius: 12px;
-    background: #ef233c;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform .18s ease, opacity .18s ease;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
 }
 
-.region-modal-action:hover {
-    opacity: .92;
-    transform: translateY(-1px);
-}
 
-@keyframes regionModalIn {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(.97);
+        
+
+
+        /* =====================================================
+           CATEGORY NAV
+        ====================================================== */
+
+        .shop-category-bar {
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #eeeeee;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            margin-bottom: 18px;
+        }
+
+
+        .shop-category-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .shop-category-button {
+            flex: 0 0 auto;
+            min-height: 40px;
+            padding: 0 17px;
+            border: 0;
+            background: transparent;
+            border-radius: 9px;
+            color: #666666;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: .18s ease;
+        }
+
+
+        .shop-category-button:hover {
+            color: #111111;
+            background: #f5f5f5;
+        }
+
+
+        .shop-category-button.active {
+            background: #111111;
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           SECTION HEADER
+        ====================================================== */
+
+        .shop-section {
+            margin-top: 18px;
+        }
+
+
+        .shop-section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+
+        .shop-section-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+
+        .shop-section-title-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: #fff0f2;
+            color: #ff3150;
+        }
+
+
+        .shop-section-title h2 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.1;
+            color: #111111;
+            font-weight: 800;
+        }
+
+
+        .shop-section-title p {
+            margin: 3px 0 0;
+            color: #888888;
+            font-size: 11px;
+        }
+
+
+        .shop-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: #555555;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+
+        .shop-view-all:hover {
+            color: #ff3150;
+        }
+
+
+        /* =====================================================
+           DEAL PRODUCT ROW
+        ====================================================== */
+
+        .deal-products {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+
+        .deal-card {
+            min-width: 0;
+            background: #ffffff;
+            border-radius: 13px;
+            overflow: hidden;
+            border: 1px solid #eeeeee;
+            cursor: pointer;
+            transition:
+                transform .18s ease,
+                box-shadow .18s ease;
+        }
+
+
+        .deal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.09);
+        }
+
+
+        .deal-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f7f7f7;
+            overflow: hidden;
+        }
+
+
+        .deal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            mix-blend-mode: multiply;
+        }
+
+
+        .deal-badge {
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            z-index: 2;
+            padding: 4px 6px;
+            border-radius: 5px;
+            background: #ff3150;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+
+        .deal-info {
+            padding: 9px 10px 11px;
+        }
+
+
+        .deal-name {
+            margin: 0 0 7px;
+            font-size: 12px;
+            line-height: 1.4;
+            font-weight: 600;
+            color: #222222;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+
+        .deal-price {
+            color: #ff3150;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+
+        .deal-old-price {
+            margin-left: 4px;
+            color: #aaaaaa;
+            font-size: 10px;
+            text-decoration: line-through;
+        }
+
+
+        /* =====================================================
+           MAIN PRODUCT GRID
+        ====================================================== */
+
+        .shop-product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+
+        .shop-product-card {
+            position: relative;
+            min-width: 0;
+            background: #ffffff;
+            border-radius: 13px;
+            overflow: hidden;
+            border: 1px solid #eeeeee;
+            cursor: pointer;
+            transition:
+                transform .18s ease,
+                box-shadow .18s ease;
+        }
+
+
+        .shop-product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,.09);
+        }
+
+
+        .shop-product-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f7f7f7;
+            overflow: hidden;
+        }
+
+
+        .shop-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+
+        .shop-product-heart {
+            position: absolute;
+            z-index: 4;
+            right: 8px;
+            top: 8px;
+            width: 31px;
+            height: 31px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,.94);
+            display: grid;
+            place-items: center;
+            color: #333333;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+        }
+
+
+        .shop-product-heart:hover {
+            color: #ff3150;
+        }
+
+
+        .shop-product-heart.active {
+            color: #ff3150;
+        }
+
+
+        .shop-product-badge {
+            position: absolute;
+            left: 7px;
+            top: 7px;
+            z-index: 3;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 4px 6px;
+            border-radius: 5px;
+            background: #ff3150;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+
+        .shop-free-shipping {
+            position: absolute;
+            left: 7px;
+            bottom: 7px;
+            z-index: 3;
+            padding: 4px 6px;
+            border-radius: 5px;
+            background: rgba(255,255,255,.92);
+            color: #008d72;
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+
+        .shop-product-info {
+            padding: 10px 10px 11px;
+        }
+
+
+        .shop-product-name {
+            min-height: 34px;
+            margin: 0 0 7px;
+            color: #222222;
+            font-size: 12px;
+            line-height: 1.42;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+
+        .shop-product-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 7px;
+            color: #777777;
+            font-size: 10px;
+        }
+
+
+        .shop-product-rating i {
+            width: 12px;
+            height: 12px;
+            color: #ffb400;
+            fill: #ffb400;
+        }
+
+
+        .shop-product-sold {
+            color: #888888;
+        }
+
+
+        .shop-product-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 5px;
+        }
+
+
+        .shop-product-price {
+            color: #111111;
+            font-size: 17px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+
+        .shop-product-price-sale {
+            color: #ff3150;
+        }
+
+
+        .shop-product-stock {
+            color: #999999;
+            font-size: 9px;
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           LOADING / EMPTY
+        ====================================================== */
+
+        .shop-loading,
+        .shop-empty {
+            grid-column: 1 / -1;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px dashed #dddddd;
+            color: #777777;
+        }
+
+
+        .shop-loading i,
+        .shop-empty i {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 10px;
+        }
+
+
+        .shop-empty strong {
+            color: #333333;
+            font-size: 14px;
+        }
+
+
+        .shop-empty span {
+            margin-top: 5px;
+            color: #999999;
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .shop-footer {
+            margin-top: 45px;
+            padding: 28px 0 15px;
+            border-top: 1px solid #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+
+        .shop-footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .shop-footer-brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+        }
+
+
+        .shop-footer-brand strong {
+            display: block;
+            color: #111111;
+            font-size: 13px;
+        }
+
+
+        .shop-footer-brand span {
+            display: block;
+            margin-top: 2px;
+            color: #999999;
+            font-size: 10px;
+        }
+
+
+        .shop-footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+
+        .shop-footer-links a {
+            color: #777777;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+
+        .shop-footer-links a:hover {
+            color: #ff3150;
+        }
+
+
+        /* =====================================================
+           REGION MODAL
+        ====================================================== */
+
+        .region-modal[hidden] {
+            display: none;
+        }
+
+
+        .region-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+
+        .region-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15,15,18,.58);
+            backdrop-filter: blur(7px);
+        }
+
+
+        .region-modal-dialog {
+            position: relative;
+            width: min(440px,100%);
+            padding: 32px 28px 25px;
+            border-radius: 22px;
+            background: #ffffff;
+            box-shadow: 0 24px 80px rgba(0,0,0,.22);
+            text-align: center;
+        }
+
+
+        .region-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 34px;
+            height: 34px;
+            border: 0;
+            border-radius: 50%;
+            background: #f2f2f2;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+
+        .region-modal-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: #fff0f2;
+            color: #ff3150;
+        }
+
+
+        .region-modal-content h3 {
+            margin: 0 0 8px;
+            color: #171717;
+            font-size: 20px;
+        }
+
+
+        .region-modal-content p {
+            margin: 0 0 20px;
+            color: #777777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        .region-modal-action {
+            width: 100%;
+            min-height: 44px;
+            border: 0;
+            border-radius: 10px;
+            background: #ff3150;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 1100px) {
+
+            .deal-products,
+            .shop-product-grid {
+                grid-template-columns: repeat(4, minmax(0,1fr));
+            }
+
+
+            .shop-banner-product {
+                right: 35px;
+            }
+
+        }
+
+
+       @media (max-width: 800px) {
+
+    .shop-home {
+        padding: 10px 12px 35px;
     }
-    to {
+
+    .shop-banner {
+        min-height: 190px;
+        padding: 25px 22px;
+        border-radius: 14px;
+    }
+
+    .shop-banner-product {
+        right: 8px;
+        bottom: 8px;
         opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@media (max-width: 600px) {
-    .region-modal {
-        padding: 16px;
+        transform: scale(.85);
+        z-index: 2;
     }
 
-    .region-modal-dialog {
-        padding: 30px 20px 22px;
-        border-radius: 20px;
+    .shop-banner-content {
+        max-width: 78%;
+        z-index: 10;
     }
 
-    .region-modal-content h3 {
+    .shop-banner h1 {
+        font-size: 30px;
+    }
+
+    .shop-banner p {
+        font-size: 11px;
+        max-width: 330px;
+    }
+
+    .deal-products {
+        grid-template-columns: repeat(4, minmax(0,1fr));
+        gap: 8px;
+    }
+
+    .shop-product-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 9px;
+    }
+
+    .shop-section-title h2 {
         font-size: 18px;
     }
+
+    .shop-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 }
-</style>
+
+
+        @media (max-width: 520px) {
+
+            .shop-home {
+              padding: 10px 8px 28px;
+            }
+
+
+            .shop-banner {
+                min-height: 170px;
+                padding: 21px 17px;
+                border-radius: 12px;
+            }
+
+
+            .shop-banner-label {
+                font-size: 8px;
+                padding: 5px 7px;
+            }
+
+
+            .shop-banner h1 {
+                font-size: 25px;
+                letter-spacing: -.03em;
+            }
+
+
+            .shop-banner p {
+                font-size: 10px;
+                line-height: 1.45;
+                margin: 9px 0 12px;
+            }
+
+
+            .shop-banner-button {
+                min-height: 34px;
+                padding: 0 12px;
+                font-size: 10px;
+            }
+
+
+            .shop-banner-product {
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    transform: scale(.72);
+    z-index: 2;
+}
+
+
+            .shop-category-bar {
+                margin-left: -8px;
+                margin-right: -8px;
+                border-radius: 0;
+                border-left: 0;
+                border-right: 0;
+            }
+
+
+            .shop-category-button {
+                min-height: 37px;
+                padding: 0 12px;
+                font-size: 11px;
+            }
+
+
+            .shop-section-header {
+                margin-bottom: 9px;
+            }
+
+
+            .shop-section-title-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+
+            .shop-section-title h2 {
+                font-size: 16px;
+            }
+
+
+            .shop-section-title p {
+                font-size: 9px;
+            }
+
+
+            .shop-view-all {
+                font-size: 10px;
+            }
+
+
+            .deal-products {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 8px;
+            }
+
+
+            .deal-card:nth-child(n+5) {
+                display: none;
+            }
+
+
+            .shop-product-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 8px;
+            }
+
+
+            .shop-product-info {
+                padding: 8px;
+            }
+
+
+            .shop-product-name {
+                min-height: 32px;
+                font-size: 11px;
+            }
+
+
+            .shop-product-rating {
+                font-size: 9px;
+            }
+
+
+            .shop-product-price {
+                font-size: 15px;
+            }
+
+
+            .shop-product-stock {
+                font-size: 8px;
+            }
+
+
+            .shop-product-heart {
+                width: 28px;
+                height: 28px;
+                right: 6px;
+                top: 6px;
+            }
+
+
+            .shop-product-badge {
+                font-size: 8px;
+                left: 6px;
+                top: 6px;
+            }
+
+
+            .shop-free-shipping {
+                font-size: 8px;
+                left: 6px;
+                bottom: 6px;
+            }
+
+        }
+
+@media (max-width: 360px) {
+
+    .shop-banner-product {
+        opacity: 1;
+        right: -2px;
+        bottom: 0;
+        transform: scale(.64);
+    }
+
+    .shop-banner h1 {
+        font-size: 22px;
+    }
+
+    .shop-product-name {
+        font-size: 10px;
+    }
+
+    .shop-product-price {
+        font-size: 14px;
+    }
+
+}
+
+        /* =====================================================
+   FIX MOBILE HEADER SEARCH OVERLAP
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        display: flex;
+        flex-wrap: wrap;
+
+        height: auto;
+        min-height: 72px;
+
+        padding-bottom: 10px;
+    }
+
+
+    .header-left {
+        flex: 1 1 auto;
+    }
+
+
+    .header-right {
+        flex: 0 0 auto;
+    }
+
+
+    .search-box {
+        position: static !important;
+
+        order: 10;
+
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: none;
+
+        margin: 8px 0 0;
+
+        box-sizing: border-box;
+    }
+
+
+    .shop-home {
+        padding-top: 10px;
+    }
+
+}
+
+
+
+/* =====================================================
+   FIX MOBILE SIDEBAR ABOVE HEADER
+===================================================== */
+
+@media (max-width: 760px) {
+
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+
+        z-index: 10001 !important;
+    }
+
+    .sidebar.open {
+        z-index: 10001 !important;
+    }
+
+    .sidebar-overlay {
+        position: fixed !important;
+        inset: 0 !important;
+
+        z-index: 10000 !important;
+    }
+
+    .header {
+        z-index: 1000 !important;
+    }
+
+}
+
+    </style>
+
 </head>
+
+
 <body>
 
-<!-- Shared Sidebar -->
-<div id="sidebar-container"></div>
 
-<main class="main-content">
+    <!-- =====================================================
+         SHARED SIDEBAR
+    ====================================================== -->
 
-<header class="header">
-    <div class="header-left">
-        <button class="menu-button" id="menuButton" type="button" aria-label="Open menu">
-            <i data-lucide="menu"></i>
-        </button>
+    <div id="sidebar-container"></div>
 
-        <div class="mobile-logo">
-            <img src="images/logo.png" alt="TikTok Shop">
-            <strong>TikTok Shop</strong>
-        </div>
-    </div>
 
-    <div class="search-box">
-        <i data-lucide="search"></i>
-        <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off">
-        <button class="search-button" id="searchButton" type="button">Search</button>
-    </div>
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
-    <div class="header-right">
-        <button class="header-icon" id="headerNotificationButton" type="button" title="Notifications">
-            <i data-lucide="bell"></i><span class="dot"></span>
-        </button>
+    <main class="main-content">
 
-        <button class="header-icon" id="headerCartButton" type="button" title="add-products.html">
-            <i data-lucide="shopping-bag"></i>
-        </button>
 
-        <div class="language-selector" id="languageSelector">
-            <button class="language-button" id="languageButton" type="button" aria-label="Select language">
-                <i data-lucide="globe-2"></i>
-                <span id="currentLanguage">EN</span>
-                <i data-lucide="chevron-down"></i>
-            </button>
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
-            <div class="language-menu" id="languageMenu">
-                <button type="button" class="language-option" data-language="en">
-                    <span>English</span><span class="language-check" id="checkEN">✓</span>
-                </button>
-                <button type="button" class="language-option" data-language="th">
-                    <span>ไทย</span><span class="language-check" id="checkTH"></span>
-                </button>
-            </div>
-        </div>
+        <header class="header">
 
-        <div class="header-profile" id="headerProfile" role="button" tabindex="0">
-            <div class="small-avatar" id="headerAvatar">U</div>
-            <div class="header-profile-text">
-                <strong id="headerUsername">Guest</strong>
-                <span id="headerRole">Store Owner</span>
-            </div>
-            <i data-lucide="chevron-down"></i>
-        </div>
-    </div>
-</header>
+            <div class="header-left">
 
-<section class="hero-section">
-    <div class="hero-content">
-        <div class="hero-text">
-            <div class="hero-small-title" id="heroSmallTitle">TIKTOK SHOP</div>
-
-            <h1 id="heroTitle">
-                Everything you love.
-                <span>All in one shop.</span>
-            </h1>
-
-            <p id="heroDescription">
-                Discover trending products, exclusive deals,
-                and the best sellers from shops around the world.
-            </p>
-
-            <div class="hero-buttons">
-                <button class="primary-button" id="heroShopButton" type="button">
-                    Shop Now <i data-lucide="arrow-right"></i>
-                </button>
-
-                <button class="secondary-button" id="heroExploreButton" type="button">
-                    Explore Products
-                </button>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <div class="hero-circle circle-one"></div>
-            <div class="hero-circle circle-two"></div>
-
-            <div class="hero-card card-one">
-                <div class="hero-card-icon"><i data-lucide="shopping-bag"></i></div>
-                <div><strong>Trending</strong><span>Products</span></div>
-            </div>
-
-            <div class="hero-card card-two">
-                <div class="hero-card-icon"><i data-lucide="badge-dollar-sign"></i></div>
-                <div><strong>Best</strong><span>Deals</span></div>
-            </div>
-
-            <div class="hero-product-image">
-                <div class="product-placeholder">
-                    <i data-lucide="package"></i><span>SHOP</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="explore-section">
-    <div class="section-heading">
-        <div>
-            <span class="section-label">DISCOVER</span>
-            <h2>Explore</h2>
-        </div>
-
-        <a href="add-products.html" class="view-all" id="exploreViewAll">
-            View all <i data-lucide="arrow-right"></i>
-        </a>
-    </div>
-
-    <div class="explore-grid">
-        <a href="add-products.html?category=Fashion" class="explore-card" data-category="Fashion">
-            <div class="explore-icon"><i data-lucide="shirt"></i></div>
-            <strong>Fashion</strong><span>Products</span>
-        </a>
-
-        <a href="add-products.html?category=Electronics" class="explore-card" data-category="Electronics">
-            <div class="explore-icon"><i data-lucide="smartphone"></i></div>
-            <strong>Electronics</strong><span>Products</span>
-        </a>
-
-        <a href="add-products.html?category=Beauty" class="explore-card" data-category="Beauty">
-            <div class="explore-icon"><i data-lucide="sparkles"></i></div>
-            <strong>Beauty</strong><span>Products</span>
-        </a>
-
-        <a href="add-products.html?category=Home" class="explore-card" data-category="Home">
-            <div class="explore-icon"><i data-lucide="home"></i></div>
-            <strong>Home</strong><span>Products</span>
-        </a>
-
-        <a href="add-products.html?category=Accessories" class="explore-card" data-category="Accessories">
-            <div class="explore-icon"><i data-lucide="watch"></i></div>
-            <strong>Accessories</strong><span>Products</span>
-        </a>
-
-        <a href="add-products.html?category=Sports" class="explore-card" data-category="Sports">
-            <div class="explore-icon"><i data-lucide="dumbbell"></i></div>
-            <strong>Sports</strong><span>Products</span>
-        </a>
-    </div>
-</section>
-
-<section class="products-section">
-    <div class="section-heading">
-        <div>
-            <span class="section-label">TRENDING NOW</span>
-            <h2>Popular Products</h2>
-        </div>
-
-        <a href="add-products.html" class="view-all" id="productsViewAll">
-            View all <i data-lucide="arrow-right"></i>
-        </a>
-
-        <div class="product-tabs">
-            <button class="product-tab active" data-category="All" type="button">All</button>
-            <button class="product-tab" data-category="Fashion" type="button">Fashion</button>
-            <button class="product-tab" data-category="Electronics" type="button">Electronics</button>
-            <button class="product-tab" data-category="Beauty" type="button">Beauty</button>
-            <button class="product-tab" data-category="Home" type="button">Home</button>
-            <button class="product-tab" data-category="Accessories" type="button">Accessories</button>
-            <button class="product-tab" data-category="Sports" type="button">Sports</button>
-        </div>
-    </div>
-
-    <div class="product-grid" id="productGrid">
-        <div style="grid-column:1/-1;padding:40px;text-align:center;color:#6b7280;">
-            Loading products...
-        </div>
-    </div>
-</section>
-
-<!-- Region unavailable modal -->
-<div class="region-modal" id="regionModal" hidden>
-    <div class="region-modal-backdrop" id="regionModalBackdrop"></div>
-    <div class="region-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="regionModalTitle">
-        <button class="region-modal-close" id="regionModalClose" type="button" aria-label="Close">
-            <i data-lucide="x"></i>
-        </button>
-
-        <div class="region-modal-icon">
-            <i data-lucide="map-pin-off"></i>
-        </div>
-
-        <div class="region-modal-content">
-            <span class="region-modal-label">TIKTOK SHOP</span>
-            <h3 id="regionModalTitle">ฟังก์ชั่นนี้ไม่พร้อมใช้งานในภูมิภาคของคุณ</h3>
-            <p>ขณะนี้ฟังก์ชั่น Shop Now ยังไม่เปิดให้บริการในภูมิภาคของคุณ</p>
-        </div>
-
-        <button class="region-modal-action" id="regionModalAction" type="button">
-            ตกลง
-        </button>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="footer-brand">
-        <div class="brand-logo"><img src="images/logo.png" alt="TikTok Shop"></div>
-        <div><strong>TikTok Shop</strong><span>Shopping made simple.</span></div>
-    </div>
-
-    <div class="footer-links">
-        <a href="#">About</a>
-        <a href="account.html">Help Center</a>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-    </div>
-
-    <span class="copyright">© 2026 TikTok Shop </span>
-</footer>
-
-</main>
-
-<script src="js/sidebar.js"></script>
-
-<script>
-const API_BASE_URL = "";
-
-let currentUser = null;
-let allProducts = [];
-let activeCategory = "All";
-
-function $(id) {
-    return document.getElementById(id);
-}
-
-function getToken() {
-    const keys = ["tiktokShopToken", "tiktokShopJWT", "authToken", "token"];
-
-    for (const key of keys) {
-        const value = localStorage.getItem(key);
-        if (value) return value;
-    }
-
-    return null;
-}
-
-function escapeHTML(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-function money(value) {
-    return "$" + Number(value || 0).toFixed(2);
-}
-
-function openMobileMenu() {
-    $("sidebar")?.classList.add("open");
-    $("sidebarOverlay")?.classList.add("active");
-    document.body.classList.add("sidebar-open");
-}
-
-function closeMobileMenu() {
-    $("sidebar")?.classList.remove("open");
-    $("sidebarOverlay")?.classList.remove("active");
-    document.body.classList.remove("sidebar-open");
-}
-
-/* =====================================================
-   AUTH
-   ===================================================== */
-
-async function loadCurrentUser() {
-
-    const token = getToken();
-
-    // Guest Mode: ไม่มี Login ก็เข้า Home และดูสินค้าได้
-    if (!token) {
-
-        currentUser = null;
-        updateGuestUI();
-        return true;
-    }
-
-    try {
-
-        const response = await fetch(
-            `${API_BASE_URL}/api/auth/me`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success || !data.user) {
-            throw new Error(
-                data.message ||
-                "Authentication failed"
-            );
-        }
-
-        currentUser = data.user;
-
-        localStorage.setItem(
-            "tiktokShopUser",
-            JSON.stringify(currentUser)
-        );
-
-        localStorage.setItem(
-            "tiktokShopLoggedIn",
-            "true"
-        );
-
-        updateUserUI();
-        return true;
-
-    } catch (error) {
-
-        console.error("Auth error:", error);
-
-        [
-            "tiktokShopToken",
-            "tiktokShopJWT",
-            "authToken",
-            "token",
-            "tiktokShopUser",
-            "tiktokShopLoggedIn"
-        ].forEach(key => localStorage.removeItem(key));
-
-        // Token หมดอายุหรือใช้ไม่ได้: กลับเป็น Guest
-        currentUser = null;
-        updateGuestUI();
-
-        return true;
-    }
-}
-
-function updateUserUI() {
-    if (!currentUser) return;
-
-    const displayName =
-        currentUser.shopName ||
-        currentUser.displayName ||
-        currentUser.username ||
-        "User";
-
-    const avatarLetter =
-        displayName.charAt(0).toUpperCase();
-
-    const profileImage =
-        currentUser.profileImage || "";
-
-
-    /* =====================================
-       SIDEBAR USER
-    ===================================== */
-
-    const sidebarAvatar = $("sidebarAvatar");
-
-    if (sidebarAvatar) {
-
-        if (profileImage) {
-
-            sidebarAvatar.innerHTML = `
-                <img
-                    src="${escapeHTML(profileImage)}"
-                    alt="${escapeHTML(displayName)}"
-                    style="
-                        width:100%;
-                        height:100%;
-                        object-fit:cover;
-                        border-radius:50%;
-                        display:block;
-                    "
-                    onerror="
-                        this.style.display='none';
-                        this.parentElement.textContent='${escapeHTML(avatarLetter)}';
-                    "
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Open menu"
                 >
-            `;
 
-        } else {
+                    <i data-lucide="menu"></i>
 
-            sidebarAvatar.textContent =
-                avatarLetter;
-        }
-    }
+                </button>
 
 
-    $("sidebarUsername").textContent =
-        displayName;
-
-    $("sidebarRole").textContent =
-        "Store Owner";
-
-
-    /* =====================================
-       HEADER USER
-    ===================================== */
-
-    const headerAvatar = $("headerAvatar");
-
-    if (headerAvatar) {
-
-        if (profileImage) {
-
-            headerAvatar.innerHTML = `
-                <img
-                    src="${escapeHTML(profileImage)}"
-                    alt="${escapeHTML(displayName)}"
-                    style="
-                        width:100%;
-                        height:100%;
-                        object-fit:cover;
-                        border-radius:50%;
-                        display:block;
-                    "
-                    onerror="
-                        this.style.display='none';
-                        this.parentElement.textContent='${escapeHTML(avatarLetter)}';
-                    "
-                >
-            `;
-
-        } else {
-
-            headerAvatar.textContent =
-                avatarLetter;
-        }
-    }
-
-
-    $("headerUsername").textContent =
-        displayName;
-
-    $("headerRole").textContent =
-        "Store Owner";
-
-
-    /* =====================================
-       MY SHOP BOX
-    ===================================== */
-
-    $("sellerBoxTitle").textContent =
-        currentUser.shopName ||
-        currentUser.username ||
-        "My Shop";
-
-    $("sellerBoxText").textContent =
-        "Manage your shop";
-}
-
-/* =====================================================
-   GUEST UI
-   ===================================================== */
-
-function updateGuestUI() {
-
-    const sidebarAvatar = $("sidebarAvatar");
-
-    if (sidebarAvatar) {
-        sidebarAvatar.innerHTML = `
-            <i data-lucide="log-in"></i>
-        `;
-    }
-
-    const sidebarUsername = $("sidebarUsername");
-    if (sidebarUsername) {
-        sidebarUsername.textContent = "เข้าสู่ระบบ";
-    }
-
-    const sidebarRole = $("sidebarRole");
-    if (sidebarRole) {
-        sidebarRole.textContent = "Login to continue";
-    }
-
-    const headerAvatar = $("headerAvatar");
-
-    if (headerAvatar) {
-        headerAvatar.innerHTML = `
-            <i data-lucide="log-in"></i>
-        `;
-    }
-
-    const headerUsername = $("headerUsername");
-    if (headerUsername) {
-        headerUsername.textContent = "Guest";
-    }
-
-    const headerRole = $("headerRole");
-    if (headerRole) {
-        headerRole.textContent = "เข้าสู่ระบบ";
-    }
-
-    const sellerBoxTitle = $("sellerBoxTitle");
-    if (sellerBoxTitle) {
-        sellerBoxTitle.textContent = "เข้าสู่ระบบ";
-    }
-
-    const sellerBoxText = $("sellerBoxText");
-    if (sellerBoxText) {
-        sellerBoxText.textContent = "Login to continue";
-    }
-
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
-}
-
-/* =====================================================
-   LOGIN GUARD
-   ===================================================== */
-
-function requireLogin() {
-
-    const token = getToken();
-
-    if (!token || !currentUser) {
-
-        const redirectUrl =
-            window.location.href;
-
-        window.location.href =
-    "auth.html?mode=login&redirect=" +
-    encodeURIComponent(redirectUrl);
-
-        return false;
-    }
-
-    return true;
-}
-
-/* =====================================================
-   GUEST SIDEBAR SHOP BUTTON
-   ===================================================== */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const sellerBox =
-            event.target.closest(
-                "#sellerBox, #sellerBoxTitle, #sellerBoxText"
-            );
-
-        if (!sellerBox) return;
-
-        if (!currentUser) {
-
-            event.preventDefault();
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-
-            window.location.href =
-    "auth.html?mode=login&redirect=" +
-    encodeURIComponent(window.location.href);
-        }
-    },
-    true
-);
-
-/* PRODUCTS */
-async function loadProducts() {
-    const grid = $("productGrid");
-    if (!grid) return;
-
-    grid.innerHTML = `
-        <div style="grid-column:1/-1;padding:50px;text-align:center;color:#6b7280;">
-            <i data-lucide="loader-circle" style="width:32px;height:32px;"></i>
-            <p>Loading products...</p>
-        </div>
-    `;
-
-    if (typeof lucide !== "undefined") lucide.createIcons();
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/api/products`);
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || "Unable to load products");
-        }
-
-        allProducts =
-            Array.isArray(data)
-                ? data
-                : Array.isArray(data.products)
-                    ? data.products
-                    : [];
-
-        renderProducts();
-
-    } catch (error) {
-        console.error("Product API error:", error);
-
-        grid.innerHTML = `
-            <div style="grid-column:1/-1;padding:50px 20px;text-align:center;border:1px dashed #d7dbe2;border-radius:20px;background:#fff;">
-                <i data-lucide="wifi-off" style="width:42px;height:42px;margin-bottom:12px;"></i>
-                <h3 style="margin:0 0 8px;">Unable to load products</h3>
-                <p style="margin:0 0 18px;color:#6b7280;">
-                    Please make sure the backend is running on port 5000.
-                </p>
-                <button type="button" id="retryProducts" class="primary-button">Try Again</button>
-            </div>
-        `;
-
-        if (typeof lucide !== "undefined") lucide.createIcons();
-
-        $("retryProducts")?.addEventListener("click", loadProducts);
-    }
-}
-
-function renderProducts() {
-    const grid = $("productGrid");
-    if (!grid) return;
-
-    const keyword =
-        ($("searchInput")?.value || "").trim().toLowerCase();
-
-    const products = allProducts.filter(product => {
-        const status = String(product.status || "active").toLowerCase();
-        const category = String(product.category || "");
-        const name = String(product.name || "").toLowerCase();
-        const description = String(product.description || "").toLowerCase();
-
-        const categoryMatch =
-            activeCategory === "All" ||
-            category.toLowerCase() === activeCategory.toLowerCase();
-
-        const searchMatch =
-            !keyword ||
-            name.includes(keyword) ||
-            description.includes(keyword) ||
-            category.toLowerCase().includes(keyword);
-
-        return status === "active" && categoryMatch && searchMatch;
-    });
-
-    if (!products.length) {
-        grid.innerHTML = `
-            <div style="grid-column:1/-1;padding:50px 20px;text-align:center;border:1px dashed #d7dbe2;border-radius:20px;background:#fff;">
-                <i data-lucide="package-open" style="width:42px;height:42px;margin-bottom:12px;"></i>
-                <h3 style="margin:0 0 8px;">No products found</h3>
-                <p style="margin:0;color:#6b7280;">Try another search or category.</p>
-            </div>
-        `;
-
-        if (typeof lucide !== "undefined") lucide.createIcons();
-        return;
-    }
-
-    grid.innerHTML = products.slice(0, 20).map((product, index) => {
-        const id = product._id || product.id;
-        const image = product.image || "https://placehold.co/600x600?text=Product";
-        const price = Number(product.salePrice ?? product.price ?? 0);
-        const category = product.category || "Product";
-        const name = product.name || "Unnamed Product";
-
-        return `
-            <article
-                class="product-card"
-                data-product-id="${escapeHTML(id)}"
-                tabindex="0"
-                role="button"
-            >
-                <div class="product-image" style="position:relative;overflow:hidden;">
-                    ${index === 0 ? '<span class="product-badge">FEATURED</span>' : ""}
-
-                    <button class="favorite-button" type="button" aria-label="Favorite">
-                        <i data-lucide="heart"></i>
-                    </button>
+                <div class="mobile-logo">
 
                     <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(name)}"
-                        loading="lazy"
-                        style="width:100%;height:100%;object-fit:cover;display:block;"
-                        onerror="this.src='https://placehold.co/600x600?text=Product'"
+                        src="images/logo.png"
+                        alt="TikTok Shop"
                     >
+
+                    <strong>
+                        TikTok Shop
+                    </strong>
+
                 </div>
 
-                <div class="product-info">
-                    <span class="product-category">${escapeHTML(category)}</span>
+            </div>
 
-                    <h3>${escapeHTML(name)}</h3>
 
-                    <div class="rating">
-                        <i data-lucide="star"></i>
-                        <strong>
-                            ${
-                                Number(product.rating || 0) > 0
-                                    ? Number(product.rating).toFixed(1)
-                                    : "New"
-                            }
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i data-lucide="search"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="search-button"
+                    id="searchButton"
+                    type="button"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- HEADER RIGHT -->
+
+            <div class="header-right">
+
+                <button
+                    class="header-icon"
+                    id="headerNotificationButton"
+                    type="button"
+                    title="Notifications"
+                >
+
+                    <i data-lucide="bell"></i>
+
+                    <span class="dot"></span>
+
+                </button>
+
+
+                <button
+                    class="header-icon"
+                    id="headerCartButton"
+                    type="button"
+                    title="Shopping"
+                >
+
+                    <i data-lucide="shopping-bag"></i>
+
+                </button>
+
+
+                <div
+                    class="language-selector"
+                    id="languageSelector"
+                >
+
+                    <button
+                        class="language-button"
+                        id="languageButton"
+                        type="button"
+                        aria-label="Select language"
+                    >
+
+                        <i data-lucide="globe-2"></i>
+
+                        <span id="currentLanguage">
+                            EN
+                        </span>
+
+                        <i data-lucide="chevron-down"></i>
+
+                    </button>
+
+
+                    <div
+                        class="language-menu"
+                        id="languageMenu"
+                    >
+
+                        <button
+                            type="button"
+                            class="language-option"
+                            data-language="en"
+                        >
+
+                            <span>
+                                English
+                            </span>
+
+                            <span
+                                class="language-check"
+                                id="checkEN"
+                            >
+                                ✓
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="language-option"
+                            data-language="th"
+                        >
+
+                            <span>
+                                ไทย
+                            </span>
+
+                            <span
+                                class="language-check"
+                                id="checkTH"
+                            ></span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="header-profile"
+                    id="headerProfile"
+                    role="button"
+                    tabindex="0"
+                >
+
+                    <div
+                        class="small-avatar"
+                        id="headerAvatar"
+                    >
+                        U
+                    </div>
+
+
+                    <div class="header-profile-text">
+
+                        <strong id="headerUsername">
+                            Guest
                         </strong>
+
+                        <span id="headerRole">
+                            Store Owner
+                        </span>
+
                     </div>
 
-                    <div class="product-bottom">
-                        <div class="price">${money(price)}</div>
-                        <span class="sold">Available</span>
-                    </div>
+
+                    <i data-lucide="chevron-down"></i>
+
                 </div>
-            </article>
-        `;
-    }).join("");
 
-    if (typeof lucide !== "undefined") lucide.createIcons();
+            </div>
 
-    grid.querySelectorAll(".product-card").forEach(card => {
-        card.addEventListener("click", event => {
-            const favoriteButton = event.target.closest(".favorite-button");
+        </header>
 
-            if (favoriteButton) {
-                event.preventDefault();
-                event.stopPropagation();
 
-                if (!requireLogin()) {
-                    return;
+        <!-- =================================================
+             SHOP HOME
+        ================================================== -->
+
+        <div class="shop-home">
+
+
+            <!-- =================================================
+                 PROMOTION
+            ================================================== -->
+
+            <section class="shop-banner">
+
+                <div class="shop-banner-content">
+
+                    <div class="shop-banner-label">
+
+                        <i
+                            data-lucide="zap"
+                            width="13"
+                        ></i>
+
+                        DEAL DROPS
+
+                    </div>
+
+
+                    <h1>
+
+                        Up to
+
+                        <span>
+                            40% off
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+                        Discover trending products,
+                        exclusive deals and popular items
+                        from shops around the world.
+                    </p>
+
+
+                    <div class="shop-banner-actions">
+
+                        <button
+                            class="shop-banner-button primary"
+                            id="bannerShopButton"
+                            type="button"
+                        >
+
+                            Shop Now
+
+                            <i
+                                data-lucide="arrow-right"
+                                width="14"
+                            ></i>
+
+                        </button>
+
+
+                        <button
+                            class="shop-banner-button secondary"
+                            id="bannerExploreButton"
+                            type="button"
+                        >
+
+                            Explore
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="shop-banner-product">
+
+                    <div class="shop-banner-product-card">
+
+                 <img
+                     id="bannerProductImage"
+                     src="https://placehold.co/600x600?text=Product"
+                     alt="Featured Product"
+                    >
+
+                 </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CATEGORY BAR
+            ================================================== -->
+
+            <nav
+                class="shop-category-bar"
+                id="shopCategoryBar"
+            >
+
+                <button
+                    class="shop-category-button active"
+                    data-category="All"
+                    type="button"
+                >
+                    All
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Deal Drops"
+                    type="button"
+                >
+                    Deal Drops
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="New In"
+                    type="button"
+                >
+                    New In
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Fashion"
+                    type="button"
+                >
+                    Fashion
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Electronics"
+                    type="button"
+                >
+                    Electronics
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Beauty"
+                    type="button"
+                >
+                    Beauty
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Home"
+                    type="button"
+                >
+                    Home
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Accessories"
+                    type="button"
+                >
+                    Accessories
+                </button>
+
+
+                <button
+                    class="shop-category-button"
+                    data-category="Sports"
+                    type="button"
+                >
+                    Sports
+                </button>
+
+            </nav>
+
+
+            <!-- =================================================
+                 DEAL DROPS
+            ================================================== -->
+
+            <section
+                class="shop-section"
+                id="dealSection"
+            >
+
+                <div class="shop-section-header">
+
+                    <div class="shop-section-title">
+
+                        <div class="shop-section-title-icon">
+
+                            <i
+                                data-lucide="flame"
+                                width="17"
+                            ></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2>
+                                Deal Drops
+                            </h2>
+
+                            <p>
+                                Hot deals picked for you
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="add-products.html"
+                        class="shop-view-all"
+                    >
+
+                        View all
+
+                        <i
+                            data-lucide="chevron-right"
+                            width="14"
+                        ></i>
+
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="deal-products"
+                    id="dealProducts"
+                >
+
+                    <div class="shop-loading">
+
+                        <i
+                            data-lucide="loader-circle"
+                        ></i>
+
+                        <span>
+                            Loading deals...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ALL PRODUCTS
+            ================================================== -->
+
+            <section
+                class="shop-section"
+                id="productsSection"
+            >
+
+                <div class="shop-section-header">
+
+                    <div class="shop-section-title">
+
+                        <div class="shop-section-title-icon">
+
+                            <i
+                                data-lucide="shopping-bag"
+                                width="17"
+                            ></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h2 id="productsTitle">
+                                Popular Products
+                            </h2>
+
+                            <p id="productsSubtitle">
+                                Shop products from our stores
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="add-products.html"
+                        class="shop-view-all"
+                        id="productsViewAll"
+                    >
+
+                        View all
+
+                        <i
+                            data-lucide="chevron-right"
+                            width="14"
+                        ></i>
+
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="shop-product-grid"
+                    id="productGrid"
+                >
+
+                    <div class="shop-loading">
+
+                        <i
+                            data-lucide="loader-circle"
+                        ></i>
+
+                        <span>
+                            Loading products...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="shop-footer">
+
+                <div class="shop-footer-brand">
+
+                    <img
+                        src="images/logo.png"
+                        alt="TikTok Shop"
+                    >
+
+
+                    <div>
+
+                        <strong>
+                            TikTok Shop
+                        </strong>
+
+                        <span>
+                            Shopping made simple.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="shop-footer-links">
+
+                    <a href="#">
+                        About
+                    </a>
+
+                    <a href="account.html">
+                        Help Center
+                    </a>
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                </div>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         REGION MODAL
+    ====================================================== -->
+
+    <div
+        class="region-modal"
+        id="regionModal"
+        hidden
+    >
+
+        <div
+            class="region-modal-backdrop"
+            id="regionModalBackdrop"
+        ></div>
+
+
+        <div
+            class="region-modal-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="regionModalTitle"
+        >
+
+            <button
+                class="region-modal-close"
+                id="regionModalClose"
+                type="button"
+                aria-label="Close"
+            >
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+
+            <div class="region-modal-icon">
+
+                <i
+                    data-lucide="map-pin-off"
+                ></i>
+
+            </div>
+
+
+            <div class="region-modal-content">
+
+                <h3 id="regionModalTitle">
+                    ฟังก์ชั่นนี้ไม่พร้อมใช้งานในภูมิภาคของคุณ
+                </h3>
+
+
+                <p>
+                    ขณะนี้ฟังก์ชั่น Shop Now
+                    ยังไม่เปิดให้บริการในภูมิภาคของคุณ
+                </p>
+
+            </div>
+
+
+            <button
+                class="region-modal-action"
+                id="regionModalAction"
+                type="button"
+            >
+
+                ตกลง
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <script src="js/sidebar.js"></script>
+
+
+    <!-- =====================================================
+         MAIN PAGE JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const API_BASE_URL = "";
+
+
+        let currentUser = null;
+
+        let allProducts = [];
+
+        let activeCategory = "All";
+
+
+        /* =====================================================
+           HELPERS
+        ====================================================== */
+
+        function $(id) {
+
+            return document.getElementById(id);
+
+        }
+
+
+        function getToken() {
+
+            const keys = [
+                "tiktokShopToken",
+                "tiktokShopJWT",
+                "authToken",
+                "token"
+            ];
+
+
+            for (const key of keys) {
+
+                const value =
+                    localStorage.getItem(key);
+
+                if (value) {
+                    return value;
                 }
 
-                favoriteButton.classList.toggle("active");
+            }
+
+
+            return null;
+
+        }
+
+
+        function escapeHTML(value) {
+
+            return String(value ?? "")
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        function money(value) {
+
+            return "$" +
+                Number(value || 0)
+                    .toFixed(2);
+
+        }
+
+
+        function getSoldCount(product) {
+
+            return Number(
+                product.sold ??
+                product.soldCount ??
+                product.totalSold ??
+                product.unitsSold ??
+                0
+            );
+
+        }
+
+
+        function formatSold(value) {
+
+            const number =
+                Number(value || 0);
+
+
+            if (number >= 1000000) {
+
+                return (
+                    (number / 1000000)
+                        .toFixed(1)
+                        .replace(".0", "") +
+                    "M"
+                );
+
+            }
+
+
+            if (number >= 1000) {
+
+                return (
+                    (number / 1000)
+                        .toFixed(1)
+                        .replace(".0", "") +
+                    "K"
+                );
+
+            }
+
+
+            return String(number);
+
+        }
+
+
+        function getRating(product) {
+
+            const rating =
+                Number(product.rating || 0);
+
+
+            if (!rating) {
+
+                return "New";
+
+            }
+
+
+            return rating.toFixed(1);
+
+        }
+
+
+        function getStock(product) {
+
+            return Number(
+                product.stock ??
+                product.quantity ??
+                0
+            );
+
+        }
+
+
+        function hasFreeShipping(product) {
+
+            return Boolean(
+                product.freeShipping ||
+                product.isFreeShipping ||
+                product.shippingFree
+            );
+
+        }
+
+
+        function getDiscountPercent(product) {
+
+            const original =
+                Number(
+                    product.originalPrice ??
+                    product.costPrice ??
+                    0
+                );
+
+
+            const sale =
+                Number(
+                    product.salePrice ??
+                    product.price ??
+                    0
+                );
+
+
+            if (
+                original > 0 &&
+                sale > 0 &&
+                original > sale
+            ) {
+
+                return Math.round(
+                    ((original - sale) / original) * 100
+                );
+
+            }
+
+
+            return Number(
+                product.discountPercent ||
+                product.discount ||
+                0
+            );
+
+        }
+
+
+        /* =====================================================
+           MOBILE SIDEBAR
+        ====================================================== */
+
+        function openMobileMenu() {
+
+            $("sidebar")?.classList.add("open");
+
+            $("sidebarOverlay")
+                ?.classList.add("active");
+
+            document.body
+                .classList.add("sidebar-open");
+
+        }
+
+
+        function closeMobileMenu() {
+
+            $("sidebar")
+                ?.classList.remove("open");
+
+            $("sidebarOverlay")
+                ?.classList.remove("active");
+
+            document.body
+                .classList.remove("sidebar-open");
+
+        }
+
+
+        /* =====================================================
+           AUTH
+        ====================================================== */
+
+        async function loadCurrentUser() {
+
+            const token =
+                getToken();
+
+
+            if (!token) {
+
+                currentUser = null;
+
+                updateGuestUI();
+
+                return true;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/api/auth/me`,
+                        {
+                            headers: {
+                                Authorization:
+                                    `Bearer ${token}`
+                            }
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.success ||
+                    !data.user
+                ) {
+
+                    throw new Error(
+                        data.message ||
+                        "Authentication failed"
+                    );
+
+                }
+
+
+                currentUser =
+                    data.user;
+
+
+                localStorage.setItem(
+                    "tiktokShopUser",
+                    JSON.stringify(
+                        currentUser
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "tiktokShopLoggedIn",
+                    "true"
+                );
+
+
+                updateUserUI();
+
+
+                return true;
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Auth error:",
+                    error
+                );
+
+
+                [
+                    "tiktokShopToken",
+                    "tiktokShopJWT",
+                    "authToken",
+                    "token",
+                    "tiktokShopUser",
+                    "tiktokShopLoggedIn"
+                ].forEach(
+                    key =>
+                        localStorage.removeItem(key)
+                );
+
+
+                currentUser = null;
+
+                updateGuestUI();
+
+
+                return true;
+
+            }
+
+        }
+
+
+        function updateUserUI() {
+
+            if (!currentUser) {
                 return;
             }
 
-            const id = card.dataset.productId;
-            if (!id) return;
 
-            window.location.href =
-                "product-detail.html?id=" + encodeURIComponent(id);
-        });
+            const displayName =
+                currentUser.shopName ||
+                currentUser.displayName ||
+                currentUser.username ||
+                "User";
 
-        card.addEventListener("keydown", event => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                card.click();
+
+            const avatarLetter =
+                displayName
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            const profileImage =
+                currentUser.profileImage ||
+                "";
+
+
+            /* SIDEBAR */
+
+            const sidebarAvatar =
+                $("sidebarAvatar");
+
+
+            if (sidebarAvatar) {
+
+                if (profileImage) {
+
+                    sidebarAvatar.innerHTML = `
+
+                        <img
+                            src="${escapeHTML(profileImage)}"
+                            alt="${escapeHTML(displayName)}"
+                            style="
+                                width:100%;
+                                height:100%;
+                                object-fit:cover;
+                                border-radius:50%;
+                                display:block;
+                            "
+                            onerror="
+                                this.style.display='none';
+                                this.parentElement.textContent='${escapeHTML(avatarLetter)}';
+                            "
+                        >
+
+                    `;
+
+                }
+
+                else {
+
+                    sidebarAvatar.textContent =
+                        avatarLetter;
+
+                }
+
             }
-        });
-    });
-}
 
-/* SEARCH */
-$("searchButton")?.addEventListener("click", renderProducts);
 
-$("searchInput")?.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        renderProducts();
-    }
-});
+            $("sidebarUsername")
+                && (
+                    $("sidebarUsername")
+                        .textContent =
+                        displayName
+                );
 
-/* PRODUCT TABS */
-document.querySelectorAll(".product-tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-        document
-            .querySelectorAll(".product-tab")
-            .forEach(item => item.classList.remove("active"));
 
-        tab.classList.add("active");
-        activeCategory = tab.dataset.category || "All";
+            $("sidebarRole")
+                && (
+                    $("sidebarRole")
+                        .textContent =
+                        "Store Owner"
+                );
 
-        renderProducts();
-    });
-});
 
-/* CATEGORY CARDS
-   Each category opens add-products.html with a category query.
-   Example: add-products.html?category=Fashion
-   The add-products page can use this value to show only that category.
-*/
-document.querySelectorAll(".explore-card").forEach(card => {
-    card.addEventListener("click", () => {
-        const category = card.dataset.category || "All";
-        card.href = `add-products.html?category=${encodeURIComponent(category)}`;
-    });
-});
+            /* HEADER */
 
-/* HERO */
-const regionModal = $("regionModal");
-const regionModalClose = $("regionModalClose");
-const regionModalAction = $("regionModalAction");
-const regionModalBackdrop = $("regionModalBackdrop");
+            const headerAvatar =
+                $("headerAvatar");
 
-function openRegionModal() {
-    if (!regionModal) return;
 
-    regionModal.hidden = false;
-    document.body.style.overflow = "hidden";
+            if (headerAvatar) {
 
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
+                if (profileImage) {
 
-    setTimeout(() => regionModalClose?.focus(), 0);
-}
+                    headerAvatar.innerHTML = `
 
-function closeRegionModal() {
-    if (!regionModal) return;
+                        <img
+                            src="${escapeHTML(profileImage)}"
+                            alt="${escapeHTML(displayName)}"
+                            style="
+                                width:100%;
+                                height:100%;
+                                object-fit:cover;
+                                border-radius:50%;
+                                display:block;
+                            "
+                            onerror="
+                                this.style.display='none';
+                                this.parentElement.textContent='${escapeHTML(avatarLetter)}';
+                            "
+                        >
 
-    regionModal.hidden = true;
-    document.body.style.overflow = "";
-}
+                    `;
 
-$("heroShopButton")?.addEventListener("click", openRegionModal);
+                }
 
-$("heroExploreButton")?.addEventListener("click", () => {
-    window.location.href = "add-products.html";
-});
+                else {
 
-regionModalClose?.addEventListener("click", closeRegionModal);
-regionModalAction?.addEventListener("click", closeRegionModal);
-regionModalBackdrop?.addEventListener("click", closeRegionModal);
+                    headerAvatar.textContent =
+                        avatarLetter;
 
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && regionModal && !regionModal.hidden) {
-        closeRegionModal();
-    }
-});
+                }
 
-/* =====================================================
-   HEADER
-   ===================================================== */
+            }
 
-$("headerNotificationButton")?.addEventListener(
-    "click",
-    () => {
-        if (!requireLogin()) return;
 
-        window.location.href =
-            "notifications.html";
-    }
-);
+            $("headerUsername")
+                && (
+                    $("headerUsername")
+                        .textContent =
+                        displayName
+                );
 
-$("headerCartButton")?.addEventListener(
-    "click",
-    () => {
-        if (!requireLogin()) return;
 
-        window.location.href =
-            "add-products.html";
-    }
-);
+            $("headerRole")
+                && (
+                    $("headerRole")
+                        .textContent =
+                        "Store Owner"
+                );
 
-$("headerProfile")?.addEventListener(
-    "click",
-    () => {
-        if (!requireLogin()) return;
 
-        window.location.href =
-            "account.html";
-    }
-);
+            /* SHOP */
 
-$("headerProfile")?.addEventListener(
-    "keydown",
-    event => {
-        if (
-            event.key === "Enter" ||
-            event.key === " "
-        ) {
-            event.preventDefault();
+            $("sellerBoxTitle")
+                && (
+                    $("sellerBoxTitle")
+                        .textContent =
+                        currentUser.shopName ||
+                        currentUser.username ||
+                        "My Shop"
+                );
 
-            if (!requireLogin()) return;
 
-            window.location.href =
-                "account.html";
+            $("sellerBoxText")
+                && (
+                    $("sellerBoxText")
+                        .textContent =
+                        "Manage your shop"
+                );
+
+
+            refreshIcons();
+
         }
-    }
-);
 
-/* MOBILE MENU
-   This is intentionally attached after the DOM exists.
-   It does not depend on any other navigation code. */
-/* Shared Sidebar mobile controls are handled by js/sidebar.js */
 
-/* LOGOUT */
-/* Logout is handled by js/sidebar.js */
+        function updateGuestUI() {
 
-/* LANGUAGE */
-const languageButton = $("languageButton");
-const languageMenu = $("languageMenu");
-const languageSelector = $("languageSelector");
+            const sidebarAvatar =
+                $("sidebarAvatar");
 
-let currentLanguage =
-    localStorage.getItem("tiktokShopLanguage") || "en";
 
-const translations = {
-    en: {
-        search: "Search products...",
-        searchButton: "Search",
-        products: "Products",
-        orders: "Dashboard",
-        favorites: "My Shop",
-        wallet: "Wallet",
-        notifications: "Notifications",
-        messages: "Messages",
-        profile: "Profile",
-        settings: "Settings",
-        help: "Help Center",
-        logout: "Log out"
-    },
+            if (sidebarAvatar) {
 
-    th: {
-        search: "ค้นหาสินค้า...",
-        searchButton: "ค้นหา",
-        products: "สินค้า",
-        orders: "แดชบอร์ด",
-        favorites: "ร้านค้าของฉัน",
-        wallet: "กระเป๋าเงิน",
-        notifications: "การแจ้งเตือน",
-        messages: "ข้อความ",
-        profile: "โปรไฟล์",
-        settings: "ตั้งค่า",
-        help: "ศูนย์ช่วยเหลือ",
-        logout: "ออกจากระบบ"
-    }
-};
+                sidebarAvatar.innerHTML = `
 
-function applyLanguage() {
-    const t = translations[currentLanguage];
-    if (!t) return;
+                    <i data-lucide="log-in"></i>
 
-    $("currentLanguage").textContent =
-        currentLanguage === "th" ? "TH" : "EN";
+                `;
 
-    $("searchInput").placeholder = t.search;
-    $("searchButton").textContent = t.searchButton;
+            }
 
-    const map = {
-        navProducts: t.products,
-        navOrders: t.orders,
-        navFavorites: t.favorites,
-        navWallet: t.wallet,
-        navNotifications: t.notifications,
-        navMessages: t.messages,
-        navProfile: t.profile,
-        navSettings: t.settings,
-        navHelp: t.help
-    };
 
-    Object.entries(map).forEach(([id, text]) => {
-        const element = $(id);
-        const span = element?.querySelector("span");
-        if (span) span.textContent = text;
-    });
+            $("sidebarUsername")
+                && (
+                    $("sidebarUsername")
+                        .textContent =
+                        "เข้าสู่ระบบ"
+                );
 
-    const logoutSpan = $("logoutButton")?.querySelector("span");
-    if (logoutSpan) logoutSpan.textContent = t.logout;
 
-    $("checkEN").textContent =
-        currentLanguage === "en" ? "✓" : "";
+            $("sidebarRole")
+                && (
+                    $("sidebarRole")
+                        .textContent =
+                        "Login to continue"
+                );
 
-    $("checkTH").textContent =
-        currentLanguage === "th" ? "✓" : "";
-}
 
-languageButton?.addEventListener("click", event => {
-    event.stopPropagation();
-    languageMenu?.classList.toggle("show");
-});
+            const headerAvatar =
+                $("headerAvatar");
 
-document.addEventListener("click", event => {
-    if (languageSelector && !languageSelector.contains(event.target)) {
-        languageMenu?.classList.remove("show");
-    }
-});
 
-document.querySelectorAll(".language-option").forEach(option => {
-    option.addEventListener("click", () => {
-        currentLanguage = option.dataset.language;
+            if (headerAvatar) {
 
-        localStorage.setItem(
-            "tiktokShopLanguage",
-            currentLanguage
+                headerAvatar.innerHTML = `
+
+                    <i data-lucide="log-in"></i>
+
+                `;
+
+            }
+
+
+            $("headerUsername")
+                && (
+                    $("headerUsername")
+                        .textContent =
+                        "Guest"
+                );
+
+
+            $("headerRole")
+                && (
+                    $("headerRole")
+                        .textContent =
+                        "เข้าสู่ระบบ"
+                );
+
+
+            $("sellerBoxTitle")
+                && (
+                    $("sellerBoxTitle")
+                        .textContent =
+                        "เข้าสู่ระบบ"
+                );
+
+
+            $("sellerBoxText")
+                && (
+                    $("sellerBoxText")
+                        .textContent =
+                        "Login to continue"
+                );
+
+
+            refreshIcons();
+
+        }
+
+
+        function requireLogin() {
+
+            const token =
+                getToken();
+
+
+            if (
+                !token ||
+                !currentUser
+            ) {
+
+                const redirectUrl =
+                    window.location.href;
+
+
+                window.location.href =
+                    "auth.html?mode=login&redirect=" +
+                    encodeURIComponent(
+                        redirectUrl
+                    );
+
+
+                return false;
+
+            }
+
+
+            return true;
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR SHOP GUARD
+        ====================================================== */
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                const sellerBox =
+                    event.target.closest(
+                        "#sellerBox, #sellerBoxTitle, #sellerBoxText"
+                    );
+
+
+                if (!sellerBox) {
+                    return;
+                }
+
+
+                if (!currentUser) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    event.stopImmediatePropagation();
+
+
+                    window.location.href =
+                        "auth.html?mode=login&redirect=" +
+                        encodeURIComponent(
+                            window.location.href
+                        );
+
+                }
+
+            },
+            true
         );
 
-        applyLanguage();
-        languageMenu?.classList.remove("show");
-    });
-});
+
+        /* =====================================================
+           PRODUCT FILTER
+        ====================================================== */
+
+        function filterProducts() {
+
+            const keyword =
+                (
+                    $("searchInput")?.value ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase();
+
+
+            return allProducts.filter(
+                product => {
+
+                    const status =
+                        String(
+                            product.status ||
+                            "active"
+                        ).toLowerCase();
+
+
+                    const category =
+                        String(
+                            product.category ||
+                            ""
+                        );
+
+
+                    const name =
+                        String(
+                            product.name ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const description =
+                        String(
+                            product.description ||
+                            ""
+                        ).toLowerCase();
+
+
+                    const categoryMatch =
+                        activeCategory === "All" ||
+                        activeCategory === "Deal Drops" ||
+                        activeCategory === "New In" ||
+                        category
+                            .toLowerCase() ===
+                            activeCategory.toLowerCase();
+
+
+                    const searchMatch =
+                        !keyword ||
+                        name.includes(keyword) ||
+                        description.includes(keyword) ||
+                        category
+                            .toLowerCase()
+                            .includes(keyword);
+
+
+                    return (
+                        status === "active" &&
+                        categoryMatch &&
+                        searchMatch
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           CREATE PRODUCT CARD
+        ====================================================== */
+
+        function productCardHTML(
+            product,
+            index
+        ) {
+
+            const id =
+                product._id ||
+                product.id;
+
+
+            const image =
+                product.image ||
+                "https://placehold.co/600x600?text=Product";
+
+
+            const price =
+                Number(
+                    product.salePrice ??
+                    product.price ??
+                    0
+                );
+
+
+            const originalPrice =
+                Number(
+                    product.originalPrice ??
+                    product.costPrice ??
+                    0
+                );
+
+
+            const name =
+                product.name ||
+                "Unnamed Product";
+
+
+            const rating =
+                getRating(product);
+
+
+            const sold =
+                getSoldCount(product);
+
+
+            const stock =
+                getStock(product);
+
+
+            const discount =
+                getDiscountPercent(product);
+
+
+            const freeShipping =
+                hasFreeShipping(product);
+
+
+            let badge = "";
+
+
+            if (discount > 0) {
+
+                badge = `
+                    <span class="shop-product-badge">
+                        -${discount}%
+                    </span>
+                `;
+
+            }
+
+            else if (index < 2) {
+
+                badge = `
+                    <span class="shop-product-badge">
+                        HOT
+                    </span>
+                `;
+
+            }
+
+
+            return `
+
+                <article
+                    class="shop-product-card"
+                    data-product-id="${escapeHTML(id)}"
+                    tabindex="0"
+                    role="button"
+                >
+
+                    <div class="shop-product-image">
+
+                        ${badge}
+
+
+                        <button
+                            class="shop-product-heart"
+                            type="button"
+                            aria-label="Favorite"
+                        >
+
+                            <i
+                                data-lucide="heart"
+                                width="15"
+                            ></i>
+
+                        </button>
+
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(name)}"
+                            loading="lazy"
+                            onerror="
+                                this.src='https://placehold.co/600x600?text=Product'
+                            "
+                        >
+
+
+                        ${
+                            freeShipping
+                                ? `
+                                    <span class="shop-free-shipping">
+                                        🚚 Free shipping
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div class="shop-product-info">
+
+                        <h3 class="shop-product-name">
+
+                            ${escapeHTML(name)}
+
+                        </h3>
+
+
+                        <div class="shop-product-rating">
+
+                            <i
+                                data-lucide="star"
+                            ></i>
+
+
+                            <strong>
+                                ${escapeHTML(rating)}
+                            </strong>
+
+
+                            ${
+                                sold > 0
+                                    ? `
+                                        <span class="shop-product-sold">
+                                            · ขายแล้ว ${formatSold(sold)}
+                                        </span>
+                                    `
+                                    : `
+                                        <span class="shop-product-sold">
+                                            · New
+                                        </span>
+                                    `
+                            }
+
+                        </div>
+
+
+                        <div class="shop-product-bottom">
+
+                            <div>
+
+                                <div
+                                    class="
+                                        shop-product-price
+                                        ${
+                                            discount > 0
+                                                ? "shop-product-price-sale"
+                                                : ""
+                                        }
+                                    "
+                                >
+                                    ${money(price)}
+                                </div>
+
+
+                                ${
+                                    originalPrice > price
+                                        ? `
+                                            <span
+                                                style="
+                                                    color:#aaa;
+                                                    font-size:9px;
+                                                    text-decoration:line-through;
+                                                "
+                                            >
+                                                ${money(originalPrice)}
+                                            </span>
+                                        `
+                                        : ""
+                                }
+
+                            </div>
+
+
+                            <div class="shop-product-stock">
+
+                                ${
+                                    stock > 0
+                                        ? `เหลือ ${stock}`
+                                        : ""
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+           DEAL CARD
+        ====================================================== */
+
+        function dealCardHTML(product) {
+
+            const id =
+                product._id ||
+                product.id;
+
+
+            const image =
+                product.image ||
+                "https://placehold.co/600x600?text=Product";
+
+
+            const name =
+                product.name ||
+                "Product";
+
+
+            const price =
+                Number(
+                    product.salePrice ??
+                    product.price ??
+                    0
+                );
+
+
+            const original =
+                Number(
+                    product.originalPrice ??
+                    product.costPrice ??
+                    0
+                );
+
+
+            const discount =
+                getDiscountPercent(product);
+
+
+            return `
+
+                <article
+                    class="deal-card"
+                    data-product-id="${escapeHTML(id)}"
+                    tabindex="0"
+                >
+
+                    <div class="deal-image">
+
+                        ${
+                            discount > 0
+                                ? `
+                                    <span class="deal-badge">
+                                        -${discount}%
+                                    </span>
+                                `
+                                : `
+                                    <span class="deal-badge">
+                                        DEAL
+                                    </span>
+                                `
+                        }
+
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(name)}"
+                            loading="lazy"
+                            onerror="
+                                this.src='https://placehold.co/600x600?text=Product'
+                            "
+                        >
+
+                    </div>
+
+
+                    <div class="deal-info">
+
+                        <h3 class="deal-name">
+                            ${escapeHTML(name)}
+                        </h3>
+
+
+                        <div>
+
+                            <span class="deal-price">
+                                ${money(price)}
+                            </span>
+
+
+                            ${
+                                original > price
+                                    ? `
+                                        <span class="deal-old-price">
+                                            ${money(original)}
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+   RANDOM BANNER PRODUCT
+===================================================== */
+
+let bannerProductTimer = null;
+
+function updateBannerProduct() {
+
+    const imageElement =
+        $("bannerProductImage");
+
+    if (!imageElement) {
+        return;
+    }
+
+    const availableProducts =
+        allProducts.filter(product => {
+
+            const status =
+                String(
+                    product.status || "active"
+                ).toLowerCase();
+
+            const image =
+                product.image ||
+                product.imageUrl ||
+                product.thumbnail ||
+                product.photo ||
+                "";
+
+            return (
+                status === "active" &&
+                image
+            );
+
+        });
+
+    if (!availableProducts.length) {
+        return;
+    }
+
+    const randomProduct =
+        availableProducts[
+            Math.floor(
+                Math.random() *
+                availableProducts.length
+            )
+        ];
+
+    const image =
+        randomProduct.image ||
+        randomProduct.imageUrl ||
+        randomProduct.thumbnail ||
+        randomProduct.photo;
+
+    imageElement.src = image;
+
+    imageElement.alt =
+        randomProduct.name ||
+        "Featured Product";
+
+}
+
 
 /* =====================================================
-   START
-   ===================================================== */
+   START BANNER PRODUCT ROTATION
+===================================================== */
 
-window.addEventListener(
-    "sharedSidebarLoaded",
-    () => {
-        if (currentUser) {
-            updateUserUI();
-        } else {
-            updateGuestUI();
+function startBannerProductRotation() {
+
+    if (bannerProductTimer) {
+
+        clearInterval(
+            bannerProductTimer
+        );
+
+    }
+
+    updateBannerProduct();
+
+    bannerProductTimer =
+        setInterval(
+            updateBannerProduct,
+            180000
+        );
+
+}
+
+
+        /* =====================================================
+           RENDER DEALS
+        ====================================================== */
+
+        function renderDeals() {
+
+            const container =
+                $("dealProducts");
+
+
+            if (!container) {
+                return;
+            }
+
+
+            let deals =
+                allProducts
+                    .filter(
+                        product =>
+                            String(
+                                product.status ||
+                                "active"
+                            ).toLowerCase() ===
+                            "active"
+                    )
+                    .filter(
+                        product =>
+                            getDiscountPercent(product) > 0
+                    );
+
+
+            if (!deals.length) {
+
+                deals =
+                    allProducts
+                        .filter(
+                            product =>
+                                String(
+                                    product.status ||
+                                    "active"
+                                ).toLowerCase() ===
+                                "active"
+                        )
+                        .slice(0, 5);
+
+            }
+
+
+            if (!deals.length) {
+
+                container.innerHTML = `
+
+                    <div class="shop-empty">
+
+                        <i
+                            data-lucide="package-open"
+                        ></i>
+
+                        <strong>
+                            No deals available
+                        </strong>
+
+                        <span>
+                            Products will appear here soon.
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                deals
+                    .slice(0, 5)
+                    .map(dealCardHTML)
+                    .join("");
+
+
+            attachDealEvents();
+
+            refreshIcons();
+
         }
-    }
-);
 
-(async function start() {
 
-    if (typeof lucide !== "undefined") {
-        lucide.createIcons();
-    }
+        function attachDealEvents() {
 
-    applyLanguage();
+            document
+                .querySelectorAll(
+                    ".deal-card"
+                )
+                .forEach(card => {
 
-    // ตรวจ Login แต่ไม่บังคับ Login
-    await loadCurrentUser();
+                    card.addEventListener(
+                        "click",
+                        () => {
 
-    // ทุกคนสามารถดูสินค้าในหน้า Home ได้
-    await loadProducts();
+                            const id =
+                                card.dataset.productId;
 
-})();
-</script>
-<script src="js/notifications.js"></script>
+
+                            if (!id) {
+                                return;
+                            }
+
+
+                            window.location.href =
+                                "product-detail.html?id=" +
+                                encodeURIComponent(id);
+
+                        }
+                    );
+
+
+                    card.addEventListener(
+                        "keydown",
+                        event => {
+
+                            if (
+                                event.key === "Enter" ||
+                                event.key === " "
+                            ) {
+
+                                event.preventDefault();
+
+                                card.click();
+
+                            }
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           RENDER MAIN PRODUCTS
+        ====================================================== */
+
+        function renderProducts() {
+
+            const grid =
+                $("productGrid");
+
+
+            if (!grid) {
+                return;
+            }
+
+
+            const products =
+                filterProducts();
+
+
+            if (!products.length) {
+
+                grid.innerHTML = `
+
+                    <div class="shop-empty">
+
+                        <i
+                            data-lucide="package-open"
+                        ></i>
+
+                        <strong>
+                            No products found
+                        </strong>
+
+                        <span>
+                            Try another search or category.
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                refreshIcons();
+
+                return;
+
+            }
+
+
+            grid.innerHTML =
+                products
+                    .slice(0, 30)
+                    .map(
+                        (
+                            product,
+                            index
+                        ) =>
+                            productCardHTML(
+                                product,
+                                index
+                            )
+                    )
+                    .join("");
+
+
+            attachProductEvents();
+
+            refreshIcons();
+
+        }
+
+
+        function attachProductEvents() {
+
+            document
+                .querySelectorAll(
+                    ".shop-product-card"
+                )
+                .forEach(card => {
+
+                    card.addEventListener(
+                        "click",
+                        event => {
+
+                            const favoriteButton =
+                                event.target.closest(
+                                    ".shop-product-heart"
+                                );
+
+
+                            if (
+                                favoriteButton
+                            ) {
+
+                                event.preventDefault();
+
+                                event.stopPropagation();
+
+
+                                if (
+                                    !requireLogin()
+                                ) {
+
+                                    return;
+
+                                }
+
+
+                                favoriteButton
+                                    .classList
+                                    .toggle(
+                                        "active"
+                                    );
+
+
+                                return;
+
+                            }
+
+
+                            const id =
+                                card.dataset.productId;
+
+
+                            if (!id) {
+                                return;
+                            }
+
+
+                            window.location.href =
+                                "product-detail.html?id=" +
+                                encodeURIComponent(id);
+
+                        }
+                    );
+
+
+                    card.addEventListener(
+                        "keydown",
+                        event => {
+
+                            if (
+                                event.key === "Enter" ||
+                                event.key === " "
+                            ) {
+
+                                event.preventDefault();
+
+                                card.click();
+
+                            }
+
+                        }
+                    );
+
+                });
+
+        }
+
+
+        /* =====================================================
+           LOAD PRODUCTS
+        ====================================================== */
+
+        async function loadProducts() {
+
+            const grid =
+                $("productGrid");
+
+
+            const deals =
+                $("dealProducts");
+
+
+            if (!grid) {
+                return;
+            }
+
+
+            grid.innerHTML = `
+
+                <div class="shop-loading">
+
+                    <i
+                        data-lucide="loader-circle"
+                    ></i>
+
+                    <span>
+                        Loading products...
+                    </span>
+
+                </div>
+
+            `;
+
+
+            if (deals) {
+
+                deals.innerHTML = `
+
+                    <div class="shop-loading">
+
+                        <i
+                            data-lucide="loader-circle"
+                        ></i>
+
+                        <span>
+                            Loading deals...
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            refreshIcons();
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/api/products`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Unable to load products"
+                    );
+
+                }
+
+
+                allProducts =
+                    Array.isArray(data)
+                        ? data
+                        : Array.isArray(data.products)
+                            ? data.products
+                            : [];
+
+
+                renderDeals();
+
+                renderProducts();
+
+                startBannerProductRotation();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Product API error:",
+                    error
+                );
+
+
+                grid.innerHTML = `
+
+                    <div class="shop-empty">
+
+                        <i
+                            data-lucide="wifi-off"
+                        ></i>
+
+                        <strong>
+                            Unable to load products
+                        </strong>
+
+                        <span>
+                            Please make sure the backend is running.
+                        </span>
+
+                        <button
+                            type="button"
+                            id="retryProducts"
+                            class="shop-banner-button primary"
+                            style="margin-top:12px;"
+                        >
+                            Try Again
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                if (deals) {
+
+                    deals.innerHTML = `
+
+                        <div class="shop-empty">
+
+                            <i
+                                data-lucide="wifi-off"
+                            ></i>
+
+                            <strong>
+                                Unable to load deals
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                refreshIcons();
+
+
+                $("retryProducts")
+                    ?.addEventListener(
+                        "click",
+                        loadProducts
+                    );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SEARCH
+        ====================================================== */
+
+        $("searchButton")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    renderProducts();
+
+                    $("productsSection")
+                        ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                }
+            );
+
+
+        $("searchInput")
+            ?.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        event.preventDefault();
+
+                        renderProducts();
+
+                        $("productsSection")
+                            ?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           CATEGORY
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                ".shop-category-button"
+            )
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".shop-category-button"
+                            )
+                            .forEach(
+                                item =>
+                                    item.classList.remove(
+                                        "active"
+                                    )
+                            );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        activeCategory =
+                            button.dataset.category ||
+                            "All";
+
+
+                        const title =
+                            $("productsTitle");
+
+
+                        const subtitle =
+                            $("productsSubtitle");
+
+
+                        if (
+                            activeCategory ===
+                            "All"
+                        ) {
+
+                            title.textContent =
+                                "Popular Products";
+
+                            subtitle.textContent =
+                                "Shop products from our stores";
+
+                        }
+
+                        else {
+
+                            title.textContent =
+                                activeCategory;
+
+                            subtitle.textContent =
+                                "Products you may like";
+
+                        }
+
+
+                        renderProducts();
+
+
+                        $("productsSection")
+                            ?.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           REGION MODAL
+        ====================================================== */
+
+        const regionModal =
+            $("regionModal");
+
+
+        const regionModalClose =
+            $("regionModalClose");
+
+
+        const regionModalAction =
+            $("regionModalAction");
+
+
+        const regionModalBackdrop =
+            $("regionModalBackdrop");
+
+
+        function openRegionModal() {
+
+            if (!regionModal) {
+                return;
+            }
+
+
+            regionModal.hidden =
+                false;
+
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            refreshIcons();
+
+
+            setTimeout(
+                () =>
+                    regionModalClose?.focus(),
+                0
+            );
+
+        }
+
+
+        function closeRegionModal() {
+
+            if (!regionModal) {
+                return;
+            }
+
+
+            regionModal.hidden =
+                true;
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        $("bannerShopButton")
+            ?.addEventListener(
+                "click",
+                openRegionModal
+            );
+
+
+        $("bannerExploreButton")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    $("productsSection")
+                        ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                }
+            );
+
+
+        regionModalClose
+            ?.addEventListener(
+                "click",
+                closeRegionModal
+            );
+
+
+        regionModalAction
+            ?.addEventListener(
+                "click",
+                closeRegionModal
+            );
+
+
+        regionModalBackdrop
+            ?.addEventListener(
+                "click",
+                closeRegionModal
+            );
+
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape" &&
+                    regionModal &&
+                    !regionModal.hidden
+                ) {
+
+                    closeRegionModal();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        $("headerNotificationButton")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    if (!requireLogin()) {
+                        return;
+                    }
+
+
+                    window.location.href =
+                        "notifications.html";
+
+                }
+            );
+
+
+        $("headerCartButton")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    if (!requireLogin()) {
+                        return;
+                    }
+
+
+                    window.location.href =
+                        "add-products.html";
+
+                }
+            );
+
+
+        $("headerProfile")
+            ?.addEventListener(
+                "click",
+                () => {
+
+                    if (!requireLogin()) {
+                        return;
+                    }
+
+
+                    window.location.href =
+                        "account.html";
+
+                }
+            );
+
+
+        $("headerProfile")
+            ?.addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+
+                        if (!requireLogin()) {
+                            return;
+                        }
+
+
+                        window.location.href =
+                            "account.html";
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           LANGUAGE
+        ====================================================== */
+
+        const languageButton =
+            $("languageButton");
+
+
+        const languageMenu =
+            $("languageMenu");
+
+
+        const languageSelector =
+            $("languageSelector");
+
+
+        let currentLanguage =
+            localStorage.getItem(
+                "tiktokShopLanguage"
+            ) || "en";
+
+
+        const translations = {
+
+            en: {
+
+                search:
+                    "Search products...",
+
+                searchButton:
+                    "Search",
+
+                products:
+                    "Products",
+
+                orders:
+                    "Dashboard",
+
+                favorites:
+                    "My Shop",
+
+                wallet:
+                    "Wallet",
+
+                notifications:
+                    "Notifications",
+
+                messages:
+                    "Messages",
+
+                profile:
+                    "Profile",
+
+                settings:
+                    "Settings",
+
+                help:
+                    "Help Center",
+
+                logout:
+                    "Log out"
+
+            },
+
+
+            th: {
+
+                search:
+                    "ค้นหาสินค้า...",
+
+                searchButton:
+                    "ค้นหา",
+
+                products:
+                    "สินค้า",
+
+                orders:
+                    "แดชบอร์ด",
+
+                favorites:
+                    "ร้านค้าของฉัน",
+
+                wallet:
+                    "กระเป๋าเงิน",
+
+                notifications:
+                    "การแจ้งเตือน",
+
+                messages:
+                    "ข้อความ",
+
+                profile:
+                    "โปรไฟล์",
+
+                settings:
+                    "ตั้งค่า",
+
+                help:
+                    "ศูนย์ช่วยเหลือ",
+
+                logout:
+                    "ออกจากระบบ"
+
+            }
+
+        };
+
+
+        function applyLanguage() {
+
+            const t =
+                translations[
+                    currentLanguage
+                ];
+
+
+            if (!t) {
+                return;
+            }
+
+
+            $("currentLanguage")
+                .textContent =
+                currentLanguage === "th"
+                    ? "TH"
+                    : "EN";
+
+
+            $("searchInput")
+                .placeholder =
+                t.search;
+
+
+            $("searchButton")
+                .textContent =
+                t.searchButton;
+
+
+            const map = {
+
+                navProducts:
+                    t.products,
+
+                navOrders:
+                    t.orders,
+
+                navFavorites:
+                    t.favorites,
+
+                navWallet:
+                    t.wallet,
+
+                navNotifications:
+                    t.notifications,
+
+                navMessages:
+                    t.messages,
+
+                navProfile:
+                    t.profile,
+
+                navSettings:
+                    t.settings,
+
+                navHelp:
+                    t.help
+
+            };
+
+
+            Object.entries(map)
+                .forEach(
+                    ([id, text]) => {
+
+                        const element =
+                            $(id);
+
+
+                        const span =
+                            element?.querySelector(
+                                "span"
+                            );
+
+
+                        if (span) {
+
+                            span.textContent =
+                                text;
+
+                        }
+
+                    }
+                );
+
+
+            const logoutSpan =
+                $("logoutButton")
+                    ?.querySelector(
+                        "span"
+                    );
+
+
+            if (logoutSpan) {
+
+                logoutSpan.textContent =
+                    t.logout;
+
+            }
+
+
+            $("checkEN")
+                .textContent =
+                currentLanguage === "en"
+                    ? "✓"
+                    : "";
+
+
+            $("checkTH")
+                .textContent =
+                currentLanguage === "th"
+                    ? "✓"
+                    : "";
+
+
+            refreshIcons();
+
+        }
+
+
+        languageButton
+            ?.addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    languageMenu
+                        ?.classList
+                        .toggle("show");
+
+                }
+            );
+
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    languageSelector &&
+                    !languageSelector
+                        .contains(
+                            event.target
+                        )
+                ) {
+
+                    languageMenu
+                        ?.classList
+                        .remove("show");
+
+                }
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                ".language-option"
+            )
+            .forEach(
+                option => {
+
+                    option.addEventListener(
+                        "click",
+                        () => {
+
+                            currentLanguage =
+                                option.dataset.language;
+
+
+                            localStorage.setItem(
+                                "tiktokShopLanguage",
+                                currentLanguage
+                            );
+
+
+                            applyLanguage();
+
+
+                            languageMenu
+                                ?.classList
+                                .remove("show");
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           ICON REFRESH
+        ====================================================== */
+
+        function refreshIcons() {
+
+            if (
+                typeof lucide !==
+                "undefined"
+            ) {
+
+                lucide.createIcons();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           SIDEBAR LOADED
+        ====================================================== */
+
+        window.addEventListener(
+            "sharedSidebarLoaded",
+            () => {
+
+                if (currentUser) {
+
+                    updateUserUI();
+
+                }
+
+                else {
+
+                    updateGuestUI();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           START
+        ====================================================== */
+
+        (async function start() {
+
+            refreshIcons();
+
+
+            applyLanguage();
+
+
+            await loadCurrentUser();
+
+
+            await loadProducts();
+
+        })();
+
+    </script>
+
+
+    <script src="js/notifications.js"></script>
+
 </body>
+
 </html>
