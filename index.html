@@ -1200,9 +1200,10 @@
 
 }
 
-        /* =====================================================
-   FIX MOBILE HEADER SEARCH OVERLAP
-   ===================================================== */
+/* =====================================================
+   MOBILE HEADER
+   ให้ Header ของ index.html มีสัดส่วนเดียวกับ account.html
+===================================================== */
 
 @media (max-width: 800px) {
 
@@ -1215,21 +1216,129 @@
         flex-wrap: wrap;
 
         height: auto;
-        min-height: 72px;
+        min-height: 0;
 
-        padding-bottom: 10px;
+        padding: 0 15px 10px;
+
+        gap: 0;
+
+        align-items: flex-start;
+    }
+
+
+    /* แถวบนของ Header */
+
+    .header-left,
+    .header-right {
+        height: 68px;
+
+        display: flex;
+        align-items: center;
     }
 
 
     .header-left {
         flex: 1 1 auto;
+        gap: 8px;
     }
 
 
     .header-right {
         flex: 0 0 auto;
+        gap: 4px;
     }
 
+
+    /* ปุ่มเมนูให้เหมือน account.html */
+
+    .menu-button {
+        width: 40px;
+        height: 40px;
+
+        flex: 0 0 40px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+    }
+
+    .menu-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    /* Logo */
+
+    .mobile-logo {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        height: 32px;
+    }
+
+    .mobile-logo img {
+        width: 32px;
+        height: 32px;
+
+        object-fit: contain;
+        display: block;
+    }
+
+    .mobile-logo strong {
+        font-size: 15px;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+
+    /* ไอคอนด้านขวา */
+
+    .header-icon {
+        width: 35px;
+        height: 35px;
+
+        flex: 0 0 35px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .header-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+
+    /* ปุ่มภาษา */
+
+    .language-button {
+        width: 40px;
+        height: 40px;
+
+        padding: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .language-button span,
+    .language-button svg:last-child {
+        display: none;
+    }
+
+
+    /* ช่องค้นหาอยู่แถวที่ 2 */
 
     .search-box {
         position: static !important;
@@ -1237,10 +1346,13 @@
         order: 10;
 
         flex: 0 0 100%;
+
         width: 100%;
         max-width: none;
 
-        margin: 8px 0 0;
+        height: 43px;
+
+        margin: 0;
 
         box-sizing: border-box;
     }
